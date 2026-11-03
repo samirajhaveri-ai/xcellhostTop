@@ -12,7 +12,11 @@
       <article class="home-hero-slide" [attr.data-product]="i === 0 ? 'Cloud Services' : slide.tab" [class.is-active]="i === activeVisualSlide()" [class.is-cybird]="slide.primaryHref === '/smb-cyber-security-appliance'" [attr.aria-hidden]="i !== activeVisualSlide()">
         <div class="home-hero-copy">
           <div class="eyebrow">{{ slide.eyebrow }}</div>
-          <h1>{{ slide.title }} <em class="shine">{{ slide.accent }}</em> {{ slide.titleEnd }}</h1>
+          @if (i === 0) {
+            <h1>{{ slide.title }} <em class="shine">{{ slide.accent }}</em> {{ slide.titleEnd }}</h1>
+          } @else {
+            <h2 class="home-hero-slide-title">{{ slide.title }} <em class="shine">{{ slide.accent }}</em> {{ slide.titleEnd }}</h2>
+          }
           <p class="lead">{{ slide.description }}</p>
           <div class="rot-line">Right now on XcellHost&nbsp;→&nbsp;<span class="rot home-hero-spotlight">{{ slide.spotlight }}</span></div>
           <div class="hero-ctas">

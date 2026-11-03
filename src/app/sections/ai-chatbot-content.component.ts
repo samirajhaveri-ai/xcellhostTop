@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inject, input, output, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, OnDestroy, PLATFORM_ID, ViewEncapsulation, inject, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'xh-ai-chatbot-content',
@@ -13,10 +14,12 @@ export class AiChatbotContentComponent implements AfterViewInit, OnDestroy {
   readonly questions = ['Pricing', 'WhatsApp?', 'Setup', 'Hindi', 'Talk to a human'];
   readonly messages = signal([{ who: 'bot', text: 'Hi! I’m the XcellHost Assistant demo. Try a sample question about pricing, setup or WhatsApp.' }]);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly cleanups: Array<() => void> = [];
   private get root() { return this.host.nativeElement.shadowRoot!; }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     const click = (event: Event) => this.handleClick(event);
     const key = (event: Event) => this.handleKey(event as KeyboardEvent);
     this.root.addEventListener('click', click);

@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, computed, inject, output, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, PLATFORM_ID, computed, inject, output, signal } from '@angular/core';
 
 type MenuCategory = 'Coffee' | 'Food' | 'Desserts';
 type MenuItem = { id: number; category: MenuCategory; name: string; price: number; special: boolean; vegetarian: boolean; soldOut: boolean };
@@ -29,6 +30,7 @@ export class DigitalMenuOverviewComponent implements AfterViewInit, OnDestroy {
     .filter(item => item.category === this.activeCategory())
     .sort((a, b) => Number(b.special) - Number(a.special)));
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private observer?: IntersectionObserver;
 
   updatePrice(id: number, event: Event): void {
@@ -64,6 +66,7 @@ export class DigitalMenuOverviewComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     const nodes = this.host.querySelectorAll<HTMLElement>('.rv, .ox-tl');
     if (typeof IntersectionObserver === 'undefined' || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       nodes.forEach(node => node.classList.add('is-in'));

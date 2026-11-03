@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, inject, PLATFORM_ID, signal } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
@@ -32,6 +33,7 @@ export class ContactPage implements AfterViewInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly seo = inject(SeoService);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly timers: number[] = [];
 
   readonly offices: readonly ContactOffice[] = [
@@ -89,12 +91,14 @@ export class ContactPage implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     this.initializeCrmForm();
     this.timers.push(window.setTimeout(() => this.initializeCrmForm(), 300));
     this.timers.push(window.setTimeout(() => this.initializeCrmForm(), 1000));
   }
 
   ngOnDestroy(): void {
+    if (!this.isBrowser) return;
     for (const timer of this.timers) window.clearTimeout(timer);
   }
 

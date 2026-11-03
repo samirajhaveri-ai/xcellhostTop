@@ -1,12 +1,20 @@
 @if (!hasStandaloneShell()) {
   <div class="site-progress" [style.width.%]="scrollProgress()" aria-hidden="true"></div>
-  <xh-intro-splash />
   <xh-utility-bar />
   <xh-promo-bar />
   <xh-header />
 }
 
 <router-outlet />
+
+@if (routeSeoSummary(); as summary) {
+  <section class="route-seo-summary" data-route-seo-summary aria-label="Page summary">
+    @if (summary.heading) {
+      <h1 class="route-seo-heading">{{ summary.heading }}</h1>
+    }
+    <p>{{ summary.description }}</p>
+  </section>
+}
 
 @if (!hasStandaloneShell()) {
   @if (showContactOptions()) {

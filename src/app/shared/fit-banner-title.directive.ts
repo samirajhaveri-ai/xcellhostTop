@@ -1,4 +1,5 @@
-import { Directive, ElementRef, effect, inject, input } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Directive, ElementRef, effect, inject, input, PLATFORM_ID } from '@angular/core';
 
 /** Keep banner titles on one line, using the reference's 26px size when it fits. */
 @Directive({ selector: '[xhFitBannerTitle]', standalone: true })
@@ -6,10 +7,11 @@ export class FitBannerTitleDirective {
   readonly xhFitBannerTitle = input(false);
   readonly bannerTitleMaxSize = input(26);
   private readonly element = inject(ElementRef<HTMLElement>);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   constructor() {
     effect(onCleanup => {
-      if (!this.xhFitBannerTitle()) return;
+      if (!this.isBrowser || !this.xhFitBannerTitle()) return;
       const maxSize = this.bannerTitleMaxSize();
       const title = this.element.nativeElement;
       const win = title.ownerDocument.defaultView;

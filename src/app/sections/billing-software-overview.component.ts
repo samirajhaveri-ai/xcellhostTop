@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, computed, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, inject, OnDestroy, PLATFORM_ID, computed, signal } from '@angular/core';
 
 type InvoiceItem = { name: string; qty: number; rate: number; gst: number };
 type Industry = { name: string; icon: string; description: string; points: string[] };
@@ -46,6 +47,7 @@ export class BillingSoftwareOverviewComponent implements AfterViewInit, OnDestro
   ];
 
   private observer?: IntersectionObserver;
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   constructor(private readonly host: ElementRef<HTMLElement>) {}
 
   scrollToDemo(): void {
@@ -60,6 +62,7 @@ export class BillingSoftwareOverviewComponent implements AfterViewInit, OnDestro
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     const nodes = this.host.nativeElement.querySelectorAll<HTMLElement>('[data-reveal]');
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       nodes.forEach(node => node.classList.add('is-visible'));
