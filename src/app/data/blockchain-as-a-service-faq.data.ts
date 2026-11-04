@@ -10,7 +10,7 @@ export const BLOCKCHAIN_SERVICE_FAQS: [string, string][] = [
   ],
   [
     "Which ledgers do you support?",
-    "Hyperledger Fabric, Hyperledger Besu and Corda for permissioned networks, plus public-chain RPC endpoints and dedicated nodes through our Web3 & Blockchain Infrastructure service. Other platforms are assessed on request."
+    "Hyperledger Fabric, Hyperledger Besu and Corda for permissioned networks, plus public-chain RPC endpoints and dedicated nodes through our Blockchain Infrastructure service. Other platforms are assessed on request."
   ],
   [
     "We run GoQuorum today. What should we do?",

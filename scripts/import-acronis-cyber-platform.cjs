@@ -27,7 +27,7 @@ const core = fs.readFileSync(path.join(root, 'public/imported-digicert-standard-
 let runtime = nodes.filter(n => n.tagName === 'script' && !attr(n, 'type')).map(text).at(-1).replaceAll("$id('configure').scrollIntoView({behavior:R?'auto':'smooth'});", "window.hostingJumpTo('configure');");
 // Keep tool navigation in the parent page when the content is embedded.
 runtime = runtime.replace("function go2(id){var e=$id(id);if(e)e.scrollIntoView({behavior:R?'auto':'smooth'});}", "function go2(id){window.hostingJumpTo(id);}");
-runtime = runtime.replace("location.href='web3-blockchain-infrastructure.html'", "parent.location.href='/web3-blockchain-infrastructure'");
+runtime = runtime.replace("location.href='web3-blockchain-infrastructure.html'", "parent.location.href='/blockchain-infrastructure'");
 const heroRuntime = runtime.slice(0, runtime.indexOf('  /*', runtime.indexOf('window.__aoHero'))) + '})();';
 const sections = nodes.filter(n => n.tagName === 'section' && ['overview','benefits','components','ai-native','environments','services','deploy','how','usecases','deliver','compliance','licensing','plans','configure','consolidate','finder','vs','steps','related'].includes(attr(n, 'id')));
 if (sections.length !== 19) throw Error('Incomplete supplied content.');

@@ -555,7 +555,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'manufacturing-cloud': 'Manufacturing Cloud: manufacturing workloads, plans, readiness assessment and IIoT sizing',
     'insurance-cloud': 'Insurance Cloud: insurance workloads, plans, readiness assessment and claims calculator',
     'smb-cloud': 'SMB Cloud: business bundles, plans, IT health check and cost calculator',
-    'web3-blockchain-infrastructure': 'Web3 & Blockchain Infrastructure: blockchain products, chains, APIs, plans, capacity estimator and node finder',
+    'web3-blockchain-infrastructure': 'Blockchain Infrastructure: blockchain products, chains, APIs, plans, capacity estimator and node finder',
     'phishing-incident-response': 'Phishing Incident Response: response workflow, plans, configurator, time-saved estimator and readiness quiz',
     'security-awareness-lms': 'Security Awareness LMS: course library, plans, configurator, ROI estimator and learning-path builder',
     'email-signature': 'Email Signature: signature workflows, plans, configurator, signature builder and cost calculator',

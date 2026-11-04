@@ -4,7 +4,10 @@ const vm = require('node:vm');
 const { parse } = require('parse5');
 const root = path.resolve(__dirname, '..');
 if (!process.argv[2]) throw Error('Pass the supplied Blockchain as a Service HTML file.');
-const source = fs.readFileSync(process.argv[2], 'utf8');
+const source = fs.readFileSync(process.argv[2], 'utf8')
+  .replaceAll('Web3 &amp; Blockchain Infrastructure', 'Blockchain Infrastructure')
+  .replaceAll('Web3 & Blockchain Infrastructure', 'Blockchain Infrastructure')
+  .replaceAll('web3-blockchain-infrastructure.html', 'blockchain-infrastructure.html');
 const nodes = [];
 function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
 walk(parse(source, { sourceCodeLocationInfo: true }));
@@ -27,7 +30,7 @@ const core = fs.readFileSync(path.join(root, 'public/imported-digicert-standard-
 let runtime = nodes.filter(n => n.tagName === 'script' && !attr(n, 'type')).map(text).at(-1).replaceAll("$id('configure').scrollIntoView({behavior:R?'auto':'smooth'});", "window.hostingJumpTo('configure');");
 // Keep tool navigation in the parent page when the content is embedded.
 runtime = runtime.replace("function go2(id){var e=$id(id);if(e)e.scrollIntoView({behavior:R?'auto':'smooth'});}", "function go2(id){window.hostingJumpTo(id);}");
-runtime = runtime.replace("location.href='web3-blockchain-infrastructure.html'", "parent.location.href='/web3-blockchain-infrastructure'");
+runtime = runtime.replace("location.href='blockchain-infrastructure.html'", "parent.location.href='/blockchain-infrastructure'");
 const heroRuntime = runtime.slice(0, runtime.indexOf('  /*', runtime.indexOf('window.__bsHero'))) + '})();';
 const sections = nodes.filter(n => n.tagName === 'section' && ['overview','ledgers','platform','tokenisation','how','usecases','deliver','compliance','plans','configure','sizing','finder','vs','steps','related'].includes(attr(n, 'id')));
 if (sections.length !== 15) throw Error('Incomplete supplied content.');

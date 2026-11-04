@@ -248,7 +248,7 @@ const TERMS={MON:'Monthly',QUA:'Quarterly',SEM:'Half-yearly',YEA:'Annual'};
 const STATE_CODES={"andaman and nicobar islands": "AN", "andhra pradesh": "AP", "arunachal pradesh": "AR", "assam": "AS", "bihar": "BR", "chandigarh": "CH", "chhattisgarh": "CG", "dadra and nagar haveli and daman and diu": "DN", "delhi": "DL", "goa": "GA", "gujarat": "GJ", "haryana": "HR", "himachal pradesh": "HP", "jammu and kashmir": "JK", "jharkhand": "JH", "karnataka": "KA", "kerala": "KL", "keralam": "KL", "ladakh": "LA", "lakshadweep": "LD", "madhya pradesh": "MP", "maharashtra": "MH", "manipur": "MN", "meghalaya": "ML", "mizoram": "MZ", "nagaland": "NL", "odisha": "OD", "puducherry": "PY", "punjab": "PB", "rajasthan": "RJ", "sikkim": "SK", "tamil nadu": "TN", "telangana": "TS", "tripura": "TR", "uttar pradesh": "UP", "uttarakhand": "UK", "west bengal": "WB"};
 const PORTAL_URL='https://billing.zohosecure.in/portal/xcellhostcloudservicespvtltd/index#/tabs?tab_id=1818279000018410001';
 const $=id=>document.getElementById(id);
-let currentStep=0, customerType='new', coupon='', busy=false, acknowledged='';
+let currentStep=0, customerType='new', customerVerified=false, coupon='', busy=false, acknowledged='';
 let selection={package:'LITE',term:'MON',quantity:1};
 const form=$('webform667555000020578022');
 const money=n=>'₹'+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -273,7 +273,7 @@ function profileValid(){return fieldsValid(['street','address2','city','billingS
 function go(step){
  if(busy)return;clearError();
  if(step>0&&!serviceValid()){step=0;}
- if(step>1&&(customerType!=='new'||!contactValid()))step=1;
+ if(step>1&&((customerType!=='new'&&!customerVerified)||!contactValid()))step=1;
  if(step===3&&(!acknowledged||acknowledged!==fingerprint())){error('Please save your billing details before continuing to payment.');return;}
  currentStep=step;document.querySelectorAll('[data-panel]').forEach(el=>el.hidden=Number(el.dataset.panel)!==step);
  document.querySelectorAll('#stepper .step').forEach((el,i)=>{el.classList.toggle('active',i===step);el.classList.toggle('done',i<step);if(i===step)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current');});
@@ -304,6 +304,7 @@ async function submitCRM(event){
  event.preventDefault();if(busy)return;
  if(!serviceValid()){go(0);return;}if(!contactValid()){go(1);return;}if(!profileValid())return;
  clearError();const key=fingerprint();if(acknowledged===key){go(3);return;}
+ if(customerVerified){acknowledged=key;go(3);return;}
  if(!['https:','http:'].includes(location.protocol)){error('Please open this checkout on the XcellHost website to submit your details.');return;}
  let data;try{data=prepareSubmission();}catch(e){error(e.message);return;}
  busy=true;const mask=document.createElement('div');mask.className='submit-mask';mask.setAttribute('role','status');mask.textContent='Submitting your details…';document.body.appendChild(mask);$('saveDetails').disabled=true;
@@ -335,6 +336,13 @@ function buildPaymentUrl(){
 function navigate(url){if(window.top===window)window.location.assign(url);else window.top.location.href=url;}
 function pay(){if(busy)return;if(!acknowledged||acknowledged!==fingerprint()){go(2);error('Please save your details before opening payment.');return;}try{navigate(buildPaymentUrl());}catch(e){error('Unable to open the payment page. Please open this checkout directly in your browser or contact support.');}}
 function setType(type){customerType=type;$('newCustomer').classList.toggle('selected',type==='new');$('existingCustomer').classList.toggle('selected',type==='existing');$('newCustomer').setAttribute('aria-pressed',type==='new');$('existingCustomer').setAttribute('aria-pressed',type==='existing');$('newFields').hidden=type!=='new';$('existingFields').hidden=type!=='existing';}
+window.addEventListener('xcellhost:zoho-customer',()=>{
+ customerVerified=true;customerType='existing';
+ $('newCustomer').classList.remove('selected');$('existingCustomer').classList.add('selected');
+ $('newCustomer').setAttribute('aria-pressed','false');$('existingCustomer').setAttribute('aria-pressed','true');
+ $('newFields').hidden=false;$('existingFields').hidden=true;
+ $('customerContinue').textContent='Continue with Saved Details';
+});
 function init(){
  for(const [id,p]of Object.entries(PACKAGES)){const option=document.createElement('option');option.value=id;option.textContent=p.name+' · '+p.users+' users';$('packageSelect').appendChild(option);}
  try{const saved=JSON.parse(localStorage.getItem('xh_tally_simple_selection')||'null');if(saved){if(PACKAGES[saved.package])selection.package=saved.package;if(TERMS[saved.term])selection.term=saved.term;if(Number.isInteger(saved.quantity)&&saved.quantity>=1&&saved.quantity<=99)selection.quantity=saved.quantity;}}catch(e){}

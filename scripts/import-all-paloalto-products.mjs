@@ -28,6 +28,7 @@ main = main.replace('data-product="All Palo Alto Networks Services · XcellHost"
   .replace(/(<section class="hero lh pz-hero"[^>]*>\s*)<div class="hero-bg"[\s\S]*?(?=\n  <div class="wrap">)/, `$1<div class="hero-bg" aria-hidden="true"><div class="pz-world-map">${worldMap}</div><div class="pz-grid"></div></div>`)
   .replace(/(<section class="sec pz-cat" id="catalog">[\s\S]*?<div class="pz-ch rv">[\s\S]*?<\/div>)/, '$1' + stats.replace('class="pz-stats"', 'class="pz-stats pz-catalog-stats"'));
 if (!main.includes('data-banner-added-actions') || !main.includes('pz-catalog-stats')) throw new Error('Hero transformation incomplete');
+main = main.replace('<div class="xh-banner-actions" data-banner-added-actions></div>', '<div class="xh-banner-actions" data-banner-added-actions></div><div class="pz-powered-by"><span>Powered by</span><span class="pz-powered-logo"><img src="/assets/images/palo-alto-powered-by.webp" alt="Palo Alto Networks" width="200" height="80"><img class="pz-powered-icon" src="/assets/images/palo-alto-powered-by.webp" alt="" aria-hidden="true" width="200" height="80"></span></div>');
 main = main.replace(/(<section class="sec(?: alt)? pz-faq" id="faq">[\s\S]*?)<div class="sh rv">[\s\S]*?<\/div>/,
   '$1<div class="sh rv"><h2>Frequently asked questions</h2></div>');
 const closingStart = main.indexOf('<div class="lcta rv" id="contact">');
@@ -43,6 +44,15 @@ page = page.replace("hq=$('#pzHQ')", "hq=$('#pzHQ')||q")
 const fonts = [...source.matchAll(/<link\b[^>]*>/g)].map(item => item[0]).filter(link => /fonts\.(?:googleapis|gstatic)\.com/.test(link)).join('');
 const bridge = `
 (function(){
+  const copy = document.querySelector('#pzHero .pz-copy');
+  const powered = copy.querySelector('.pz-powered-by');
+  const observer = new MutationObserver(placePoweredLogo);
+  function placePoweredLogo(){
+    const ai = copy.querySelector('.xh-banner-ai');
+    if(ai){ ai.after(powered); observer.disconnect(); }
+  }
+  observer.observe(copy, {childList:true, subtree:true});
+  placePoweredLogo();
   const open = XH.open;
   XH.open = function(id, options){
     if(id === 'xhCallback'){

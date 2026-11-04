@@ -23,6 +23,15 @@
 #pzHero .pz-hero-points i { display: grid; place-items: center; flex: none; width: 23px; height: 23px; font-style: normal; color: #fff; border: 1px solid #4b9cff; border-radius: 6px; background: #0066ff; box-shadow: 0 0 0 3px #0066ff30; }
 #pzHero .xh-banner-actions { margin-top: 0; }
 #pzHero .xh-banner-ai { width: 100%; background: #041e42b8; }
+#pzHero .pz-powered-by { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin-top: 16px; color: #c7d8f0; font-size: 15px; font-weight: 600; }
+#pzHero .pz-powered-by img { display: block; width: 330px; height: auto; max-width: none; padding: 0; background: transparent; border-radius: 0; object-fit: contain; filter: brightness(0) invert(1); transform: translateX(-42px); }
+#pzHero .pz-powered-logo { position: relative; display: block; width: 270px; max-width: 100%; }
+#pzHero .pz-powered-logo .pz-powered-icon { position: absolute; inset: 0; filter: none; clip-path: inset(0 66% 0 0); }
+@media (max-width: 560px) {
+  #pzHero .pz-powered-by { font-size: 14px; }
+  #pzHero .pz-powered-logo { width: 220px; }
+  #pzHero .pz-powered-by img { width: 280px; transform: translateX(-36px); }
+}
 #pzHero .pz-vis { width: 100%; height: auto; max-height: 440px; aspect-ratio: 1; margin: 0; box-shadow: 0 24px 55px #0003; }
 #pzHero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
 #pzHero .pz-grid { position: absolute; inset: 0; background-image: linear-gradient(#8fb8ff08 1px, transparent 1px), linear-gradient(90deg, #8fb8ff08 1px, transparent 1px); background-size: 40px 40px; }

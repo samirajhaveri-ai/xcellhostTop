@@ -1,4 +1,4 @@
-// FAQs from the supplied Web3 & Blockchain Infrastructure document.
+// FAQs from the supplied Blockchain Infrastructure document.
 export const WEB3_INFRASTRUCTURE_FAQS: [string, string][] = [
   [
     "How do we get started?",
