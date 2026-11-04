@@ -5092,6 +5092,31 @@
                 }
 
                 @if (isAdvancedEdr()) {
+                  <section class="edr-comparison" aria-labelledby="edr-comparison-title">
+                    <header class="edr-comparison-head">
+                      <span>Security comparison</span>
+                      <h2 id="edr-comparison-title">How EDR compares</h2>
+                      <p>See where endpoint detection and response fits alongside antivirus, XDR and MDR.</p>
+                    </header>
+                    <div class="edr-comparison-grid">
+                      <article>
+                        <span class="edr-comparison-number">01</span>
+                        <h3>EDR vs Antivirus</h3>
+                        <p>Antivirus primarily blocks known malware. EDR continuously records endpoint activity so teams can detect suspicious behaviour, investigate attacks, contain affected devices and respond to advanced threats.</p>
+                      </article>
+                      <article>
+                        <span class="edr-comparison-number">02</span>
+                        <h3>EDR vs XDR</h3>
+                        <p>EDR focuses on laptops, desktops and servers. XDR extends detection across endpoints, identity, email, network and cloud signals to reveal attacks that move between security layers.</p>
+                      </article>
+                      <article>
+                        <span class="edr-comparison-number">03</span>
+                        <h3>EDR vs MDR</h3>
+                        <p>EDR is the endpoint security technology. MDR is a managed service in which security specialists monitor alerts, investigate incidents and coordinate response using EDR, XDR and related controls.</p>
+                      </article>
+                    </div>
+                  </section>
+
                   <xh-anti-ransomware-warranty />
                 }
 
