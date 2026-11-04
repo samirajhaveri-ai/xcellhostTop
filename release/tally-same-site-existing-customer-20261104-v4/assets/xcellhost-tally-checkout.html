@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tally on Cloud | XcellHost Checkout</title>
+<!-- Tally checkout content. The application supplies the website header and footer. -->
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bl:#0066FF;--nv:#041E42;--nv2:#0B132B;--or:#FF8A00;--gn:#22c55e;--red:#ef4444;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--bg:#f6f9fc;--f:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:16px}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--f)}
+
+/* ═══ HEADER ═══ */
+.top{background:var(--nv);color:#fff;font-size:.7rem}
+.top-in{max-width:1240px;margin:0 auto;padding:6px 24px;display:flex;justify-content:flex-end;gap:18px;align-items:center}
+.top a{color:rgba(255,255,255,.7)}.top a:hover{color:#fff}
+.nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 12px rgba(0,0,0,.03)}
+.nav-in{max-width:1240px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:20px}
+.nav-logo img{height:36px;display:block;margin-right:auto}
+.nav-menu{display:flex;gap:16px;align-items:center}
+.nav-menu a{color:#334155;font-size:.78rem;font-weight:600;transition:color .2s;white-space:nowrap}.nav-menu a:hover{color:var(--bl)}
+.nav-secure{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--gn);background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:6px 12px;border-radius:8px;white-space:nowrap}
+.hamb{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px}
+.hamb span{width:22px;height:2px;background:var(--ink);border-radius:2px}
+
+/* ═══ STEPPER ═══ */
+.stepper-wrap{background:#fff;border-bottom:1px solid var(--line)}
+.stepper{max-width:1240px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:center;gap:0}
+.step{display:flex;align-items:center;gap:10px}
+.step-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:800;background:#eef2f7;color:var(--muted);border:2px solid var(--line);transition:all .4s}
+.step-lab{font-size:.8rem;font-weight:700;color:var(--muted);transition:color .4s}
+.step.active .step-num{background:var(--bl);color:#fff;border-color:var(--bl);box-shadow:0 0 0 4px rgba(0,102,255,.15)}
+.step.active .step-lab{color:var(--ink)}
+.step.done .step-num{background:var(--gn);color:#fff;border-color:var(--gn)}
+.step.done .step-lab{color:var(--ink)}
+.step-bar{width:60px;height:2px;background:var(--line);margin:0 14px;position:relative;overflow:hidden}
+.step-bar::after{content:'';position:absolute;inset:0;width:0;background:var(--gn);transition:width .5s}
+.step-bar.filled::after{width:100%}
+
+/* ═══ PAGE ═══ */
+.page{max-width:1240px;margin:0 auto;padding:32px 24px 60px}
+.page-title{font-size:1.7rem;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.page-sub{color:var(--muted);font-size:.92rem;margin-bottom:28px}
+.layout{display:grid;grid-template-columns:65% 35%;gap:28px;align-items:start}
+
+/* cards */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(15,23,42,.04);margin-bottom:20px;animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card-h{font-size:1.1rem;font-weight:800;margin-bottom:3px}
+.card-sub{color:var(--muted);font-size:.82rem;margin-bottom:20px}
+
+/* account type toggle */
+.acct-toggle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.acct-opt{border:2px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:12px;background:#fff}
+.acct-opt:hover{border-color:#bcd4ff}
+.acct-opt.sel{border-color:var(--bl);background:rgba(0,102,255,.04)}
+.acct-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;position:relative;transition:border-color .25s}
+.acct-opt.sel .acct-radio{border-color:var(--bl)}
+.acct-opt.sel .acct-radio::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--bl)}
+.acct-opt .t{font-size:.88rem;font-weight:700}.acct-opt .s{font-size:.68rem;color:var(--muted);margin-top:1px}
+
+/* form */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.76rem;font-weight:600;color:#475569;margin-bottom:6px}
+.field label .rq{color:var(--red)}
+.field input{width:100%;padding:12px 14px;border:2px solid #d5dde7;border-radius:10px;font-size:.9rem;font-family:var(--f);color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+.field input::placeholder{color:#aab4c0}
+.field input:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.field input.err{border-color:var(--red)}.field input.ok{border-color:var(--gn)}
+.field select{width:100%;padding:12px 14px;border:2px solid #d5dde7;border-radius:10px;font-size:.9rem;font-family:var(--f);color:var(--ink);outline:none;background:#fff;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.field select:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.ferr{font-size:.7rem;color:var(--red);margin-top:5px;display:none}.ferr.show{display:block}
+.login-status{font-size:.76rem;margin-top:10px;line-height:1.45;color:var(--muted)}.login-status.error{color:var(--red)}.login-status.ok{color:#15803d}
+
+/* existing login prototype */
+.login-proto{display:none}.login-proto.show{display:block;animation:fadeUp .4s ease}
+.proto-note{font-size:.7rem;color:var(--or);background:rgba(255,138,0,.08);border:1px solid rgba(255,138,0,.2);border-radius:8px;padding:8px 12px;margin-bottom:16px}
+
+/* service spec grid */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.spec{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.spec-ico{width:34px;height:34px;border-radius:9px;background:rgba(0,102,255,.08);border:1px solid rgba(0,102,255,.16);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.spec .k{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.spec .v{font-size:.82rem;font-weight:700}
+.svc-head{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.svc-badge{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--bl),#0047b3);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;color:#fff}
+.svc-name{font-size:1.1rem;font-weight:800}.svc-pkg{font-size:.8rem;color:var(--bl);font-weight:700;margin-top:2px}.svc-users{font-size:.72rem;color:var(--muted);margin-top:2px}
+
+/* ═══ RMM term selector + quantity (Tally-styled) ═══ */
+.terms{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:4px 0 6px}
+.term-opt{position:relative;border:2px solid var(--line);border-radius:12px;padding:18px 12px 14px;cursor:pointer;transition:all .25s;text-align:center;background:#fff}
+.term-opt:hover{border-color:#bcd4ff}
+.term-opt.sel{border-color:var(--bl);background:rgba(0,102,255,.04)}
+.term-opt.sel::after{content:'✓';position:absolute;top:8px;right:10px;width:20px;height:20px;border-radius:50%;background:var(--bl);color:#fff;font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.term-opt .to-dur{font-size:1.02rem;font-weight:800}
+.term-opt .to-off{display:inline-block;margin-top:8px;font-size:.58rem;font-weight:800;letter-spacing:.02em;color:#fff;background:var(--or);border-radius:20px;padding:3px 9px}
+.term-opt .to-sub{font-size:.64rem;color:var(--muted);margin-top:8px}
+.term-detail{margin-top:16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term-detail .td-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.term-detail .td-name{font-size:.95rem;font-weight:800;color:var(--nv)}
+.term-detail .td-cov{font-size:.74rem;font-weight:700;color:var(--gn);background:rgba(34,197,94,.1);border-radius:20px;padding:3px 10px}
+.term-detail .td-price{margin-left:auto;font-size:1.15rem;font-weight:800;color:var(--bl)}
+.term-detail .td-price .u{font-size:.66rem;font-weight:600;color:var(--muted)}
+.term-detail .td-tbc{margin-left:auto;font-size:.82rem;font-weight:700;color:var(--or)}
+.term-detail .td-note{font-size:.7rem;color:var(--muted);margin-top:10px;line-height:1.5}
+.qty-wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.qty{display:inline-flex;align-items:center;border:2px solid #d5dde7;border-radius:10px;overflow:hidden}
+.qty button{width:44px;height:44px;background:var(--bg);font-size:1.25rem;font-weight:800;color:var(--bl);cursor:pointer;border:none;line-height:1}
+.qty button:hover{background:rgba(0,102,255,.08)}
+.qty input{width:58px;height:44px;border:none;border-left:2px solid #d5dde7;border-right:2px solid #d5dde7;text-align:center;font-weight:800;font-size:1.02rem;font-family:var(--f);outline:none}
+.qty-lab{font-size:.8rem;color:var(--muted);font-weight:600}
+.svc-feats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
+.svc-feats li{display:flex;align-items:flex-start;gap:9px;font-size:.82rem;color:#334155;font-weight:600}
+.svc-feats li::before{content:'✓';color:var(--gn);font-weight:800;flex-shrink:0}
+.whyc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}
+.whyc{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.whyc .wc-ico{width:36px;height:36px;border-radius:9px;background:rgba(0,102,255,.08);border:1px solid rgba(0,102,255,.16);display:flex;align-items:center;justify-content:center;font-size:1.05rem;margin-bottom:10px}
+.whyc h4{font-size:.86rem;font-weight:800}
+.whyc p{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.5}
+.trust-pts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.trust-pt{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.82rem;font-weight:700}
+.trust-pt .tp-ck{color:var(--gn);font-weight:800;flex-shrink:0}
+@media(max-width:860px){.whyc-grid{grid-template-columns:1fr 1fr}}
+
+/* upcoming steps */
+.upcoming{display:flex;align-items:center;gap:12px;padding:18px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);margin-bottom:12px}
+.upcoming .u-ico{width:38px;height:38px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:.6}
+.upcoming .u-t{font-size:.86rem;font-weight:700;color:#94a3b8}.upcoming .u-s{font-size:.7rem}
+
+/* ═══ ORDER SUMMARY ═══ */
+.summary{position:sticky;top:80px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(15,23,42,.06)}
+.sum-head{background:var(--nv);color:#fff;padding:20px 24px}
+.sum-head h3{font-size:1rem;font-weight:800}
+.sum-prod{padding:20px 24px;border-bottom:1px solid var(--line)}
+.sum-prod .p{font-size:.95rem;font-weight:800}.sum-prod .pk{font-size:.78rem;color:var(--bl);font-weight:700;margin-top:2px}.sum-prod .u{font-size:.72rem;color:var(--muted);margin-top:2px}
+.sum-prod .pr{font-size:.95rem;font-weight:800;margin-top:8px}
+.sum-prod .pr .tbc{color:var(--or)}
+.incl{padding:18px 24px;border-bottom:1px solid var(--line)}
+.incl-t{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.incl li{list-style:none;font-size:.78rem;color:#475569;padding:4px 0;display:flex;align-items:center;gap:8px}
+.incl li::before{content:'✓';color:var(--gn);font-weight:800;flex-shrink:0}
+.coupon{padding:18px 24px;border-bottom:1px solid var(--line)}
+.coupon-t{font-size:.78rem;font-weight:700;margin-bottom:10px}
+.coupon-row{display:flex;gap:8px}
+.coupon-row input{flex:1;padding:10px 12px;border:2px solid #d5dde7;border-radius:9px;font-size:.82rem;font-family:var(--f);outline:none;text-transform:uppercase}
+.coupon-row input:focus{border-color:var(--bl)}
+.coupon-row button{padding:10px 18px;border:none;border-radius:9px;background:var(--nv);color:#fff;font-weight:700;font-size:.8rem;cursor:pointer;transition:background .2s}
+.coupon-row button:hover{background:#0a2a5c}
+.coupon-msg{font-size:.7rem;margin-top:8px;display:none}.coupon-msg.show{display:block}
+.coupon-msg.ok{color:var(--gn)}.coupon-msg.no{color:var(--red)}
+.pricing{padding:18px 24px}
+.pline{display:flex;justify-content:space-between;font-size:.82rem;color:#475569;padding:6px 0}
+.pline .discount{color:var(--gn)}
+.pline.total{border-top:2px solid var(--line);margin-top:8px;padding-top:14px;font-size:1.15rem;font-weight:800;color:var(--ink)}
+.pline .amt{font-weight:700;transition:color .3s}
+.amt.flash{color:var(--or)}
+.amt.tbc{color:var(--or)}
+
+/* continue button */
+.continue{width:100%;padding:15px;border:none;border-radius:12px;background:var(--bl);color:#fff;font-size:.95rem;font-weight:800;cursor:pointer;position:relative;overflow:hidden;transition:transform .12s,box-shadow .2s;margin-top:6px}
+.continue:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,102,255,.3)}
+.continue:active{transform:translateY(0)}
+.continue::after{content:'';position:absolute;top:0;left:-120%;width:70%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);animation:shine 3.5s ease-in-out infinite}
+@keyframes shine{0%,55%{left:-120%}100%{left:150%}}
+.secure-line{text-align:center;font-size:.66rem;color:var(--muted);margin-top:12px;display:flex;align-items:center;justify-content:center;gap:5px}
+.dev-test{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);display:flex;align-items:center;justify-content:center;gap:8px;opacity:.75}
+.dev-test .dev-tag{font-size:.56rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+.dev-test a{font-size:.68rem;font-weight:700;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.dev-test a:hover{color:var(--bl)}
+
+/* right column trust card */
+.why-xcell{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 4px 20px rgba(15,23,42,.04);margin-top:20px}
+.why-xcell .wx-t{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.why-list{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.why-list li{display:flex;align-items:flex-start;gap:9px;font-size:.8rem;font-weight:600;color:var(--ink)}
+.why-list li .wx-ck{color:var(--gn);font-weight:800;flex-shrink:0}
+.sec-note{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.sec-note .sn-h{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:800;color:var(--nv);margin-bottom:4px}
+.sec-note .sn-b{font-size:.7rem;line-height:1.5;color:var(--muted)}
+
+/* footer */
+.ft{background:var(--nv);color:rgba(255,255,255,.6);margin-top:20px}
+.ft-grid{max-width:1240px;margin:0 auto;padding:44px 24px 28px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.ft-logo{height:34px;filter:brightness(0) invert(1);margin-bottom:14px}
+.ft-about{font-size:.76rem;line-height:1.7;color:rgba(255,255,255,.5)}
+.ft-col h4{color:#fff;font-size:.76rem;font-weight:700;margin-bottom:12px;letter-spacing:.04em}
+.ft-col a{display:block;font-size:.76rem;color:rgba(255,255,255,.55);padding:5px 0;transition:color .2s}.ft-col a:hover{color:#fff}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.1);padding:18px 24px;text-align:center;font-size:.66rem;color:rgba(255,255,255,.35)}
+
+/* ═══ RESPONSIVE (matches Tally) ═══ */
+@media(max-width:980px){.layout{grid-template-columns:1fr}.summary{position:static}.nav-menu{display:none}.hamb{display:flex}.ft-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.frow,.acct-toggle,.spec-grid{grid-template-columns:1fr}.terms{grid-template-columns:1fr}.svc-feats{grid-template-columns:1fr}.whyc-grid{grid-template-columns:1fr}.trust-pts{grid-template-columns:1fr}.stepper{gap:0;overflow-x:auto}.step-lab{display:none}.step-bar{width:30px;margin:0 6px}.ft-grid{grid-template-columns:1fr}.page-title{font-size:1.35rem}}
+
+/* toast */
+.toast-wrap{position:fixed;bottom:22px;right:22px;z-index:200;display:flex;flex-direction:column;gap:10px}
+.toast{background:var(--nv);color:#fff;padding:13px 16px;border-radius:12px;box-shadow:0 12px 30px rgba(4,12,28,.3);font-size:.84rem;max-width:340px;animation:fadeUp .3s ease}
+
+.layout{grid-template-columns:minmax(0,1fr) 370px}
+.terms{grid-template-columns:repeat(4,minmax(0,1fr))}
+.term-opt{font-family:var(--f);color:var(--ink)}
+.recap-row{display:flex;justify-content:space-between;gap:18px;padding:8px 0;font-size:.86rem}
+.recap-total{border-top:1px solid var(--line);margin-top:8px;padding-top:8px;font-size:1.05rem}
+.checkout-notice{margin-top:14px;padding:12px 14px;border-radius:10px;background:#fff7ed;color:#9a3412;font-size:.8rem;line-height:1.5}
+.checkout-notice[hidden]{display:none}
+.continue:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+@media(max-width:980px){.layout{grid-template-columns:1fr}}
+@media(max-width:560px){.terms{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:20px}.page{padding:24px 16px 40px}.coupon-row input{min-width:0}.recap-row{font-size:.8rem}.nav-in{padding:0 16px}}
+
+[hidden]{display:none!important}.embedded>.top,.embedded>.nav,.embedded>.ft{display:none}body{background:#f5f7fb}.step{cursor:pointer;border:0;background:transparent;font-family:inherit;text-align:left}.step[aria-current="step"] .step-num{background:var(--bl);color:#fff}.card[hidden]{display:none!important}.account-choices{display:flex;gap:10px;margin:0 0 22px}.choice{flex:1;border:2px solid #d5dde7;border-radius:10px;padding:14px;background:white;font:inherit;font-weight:700;cursor:pointer}.choice.selected{border-color:var(--bl);background:#eef5ff;color:var(--bl)}.field label{display:block}.error{color:#b42318;background:#fff1f0;border:1px solid #ffc9c4;padding:12px;border-radius:8px;margin:14px 0;line-height:1.6}.notice{font-size:.8rem;line-height:1.7;color:#52637b;margin:14px 0}.verified-notice{color:#18794e;background:#ecfdf3;border:1px solid #a6e3c1;border-radius:8px;padding:11px 12px}.actions{display:flex;gap:12px;margin-top:22px}.back{background:#eef2f7;color:#334155;max-width:130px}.terms{display:grid}.term-opt{cursor:pointer}.submit-mask{position:fixed;inset:0;background:rgba(255,255,255,.92);z-index:10000;display:grid;place-items:center;font:700 18px Arial;color:#16324f}.summary p{line-height:1.6}.recap-row span:last-child{max-width:65%;text-align:right;overflow-wrap:anywhere}.step-num{flex-shrink:0}.step-lab{white-space:nowrap}.privacy{display:flex;align-items:flex-start;gap:9px;font-size:.8rem;line-height:1.6;margin-top:18px}.privacy input{margin-top:5px}.coupon-row{flex-wrap:wrap}.coupon-row input{min-width:100px}.page-sub{max-width:760px}.nav-in{justify-content:space-between}.nav-logo img{height:58px}.muted{color:#64748b}.billing-state{width:100%}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #2563eb;outline-offset:3px}@media(max-width:560px){.stepper{justify-content:space-between}.step{display:flex;flex-direction:column;gap:5px;flex:1}.step-lab{display:block;font-size:10px;white-space:normal;text-align:center}.step-bar{display:none}.account-choices{flex-direction:column}.nav-logo img{height:46px}.nav-secure{font-size:11px}}
+</style></head><body>
+
+<div class="stepper-wrap"><div class="stepper" id="stepper"><button type="button" class="step active" data-step="0"><span class="step-num">1</span><span class="step-lab">Service</span></button><div class="step-bar"></div><button type="button" class="step" data-step="1"><span class="step-num">2</span><span class="step-lab">Customer Information</span></button><div class="step-bar"></div><button type="button" class="step" data-step="2"><span class="step-num">3</span><span class="step-lab">Billing Information</span></button><div class="step-bar"></div><button type="button" class="step" data-step="3"><span class="step-num">4</span><span class="step-lab">Payment</span></button></div></div>
+<main class="page"><h1 class="page-title">Complete Your Tally on Cloud Order</h1><p class="page-sub">Choose your service, enter your details, and complete your payment securely through Zoho Billing.</p>
+<div class="layout"><div class="col-left">
+<div id="formError" class="error" role="alert" hidden></div>
+<form id="webform667555000020578022" name="WebToLeads667555000020578022" accept-charset="UTF-8" action="https://crm.zoho.in/crm/WebToLeadForm" method="POST" novalidate>
+<!-- Do not remove this code: Zoho CRM public webform identifiers. -->
+<div hidden><input name="xnQsjsdp" style="display:none;" type="text" value="70ebc94417bf7b1ba03e450fffdf7f171eeda779bf9297623f18881ce968ab68"/>
+<input id="zc_gad" name="zc_gad" type="hidden" value=""/>
+<input name="xmIwtLD" style="display:none;" type="text" value="f837d184ad7829b998017725d197e4feb2030ece8e259cb48843551acc77391da8f59fe9d404dbaec7c6525ee023c21c"/>
+<input name="actionType" style="display:none;" type="text" value="TGVhZHM="/>
+<input name="returnURL" style="display:none;" type="text" value="null"/>
+<input name="aG9uZXlwb3Q" style="display: none;" type="hidden" value=""/><input type="hidden" name="LEADCF21" value="Customer C"><textarea name="Description" id="Description"></textarea></div>
+<section class="card" data-panel="0" id="servicePanel"><h2 class="card-h">1. Select Your Service</h2><p class="card-sub">Tally Private Cloud · Choose the capacity and billing period for your team.</p>
+<div class="field"><label for="packageSelect">Server package</label><select id="packageSelect"></select></div><div class="terms" id="terms"></div><div class="term-detail" id="termDetail"></div>
+<div style="margin-top:22px"><h3 class="card-h" style="font-size:1rem">Number of servers</h3><p class="card-sub">Each server includes the selected package’s user capacity.</p><div class="qty-wrap"><div class="qty"><button type="button" id="qtyDown" aria-label="Decrease servers">−</button><input id="qty" type="number" min="1" max="99" step="1" value="1" aria-label="Number of servers"><button type="button" id="qtyUp" aria-label="Increase servers">+</button></div><span class="qty-lab">server packages</span></div></div>
+<div class="actions"><button type="button" class="continue" id="serviceContinue">Continue to Customer Information</button></div></section>
+<section class="card" data-panel="1" id="customerPanel" hidden><h2 class="card-h">2. Customer Information</h2><p class="card-sub">Use your contact details for your order and onboarding.</p>
+<div class="account-choices"><button type="button" class="choice selected" id="newCustomer" aria-pressed="true">Create an Account</button><button type="button" class="choice" id="existingCustomer" aria-pressed="false">Already Have an Account?</button></div>
+<div id="newFields"><p id="verifiedNotice" class="notice verified-notice" hidden></p><div class="frow"><div class="field"><label for="firstName">First Name <span class="rq">*</span></label><input id="firstName" name="First Name" type="text" maxlength="40" required autocomplete="given-name"></div><div class="field"><label for="lastName">Last Name <span class="rq">*</span></label><input id="lastName" name="Last Name" type="text" maxlength="80" required autocomplete="family-name"></div></div><div class="frow"><div class="field"><label for="email">Email <span class="rq">*</span></label><input id="email" name="Email" type="email" maxlength="100" required autocomplete="email"></div><div class="field"><label for="mobile">Mobile / WhatsApp <span class="rq">*</span></label><input id="mobile" name="Mobile" type="tel" maxlength="30" required pattern="[+0-9][0-9 +()-]{7,29}" autocomplete="tel" placeholder="+91"></div></div><div class="field"><label for="company">Company / Billing Name <span class="rq">*</span></label><input id="company" name="Company" type="text" maxlength="200" required autocomplete="organization"></div>
+<p class="notice">Your Billing portal account is managed by Zoho Billing. If portal invitations are enabled, you’ll receive an invitation after your subscription payment.</p>
+<div class="actions"><button type="button" class="continue back" data-back="0">← Back</button><button type="button" class="continue" id="customerContinue">Continue to Billing Information</button></div></div>
+<div id="existingFields" hidden><p class="notice">Enter the email used for your XcellHost billing account. We’ll email a one-time code, verify you here, and load your saved Zoho Billing details without leaving this checkout.</p><div class="field"><label for="existingEmail">Billing Email Address <span class="rq">*</span></label><input id="existingEmail" type="email" maxlength="100" autocomplete="email" placeholder="you@company.com"></div><button type="button" class="continue" id="sendExistingCode">Send Verification Code</button><div id="existingCodeFields" hidden><div class="field" style="margin-top:16px"><label for="existingCode">6-Digit Verification Code <span class="rq">*</span></label><input id="existingCode" type="text" maxlength="6" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" placeholder="000000"></div><button type="button" class="continue" id="verifyExistingCode">Verify &amp; Load Saved Details</button></div><p id="existingStatus" class="login-status" role="status" aria-live="polite"></p><div class="actions"><button type="button" class="continue back" data-back="0">← Back</button></div></div></section>
+<section class="card" data-panel="2" id="billingPanel" hidden><h2 class="card-h">3. Billing Information</h2><p class="card-sub">Enter the address and GST details for your invoice.</p>
+<div class="field"><label for="street">Billing Street <span class="rq">*</span></label><input id="street" name="Street" type="text" maxlength="250" required autocomplete="address-line1"></div><div class="field"><label for="address2">Address Line 2</label><input id="address2" type="text" maxlength="200" autocomplete="address-line2"></div><div class="frow"><div class="field"><label for="city">City <span class="rq">*</span></label><input id="city" name="City" type="text" maxlength="100" required autocomplete="address-level2"></div><div class="field"><label for="billingState">State <span class="rq">*</span></label><select id="billingState" name="State" required class="billing-state"><option value="">Select your state</option><option>Andaman and Nicobar Islands</option><option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option><option>Chandigarh</option><option>Chhattisgarh</option><option>Dadra and Nagar Haveli and Daman and Diu</option><option>Delhi</option><option>Goa</option><option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option><option>Jammu and Kashmir</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>Ladakh</option><option>Lakshadweep</option><option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Puducherry</option><option>Punjab</option><option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option></select></div></div>
+<div class="frow"><div class="field"><label for="pin">PIN Code <span class="rq">*</span></label><input id="pin" name="Zip Code" type="text" maxlength="6" required pattern="[1-9][0-9]{5}" inputmode="numeric" autocomplete="postal-code"></div><div class="field"><label for="country">Country <span class="rq">*</span></label><input id="country" name="Country" type="text" maxlength="100" required value="India" readonly autocomplete="country-name"></div></div><div class="frow"><div class="field"><label for="gstRegistered">GST Registered <span class="rq">*</span></label><select id="gstRegistered" name="LEADCF37" required><option value="">Select…</option><option value="YES">Yes</option><option value="NO">No</option></select></div><div class="field" id="gstinField" hidden><label for="gstin">GSTIN <span class="rq">*</span></label><input id="gstin" name="LEADCF36" maxlength="15" pattern="[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]" autocapitalize="characters" style="text-transform:uppercase"></div></div>
+<label class="privacy"><input type="checkbox" id="consent" required><span>I agree that XcellHost may use these details to process and contact me about this order. </span></label>
+<div class="actions"><button type="button" class="continue back" data-back="1">← Back</button><button type="submit" class="continue" id="saveDetails">Save Details &amp; Continue to Payment</button></div></section>
+<section class="card" data-panel="3" id="paymentPanel" hidden><h2 class="card-h" tabindex="-1">4. Payment</h2><p class="card-sub">Your details have been submitted. Review your order, then continue to Zoho Billing.</p><div id="paymentRecap"></div><p class="notice">Check the final quantity, discount and tax on the Zoho payment page before paying.</p><button type="button" id="payButton" class="continue">Continue to Secure Payment</button><p class="notice">Payments and invoices are handled by Zoho Billing.</p><div class="actions"><button type="button" class="continue back" data-back="2">← Back</button></div></section>
+<!-- Do not remove this code: Analytics Tracking code from supplied CRM form. -->
+<script id="wf_anal" src="https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=96419e51010cf6efd35a2894ecf15ce15af1f0cf3b2f1690c2bca840be38bded575debe250e9cce9055ed9815f3b1d32gid980011712e7faf5a55c3e3f21e75a2ffe0eed0511d15e58ded356f2451e1e60agidaa91f7cbbf1b49b7e77e4a45af14a4c5ed07fb7bf6e26b1cdf52b11bfa216898gidbaf36df09664024db2d09b9600df2f9afadd898985b4153599e32742a19e253c&amp;tw=fd493a5126628ed5cd9b7e65b2d9bec1f35c6ec0d3290ab9628195deb7c80834&amp;version=v2">
+</script>
+</form></div>
+<aside><div class="summary"><div class="sum-head"><h3>Order Summary</h3></div><div class="sum-prod" id="sumProd"></div><div class="coupon"><label class="coupon-t" for="couponInput">Have a coupon code?</label><div class="coupon-row"><input id="couponInput" type="text" autocomplete="off" maxlength="30"><button type="button" id="applyCoupon">Apply</button></div><p id="couponMessage" class="notice" role="status" aria-live="polite"></p></div><div class="pricing"><div class="pline"><span>Package price</span><strong id="basePrice"></strong></div><div class="pline" id="discountLine" hidden><span>Discount (10%)</span><strong id="discount"></strong></div><div class="pline"><span>Subtotal</span><strong id="subtotal"></strong></div><div class="pline"><span>Estimated GST (18%)</span><strong id="gst"></strong></div><div class="pline total"><span>Total</span><strong id="total"></strong></div><p class="notice">Final charges are confirmed by Zoho Billing.</p></div></div><div class="why-xcell"><div class="wx-t">Your Cloud Workspace</div><ul class="why-list"><li>✓ Dedicated virtual server in India</li><li>✓ SSD storage</li><li>✓ Scheduled backups</li><li>✓ Endpoint security and firewall</li><li>✓ XcellHost support</li></ul></div></aside>
+</div></main>
+<script>
+'use strict';
+const PACKAGES={"LITE": {"name": "Cloud Lite", "users": "3–4", "cpu": 4, "ram": 6, "disk": 100, "prices": {"MON": 1776, "QUA": 5062, "SEM": 9857, "YEA": 19181}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-YEA"}, "blocked": {}}, "XS": {"name": "Cloud X Small", "users": "5", "cpu": 4, "ram": 8, "disk": 150, "prices": {"MON": 2616, "QUA": 7456, "SEM": 14519, "YEA": 28253}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-YEA"}, "blocked": {}}, "S": {"name": "Cloud Small", "users": "10", "cpu": 6, "ram": 12, "disk": 150, "prices": {"MON": 5520, "QUA": 15732, "SEM": 30636, "YEA": 59616}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-YEA"}, "blocked": {}}, "M": {"name": "Cloud Medium", "users": "11–15", "cpu": 8, "ram": 16, "disk": 200, "prices": {"MON": 7200, "QUA": 20520, "SEM": 39960, "YEA": 77760}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-YEA"}, "blocked": {}}, "XL": {"name": "Cloud X Large", "users": "16–20", "cpu": 12, "ram": 32, "disk": 300, "prices": {"MON": 11664, "QUA": 33242, "SEM": 64735, "YEA": 125971}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-YEA"}, "blocked": {}}, "XXL": {"name": "Cloud XX Large", "users": "21–30", "cpu": 16, "ram": 64, "disk": 400, "prices": {"MON": 21168, "QUA": 60329, "SEM": 117482, "YEA": 228614}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-YEA"}, "blocked": {}}, "XXXL": {"name": "Cloud XXX Large", "users": "31–50", "cpu": 20, "ram": 96, "disk": 500, "prices": {"MON": 26640, "QUA": 75924, "SEM": 147852, "YEA": 287712}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-YEA"}, "blocked": {}}, "XXXXL": {"name": "Cloud XXXX Large", "users": "51–75", "cpu": 24, "ram": 128, "disk": 750, "prices": {"MON": 48912, "QUA": 139399, "SEM": 271462, "YEA": 528250}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-YEA"}, "blocked": {}}};
+const TERMS={MON:'Monthly',QUA:'Quarterly',SEM:'Half-yearly',YEA:'Annual'};
+const STATE_CODES={"andaman and nicobar islands": "AN", "andhra pradesh": "AP", "arunachal pradesh": "AR", "assam": "AS", "bihar": "BR", "chandigarh": "CH", "chhattisgarh": "CG", "dadra and nagar haveli and daman and diu": "DN", "delhi": "DL", "goa": "GA", "gujarat": "GJ", "haryana": "HR", "himachal pradesh": "HP", "jammu and kashmir": "JK", "jharkhand": "JH", "karnataka": "KA", "kerala": "KL", "keralam": "KL", "ladakh": "LA", "lakshadweep": "LD", "madhya pradesh": "MP", "maharashtra": "MH", "manipur": "MN", "meghalaya": "ML", "mizoram": "MZ", "nagaland": "NL", "odisha": "OD", "puducherry": "PY", "punjab": "PB", "rajasthan": "RJ", "sikkim": "SK", "tamil nadu": "TN", "telangana": "TS", "tripura": "TR", "uttar pradesh": "UP", "uttarakhand": "UK", "west bengal": "WB"};
+const $=id=>document.getElementById(id);
+let currentStep=0, customerType='new', customerVerified=false, coupon='', busy=false, acknowledged='';
+let selection={package:'LITE',term:'MON',quantity:1};
+const form=$('webform667555000020578022');
+const money=n=>'₹'+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+const round=n=>Math.round((n+Number.EPSILON)*100)/100;
+function error(message){$('formError').textContent=message;$('formError').hidden=false;$('formError').scrollIntoView({block:'center',behavior:'smooth'});}
+function clearError(){$('formError').hidden=true;$('formError').textContent='';}
+function counts(){const base=round(PACKAGES[selection.package].prices[selection.term]*selection.quantity),discount=coupon?round(base*.1):0,subtotal=round(base-discount),gst=round(round(subtotal*.09)*2);return {base,discount,subtotal,gst,total:round(subtotal+gst)};}
+function remember(){try{localStorage.setItem('xh_tally_simple_selection',JSON.stringify(selection));}catch(e){}}
+function render(){
+ const p=PACKAGES[selection.package], c=counts();$('packageSelect').value=selection.package;$('qty').value=selection.quantity;
+ $('terms').replaceChildren(...Object.entries(TERMS).map(([id,label])=>{const b=document.createElement('button');b.type='button';b.className='term-opt'+(id===selection.term?' sel':'');b.setAttribute('aria-pressed',id===selection.term?'true':'false');const t=document.createElement('div');t.className='to-dur';t.textContent=label;const v=document.createElement('div');v.className='to-sub';v.textContent=money(p.prices[id])+' / server';b.append(t,v);b.onclick=()=>{if(busy)return;selection.term=id;changed();};return b;}));
+ $('termDetail').innerHTML='<div class="td-top"><div class="td-name">'+p.name+'</div><div class="td-cov">'+p.users+' users per server</div></div><div class="spec-grid"><div class="spec">'+p.cpu+' vCPU</div><div class="spec">'+p.ram+' GB RAM</div><div class="spec">'+p.disk+' GB SSD</div><div class="spec">'+TERMS[selection.term]+'</div></div>';
+ $('sumProd').innerHTML='<div class="p">Tally Private Cloud</div><div class="pk">'+p.name+' · '+TERMS[selection.term]+'</div><div class="u">'+p.users+' users per server · '+selection.quantity+' server'+(selection.quantity===1?'':'s')+'</div>';
+ for(const k of ['base','discount','subtotal','gst','total'])$(k==='base'?'basePrice':k).textContent=(k==='discount'?'−':'')+money(c[k]);$('discountLine').hidden=!coupon;
+ if(currentStep===3)renderRecap();
+}
+function changed(){acknowledged='';remember();render();}
+function fieldsValid(ids){for(const id of ids){const el=$(id);if(el.type!=='checkbox')el.value=el.value.trim();if(!el.reportValidity())return false;}return true;}
+function serviceValid(){if(!Number.isInteger(Number($('qty').value))||Number($('qty').value)<1||Number($('qty').value)>99){error('Choose between 1 and 99 servers.');return false;}selection.quantity=Number($('qty').value);return true;}
+function contactValid(){return fieldsValid(['firstName','lastName','email','mobile','company']);}
+function profileValid(){return fieldsValid(['street','address2','city','billingState','pin','country','gstRegistered',...($('gstRegistered').value==='YES'?['gstin']:[]),'consent']);}
+function go(step){
+ if(busy)return;clearError();
+ if(step>0&&!serviceValid()){step=0;}
+ if(step>1&&((customerType!=='new'&&!customerVerified)||!contactValid()))step=1;
+ if(step===3&&(!acknowledged||acknowledged!==fingerprint())){error('Please save your billing details before continuing to payment.');return;}
+ currentStep=step;document.querySelectorAll('[data-panel]').forEach(el=>el.hidden=Number(el.dataset.panel)!==step);
+ document.querySelectorAll('#stepper .step').forEach((el,i)=>{el.classList.toggle('active',i===step);el.classList.toggle('done',i<step);if(i===step)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current');});
+ document.querySelectorAll('#stepper .step-bar').forEach((el,i)=>el.classList.toggle('filled',i<step));
+ if(step===3)renderRecap();window.scrollTo({top:0,behavior:'smooth'});
+}
+function formSnapshot(){const result={};for(const k of ['First Name','Last Name','Email','Mobile','Company','Street','City','State','Zip Code','Country','LEADCF37','LEADCF36'])result[k]=String(new FormData(form).get(k)||'').trim();result.address2=$('address2').value.trim();result.consent=$('consent').checked;return result;}
+function fingerprint(){return JSON.stringify([selection,coupon,formSnapshot()]);}
+function prepareSubmission(){
+ const p=PACKAGES[selection.package],c=counts();
+ $('Description').value=['Website checkout: Tally on Cloud','Package: '+p.name,'Plan code: XLCS-TALLY-PVT-'+selection.package+'-'+selection.term,'Billing period: '+TERMS[selection.term],'Server quantity: '+selection.quantity,'Coupon entered: '+(coupon||'None'),'Estimated total (INR, including GST): '+c.total.toFixed(2),'Address line 2: '+$('address2').value.trim(),'Payment: Pending / not confirmed','Customer agreed to order processing and contact.','Source: '+location.origin+location.pathname].join('\n');
+ const data=new FormData(form);
+ data.set('Street',[$('street').value.trim(),$('address2').value.trim()].filter(Boolean).join(', '));
+ if(data.get('Street').length>250)throw new Error('Please keep the combined street address within 250 characters.');
+ if($('gstRegistered').value!=='YES')data.set('LEADCF36','');
+ return data;
+}
+function acceptedReply(data){
+ if(!data||typeof data!=='object'||Array.isArray(data))return false;
+ if(data.invalidCaptcha===true||data.invalidCaptcha==='true'||data.success===false||data.success==='false'||data.error||data.errors)return false;
+ if(['error_msg','captcha_error','add_hash'].includes(data.actionsubmit))return false;
+ const positive=data.success===true||data.success==='true';
+ if(['redirect_url','parent_redirect','thankyou_page'].includes(data.actionsubmit))return positive;
+ // The supplied Zoho source treats Splash Message as its accepted-submission branch.
+ return data.actionsubmit==='Splash Message'&&typeof data.actionvalue==='string'&&data.actionvalue.trim().length>0;
+}
+async function submitCRM(event){
+ event.preventDefault();if(busy)return;
+ if(!serviceValid()){go(0);return;}if(!contactValid()){go(1);return;}if(!profileValid())return;
+ clearError();const key=fingerprint();if(acknowledged===key){go(3);return;}
+ if(customerVerified&&customerType==='existing'){acknowledged=key;go(3);return;}
+ if(!['https:','http:'].includes(location.protocol)){error('Please open this checkout on the XcellHost website to submit your details.');return;}
+ let data;try{data=prepareSubmission();}catch(e){error(e.message);return;}
+ busy=true;const mask=document.createElement('div');mask.className='submit-mask';mask.setAttribute('role','status');mask.textContent='Submitting your details…';document.body.appendChild(mask);$('saveDetails').disabled=true;
+ const controller=new AbortController(), timer=setTimeout(()=>controller.abort(),30000);
+ try{
+  if(typeof window._wfa_track!=='undefined'&&typeof window._wfa_track.wfa_submit==='function'){try{window._wfa_track.wfa_submit(event);}catch(e){}}
+  const response=await fetch('https://crm.zoho.in/crm/WebToLeadForm',{method:'POST',body:data,cache:'no-cache',signal:controller.signal});
+  if(!response.ok)throw new Error('CRM could not confirm your submission. Please contact support before retrying.');
+  const type=response.headers.get('Content-Type')||'';if(!type.includes('application/json'))throw new Error('CRM returned an unexpected response. Please contact support before retrying.');
+  const reply=await response.json();
+  if(!acceptedReply(reply))throw new Error(typeof reply.message==='string'?reply.message:'CRM did not confirm acceptance. Please check your details or contact support.');
+  acknowledged=key;
+  if(typeof window._wfa_track!=='undefined'&&typeof window._wfa_track.wfa_post_submit==='function'){try{window._wfa_track.wfa_post_submit(event);}catch(e){}}
+ }catch(e){error(e.name==='AbortError'?'Submission confirmation timed out. Your details may have reached us; please contact support before retrying.':e.message||'Unable to confirm submission. Please contact support before retrying.');}
+ finally{clearTimeout(timer);busy=false;mask.remove();$('saveDetails').disabled=false;}
+ if(acknowledged===key)go(3);
+}
+function renderRecap(){
+ const p=PACKAGES[selection.package], rows=[['Package',p.name],['Billing period',TERMS[selection.term]],['Servers',String(selection.quantity)],['Customer',[$('firstName').value,$('lastName').value].join(' ')],['Email',$('email').value],['Estimated total',money(counts().total)]];
+ $('paymentRecap').replaceChildren(...rows.map(([label,value])=>{const row=document.createElement('div');row.className='recap-row';const a=document.createElement('span'),b=document.createElement('span');a.textContent=label;b.textContent=value;row.append(a,b);return row;}));
+}
+function buildPaymentUrl(){
+ const url=new URL(PACKAGES[selection.package].urls[selection.term]);
+ if(url.protocol!=='https:'||url.hostname!=='billing.zohosecure.in'||!url.pathname.startsWith('/subscribe/'))throw new Error('The selected payment link is unavailable.');
+ const data={'quantity':selection.quantity,'first_name':$('firstName').value.trim(),'last_name':$('lastName').value.trim(),'email':$('email').value.trim(),'company_name':$('company').value.trim(),'mobile':$('mobile').value.trim(),'billing_street':[$('street').value.trim(),$('address2').value.trim()].filter(Boolean).join(', '),'billing_city':$('city').value.trim(),'billing_zip':$('pin').value.trim(),'billing_state_code':STATE_CODES[$('billingState').value.toLowerCase()],'billing_country_code':'IN'};
+ if(coupon)data.coupon_code=coupon;if($('gstRegistered').value==='YES')data.tax_reg_no=$('gstin').value.trim();
+ for(const [k,v]of Object.entries(data))if(v!==undefined&&String(v)!=='')url.searchParams.set(k,String(v));return url.toString();
+}
+function navigate(url){
+ if(window.top===window){window.location.assign(url);return;}
+ const paymentWindow=window.open(url,'_blank');
+ if(!paymentWindow)throw new Error('Your browser blocked the secure payment page. Please allow pop-ups for XcellHost and try again.');
+ try{paymentWindow.opener=null;}catch(e){}
+}
+function pay(){if(busy)return;if(!acknowledged||acknowledged!==fingerprint()){go(2);error('Please save your details before opening payment.');return;}try{navigate(buildPaymentUrl());}catch(e){error(e.message||'Unable to open the payment page. Please open this checkout directly in your browser or contact support.');}}
+function setType(type){
+ customerType=type;
+ $('newCustomer').classList.toggle('selected',type==='new');$('existingCustomer').classList.toggle('selected',type==='existing');
+ $('newCustomer').setAttribute('aria-pressed',type==='new');$('existingCustomer').setAttribute('aria-pressed',type==='existing');
+ const showSaved=type==='existing'&&customerVerified;
+ $('newFields').hidden=type==='existing'&&!showSaved;$('existingFields').hidden=type!=='existing'||showSaved;
+ $('verifiedNotice').hidden=!showSaved;
+ $('customerContinue').textContent=showSaved?'Continue as Verified Customer':'Continue to Billing Information';
+}
+function selectState(value){
+ const wanted=String(value||'').trim().toLowerCase();if(!wanted)return;
+ const option=Array.from($('billingState').options).find(item=>item.value.toLowerCase()===wanted||item.textContent.trim().toLowerCase()===wanted);
+ if(option)$('billingState').value=option.value;
+}
+function applyVerifiedZohoCustomer(customer){
+ if(!customer||!customer.customerId)return;
+ customerVerified=true;
+ const contact={firstName:customer.firstName,lastName:customer.lastName,email:customer.email,mobile:customer.mobile,company:customer.company};
+ Object.entries(contact).forEach(([id,value])=>{if(value&&$(id))$(id).value=value;});
+ const billing={street:customer.street,address2:customer.address2,city:customer.city,pin:customer.postalCode,country:customer.country};
+ Object.entries(billing).forEach(([id,value])=>{if(value&&$(id))$(id).value=value;});
+ selectState(customer.state);
+ if(customer.gstin){$('gstRegistered').value='YES';$('gstin').value=String(customer.gstin).toUpperCase();$('gstinField').hidden=false;$('gstin').required=true;}
+ else{$('gstRegistered').value='NO';$('gstinField').hidden=true;$('gstin').required=false;}
+ $('verifiedNotice').textContent='Verified Zoho Billing customer · '+(customer.email||'saved account')+'. Your saved details have been filled in.';
+ setType('existing');acknowledged='';
+}
+function existingEmail(){return $('existingEmail').value.trim().toLowerCase();}
+function validExistingEmail(){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(existingEmail());}
+async function requestExistingCode(){
+ const status=$('existingStatus'),button=$('sendExistingCode');status.className='login-status';
+ if(!validExistingEmail()){status.textContent='Enter the email used for your XcellHost billing account.';status.classList.add('error');return;}
+ button.disabled=true;button.textContent='Sending…';status.textContent='Checking your billing account…';
+ try{const response=await fetch('/api/auth.php?action=zoho-request-otp',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:existingEmail()})});const result=await response.json().catch(()=>({}));if(!response.ok)throw new Error(result.message||'Unable to send a verification code.');$('existingCodeFields').hidden=false;status.textContent=result.message||'Check your email for the verification code.';status.classList.add('ok');$('existingCode').focus();}
+ catch(e){status.textContent=e.message||'Unable to send a verification code.';status.classList.add('error');}
+ finally{button.disabled=false;button.textContent='Send Verification Code';}
+}
+async function verifyExistingCode(){
+ const status=$('existingStatus'),button=$('verifyExistingCode'),code=$('existingCode').value.trim();status.className='login-status';
+ if(!validExistingEmail()||!/^[0-9]{6}$/.test(code)){status.textContent='Enter your billing email and the 6-digit verification code.';status.classList.add('error');return;}
+ button.disabled=true;button.textContent='Verifying…';status.textContent='Securely verifying your account…';
+ try{const response=await fetch('/api/auth.php?action=zoho-verify-otp',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:existingEmail(),code})});const result=await response.json().catch(()=>({}));if(!response.ok)throw new Error(result.message||'Unable to verify this account.');applyVerifiedZohoCustomer(result.zohoCustomer);status.textContent='Account verified. Saved details loaded.';status.classList.add('ok');$('existingCode').value='';}
+ catch(e){status.textContent=e.message||'Unable to verify this account.';status.classList.add('error');}
+ finally{button.disabled=false;button.textContent='Verify & Load Saved Details';}
+}
+window.addEventListener('xcellhost:zoho-customer',event=>applyVerifiedZohoCustomer(event.detail));
+function init(){
+ for(const [id,p]of Object.entries(PACKAGES)){const option=document.createElement('option');option.value=id;option.textContent=p.name+' · '+p.users+' users';$('packageSelect').appendChild(option);}
+ try{const saved=JSON.parse(localStorage.getItem('xh_tally_simple_selection')||'null');if(saved){if(PACKAGES[saved.package])selection.package=saved.package;if(TERMS[saved.term])selection.term=saved.term;if(Number.isInteger(saved.quantity)&&saved.quantity>=1&&saved.quantity<=99)selection.quantity=saved.quantity;}}catch(e){}
+ const query=new URLSearchParams(location.search);if(query.get('embed')==='1')document.body.classList.add('embedded');if(PACKAGES[query.get('package')])selection.package=query.get('package');if(TERMS[query.get('term')])selection.term=query.get('term');if(/^[0-9]{1,2}$/.test(query.get('quantity')||'')&&Number(query.get('quantity'))>=1)selection.quantity=Number(query.get('quantity'));
+ $('packageSelect').onchange=()=>{selection.package=$('packageSelect').value;changed();};
+ const qty=delta=>{selection.quantity=Math.min(99,Math.max(1,selection.quantity+delta));changed();};$('qtyDown').onclick=()=>qty(-1);$('qtyUp').onclick=()=>qty(1);$('qty').onchange=()=>{if(serviceValid())changed();};
+ $('serviceContinue').onclick=()=>go(1);$('customerContinue').onclick=()=>{if(contactValid())go(2);};
+ $('newCustomer').onclick=()=>setType('new');$('existingCustomer').onclick=()=>setType('existing');
+ $('sendExistingCode').onclick=requestExistingCode;$('verifyExistingCode').onclick=verifyExistingCode;$('existingEmail').oninput=()=>{$('existingCodeFields').hidden=true;$('existingStatus').textContent='';};$('existingCode').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();verifyExistingCode();}};
+ $('gstRegistered').onchange=()=>{const yes=$('gstRegistered').value==='YES';$('gstinField').hidden=!yes;$('gstin').required=yes;if(!yes)$('gstin').value='';acknowledged='';};$('gstin').oninput=()=>{$('gstin').value=$('gstin').value.toUpperCase();};
+ $('applyCoupon').onclick=()=>{const entered=$('couponInput').value.trim().toUpperCase();if(entered&&entered!=='XCELLTALLY10'){coupon='';acknowledged='';render();$('couponMessage').textContent='Please check the coupon code.';return;}const next=entered||'';if(next!==coupon){coupon=next;acknowledged='';}$('couponMessage').textContent=coupon?'Coupon applied.':'Coupon removed.';render();};
+ $('couponInput').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('applyCoupon').click();}};
+ document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>go(Number(b.dataset.back)));document.querySelectorAll('#stepper .step').forEach((el,i)=>el.onclick=()=>{if(i<=currentStep)go(i);});
+ form.addEventListener('submit',e=>{if(currentStep!==2){e.preventDefault();if(currentStep===0)go(1);else if(currentStep===1&&(customerType==='new'||customerVerified)&&contactValid())go(2);return;}submitCRM(e);});
+ form.addEventListener('input',()=>{acknowledged='';});form.addEventListener('change',()=>{acknowledged='';});$('payButton').onclick=pay;
+ window._wfa_fstprtcken=window._wfa_fstprtcken||{};window._wfa_fstprtcken[667555000020578022]=true;
+ remember();render();go(0);
+}
+document.addEventListener('DOMContentLoaded',init);
+</script></body></html>

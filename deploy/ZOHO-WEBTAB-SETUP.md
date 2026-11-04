@@ -6,12 +6,14 @@ fields across the Angular application and its same-origin checkout frames.
 
 ## Server environment variables
 
-Configure these as Plesk environment variables or server secrets. Never add their real values to the
-repository or frontend files.
+Configure these as Plesk environment variables or server secrets. If Plesk does not expose environment
+variables, copy `xcellhost-zoho-config.example.php` to `xcellhost-zoho-config.php` in the domain's private
+root (the parent of `httpdocs`) and fill it there. Never add real values to the repository, `httpdocs`, or
+frontend files.
 
 ```text
 XCELLHOST_ZOHO_ORGANIZATION_ID=60028262636
-XCELLHOST_ZOHO_WEBTAB_SECRETS={"1818279000018410001":"TALLY_WEB_TAB_SECRET","RMM_TAB_ID":"RMM_WEB_TAB_SECRET"}
+XCELLHOST_ZOHO_WEBTAB_SECRETS={"1818279000018410001":"TALLY_WEB_TAB_SECRET","1818279000018412207":"RMM_WEB_TAB_SECRET"}
 XCELLHOST_ZOHO_CLIENT_ID=Zoho OAuth client ID
 XCELLHOST_ZOHO_CLIENT_SECRET=Zoho OAuth client secret
 XCELLHOST_ZOHO_REFRESH_TOKEN=Zoho OAuth refresh token

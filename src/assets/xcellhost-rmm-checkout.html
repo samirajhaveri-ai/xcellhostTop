@@ -513,7 +513,7 @@ function validCoupon(code){ return Object.prototype.hasOwnProperty.call(COUPONS,
 
 /* ── STATE (standalone RMM cart persisted to localStorage; passwords NEVER persisted) ── */
 const CART_KEY = "xcellhost_rmm_cart";
-let state = { step:"account", custType:"new", entity:"individual", termId:"1y", quantity:1, inCart:false, coupon:null, account:{}, profile:{} };
+let state = { step:"account", custType:"new", entity:"individual", termId:"1y", quantity:1, inCart:false, coupon:null, account:{}, profile:{}, verifiedCustomer:null };
 
 /* helpers */
 const $ = s => document.querySelector(s);
@@ -655,7 +655,7 @@ const reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin
 
 function validateAccount(){
   let ok=true;
-  if(state.custType==="new"){
+  if(state.custType==="new" || state.verifiedCustomer){
     [["firstName",v=>v.trim().length>=1],["lastName",v=>v.trim().length>=1],["email",v=>reEmail.test(v.trim())],["mobile",v=>reMobile.test(v.trim())],["company",v=>v.trim().length>=1]]
       .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
   }else{
@@ -665,7 +665,7 @@ function validateAccount(){
   return ok;
 }
 function captureAccount(){
-  if(state.custType==="new"){
+  if(state.custType==="new" || state.verifiedCustomer){
     state.account={ firstName:$("#firstName").value.trim(), lastName:$("#lastName").value.trim(), email:$("#email").value.trim(), mobile:$("#mobile").value.trim(), company:$("#company").value.trim() };
     if(!$("#legalName").value) $("#legalName").value=state.account.company||"";
   }else{ state.account={ email:$("#exEmail").value.trim() }; }  // never stores password
@@ -723,7 +723,13 @@ function goStep(name){
    PAYMENT HANDOFF — real per-term Zoho Hosted Payment Page
    Top-level browser navigation (NOT an iframe). No fake form / no fake success.
    ============================================================================ */
-function rmmNavigate(url){ window.top.location.assign(url); }   // top-level, same-tab redirect
+function rmmNavigate(url){
+  if(window.top===window){ window.location.assign(url); return true; }
+  const paymentWindow=window.open(url,"_blank");
+  if(!paymentWindow) return false;
+  try{ paymentWindow.opener=null; }catch(e){}
+  return true;
+}
 
 /* India state → 2-letter billing_state_code (Zoho). Extend as needed. */
 const IN_STATE_CODES = {
@@ -798,7 +804,9 @@ function proceedToPayment(){
   const url=buildPaymentUrl(state.termId, state.quantity);
 
   if(url!==""){
-    rmmNavigate(url);   // opens the correct per-term Zoho Hosted Payment Page (top-level)
+    if(!rmmNavigate(url)){
+      msg.classList.add("no"); msg.textContent="Your browser blocked the secure payment page. Please allow pop-ups for XcellHost and try again.";
+    }
   }else{
     msg.classList.add("no"); msg.textContent="Payment integration is pending. Please contact XcellHost support.";
   }
@@ -857,6 +865,25 @@ function init(){
   renderAll();
   goStep("account");
 }
+function applyVerifiedZohoCustomer(customer){
+  if(!customer || !customer.customerId) return;
+  state.verifiedCustomer=customer;
+  state.custType="existing";
+  $("#optNew").classList.remove("sel");
+  $("#optExisting").classList.add("sel");
+  $("#formNew").style.display="";
+  $("#formExisting").classList.remove("show");
+  const values={firstName:customer.firstName,lastName:customer.lastName,email:customer.email,mobile:customer.mobile,company:customer.company};
+  Object.entries(values).forEach(([id,value])=>{ if(value && $("#"+id)) $("#"+id).value=value; });
+  if(customer.company && !$("#legalName").value) $("#legalName").value=customer.company;
+  const profileValues={street:customer.street,address2:customer.address2,city:customer.city,state:customer.state,pin:customer.postalCode,country:customer.country};
+  Object.entries(profileValues).forEach(([id,value])=>{ if(value && $("#"+id)) $("#"+id).value=value; });
+  if(customer.gstin){ $("#gstReg").value="yes"; $("#gstin").value=customer.gstin; toggleGstin(); }
+  const label=document.querySelector('#cardAccount .continue .ctxt');
+  if(label) label.textContent="Continue as Verified Customer";
+  saveCart();
+}
+window.addEventListener("xcellhost:zoho-customer",event=>applyVerifiedZohoCustomer(event.detail));
 document.addEventListener("DOMContentLoaded", init);
 </script>
 </body>
