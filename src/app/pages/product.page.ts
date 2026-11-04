@@ -1,3 +1,6 @@
+import { DEDICATED_EUROPE_FAQS } from '../data/dedicated-servers-europe-faq.data';
+import { DEDICATED_USA_FAQS } from '../data/dedicated-servers-usa-faq.data';
+import { DEDICATED_INDIA_FAQS } from '../data/dedicated-servers-india-faq.data';
 import { DEDICATED_SERVERS_FAQS } from '../data/bare-metal-servers-faq.data';
 import { ACRONIS_CYBER_PLATFORM_FAQS } from '../data/acronis-cyber-platform-faq.data';
 import { BLOCKCHAIN_SERVICE_FAQS } from '../data/blockchain-as-a-service-faq.data';
@@ -3408,6 +3411,30 @@ class ProductPageComponent {
       heroMessages: ['Keys generated inside, never exported', 'Sign 1,000s of times a second via PKCS#11', 'PIN blocks translated in hardware', '3-of-5 quorum before any root key'],
       faqs: HARDWARE_SECURITY_MODULE_FAQS,
     };
+    if (slug === 'dedicated-servers-usa' && view) return {
+      ...view, name: 'Dedicated Servers in the USA', brandSuffix: 'Dedicated',
+      tagline: 'Bare metal on both US coasts and in Texas.',
+      heroHighlight: "Los Angeles, Asheville and Dallas partner data centres*, provisioned and supported by XcellHost's 24×7 NOC in Mumbai. Same 22 plans, one INR invoice with GST, from ₹16,420.89 a month.",
+      heroPoints: ['Los Angeles, Asheville, Dallas', 'Was / now pricing, INR', 'Full root + IPMI/KVM', 'DDoS protection included'],
+      heroMessages: ['West coast: Los Angeles', 'East coast: Asheville', 'Central: Dallas', 'One INR invoice, 24×7 NOC'],
+      faqs: DEDICATED_USA_FAQS,
+    };
+    if (slug === 'dedicated-servers-europe' && view) return {
+      ...view, name: 'Dedicated Servers in Europe', brandSuffix: 'Dedicated',
+      tagline: 'Bare metal inside the EU, billed from India.',
+      heroHighlight: "Barcelona, Portugal, Düsseldorf and Frankfurt partner data centres* for data that must stay in the EU under GDPR. Same 22 plans, INR billing with GST, from ₹16,420.89 a month.",
+      heroPoints: ['Barcelona, Portugal, Düsseldorf, Frankfurt', 'Was / now pricing, INR', 'Full root + IPMI/KVM', 'DDoS protection included'],
+      heroMessages: ['Frankfurt and Düsseldorf', 'Barcelona and Portugal', 'Keep EU data in the EU', 'Same plans, INR billing'],
+      faqs: DEDICATED_EUROPE_FAQS,
+    };
+    if (slug === 'dedicated-servers-india' && view) return {
+      ...view, name: 'Dedicated Servers in India', brandSuffix: 'Dedicated',
+      tagline: 'Bare metal in Mumbai — and three more Indian metros.',
+      heroHighlight: "Mumbai runs in XcellHost's own Tier IV data centre; Delhi, Pune and Hyderabad are partner data centres*. Same 22 plans, INR pricing from ₹16,420.89 a month, data kept in India for DPDP and CERT-In needs.",
+      heroPoints: ['Mumbai, Delhi, Pune, Hyderabad', 'Was / now pricing, INR', 'Full root + IPMI/KVM', 'DDoS protection included'],
+      heroMessages: ['Data stays in India', 'Mumbai Tier IV, our own', 'Low latency to Indian users', 'DPDP and CERT-In ready logs'],
+      faqs: DEDICATED_INDIA_FAQS,
+    };
     if (slug === 'bare-metal-servers' && view) return {
       ...view, name: 'Dedicated Servers', brandSuffix: 'Dedicated',
       tagline: 'Whole servers. Your root. Our 24×7 NOC.',
@@ -4868,6 +4895,9 @@ class ProductPageComponent {
       'ai-ide-lab': { frame: 'xh-imported-interactive-content.ai-ide-lab-source-content', overview: 'overview', features: 'highlights', uses: 'usecases', specifications: 'environments' },
       'ai-training-for-lawyer': { frame: 'xh-imported-interactive-content.ai-training-lawyer-source-content', overview: 'why', features: 'curriculum', uses: 'practice', specifications: 'formats' },
       'vcaio-as-a-service': { frame: 'xh-imported-interactive-content.vcaio-source-content', overview: 'role', features: 'model', uses: 'deliver', specifications: 'vs' },
+      'dedicated-servers-usa': { frame: 'xh-imported-interactive-content.dedicated-usa-source-content', overview: 'cities', features: 'included', uses: 'residency', specifications: 'plans' },
+      'dedicated-servers-europe': { frame: 'xh-imported-interactive-content.dedicated-europe-source-content', overview: 'cities', features: 'included', uses: 'residency', specifications: 'plans' },
+      'dedicated-servers-india': { frame: 'xh-imported-interactive-content.dedicated-india-source-content', overview: 'cities', features: 'included', uses: 'residency', specifications: 'plans' },
       'bare-metal-servers': { frame: 'xh-imported-interactive-content.dedicated-servers-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
       'acronis-cyber-platform': { frame: 'xh-imported-interactive-content.acronis-platform-source-content', overview: 'overview', features: 'components', uses: 'usecases', specifications: 'vs' },
       'blockchain-as-a-service': { frame: 'xh-imported-interactive-content.blockchain-service-source-content', overview: 'overview', features: 'platform', uses: 'usecases', specifications: 'vs' },
@@ -5385,6 +5415,9 @@ class ProductPageComponent {
   }
 
   private resolve(slug: string): ProductView | null {
+    if (slug === 'dedicated-servers-europe') return this.products.build({ name: 'Dedicated Servers in Europe', cat: 'Cloud', crumb: 'Cloud › Bare Metal Servers' });
+    if (slug === 'dedicated-servers-usa') return this.products.build({ name: 'Dedicated Servers in the USA', cat: 'Cloud', crumb: 'Cloud › Bare Metal Servers' });
+    if (slug === 'dedicated-servers-india') return this.products.build({ name: 'Dedicated Servers in India', cat: 'Cloud', crumb: 'Cloud › Bare Metal Servers' });
     if (slug === 'blockchain-infrastructure') {
       return this.products.build({ name: 'Blockchain Infrastructure', cat: 'Cloud', crumb: 'Cloud › Cloud Infra' });
     }

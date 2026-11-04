@@ -5343,9 +5343,10 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "By Country",
             "items": [
                {
-                "title": "No Data",
+                "title": "Vietnam Go-to-Market Strategy",
+                  "href": "/vietnam-go-to-market-strategy",
                 "pill": null,
-                "desc": null
+                "desc": "Cloud, security, AI and training strategy for Vietnam, with sector insights and revenue modelling."
               },
             ]
           }

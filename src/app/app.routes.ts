@@ -15,6 +15,7 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'vietnam-go-to-market-strategy', title: 'Vietnam Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/vietnam-go-to-market.page').then(m => m.VietnamGoToMarketPage) },
   {
     path: 'blockchain-infrastructure', title: 'Blockchain Infrastructure | XcellHost',
     data: { productSlug: 'blockchain-infrastructure', searchTitle: 'Blockchain Infrastructure' },

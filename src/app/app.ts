@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, PendingTasks, signal } from '@angular/core';
+import { afterNextRender, ApplicationRef, ChangeDetectionStrategy, Component, DestroyRef, inject, PendingTasks, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRouteSnapshot, NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
@@ -152,7 +152,12 @@ export class App {
   constructor() {
     inject(SiteCopyService);
     this.installRouteSeoFallback();
-    afterNextRender(() => {
+    const application = inject(ApplicationRef);
+    afterNextRender(async () => {
+      // The shell can render before a lazy route finishes hydration. DOM
+      // enhancements must wait before wrapping bookmarks or inserting reviews.
+      await application.whenStable();
+      if (this.destroyRef.destroyed) return;
       this.destroyRef.onDestroy(installBookmarkScrolling(this.document));
       this.destroyRef.onDestroy(installFaqLayout(this.document));
       this.destroyRef.onDestroy(installBannerActions(this.document, (...args) => { void this.banners.act(...args); }));

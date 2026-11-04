@@ -23,6 +23,15 @@
 #vmHero .vm-hero-points i { display: grid; place-items: center; flex: none; width: 23px; height: 23px; font-style: normal; color: #fff; border: 1px solid #4b9cff; border-radius: 6px; background: #0066ff; box-shadow: 0 0 0 3px #0066ff30; }
 #vmHero .xh-banner-actions { margin-top: 0; }
 #vmHero .xh-banner-ai { width: 100%; background: #041e42b8; }
+#vmHero .vm-powered-by { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 16px; color: #c7d8f0; font-size: 15px; font-weight: 600; }
+#vmHero .vm-powered-logo { display: block; width: 150px; height: 45px; overflow: hidden; }
+#vmHero .vm-powered-by img { display: block; width: 150px; height: auto; max-width: 100%; object-fit: contain; transform: translateY(-20px); clip-path: polygon(1% 37.5%, 8.3% 24%, 98.8% 24%, 98.8% 63.5%, 91.4% 76.4%, 1% 76.4%); }
+@media (max-width: 560px) {
+  #vmHero .vm-powered-by { font-size: 14px; }
+  #vmHero .vm-powered-by img { width: 150px; }
+  #vmHero .vm-powered-logo { width: 150px; height: 45px; }
+  #vmHero .vm-powered-by img { transform: translateY(-20px); }
+}
 #vmHero .vm-vis { width: 100%; height: auto; max-height: 440px; aspect-ratio: 1; margin: 0; box-shadow: 0 24px 55px #0003; }
 #vmHero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
 #vmHero .vm-grid { position: absolute; inset: 0; background-image: linear-gradient(#8fb8ff08 1px, transparent 1px), linear-gradient(90deg, #8fb8ff08 1px, transparent 1px); background-size: 40px 40px; }
