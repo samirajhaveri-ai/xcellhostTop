@@ -3507,12 +3507,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "SOC 1 Cunsulting",
+                "title": "SOC 1 Consulting",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "SOC 2 Cunsulting",
+                "title": "SOC 2 Consulting",
                 "pill": null,
                 "desc": null
               },
@@ -5314,6 +5314,39 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },  
               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "By Country",
+        "label": "By Country",
+        "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "CIO",
+            "body": "Explore technology solutions for information leaders.",
+            "image": "/assets/images/menu-solutions-cio-v1.png",
+            "link": "/cio"
+          },
+          {
+            "label": "Solutions",
+            "title": "CTO",
+            "body": "Explore technology solutions for engineering leaders.",
+            "image": "/assets/images/menu-solutions-cto-v1.png",
+            "link": "/cto"
+          }
+        ],
+        "groups": [
+          {
+            "heading": "By Country",
+            "items": [
+               {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
