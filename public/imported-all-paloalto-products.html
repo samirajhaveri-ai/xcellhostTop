@@ -1193,7 +1193,7 @@ html,body{margin:0;overflow-x:hidden}main{display:flow-root}</style><link rel="s
   <div><i aria-hidden="true">&#8377;</i><span>INR billing &amp; managed services</span></div>
 </div>
         
-        <div class="xh-banner-actions" data-banner-added-actions></div>
+        <div class="xh-banner-actions" data-banner-added-actions></div><div class="pz-powered-by"><span>Powered by</span><span class="pz-powered-logo"><img src="/assets/images/palo-alto-powered-by.webp" alt="Palo Alto Networks" width="200" height="80"><img class="pz-powered-icon" src="/assets/images/palo-alto-powered-by.webp" alt="" aria-hidden="true" width="200" height="80"></span></div>
       </div>
       <div class="pz-vis" data-in="4" aria-hidden="true">
         <canvas id="pzCv"></canvas>
@@ -1599,6 +1599,15 @@ html,body{margin:0;overflow-x:hidden}main{display:flow-root}</style><link rel="s
 
 </script><script>
 (function(){
+  const copy = document.querySelector('#pzHero .pz-copy');
+  const powered = copy.querySelector('.pz-powered-by');
+  const observer = new MutationObserver(placePoweredLogo);
+  function placePoweredLogo(){
+    const ai = copy.querySelector('.xh-banner-ai');
+    if(ai){ ai.after(powered); observer.disconnect(); }
+  }
+  observer.observe(copy, {childList:true, subtree:true});
+  placePoweredLogo();
   const open = XH.open;
   XH.open = function(id, options){
     if(id === 'xhCallback'){
