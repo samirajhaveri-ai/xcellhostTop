@@ -91,6 +91,7 @@ type InteractiveContentSource =
   | 'hpe-services'
   | 'all-paloalto-products'
   | 'vietnam-go-to-market-strategy'
+  | 'poland-go-to-market-strategy'
   | 'veeam-services'
   | 'dell-services'
   | 'oracle-cloud-services'
@@ -341,6 +342,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'hpe-services': '/imported-hpe-services.html',
     'all-paloalto-products': '/imported-all-paloalto-products.html',
     'vietnam-go-to-market-strategy': '/imported-vietnam-go-to-market-strategy.html',
+    'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
     'oracle-cloud-services': '/imported-oracle-cloud-services.html',
@@ -595,6 +597,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'hpe-services': 'HPE Products and Services',
     'all-paloalto-products': 'Palo Alto Networks Products and Services',
     'vietnam-go-to-market-strategy': 'Vietnam Go-to-Market Strategy',
+    'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
     'oracle-cloud-services': 'Oracle Cloud Products and Services',

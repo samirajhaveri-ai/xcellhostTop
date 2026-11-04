@@ -5348,6 +5348,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Vietnam, with sector insights and revenue modelling."
               },
+              {
+                "title": "Poland Go-to-Market Strategy",
+                "href": "/poland-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Poland, with sector insights and revenue modelling."
+              },
             ]
           }
         ]
