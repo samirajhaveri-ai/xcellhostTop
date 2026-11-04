@@ -17,6 +17,9 @@
   # If the site lives in a subfolder, set that here, e.g. RewriteBase /shop/
   RewriteBase /
 
+  # Keep existing blockchain bookmarks on the renamed product URL.
+  RewriteRule ^web3-(?:and-)?blockchain-infrastructure/?$ /blockchain-infrastructure/ [R=301,L]
+
   # Preserve paths and query strings when migrating the legacy/public www host.
   RewriteCond %{HTTP_HOST} ^(?:www\.)?xcellhost\.(?:top|cloud)(?::\d+)?$ [NC]
   RewriteCond %{HTTP_HOST} !^xcellhost\.cloud(?::\d+)?$ [NC]

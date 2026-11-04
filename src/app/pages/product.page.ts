@@ -3290,7 +3290,7 @@ class ProductPageComponent {
       heroMessages: ['Bring business IT under one managed service', 'Protect mail, devices and critical workloads', 'One team, one support desk and one invoice'],
       faqs: SMB_CLOUD_FAQS,
     };
-    if (slug === 'web3-blockchain-infrastructure' && view) return {
+    if (slug === 'blockchain-infrastructure' && view) return {
       ...view,
       brandSuffix: 'Cloud',
       tagline: 'Ready to scale? Your chain, our nodes, one rupee bill.',
@@ -4899,7 +4899,7 @@ class ProductPageComponent {
       'manufacturing-cloud': { frame: 'xh-imported-interactive-content.manufacturing-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
       'insurance-cloud': { frame: 'xh-imported-interactive-content.insurance-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
       'smb-cloud': { frame: 'xh-imported-interactive-content.smb-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
-      'web3-blockchain-infrastructure': { frame: 'xh-imported-interactive-content.web3-blockchain-infrastructure-source-content', overview: 'overview', features: 'products', uses: 'usecases', specifications: 'platform' },
+      'blockchain-infrastructure': { frame: 'xh-imported-interactive-content.web3-blockchain-infrastructure-source-content', overview: 'overview', features: 'products', uses: 'usecases', specifications: 'platform' },
       'phishing-incident-response': { frame: 'xh-imported-interactive-content.phishing-incident-response-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'how' },
       'security-awareness-lms': { frame: 'xh-imported-interactive-content.security-awareness-lms-source-content', overview: 'overview', features: 'features', uses: 'use', specifications: 'how' },
       'email-signature': { frame: 'xh-imported-interactive-content.email-signature-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'how' },
@@ -5385,8 +5385,8 @@ class ProductPageComponent {
   }
 
   private resolve(slug: string): ProductView | null {
-    if (slug === 'web3-blockchain-infrastructure') {
-      return this.products.build({ name: 'Web3 & Blockchain Infrastructure', cat: 'Cloud', crumb: 'Cloud › Cloud Infra' });
+    if (slug === 'blockchain-infrastructure') {
+      return this.products.build({ name: 'Blockchain Infrastructure', cat: 'Cloud', crumb: 'Cloud › Cloud Infra' });
     }
     if (slug === 'media-and-entertainment') {
       return this.products.build({ name: 'Media & Entertainment Cloud', cat: 'Solutions', crumb: 'Solutions › Industry Cloud' });

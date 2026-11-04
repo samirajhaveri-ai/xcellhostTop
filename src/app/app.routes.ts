@@ -1,13 +1,27 @@
 import { FRAMEWORK_DETAILS } from './data/framework-details.data';
-import { Routes } from '@angular/router';
+import { RedirectFunction, Routes } from '@angular/router';
 import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
 import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 import { AI_TRAINING_PAGES } from './data/ai-training-pages.data';
 import { CLOUD_CONNECTIVITY_PAGES } from './data/cloud-connectivity-pages.data';
 import { GCP_SERVICE_PAGE } from './data/gcp-services.data';
 
+const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragment }) => {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(queryParams)) {
+    for (const item of Array.isArray(value) ? value : [value]) query.append(key, String(item));
+  }
+  return '/blockchain-infrastructure' + (query.size ? '?' + query.toString() : '') + (fragment ? '#' + fragment : '');
+};
 
 export const routes: Routes = [
+  {
+    path: 'blockchain-infrastructure', title: 'Blockchain Infrastructure | XcellHost',
+    data: { productSlug: 'blockchain-infrastructure', searchTitle: 'Blockchain Infrastructure' },
+    loadComponent: () => import('./pages/product.page').then(m => m.ProductPage),
+  },
+  { path: 'web3-blockchain-infrastructure', redirectTo: blockchainInfrastructureRedirect, pathMatch: 'full' },
+  { path: 'web3-and-blockchain-infrastructure', redirectTo: blockchainInfrastructureRedirect, pathMatch: 'full' },
   { path: 'all-paloalto-products', title: 'All Palo Alto Networks Products | XcellHost', loadComponent: () => import('./pages/all-paloalto-products.page').then(m => m.AllPaloaltoProductsPage) },
   { path: 'vendor-partners/veeam', title: 'Veeam Products and Services | XcellHost', loadComponent: () => import('./pages/veeam-services.page').then(m => m.VeeamServicesPage) },
   { path: 'veeam-services', redirectTo: 'vendor-partners/veeam', pathMatch: 'full' },

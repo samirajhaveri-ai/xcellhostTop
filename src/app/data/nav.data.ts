@@ -681,8 +681,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Managed device connectivity, edge processing and IoT platforms"
               },
               {
-                "title": "Web3 & Blockchain Infrastructure",
-                "href": "/web3-blockchain-infrastructure",
+                "title": "Blockchain Infrastructure",
+                "href": "/blockchain-infrastructure",
                 "pill": null,
                 "desc": "Managed RPC endpoints, full, archive and validator nodes with monitoring and failover."
               },
@@ -1581,14 +1581,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "Email Signature",
             "body": "Create consistent, professional email signatures for your team.",
-            "image": "/assets/images/menu-productivity-email-signature-v1.png",
+            "image": "/assets/images/menu-productivity-email-signature-v2.jpeg",
             "link": "/email-signature"
           },
           {
             "label": "Productivity",
             "title": "Microsoft 365 Training",
             "body": "Help your team get more from Microsoft 365.",
-            "image": "/assets/images/menu-productivity-microsoft-365-training-v1.png",
+            "image": "/assets/images/menu-productivity-microsoft-365-training-v2.jpeg",
             "link": "/microsoft-365-training"
           }
         ],
