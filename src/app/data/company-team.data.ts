@@ -8,14 +8,14 @@ export interface CompanyTeamMember {
 
 export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | 'salesTeam' | 'marketing' | 'AITeams' | 'developers' | 'accountantTeam' | 'graphicDesignerTeam' | 'adminTeam' | 'technicalSupportTeam', readonly CompanyTeamMember[]>> = {
   managementTeam: [
-    { initials: 'JS', name: 'James Soosai', role: 'Chief Business Strategist / CFO', image: '/assets/images/TEAMS PHOTO/James Soosai.jpeg' },
+    { initials: 'JS', name: 'James Soosai', role: 'Chief Business Strategist / CFO', image: '/assets/images/TEAMS PHOTO/James.png' },
 
     { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director Africa ', image: '/assets/images/Yogesh Trivedi.png' },
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
     
     { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
     { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/TEAMS PHOTO/Prashant.png' },
-    { initials: 'JP', name: 'Jaman Patel', role: 'International Alliances', image: '/assets/images/TEAMS PHOTO/Jama Patel.png' },
+    
     { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     
   ],
@@ -25,6 +25,7 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
     { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
     { initials: 'UJ', name: 'Upendra Joshi ', role: 'International Alliances', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
     { initials: 'CP', name: 'Christopher Pinto', role: 'Sales Consultant', image: '/assets/images/TEAMS PHOTO/cristopher.png' },
+    { initials: 'JP', name: 'Jaman Patel', role: 'International Alliances', image: '/assets/images/TEAMS PHOTO/Jama Patel.png' },
   ],
 
   salesTeam: [

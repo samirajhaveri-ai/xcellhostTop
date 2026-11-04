@@ -28,6 +28,7 @@ main = main.replace('data-product="All Veeam Services · XcellHost"', 'data-prod
   .replace(/(<section class="hero lh vm-hero"[^>]*>\s*)<div class="hero-bg"[\s\S]*?(?=\n  <div class="wrap">)/, `$1<div class="hero-bg" aria-hidden="true"><div class="vm-world-map">${worldMap}</div><div class="vm-grid"></div></div>`)
   .replace(/(<section class="sec vm-cat" id="catalog">[\s\S]*?<div class="vm-ch rv">[\s\S]*?<\/div>)/, '$1' + stats.replace('class="vm-stats"', 'class="vm-stats vm-catalog-stats"'));
 if (!main.includes('data-banner-added-actions') || !main.includes('vm-catalog-stats')) throw new Error('Hero transformation incomplete');
+main = main.replace('<div class="xh-banner-actions" data-banner-added-actions></div>', '<div class="xh-banner-actions" data-banner-added-actions></div><div class="vm-powered-by"><span>Powered by</span><span class="vm-powered-logo"><img src="/assets/images/veeam-powered-by.png" alt="Veeam" width="265" height="148"></span></div>');
 main = main.replace(/(<section class="sec(?: alt)? vm-faq" id="faq">[\s\S]*?)<div class="sh rv">[\s\S]*?<\/div>/,
   '$1<div class="sh rv"><h2>Frequently asked questions</h2></div>');
 const closingStart = main.indexOf('<div class="lcta rv" id="contact">');
@@ -43,6 +44,15 @@ page = page.replace("hq=$('#vmHQ')", "hq=$('#vmHQ')||q")
 const fonts = [...source.matchAll(/<link\b[^>]*>/g)].map(item => item[0]).filter(link => /fonts\.(?:googleapis|gstatic)\.com/.test(link)).join('');
 const bridge = `
 (function(){
+  const copy = document.querySelector('#vmHero .vm-copy');
+  const powered = copy.querySelector('.vm-powered-by');
+  const observer = new MutationObserver(placePoweredLogo);
+  function placePoweredLogo(){
+    const ai = copy.querySelector('.xh-banner-ai');
+    if(ai){ ai.after(powered); observer.disconnect(); }
+  }
+  observer.observe(copy, {childList:true, subtree:true});
+  placePoweredLogo();
   const open = XH.open;
   XH.open = function(id, options){
     if(id === 'xhCallback'){

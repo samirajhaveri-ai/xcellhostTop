@@ -16,6 +16,9 @@ type InteractiveContentSource =
   | 'ai-app-builder'
   | 'ai-ide-lab'
   | 'ai-training-for-lawyer'
+  | 'dedicated-servers-usa'
+  | 'dedicated-servers-europe'
+  | 'dedicated-servers-india'
   | 'bare-metal-servers'
   | 'acronis-cyber-platform'
   | 'blockchain-as-a-service'
@@ -87,6 +90,8 @@ type InteractiveContentSource =
   | 'fortinet-services'
   | 'hpe-services'
   | 'all-paloalto-products'
+  | 'vietnam-go-to-market-strategy'
+  | 'poland-go-to-market-strategy'
   | 'veeam-services'
   | 'dell-services'
   | 'oracle-cloud-services'
@@ -277,6 +282,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ai-app-builder': '/imported-ai-app-builder.html',
     'ai-ide-lab': '/imported-ai-ide-lab.html',
     'ai-training-for-lawyer': '/imported-ai-training-for-lawyer.html',
+    'dedicated-servers-usa': '/imported-dedicated-servers-usa.html',
+    'dedicated-servers-europe': '/imported-dedicated-servers-europe.html',
+    'dedicated-servers-india': '/imported-dedicated-servers-india.html',
     'bare-metal-servers': '/imported-bare-metal-servers.html',
     'acronis-cyber-platform': '/imported-acronis-cyber-platform.html',
     'blockchain-as-a-service': '/imported-blockchain-as-a-service.html',
@@ -333,6 +341,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'fortinet-services': '/imported-fortinet-services.html',
     'hpe-services': '/imported-hpe-services.html',
     'all-paloalto-products': '/imported-all-paloalto-products.html',
+    'vietnam-go-to-market-strategy': '/imported-vietnam-go-to-market-strategy.html',
+    'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
     'oracle-cloud-services': '/imported-oracle-cloud-services.html',
@@ -524,6 +534,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ai-app-builder': 'AI Apps Builder: building blocks, plans, template matcher and token-cost estimator',
     'ai-ide-lab': 'AI IDE Lab: environments, classroom tools, lab configurator, sizing estimator and stack picker',
     'ai-training-for-lawyer': 'AI Training for Lawyers: curriculum, practical labs, skills assessment and enrolment',
+    'dedicated-servers-usa': 'Dedicated Servers in the USA: locations, plans, configuration and hosting responsibilities',
+    'dedicated-servers-europe': 'Dedicated Servers in Europe: locations, plans, configuration and EU data residency',
+    'dedicated-servers-india': 'Dedicated Servers in India: cities, plans, configuration and data residency',
     'bare-metal-servers': 'Dedicated Servers: plans, configurator, server finder, cost comparison and locations',
     'acronis-cyber-platform': 'Acronis Cyber Platform: services, plans, configurator, consolidation estimator and edition finder',
     'blockchain-as-a-service': 'Blockchain as a Service: ledgers, network configuration, sizing and network finder',
@@ -583,6 +596,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'fortinet-services': 'Fortinet Products and Services',
     'hpe-services': 'HPE Products and Services',
     'all-paloalto-products': 'Palo Alto Networks Products and Services',
+    'vietnam-go-to-market-strategy': 'Vietnam Go-to-Market Strategy',
+    'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
     'oracle-cloud-services': 'Oracle Cloud Products and Services',

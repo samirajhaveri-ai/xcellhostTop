@@ -1397,14 +1397,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "XcellWorkSpace",
             "body": "Bring business email, documents and teamwork into one workspace.",
-            "image": "/assets/images/menu-productivity-xcellworkspace-v1.png",
+            "image": "/assets/images/menu-productivity-xcellworkspace-v2.jpeg",
             "link": "/xcellworkspace"
           },
           {
             "label": "Productivity",
             "title": "Microsoft 365 SMB",
             "body": "Equip your team with cloud productivity and collaboration tools.",
-            "image": "/assets/images/menu-productivity-microsoft-365-smb-v1.png",
+            "image": "/assets/images/menu-productivity-microsoft-365-smb-v2.jpeg",
             "link": "/microsoft-365-smb"
           }
         ],
@@ -1458,14 +1458,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "Email Security SMB",
             "body": "Protect your business inboxes from spam, phishing and malware.",
-            "image": "/assets/images/menu-productivity-email-security-smb-v1.png",
+            "image": "/assets/images/menu-productivity-email-security-smb-v2.jpeg",
             "link": "/email-security-smb"
           },
           {
             "label": "Productivity",
             "title": "Email Security Enterprise",
             "body": "Secure enterprise email with advanced threat protection.",
-            "image": "/assets/images/menu-productivity-email-security-enterprise-v1.png",
+            "image": "/assets/images/menu-productivity-email-security-enterprise-v2.jpeg",
             "link": "/email-security-enterprise"
           }
         ],
@@ -1542,14 +1542,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "Email Backup",
             "body": "Keep business email protected and ready to restore.",
-            "image": "/assets/images/menu-productivity-email-backup-v1.png",
+            "image": "/assets/images/menu-productivity-email-backup-v2.jpeg",
             "link": "/email-backup"
           },
           {
             "label": "Productivity",
             "title": "Email Archiving",
             "body": "Preserve and search business email with secure archiving.",
-            "image": "/assets/images/menu-productivity-email-archiving-v1.png",
+            "image": "/assets/images/menu-productivity-email-archiving-v2.jpeg",
             "link": "/email-archiving"
           }
         ],
@@ -1637,14 +1637,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "Cloud Conferencing",
             "body": "Connect your team with cloud meetings and collaboration.",
-            "image": "/assets/images/menu-productivity-cloud-conferencing-v1.png",
+            "image": "/assets/images/menu-productivity-cloud-conferencing-v2.jpeg",
             "link": "/cloud-conferencing"
           },
           {
             "label": "Productivity",
             "title": "Cloud Contact Center",
             "body": "Support customers through a connected cloud contact center.",
-            "image": "/assets/images/menu-productivity-cloud-contact-center-v1.png",
+            "image": "/assets/images/menu-productivity-cloud-contact-center-v2.jpeg",
             "link": "/cloud-contact-center"
           }
         ],
@@ -1683,14 +1683,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "SMB Cloud Desktop",
             "body": "Access your business desktop securely from anywhere.",
-            "image": "/assets/images/menu-productivity-smb-cloud-desktop-v1.png",
+            "image": "/assets/images/menu-productivity-smb-cloud-desktop-v3.png",
             "link": "/smb-cloud-desktop"
           },
           {
             "label": "Productivity",
             "title": "Cloud Desktop Enterprise (VDI)",
             "body": "Deliver secure virtual desktops across your organization.",
-            "image": "/assets/images/menu-productivity-cloud-desktop-enterprise-v1.png",
+            "image": "/assets/images/menu-productivity-cloud-desktop-enterprise-v3.png",
             "link": "/cloud-desktop-enterprise-vdi"
           }
         ],
@@ -1732,14 +1732,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "Microsoft Copilot",
             "body": "Work smarter with AI assistance across everyday tasks.",
-            "image": "/assets/images/menu-productivity-microsoft-copilot-v1.png",
+            "image": "/assets/images/menu-productivity-microsoft-copilot-v2.jpeg",
             "link": "/microsoft-copilot"
           },
           {
             "label": "Productivity",
             "title": "Microsoft Copilot Studio",
             "body": "Build AI agents and connect your business workflows.",
-            "image": "/assets/images/menu-productivity-copilot-studio-v1.png",
+            "image": "/assets/images/menu-productivity-copilot-studio-v2.jpeg",
             "link": "/microsoft-copilot-studio"
           }
         ],
@@ -1782,14 +1782,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "Managed Microsoft 365",
             "body": "Keep Microsoft 365 running smoothly with expert management.",
-            "image": "/assets/images/menu-productivity-managed-microsoft-365-v1.png",
+            "image": "/assets/images/menu-productivity-managed-microsoft-365-v2.jpeg",
             "link": "/managed-microsoft-365"
           },
           {
             "label": "Productivity",
             "title": "Managed GWS",
             "body": "Simplify Google Workspace administration and support.",
-            "image": "/assets/images/menu-productivity-managed-google-workspace-v1.png",
+            "image": "/assets/images/menu-productivity-managed-google-workspace-v2.jpeg",
             "link": "/managed-gws"
           }
         ],
@@ -1843,14 +1843,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Productivity",
             "title": "Power BI",
             "body": "Turn business data into clear dashboards and insights.",
-            "image": "/assets/images/menu-productivity-power-bi-v1.png",
+            "image": "/assets/images/menu-productivity-power-bi-v2.jpeg",
             "link": "/power-bi"
           },
           {
             "label": "Productivity",
             "title": "Power Automate",
             "body": "Automate routine tasks and connect your business processes.",
-            "image": "/assets/images/menu-productivity-power-automate-v1.png",
+            "image": "/assets/images/menu-productivity-power-automate-v2.jpeg",
             "link": "/power-automate"
           }
         ],
@@ -5343,9 +5343,16 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "By Country",
             "items": [
                {
-                "title": "No Data",
+                "title": "Vietnam Go-to-Market Strategy",
+                  "href": "/vietnam-go-to-market-strategy",
                 "pill": null,
-                "desc": null
+                "desc": "Cloud, security, AI and training strategy for Vietnam, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Poland Go-to-Market Strategy",
+                "href": "/poland-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Poland, with sector insights and revenue modelling."
               },
             ]
           }
