@@ -3,8 +3,11 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { parse } = require('parse5');
 const root = path.resolve(__dirname, '..');
-if (!process.argv[2]) throw Error('Pass the supplied Web3 & Blockchain Infrastructure HTML file.');
-const source = fs.readFileSync(process.argv[2], 'utf8');
+if (!process.argv[2]) throw Error('Pass the supplied Blockchain Infrastructure HTML file.');
+const source = fs.readFileSync(process.argv[2], 'utf8')
+  .replaceAll('Web3 &amp; Blockchain Infrastructure', 'Blockchain Infrastructure')
+  .replaceAll('Web3 & Blockchain Infrastructure', 'Blockchain Infrastructure')
+  .replaceAll('web3-blockchain-infrastructure.html', 'blockchain-infrastructure.html');
 const nodes = [];
 function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
 walk(parse(source, { sourceCodeLocationInfo: true }));
@@ -19,7 +22,7 @@ const faqs = descendants(byId('faq')).filter(n => has(n, 'fq')).map(n => {
   return [text(children.find(c => c.tagName === 'button')).trim(), text(children.find(c => has(c, 'fa'))).trim()];
 });
 if (!faqs.length || !byId('w3Stage')) throw Error('Missing supplied FAQ or animated hero.');
-fs.writeFileSync(path.join(root, 'src/app/data/web3-blockchain-infrastructure-faq.data.ts'), '// FAQs from the supplied Web3 & Blockchain Infrastructure document.\nexport const WEB3_INFRASTRUCTURE_FAQS: [string, string][] = ' + JSON.stringify(faqs, null, 2) + ';\n');
+fs.writeFileSync(path.join(root, 'src/app/data/web3-blockchain-infrastructure-faq.data.ts'), '// FAQs from the supplied Blockchain Infrastructure document.\nexport const WEB3_INFRASTRUCTURE_FAQS: [string, string][] = ' + JSON.stringify(faqs, null, 2) + ';\n');
 const localLinks = html => html.replace(/href="(?:https:\/\/(?:www\.)?xcellhost\.(?:top|cloud)\/)?([a-z0-9-]+)\.html(#[^"]*)?"/g, 'href="/$1$2" target="_top"');
 const styles = nodes.filter(n => n.tagName === 'style').map(slice).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => 'calc(var(--page-vh,1vh) * ' + n + ')');
 const fonts = nodes.filter(n => n.tagName === 'link' && /^https:\/\/fonts\.(googleapis|gstatic)\.com/.test(attr(n, 'href'))).map(slice).join('\n');
@@ -31,8 +34,8 @@ runtime = runtime.replace("function go2(id){var e=$id(id);if(e)e.scrollIntoView(
 const heroRuntime = runtime.slice(0, runtime.indexOf('  /*', runtime.indexOf('window.__w3Hero'))) + '})();';
 const sections = nodes.filter(n => n.tagName === 'section' && ['overview','products','chains','apis','platform','regions','enterprise','why','how','usecases','deliver','compliance','plans','configure','capacity','finder','vs','steps','related'].includes(attr(n, 'id')));
 if (sections.length !== 19) throw Error('Incomplete supplied content.');
-const head = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Web3 & Blockchain Infrastructure | XcellHost</title>' + fonts + styles;
-const bridge = `<script>XH.open=function(id,opts){if(id==='xhCallback')document.dispatchEvent(new CustomEvent('import-callback',{detail:'Web3 & Blockchain Infrastructure: '+(opts&&opts.topic||'Consultation')+'; '+(document.getElementById('cName')?.textContent||'')}));};XH.toast=function(message){var e=document.getElementById('w3Toast');e.textContent=message;e.hidden=false;clearTimeout(window.w3ToastTimer);window.w3ToastTimer=setTimeout(function(){e.hidden=true;},3500);};</script>`;
+const head = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blockchain Infrastructure | XcellHost</title>' + fonts + styles;
+const bridge = `<script>XH.open=function(id,opts){if(id==='xhCallback')document.dispatchEvent(new CustomEvent('import-callback',{detail:'Blockchain Infrastructure: '+(opts&&opts.topic||'Consultation')+'; '+(document.getElementById('cName')?.textContent||'')}));};XH.toast=function(message){var e=document.getElementById('w3Toast');e.textContent=message;e.hidden=false;clearTimeout(window.w3ToastTimer);window.w3ToastTimer=setTimeout(function(){e.hidden=true;},3500);};</script>`;
 const output = head + '<style>html,body{height:auto;min-height:0}body{overflow-x:clip}.sec{padding:48px 0}.rv{opacity:1;transform:none}[hidden]{display:none!important}#w3Toast{position:fixed;bottom:20px;left:20px;z-index:100;background:#0b132b;color:white;padding:12px 20px;border-radius:10px;max-width:calc(100% - 40px)}</style></head><body><main id="main">' + localLinks(sections.map(slice).join('\n')) + '</main><div id="w3Toast" role="status" hidden></div><script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core + bridge + '<script>' + runtime + '</script></body></html>';
 const hero = head + '<style>html,body{margin:0;width:100%;height:100%;background:transparent;overflow:hidden}#w3Hero{position:absolute;top:50%;left:50%;width:640px!important;padding:30px 18px!important;min-height:0;background:transparent;transform-origin:center;overflow:visible}#w3Stage>.lh-tilt,#w3Stage>.w3-log{width:100%!important;max-width:none!important}#w3Stage{width:100%;min-width:0;margin:0;opacity:1;transform:none;animation:none}#w3Hero .lh-tilt{width:100%;min-width:0}.lh-chip{max-width:48%}</style></head><body><main id="main"><section class="hero lh w3-hero" id="w3Hero">' + slice(byId('w3Stage')) + '</section></main>' + core + '<script>' + heroRuntime + '</script><script>(function(){var e=document.getElementById("w3Hero");function fit(){e.style.transform="translate(-50%,-50%) scale("+Math.min(innerWidth/676,(innerHeight-16)/e.offsetHeight,1)+")";}new ResizeObserver(fit).observe(e);addEventListener("resize",fit);document.fonts.ready.then(fit);fit();})();</script></body></html>';
 for (const html of [output, hero]) for (const m of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(m[1]);
