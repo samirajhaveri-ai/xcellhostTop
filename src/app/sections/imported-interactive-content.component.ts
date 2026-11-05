@@ -92,6 +92,9 @@ type InteractiveContentSource =
   | 'all-paloalto-products'
   | 'vietnam-go-to-market-strategy'
   | 'poland-go-to-market-strategy'
+  | 'singapore-go-to-market-strategy'
+  | 'malaysia-go-to-market-strategy'
+  | 'kenya-go-to-market-strategy'
   | 'veeam-services'
   | 'dell-services'
   | 'oracle-cloud-services'
@@ -343,6 +346,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': '/imported-all-paloalto-products.html',
     'vietnam-go-to-market-strategy': '/imported-vietnam-go-to-market-strategy.html',
     'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
+    'singapore-go-to-market-strategy': '/imported-singapore-go-to-market-strategy.html',
+    'malaysia-go-to-market-strategy': '/imported-malaysia-go-to-market-strategy.html',
+    'kenya-go-to-market-strategy': '/imported-kenya-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
     'oracle-cloud-services': '/imported-oracle-cloud-services.html',
@@ -598,6 +604,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': 'Palo Alto Networks Products and Services',
     'vietnam-go-to-market-strategy': 'Vietnam Go-to-Market Strategy',
     'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
+    'singapore-go-to-market-strategy': 'Singapore Go-to-Market Strategy',
+    'malaysia-go-to-market-strategy': 'Malaysia Go-to-Market Strategy',
+    'kenya-go-to-market-strategy': 'Kenya Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
     'oracle-cloud-services': 'Oracle Cloud Products and Services',
