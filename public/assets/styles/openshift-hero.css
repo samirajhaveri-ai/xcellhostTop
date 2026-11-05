@@ -1,0 +1,65 @@
+#osHero .hero-grid.os-hg {
+  align-items: center;
+}
+
+#osHero .os-copy,
+#osHero .stage.os-stage {
+  width: 100%;
+  max-width: 520px;
+  justify-self: center;
+  align-self: center;
+  min-width: 0;
+}
+
+@media (min-width: 981px) {
+  #osHero .hero-grid.os-hg {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  }
+}
+
+#osHero .stage.os-stage {
+  min-height: 0;
+  margin-top: 0;
+  padding-bottom: 36px;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+#osHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap {
+  width: 100%;
+  flex-wrap: wrap !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  gap: 10px 12px;
+}
+
+#osHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap .k {
+  flex: 1 1 200px !important;
+  min-width: 0;
+  white-space: normal !important;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+#osHero .lh-ask.xh-icon-ask .chips {
+  flex: 0 0 auto !important;
+  flex-wrap: nowrap !important;
+  gap: 8px;
+}
+
+#osHero .lh-ask.xh-icon-ask .chips a {
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+}
+
+@media (max-width: 600px) {
+  #osHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap .k {
+    flex-basis: 100% !important;
+  }
+
+  #osHero .stage.os-stage {
+    padding-bottom: 0;
+  }
+}

@@ -955,6 +955,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Patch Management as a Service",
+                "href": "/patch-mgmt-as-a-service",
+                "pill": null,
+                "desc": "Managed OS and third-party patching, risk prioritisation and compliance reporting."
+              },
 
                
             ]
@@ -3409,6 +3415,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Patch Mgmt-as-a-Service",
+                "href": "/patch-mgmt-as-a-service",
                 "pill": null,
                 "desc": null
               },
@@ -5371,6 +5378,42 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/malaysia-go-to-market-strategy",
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Malaysia, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Australia Go-to-Market Strategy",
+                "href": "/australia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Australia, with sector insights and revenue modelling."
+              },
+              {
+                "title": "UAE Go-to-Market Strategy",
+                "href": "/uae-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for UAE, with sector insights and revenue modelling."
+              },
+              {
+                "title": "South Africa Go-to-Market Strategy",
+                "href": "/south-africa-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for South Africa, with sector insights and revenue modelling."
+              },
+              {
+                "title": "India Go-to-Market Strategy",
+                "href": "/india-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for India, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Germany Go-to-Market Strategy",
+                "href": "/germany-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Germany, with sector insights and revenue modelling."
+              },
+              {
+                "title": "USA Go-to-Market Strategy",
+                "href": "/usa-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for USA, with sector insights and revenue modelling."
               },
             ]
           }

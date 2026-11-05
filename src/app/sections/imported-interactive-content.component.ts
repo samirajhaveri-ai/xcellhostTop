@@ -10,6 +10,9 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'openshift-as-a-service'
+  | 'patch-mgmt-as-a-service'
+  | 'cloud-disaster-recovery-smb'
   | 'acronis-licensing-guide'
   | 'microsoft-csp-licensing-guide'
   | 'microsoft-365-licensing-guide'
@@ -94,6 +97,12 @@ type InteractiveContentSource =
   | 'poland-go-to-market-strategy'
   | 'singapore-go-to-market-strategy'
   | 'malaysia-go-to-market-strategy'
+  | 'australia-go-to-market-strategy'
+  | 'uae-go-to-market-strategy'
+  | 'south-africa-go-to-market-strategy'
+  | 'india-go-to-market-strategy'
+  | 'germany-go-to-market-strategy'
+  | 'usa-go-to-market-strategy'
   | 'kenya-go-to-market-strategy'
   | 'veeam-services'
   | 'dell-services'
@@ -348,6 +357,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
     'singapore-go-to-market-strategy': '/imported-singapore-go-to-market-strategy.html',
     'malaysia-go-to-market-strategy': '/imported-malaysia-go-to-market-strategy.html',
+    'australia-go-to-market-strategy': '/imported-australia-go-to-market-strategy.html',
+    'uae-go-to-market-strategy': '/imported-uae-go-to-market-strategy.html',
+    'south-africa-go-to-market-strategy': '/imported-south-africa-go-to-market-strategy.html',
+    'india-go-to-market-strategy': '/imported-india-go-to-market-strategy.html',
+    'germany-go-to-market-strategy': '/imported-germany-go-to-market-strategy.html',
+    'usa-go-to-market-strategy': '/imported-usa-go-to-market-strategy.html',
     'kenya-go-to-market-strategy': '/imported-kenya-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
@@ -406,6 +421,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cdn-cloud': '/imported-cdn-cloud.html',
     'email-security-enterprise': '/imported-email-security-enterprise.html',
     'red-hat': '/imported-red-hat.html',
+    'openshift-as-a-service': '/imported-openshift-as-a-service.html',
+    'patch-mgmt-as-a-service': '/imported-patch-mgmt-as-a-service.html',
+    'cloud-disaster-recovery-smb': '/imported-cloud-disaster-recovery-smb.html',
     'sitelock': '/imported-sitelock.html',
     'ssl-installation-service': '/imported-ssl-installation-service.html',
     'acronis-ot': '/imported-acronis-ot.html',
@@ -606,6 +624,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
     'singapore-go-to-market-strategy': 'Singapore Go-to-Market Strategy',
     'malaysia-go-to-market-strategy': 'Malaysia Go-to-Market Strategy',
+    'australia-go-to-market-strategy': 'Australia Go-to-Market Strategy',
+    'uae-go-to-market-strategy': 'UAE Go-to-Market Strategy',
+    'south-africa-go-to-market-strategy': 'South Africa Go-to-Market Strategy',
+    'india-go-to-market-strategy': 'India Go-to-Market Strategy',
+    'germany-go-to-market-strategy': 'Germany Go-to-Market Strategy',
+    'usa-go-to-market-strategy': 'USA Go-to-Market Strategy',
     'kenya-go-to-market-strategy': 'Kenya Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
@@ -686,6 +710,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',
     'email-security-enterprise': 'Email Security Enterprise, animated mail estate, high availability, DLP, DMARC and archive scenes, estate sizing and change-managed rollout',
     'red-hat': 'Red Hat services, animated RHEL, Ansible, OpenShift, virtualisation and AI scenes, service explorer and Stack Builder',
+    'openshift-as-a-service': 'OpenShift as a Service, managed clusters, virtualization, pricing configurator, workload sizing and platform finder',
+    'patch-mgmt-as-a-service': 'Patch Management as a Service, patch operations, pricing configurator, risk calculator and SLA finder',
+    'cloud-disaster-recovery-smb': 'Cloud Disaster Recovery for SMBs, failover animations, recovery tiers, pricing, downtime calculator and recovery picker',
     'sitelock': 'SiteLock Website Security, animated scan, WAF, CDN, patching and trust seal scenes, plans and Why XcellHost',
     'ssl-installation-service': 'SSL Installation Service, animated installation desk, platforms, pricing, installation configurator and related certificates',
     'acronis-ot': 'Acronis Cyber Protect for OT, animated demo, coverage, plant sizing, recovery calculator and quotation',
