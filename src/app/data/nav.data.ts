@@ -4290,7 +4290,7 @@ export const MEGA_MENU: MenuTop[] = [
             "title": "Qualys Security",
             "body": "Contact our team to explore Qualys security options.",
             "image": "/assets/images/menu-marketplace-qualys-security-v1.png",
-            "link": "/contact"
+            "link": "/qualys-services"
           }
         ],
         "groups": [
@@ -4298,9 +4298,10 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Qualys Security",
             "items": [
               {
-                "title": "No",
+                "title": "Qualys Services",
+                "href": "/qualys-services",
                 "pill": null,
-                "desc": null
+                "desc": "Explore Qualys VMDR, TruRisk, patch management, cloud security and compliance services."
               },
             ]
           }
@@ -5414,6 +5415,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/usa-go-to-market-strategy",
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for USA, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Nigeria Go-to-Market Strategy",
+                "href": "/nigeria-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Nigeria, with sector insights and revenue modelling."
               },
             ]
           }

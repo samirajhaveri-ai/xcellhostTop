@@ -15,6 +15,9 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'qualys-services', title: 'Qualys Services India | XcellHost', loadComponent: () => import('./pages/qualys-services.page').then(m => m.QualysServicesPage) },
+  { path: 'all-cloudflare-products', title: 'All Cloudflare Products India | XcellHost', loadComponent: () => import('./pages/all-cloudflare-products.page').then(m => m.AllCloudflareProductsPage) },
+  { path: 'nigeria-go-to-market-strategy', title: 'Nigeria Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/nigeria-go-to-market.page').then(m => m.NigeriaGoToMarketPage) },
   { path: 'usa-go-to-market-strategy', title: 'USA Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/usa-go-to-market.page').then(m => m.USAGoToMarketPage) },
   { path: 'germany-go-to-market-strategy', title: 'Germany Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/germany-go-to-market.page').then(m => m.GermanyGoToMarketPage) },
   { path: 'india-go-to-market-strategy', title: 'India Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/india-go-to-market.page').then(m => m.IndiaGoToMarketPage) },
