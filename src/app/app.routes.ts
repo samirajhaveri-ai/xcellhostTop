@@ -15,6 +15,12 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'uk-go-to-market-strategy', title: 'UK Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/uk-go-to-market.page').then(m => m.UkGoToMarketPage) },
+  { path: 'saudi-arabia-go-to-market-strategy', title: 'Saudi Arabia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/saudi-arabia-go-to-market.page').then(m => m.SaudiArabiaGoToMarketPage) },
+  { path: 'rwanda-go-to-market-strategy', title: 'Rwanda Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/rwanda-go-to-market.page').then(m => m.RwandaGoToMarketPage) },
+  { path: 'new-zealand-go-to-market-strategy', title: 'New Zealand Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/new-zealand-go-to-market.page').then(m => m.NewZealandGoToMarketPage) },
+  { path: 'canada-go-to-market-strategy', title: 'Canada Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/canada-go-to-market.page').then(m => m.CanadaGoToMarketPage) },
+  { path: 'tanzania-go-to-market-strategy', title: 'Tanzania Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/tanzania-go-to-market.page').then(m => m.TanzaniaGoToMarketPage) },
   { path: 'poland-go-to-market-strategy', title: 'Poland Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/poland-go-to-market.page').then(m => m.PolandGoToMarketPage) },
   { path: 'vietnam-go-to-market-strategy', title: 'Vietnam Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/vietnam-go-to-market.page').then(m => m.VietnamGoToMarketPage) },
   {

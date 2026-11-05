@@ -1,4 +1,7 @@
 @if (view(); as v) {
+  @if (slug() === 'bare-metal-servers') {
+    <xh-bare-metal-offer-popup />
+  }
   @if (slug() === 'microsoft-defender') {
     <div class="ppage as-page" id="ppage">
       <xh-imported-interactive-content source="microsoft-defender" />

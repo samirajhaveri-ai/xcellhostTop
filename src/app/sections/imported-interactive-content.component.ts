@@ -92,6 +92,12 @@ type InteractiveContentSource =
   | 'all-paloalto-products'
   | 'vietnam-go-to-market-strategy'
   | 'poland-go-to-market-strategy'
+  | 'uk-go-to-market-strategy'
+  | 'saudi-arabia-go-to-market-strategy'
+  | 'rwanda-go-to-market-strategy'
+  | 'new-zealand-go-to-market-strategy'
+  | 'canada-go-to-market-strategy'
+  | 'tanzania-go-to-market-strategy'
   | 'veeam-services'
   | 'dell-services'
   | 'oracle-cloud-services'
@@ -343,6 +349,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': '/imported-all-paloalto-products.html',
     'vietnam-go-to-market-strategy': '/imported-vietnam-go-to-market-strategy.html',
     'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
+    'uk-go-to-market-strategy': '/imported-uk-go-to-market-strategy.html',
+    'saudi-arabia-go-to-market-strategy': '/imported-saudi-arabia-go-to-market-strategy.html',
+    'rwanda-go-to-market-strategy': '/imported-rwanda-go-to-market-strategy.html',
+    'new-zealand-go-to-market-strategy': '/imported-new-zealand-go-to-market-strategy.html',
+    'canada-go-to-market-strategy': '/imported-canada-go-to-market-strategy.html',
+    'tanzania-go-to-market-strategy': '/imported-tanzania-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
     'oracle-cloud-services': '/imported-oracle-cloud-services.html',
@@ -598,6 +610,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': 'Palo Alto Networks Products and Services',
     'vietnam-go-to-market-strategy': 'Vietnam Go-to-Market Strategy',
     'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
+    'uk-go-to-market-strategy': 'UK Go-to-Market Strategy',
+    'saudi-arabia-go-to-market-strategy': 'Saudi Arabia Go-to-Market Strategy',
+    'rwanda-go-to-market-strategy': 'Rwanda Go-to-Market Strategy',
+    'new-zealand-go-to-market-strategy': 'New Zealand Go-to-Market Strategy',
+    'canada-go-to-market-strategy': 'Canada Go-to-Market Strategy',
+    'tanzania-go-to-market-strategy': 'Tanzania Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
     'oracle-cloud-services': 'Oracle Cloud Products and Services',

@@ -15,6 +15,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { DocKind, DocRequestService } from '../core/doc-request.service';
 import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
+import { SMB_SOCIAL_PREVIEWS } from '../data/smb-social-previews.data';
 
 @Component({
   selector: 'xh-dpdpa-for-smb-page',
@@ -45,10 +46,12 @@ export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
   ] as const;
 
   constructor() {
+    const preview = SMB_SOCIAL_PREVIEWS['dpdpa-for-smb'];
     this.seo.set(
-      'DPDP Act 2023 Compliance for SMBs India | XcellHost',
-      'AI-powered DPDP Act compliance for Indian startups and MSMEs, combining advisory, platform and implementation across nine compliance modules.',
+      preview.title,
+      preview.description,
       '/dpdpa-for-smb/',
+      preview.image,
     );
   }
 

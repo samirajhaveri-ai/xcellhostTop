@@ -5354,6 +5354,42 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Poland, with sector insights and revenue modelling."
               },
+              {
+                "title": "UK Go-to-Market Strategy",
+                  "href": "/uk-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for UK, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Saudi Arabia Go-to-Market Strategy",
+                  "href": "/saudi-arabia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Saudi Arabia, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Rwanda Go-to-Market Strategy",
+                  "href": "/rwanda-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Rwanda, with sector insights and revenue modelling."
+              },
+              {
+                "title": "New Zealand Go-to-Market Strategy",
+                  "href": "/new-zealand-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for New Zealand, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Canada Go-to-Market Strategy",
+                  "href": "/canada-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Canada, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Tanzania Go-to-Market Strategy",
+                  "href": "/tanzania-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Tanzania, with sector insights and revenue modelling."
+              },
             ]
           }
         ]
