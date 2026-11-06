@@ -1,4 +1,7 @@
 @if (view(); as v) {
+  @if (slug() === 'bare-metal-servers') {
+    <xh-bare-metal-offer-popup />
+  }
   @if (slug() === 'microsoft-defender') {
     <div class="ppage as-page" id="ppage">
       <xh-imported-interactive-content source="microsoft-defender" />
@@ -473,6 +476,8 @@
         </div>
       } @else if (isCopilotStudio()) {
         <xh-copilot-studio-content mode="hero" />
+      } @else if (slug() === 'cloud-disaster-recovery-for-smb') {
+        <xh-imported-interactive-content source="cloud-disaster-recovery-smb-opening" />
       } @else if (slug() === 'ai-training-for-educators') {
         <xh-imported-interactive-content source="ai-training-educators" />
       } @else if (slug() === 'synapsem-ai-training-live-online') {
@@ -2385,7 +2390,7 @@
       }
       }
 
-      @if (slug() !== 'synapsem-ai-training-live-online' && slug() !== 'ai-training-for-educators' && slug() !== 'web-security-sitelock' && !isDigiCert() && slug() !== 'digicert-smime-ov' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
+      @if (slug() !== 'cloud-disaster-recovery-for-smb' && slug() !== 'synapsem-ai-training-live-online' && slug() !== 'ai-training-for-educators' && slug() !== 'web-security-sitelock' && !isDigiCert() && slug() !== 'digicert-smime-ov' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
         <div class="pp-trust" [class.reference-trust]="referenceSectionNav() !== null">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -3013,7 +3018,7 @@
           } @else if (slug() === 'wordpress-vps') {
             <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
           }
-          @if (slug() !== 'gemini-managed-services' && slug() !== 'synapsem-ai-training-live-online' && slug() !== 'ai-training-for-educators' && slug() !== 'smb-cloud-desktop' && slug() !== 'certificate-lifecycle-management-platforms' && slug() !== 'autoinstall-ssl-for-web-hosts' && slug() !== 'autoinstall-ssl-for-linux-and-windows' && slug() !== 'waap-as-a-service' && slug() !== 'threat-intelligence' && slug() !== 'cyber-security-audit' && slug() !== 'third-party-risk-management' && slug() !== 'managed-bug-bounty' && slug() !== 'ot-assessment' && slug() !== 'blue-team-assessment' && slug() !== 'red-team-assessment' && slug() !== 'cloud-security-assessment' && slug() !== 'digital-risk-monitoring' && slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'soc-as-a-services' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() !== 'gemini-managed-services' && slug() !== 'cloud-disaster-recovery-for-smb' && slug() !== 'synapsem-ai-training-live-online' && slug() !== 'ai-training-for-educators' && slug() !== 'smb-cloud-desktop' && slug() !== 'certificate-lifecycle-management-platforms' && slug() !== 'autoinstall-ssl-for-web-hosts' && slug() !== 'autoinstall-ssl-for-linux-and-windows' && slug() !== 'waap-as-a-service' && slug() !== 'threat-intelligence' && slug() !== 'cyber-security-audit' && slug() !== 'third-party-risk-management' && slug() !== 'managed-bug-bounty' && slug() !== 'ot-assessment' && slug() !== 'blue-team-assessment' && slug() !== 'red-team-assessment' && slug() !== 'cloud-security-assessment' && slug() !== 'digital-risk-monitoring' && slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'soc-as-a-services' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -6788,8 +6793,12 @@
               <xh-digicert-smime-related />
             }
           } @else {
+          @if (slug() !== 'cloud-disaster-recovery-for-smb') {
           <div class="pp-sec pp-faq-heading" [attr.id]="usesVpsPageTemplate() ? (slug() === 'cpanel-vps' ? 'cpanelFaq' : 'openclawFaq') : isTally() ? 'tallyFaq' : slug() === 'cpu-optimized' ? 'cpuFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : usesContainerRegistryTemplate() ? 'registryFaq' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
-          @if (slug() === 'managed-pki') {
+          }
+          @if (slug() === 'cloud-disaster-recovery-for-smb') {
+            <xh-imported-interactive-content id="ppFaq" source="cloud-disaster-recovery-smb-faq" />
+          } @else if (slug() === 'managed-pki') {
             <div class="pp-faq" id="ppFaq" data-preserve-copy>
               <xh-product-faq [faqs]="managedPkiFaqs" />
             </div>

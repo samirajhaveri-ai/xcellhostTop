@@ -15,6 +15,27 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'uk-go-to-market-strategy', title: 'UK Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/uk-go-to-market.page').then(m => m.UkGoToMarketPage) },
+  { path: 'saudi-arabia-go-to-market-strategy', title: 'Saudi Arabia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/saudi-arabia-go-to-market.page').then(m => m.SaudiArabiaGoToMarketPage) },
+  { path: 'rwanda-go-to-market-strategy', title: 'Rwanda Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/rwanda-go-to-market.page').then(m => m.RwandaGoToMarketPage) },
+  { path: 'new-zealand-go-to-market-strategy', title: 'New Zealand Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/new-zealand-go-to-market.page').then(m => m.NewZealandGoToMarketPage) },
+  { path: 'canada-go-to-market-strategy', title: 'Canada Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/canada-go-to-market.page').then(m => m.CanadaGoToMarketPage) },
+  { path: 'tanzania-go-to-market-strategy', title: 'Tanzania Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/tanzania-go-to-market.page').then(m => m.TanzaniaGoToMarketPage) },
+  { path: 'qualys-services', title: 'Qualys Services India | XcellHost', loadComponent: () => import('./pages/qualys-services.page').then(m => m.QualysServicesPage) },
+  { path: 'all-cloudflare-products', title: 'All Cloudflare Products India | XcellHost', loadComponent: () => import('./pages/all-cloudflare-products.page').then(m => m.AllCloudflareProductsPage) },
+  { path: 'nigeria-go-to-market-strategy', title: 'Nigeria Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/nigeria-go-to-market.page').then(m => m.NigeriaGoToMarketPage) },
+  { path: 'usa-go-to-market-strategy', title: 'USA Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/usa-go-to-market.page').then(m => m.USAGoToMarketPage) },
+  { path: 'germany-go-to-market-strategy', title: 'Germany Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/germany-go-to-market.page').then(m => m.GermanyGoToMarketPage) },
+  { path: 'india-go-to-market-strategy', title: 'India Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/india-go-to-market.page').then(m => m.IndiaGoToMarketPage) },
+  { path: 'south-africa-go-to-market-strategy', title: 'South Africa Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/south-africa-go-to-market.page').then(m => m.SouthAfricaGoToMarketPage) },
+  { path: 'uae-go-to-market-strategy', title: 'UAE Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/uae-go-to-market.page').then(m => m.UAEGoToMarketPage) },
+  { path: 'australia-go-to-market-strategy', title: 'Australia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/australia-go-to-market.page').then(m => m.AustraliaGoToMarketPage) },
+  { path: 'cloud-disaster-recovery-smb', title: 'Cloud Disaster Recovery for SMBs India | XcellHost', loadComponent: () => import('./pages/cloud-disaster-recovery-smb.page').then(m => m.CloudDisasterRecoverySmbPage) },
+  { path: 'patch-mgmt-as-a-service', title: 'Patch Management as a Service India | XcellHost', loadComponent: () => import('./pages/patch-mgmt-as-a-service.page').then(m => m.PatchManagementAsAServicePage) },
+  { path: 'openshift-as-a-service', title: 'OpenShift as a Service India | XcellHost', loadComponent: () => import('./pages/openshift-as-a-service.page').then(m => m.OpenShiftAsAServicePage) },
+  { path: 'malaysia-go-to-market-strategy', title: 'Malaysia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/malaysia-go-to-market.page').then(m => m.MalaysiaGoToMarketPage) },
+  { path: 'singapore-go-to-market-strategy', title: 'Singapore Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/singapore-go-to-market.page').then(m => m.SingaporeGoToMarketPage) },
+  { path: 'kenya-go-to-market-strategy', title: 'Kenya Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/kenya-go-to-market.page').then(m => m.KenyaGoToMarketPage) },
   { path: 'poland-go-to-market-strategy', title: 'Poland Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/poland-go-to-market.page').then(m => m.PolandGoToMarketPage) },
   { path: 'vietnam-go-to-market-strategy', title: 'Vietnam Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/vietnam-go-to-market.page').then(m => m.VietnamGoToMarketPage) },
   {

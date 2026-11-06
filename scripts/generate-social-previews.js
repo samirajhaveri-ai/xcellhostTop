@@ -37,6 +37,7 @@ const { RICH_PRODUCTS } = loadTypeScriptModule('products.data.ts');
 const { PRODUCT_HERO_IMAGES, CATEGORY_HERO_IMAGES } = loadTypeScriptModule(
   'product-hero-images.generated.ts',
 );
+const { SMB_SOCIAL_PREVIEWS } = loadTypeScriptModule('smb-social-previews.data.ts');
 
 const overrides = {
   'acronis-genai-protection': '/assets/images/acronis-genai-protection.png',
@@ -82,6 +83,17 @@ const specialCopy = {
     description: 'Rent NVIDIA GPU servers for AI, machine learning, rendering and high-performance computing workloads.',
   },
 };
+
+// The SMB catalogue has curated share copy and product-specific artwork. Apply
+// it to both directory-backed products and standalone routes such as Microsoft
+// 365 SMB and DPDPA for SMB.
+for (const [slug, preview] of Object.entries(SMB_SOCIAL_PREVIEWS)) {
+  overrides[slug] = preview.image;
+  specialCopy[slug] = {
+    title: preview.title,
+    description: preview.description,
+  };
+}
 
 function imageMetadata(image) {
   const relativePath = image.replace(/^\/assets\//, '');

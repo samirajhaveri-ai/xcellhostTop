@@ -57,6 +57,7 @@ import { ContainerServiceHeroComponent } from '../sections/container-service-her
 import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
 
 import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { BareMetalOfferPopupComponent } from '../sections/bare-metal-offer-popup.component';
 import { GeminiManagedContentComponent } from '../sections/gemini-managed-content.component';
 import { GEMINI_MANAGED_FAQS } from '../data/gemini-managed-faq.data';
 import { ZoomConferenceingSourceComponent } from '../sections/zoom-conferenceing-source.component';
@@ -270,6 +271,7 @@ import { AiVoicebotFaqComponent } from '../sections/ai-voicebot-faq.component';
 import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
 import { ACRONIS_EDR_FAQS, SCRUTINY_EDR_FAQS } from '../data/edr-seo.data';
 import { CLOUD_DRIVE_SEO_FAQS } from '../data/cloud-drive-seo.data';
+import { SMB_SOCIAL_PREVIEWS } from '../data/smb-social-previews.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { ChangeDetectionStrategy, Component, HostListener, computed, effect, inject, signal } from '@angular/core';
@@ -603,6 +605,7 @@ interface ProductTourSlide {
     ManagedMicrosoftSqlContentComponent,
     DropboxMigrationContentComponent,
     ImportedInteractiveContentComponent,
+    BareMetalOfferPopupComponent,
     GeminiManagedContentComponent,
     BoxMigrationContentComponent,
     ManagedRedisContentComponent,
@@ -5332,23 +5335,24 @@ class ProductPageComponent {
       const isAcronisEdr = slug === 'advanced-endpoint-security-edr';
       const isScrutinyEdr = slug === 'scrutiny-edr';
       const isCloudDrive = slug === 'cloud-drive';
+      const smbPreview = SMB_SOCIAL_PREVIEWS[slug];
       this.seo.set(
-        isCloudDrive
+        smbPreview?.title ?? (isCloudDrive
           ? 'Business Cloud Drive India — Secure File Sharing | XcellHost'
           : isAcronisEdr
           ? 'Managed EDR India: Endpoint Detection & Response | XcellHost'
           : isScrutinyEdr
             ? 'Scrutiny EDR India: Managed Endpoint Security | XcellHost'
-            : `${v.name} — XcellHost`,
-        isCloudDrive
+            : `${v.name} — XcellHost`),
+        smbPreview?.description ?? (isCloudDrive
           ? 'Secure business Cloud Drive for Indian teams with pooled storage, file sync, controlled sharing and Indian data residency. Compare plans or request migration.'
           : isAcronisEdr
           ? 'Managed Acronis EDR in India from ₹999/user/year. Detect, investigate, contain and recover endpoint threats with 24×7 XcellHost support. GST extra.'
           : isScrutinyEdr
             ? 'Scrutiny EDR for Windows, macOS and Linux with behavioural detection, investigation, response and optional 24×7 monitoring from XcellHost India.'
-            : v.overview.slice(0, 160),
+            : v.overview.slice(0, 160)),
         FRAMEWORK_DETAILS[slug] ? '/cybersecurity-frameworks/' + slug + '/' : `/${slug}/`,
-        this.socialPreviewImage(slug, v),
+        smbPreview?.image ?? this.socialPreviewImage(slug, v),
       );
       this.seo.setJsonLd('product', this.jsonLd(v, slug));
     });
