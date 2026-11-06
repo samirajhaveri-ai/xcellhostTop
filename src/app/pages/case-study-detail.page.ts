@@ -214,6 +214,8 @@ export class CaseStudyDetailPage implements OnDestroy {
     return cmsStudy ? this.toDetail(cmsStudy) : undefined;
   });
 
+  readonly productHeading = computed(() => this.formatSlugHeading(this.study()?.id ?? ''));
+
   readonly caseStudyAdvertisements = computed(() => {
     const study = this.study();
     if (!study) return [];
@@ -256,6 +258,26 @@ export class CaseStudyDetailPage implements OnDestroy {
         ? this.toDetail(item)
         : CASE_STUDY_DETAILS.find((detail) => detail.id === item.id) ?? this.toDetail(item));
   });
+
+  private formatSlugHeading(slug: string): string {
+    const preferredWords: Readonly<Record<string, string>> = {
+      ai: 'AI',
+      ca: 'CA',
+      dpdpa: 'DPDPA',
+      genai: 'GenAI',
+      m365: 'Microsoft 365',
+      rmm: 'RMM',
+      smb: 'SMB',
+      vps: 'VPS',
+      cloudlinux: 'CloudLinux',
+    };
+
+    return slug
+      .split('-')
+      .filter(Boolean)
+      .map(word => preferredWords[word.toLowerCase()] ?? `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}`)
+      .join(' ');
+  }
 
   constructor() {
     effect(() => {

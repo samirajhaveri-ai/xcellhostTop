@@ -63,7 +63,6 @@ type InteractiveContentSource =
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
   | 'cloud-disaster-recovery-smb-faq'
-  | 'cloud-disaster-recovery-smb'
   | 'ai-training-live-online'
   | 'ai-training-educators'
   | 'ai-adoption-framework'
@@ -445,7 +444,6 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-cloudflare-products': '/imported-all-cloudflare-products.html',
     'qualys-services': '/imported-qualys-services.html',
     'patch-mgmt-as-a-service': '/imported-patch-mgmt-as-a-service.html',
-    'cloud-disaster-recovery-smb': '/imported-cloud-disaster-recovery-smb.html',
     'sitelock': '/imported-sitelock.html',
     'ssl-installation-service': '/imported-ssl-installation-service.html',
     'acronis-ot': '/imported-acronis-ot.html',
@@ -567,7 +565,6 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
     'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
-    'cloud-disaster-recovery-smb': 'Cloud Disaster Recovery for SMB',
     'ai-training-live-online': 'Live Online AI Training',
     'ai-training-educators': 'AI Training for Educators',
     'ai-adoption-framework': 'AI Adoption Framework',

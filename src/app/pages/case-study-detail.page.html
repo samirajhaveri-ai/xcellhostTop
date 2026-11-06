@@ -4,7 +4,8 @@
       <div class="case-ref-wrap">
         <div class="case-ref-hero-copy">
           <div class="case-ref-eyebrow"><span></span>Case study</div>
-          <h1>{{ study.headline }}</h1>
+          <h1 class="case-ref-product-title">{{ productHeading() }}</h1>
+          <h2 class="case-ref-story-title">{{ study.headline }}</h2>
           @for (paragraph of study.background; track paragraph) { <p>{{ paragraph }}</p> }
         </div>
       </div>

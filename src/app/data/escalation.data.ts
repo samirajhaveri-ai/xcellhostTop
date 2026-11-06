@@ -23,6 +23,14 @@ export const ESCALATION_DEPARTMENTS: readonly EscalationDepartment[] = [
                              "mobile":  ""
                          },
                          {
+                             "level":  "Level 1",
+                             "role":  "Technical Support Executive-L1",
+                             "name":  "Purva Angre",
+                             "email":  "purvaa@xcellhost.cloud",
+                             "phone":  "+912267111555",
+                             "mobile":  "+918451010685"
+                         },
+                         {
                              "level":  "Level 2",
                              "role":  "Team Lead  - Cloud Server",
                              "name":  "Santosh Behera",
@@ -57,18 +65,10 @@ export const ESCALATION_DEPARTMENTS: readonly EscalationDepartment[] = [
                          {
                              "level":  "Level 1",
                              "role":  "Cloud Linux Engineer",
-                             "name":  "Amit Verma",
-                             "email":  "amitv@xcellhost.cloud",
+                            "name":  "Amit Yadav",
+                            "email":  "Amity@xcellhost.cloud",
                              "phone":  "+912267111555",
-                             "mobile":  "+918828127278"
-                         },
-                         {
-                             "level":  "Level 2",
-                             "role":  "Team Lead - Cloud Linux",
-                             "name":  "Dilkhush Dhopavkar",
-                             "email":  "dilkhushd@xcellhost.cloud",
-                             "phone":  "+912267111555",
-                             "mobile":  "+918828127278"
+                            "mobile":  "+917084507734"
                          },
                          {
                              "level":  "Level 3",
@@ -93,14 +93,6 @@ export const ESCALATION_DEPARTMENTS: readonly EscalationDepartment[] = [
                              "email":  "support@xcellhost.cloud",
                              "phone":  "+912267111555",
                              "mobile":  ""
-                         },
-                         {
-                             "level":  "Level 1",
-                             "role":  "Team Lead - Cloud Messaging",
-                             "name":  "Sujeet Vishwakarma",
-                             "email":  "sujeetv@xcellhost.cloud",
-                             "phone":  "+912267111555",
-                             "mobile":  "+917028202721"
                          },
                          {
                              "level":  "Level 2",
@@ -177,24 +169,32 @@ export const ESCALATION_DEPARTMENTS: readonly EscalationDepartment[] = [
                          {
                              "level":  "Level 1",
                              "role":  "Cloud Security Engineer",
-                             "name":  "Santosh Behera",
-                             "email":  "santoshb@xcellhost.cloud",
+                             "name":  "Manisha Gupta",
+                             "email":  "manishag@xcellhost.cloud",
                              "phone":  "+912267111555",
-                             "mobile":  "+917666926257"
+                             "mobile":  "+917268868310"
                          },
                          {
                              "level":  "Level 2",
                              "role":  "Team Lead - System",
-                             "name":  "Danish Kasmani",
-                             "email":  "danishk@xcellhost.cloud",
+                             "name":  "Amit Yadav",
+                             "email":  "Amity@xcellhost.cloud",
                              "phone":  "+912267111555",
-                             "mobile":  "+918828127278"
+                             "mobile":  "+917084507734"
                          },
                          {
                              "level":  "Level 3",
                              "role":  "Cloud Service Delivery Manager",
                              "name":  "Rizwan Shaikh",
                              "email":  "rizwans@xcellhost.cloud",
+                             "phone":  "+912267111555",
+                             "mobile":  "+918828127278"
+                         },
+                         {
+                             "level":  "Level 4",
+                             "role":  "Cloud Backup Manager",
+                             "name":  "Sharif Shaikh",
+                             "email":  "sharifs@xcellhost.cloud",
                              "phone":  "+912267111555",
                              "mobile":  "+918828127278"
                          }
@@ -241,30 +241,30 @@ export const ESCALATION_DEPARTMENTS: readonly EscalationDepartment[] = [
                          {
                              "level":  "Primary contact",
                              "role":  "Cloud Inside Sales Specialist",
-                             "name":  "Cloud Advisor - PreSales",
+                            "name":  "Cloud Advisor",
                              "email":  "support@xcellhost.cloud",
                              "phone":  "+912267111555",
                              "mobile":  ""
                          },
                          {
                              "level":  "Level 1",
-                             "role":  "Cloud Advisor - PreSales",
+                            "role":  "Cloud Advisor",
                              "name":  "Ajay Gupta",
                              "email":  "ajayg@xcellhost.cloud",
                              "phone":  "+912267111555",
                              "mobile":  "+918591857830"
                          },
                          {
-                             "level":  "Level 2",
-                             "role":  "Team Lead - Cloud Advisor - Sales",
-                             "name":  "Vijay Ram Das",
-                             "email":  "vijayramd@xcellhost.cloud",
+                             "level":  "Level 1",
+                             "role":  "Cloud Advisor",
+                             "name":  "Mihir Ambokar",
+                             "email":  "mihira@xcellhost.cloud",
                              "phone":  "+912267111555",
-                             "mobile":  "+917980760594"
+                             "mobile":  "+918976779385"
                          },
                          {
-                             "level":  "Level 3",
-                             "role":  "Cloud Pre - Sales Manager",
+                             "level":  "Level 2",
+                            "role":  "Cloud Sales Manager",
                              "name":  "Rashed Sayyed",
                              "email":  "Rasheds@xcellhost.cloud",
                              "phone":  "+912267111555",
