@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { catchError, combineLatest, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, tap, timer } from 'rxjs';
+import { catchError, combineLatest, EMPTY, expand, map, Observable, of, reduce, shareReplay, startWith, switchMap, tap, timer } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { migrateCmsDomains } from './domain-migration';
@@ -79,10 +79,12 @@ export class CaseStudiesApiService {
       this.list().pipe(
         tap(studies => { this.lastStudies = studies; }),
         catchError(() => of(this.lastStudies)),
+        startWith(this.lastStudies),
       ),
       this.listBlogCaseStudies().pipe(
         tap(studies => { this.lastBlogStudies = studies; }),
         catchError(() => of(this.lastBlogStudies)),
+        startWith(this.lastBlogStudies),
       ),
     ])),
     map(([studies, blogStudies]) => {
@@ -93,6 +95,7 @@ export class CaseStudiesApiService {
       const remoteIds = new Set(studies.map((study) => study.id));
       return [...studies, ...CASE_STUDIES.filter((study) => !remoteIds.has(study.id))];
     }),
+    startWith(CASE_STUDIES),
     shareReplay({ bufferSize: 1, refCount: true }),
   ) : of(CASE_STUDIES);
 

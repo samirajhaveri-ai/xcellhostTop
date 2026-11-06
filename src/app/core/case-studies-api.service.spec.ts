@@ -10,6 +10,20 @@ describe('CaseStudiesApiService', () => {
     providers: [provideHttpClient(), provideHttpClientTesting()],
   }));
 
+  it('publishes local and newly fetched stories without waiting for the other collection', fakeAsync(() => {
+    const service = TestBed.inject(CaseStudiesApiService);
+    const http = TestBed.inject(HttpTestingController);
+    let received: readonly CaseStudy[] = [];
+    const subscription = service.studies$.subscribe(studies => received = studies);
+    expect(received).toEqual(CASE_STUDIES);
+    tick(0);
+    http.expectOne(req => req.url.endsWith('/api/case-studies')).flush({ data: [{ slug: 'new-story', summary: 'New customer outcome' }] });
+    expect(received.some(study => study.id === 'new-story')).toBeTrue();
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [] });
+    subscription.unsubscribe();
+    http.verify();
+  }));
+
   it('includes blog stories when the dedicated collection exists and preserves both during outages', fakeAsync(() => {
     const service = TestBed.inject(CaseStudiesApiService);
     const http = TestBed.inject(HttpTestingController);
