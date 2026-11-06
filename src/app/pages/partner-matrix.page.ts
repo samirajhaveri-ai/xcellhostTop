@@ -3,8 +3,31 @@ import { RouterLink } from '@angular/router';
 
 import { SeoService } from '../core/seo.service';
 import { PARTNER_TEAMS } from '../data/partner-matrix.data';
+import { HUMAN_TEAM_MEMBERS } from '../data/company-team.data';
 
 const ALL_TEAMS = 'all';
+const TEAM_NAME_ALIASES: Readonly<Record<string, string>> = {
+  'syed rashed': 'rashed syed',
+  'mohammad talha': 'talha mohammad',
+  'santosh behra': 'santosh kumar behera',
+};
+const TEAM_PHOTOS = new Map(HUMAN_TEAM_MEMBERS.map(member => [member.name.trim().toLowerCase(), member.image]));
+const ORIGINAL_PORTRAITS: Readonly<Record<string, string>> = {
+  'rashed syed': '/assets/images/Rashed Sayed.png',
+  'ajay gupta': '/assets/images/Ajay Gupta.png',
+  'mihir ambokar': '/assets/images/Mihir Ambokar.png',
+  'talha mohammad': '/assets/images/Talha.png',
+  'santosh kumar behera': '/assets/images/Santosh Behra.png',
+  'amit yadav': '/assets/images/Amit Yadav.png',
+};
+
+function contactImage(name: string): string {
+  const key = name.replace(/^(?:mr|mrs|ms|dr)\.?\s+/i, '').trim().toLowerCase();
+  const image = key === 'samir jhaveri'
+    ? '/assets/images/website-photo-frame-samir-jhaveri-1.png'
+    : ORIGINAL_PORTRAITS[TEAM_NAME_ALIASES[key] || key] || TEAM_PHOTOS.get(TEAM_NAME_ALIASES[key] || key);
+  return image ? encodeURI('/' + image.replace(/^\/+/, '')) + '?v=partner-portrait-2' : '';
+}
 
 @Component({
   selector: 'xh-partner-matrix-page',
@@ -15,7 +38,18 @@ const ALL_TEAMS = 'all';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PartnerMatrixPage {
-  readonly teams = PARTNER_TEAMS;
+  readonly teams = PARTNER_TEAMS.map(team => ({
+    ...team,
+    contacts: team.contacts.map(contact => {
+      const image = contactImage(contact.name);
+      return {
+        ...contact,
+        image,
+        framedPortrait: image.includes('/TEAMS%20PHOTO/'),
+        founderPortrait: image.includes('website-photo-frame-samir'),
+      };
+    }),
+  }));
   readonly selectedId = signal(ALL_TEAMS);
   readonly query = signal('');
   readonly contactCount = this.teams.reduce((total, team) => total + team.contacts.length, 0);

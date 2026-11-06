@@ -1,22 +1,22 @@
 @if (loading()) {
-  <div class="ppage as-page"><div class="pp-body"><div class="wrap"><p role="status">Loading {{ isUseCase ? 'use case' : 'article' }}...</p></div></div></div>
+  <div class="ppage as-page"><div class="pp-body"><div class="wrap"><p role="status">Loading {{ contentNoun }}...</p></div></div></div>
 } @else if (error()) {
   <div class="ppage as-page"><div class="pp-body"><div class="wrap">
-    <h1>{{ isUseCase ? 'Use case' : 'Article' }} unavailable</h1>
+    <h1>{{ contentLabel }} unavailable</h1>
     <p role="alert">The content service could not be reached. Please try again shortly.</p>
-    <a class="btn primary" routerLink="/insights">Back to insights</a>
+    <a class="btn primary" [routerLink]="collectionBase">Back to {{ contentPlural }}</a>
   </div></div></div>
 } @else if (!post()) {
   <div class="ppage as-page"><div class="pp-body"><div class="wrap">
-    <h1>{{ isUseCase ? 'Use case' : 'Article' }} not found</h1>
-    <p>This article may have moved or is no longer published.</p>
-    <a class="btn primary" routerLink="/insights">Browse insights</a>
+    <h1>{{ contentLabel }} not found</h1>
+    <p>This {{ contentNoun }} may have moved or is no longer published.</p>
+    <a class="btn primary" [routerLink]="collectionBase">Browse {{ contentPlural }}</a>
   </div></div></div>
 } @else if (post(); as p) {
   <div
     class="bpage as-page xh-blog-article"
     id="bpage"
-    [attr.data-customer-testimonials]="isUseCase ? null : 'off'"
+    data-customer-testimonials="off"
   >
     <div class="bp-bar">
       <div class="wrap">
@@ -24,7 +24,7 @@
           <span>XcellHost {{ contentLabel }}</span>
           <small>{{ p.category }}</small>
         </div>
-        <a class="bp-bar-link" routerLink="/insights">Browse Insights <span aria-hidden="true">&rarr;</span></a>
+        <a class="bp-bar-link" [routerLink]="collectionBase">Browse {{ contentPlural }} <span aria-hidden="true">&rarr;</span></a>
         <div class="bp-prog" id="bpProg" [style.width.%]="progress()"></div>
       </div>
     </div>
@@ -34,10 +34,15 @@
         <div class="article-hero-copy">
           <div class="bp-kick">
             <span>{{ p.category }}</span><span class="dot"></span>
-            <span>{{ formatDate(p.date) }}</span><span class="dot"></span>
+            @if (p.date) { <span>{{ formatDate(p.date) }}</span><span class="dot"></span> }
             <span>{{ readTime(p) }}</span>
           </div>
-          <h1>{{ p.title }}</h1>
+          @if (isCaseStudy || isUseCase) {
+            <h1 class="article-case-product-title">{{ productHeading() }}</h1>
+            <h2 class="article-case-story-title">{{ p.title }}</h2>
+          } @else {
+            <h1>{{ p.title }}</h1>
+          }
           <p class="lede">{{ p.description }}</p>
           <div class="article-author-row">
             <div class="article-author-badge" [class.is-brand-avatar]="!hasAuthorPortrait(p.author)">
@@ -51,7 +56,7 @@
             </div>
             <div>
               <b>{{ p.author }}</b>
-              <span>Published {{ formatTime(p.time) }}</span>
+              <span>{{ p.time ? 'Published ' + formatTime(p.time) : contentLabel }}</span>
             </div>
           </div>
         </div>
@@ -73,12 +78,12 @@
         <aside class="article-sidebar">
           <div class="article-side-card">
             <span class="article-side-kicker">Quick overview</span>
-            <h3>Article details</h3>
+            <h3>{{ contentLabel }} details</h3>
             <ul class="article-facts">
               <li><span>Category</span><b>{{ p.category }}</b></li>
               <li><span>Author</span><b>{{ p.author }}</b></li>
               <li><span>Read time</span><b>{{ readTime(p) }}</b></li>
-              <li><span>Published</span><b>{{ formatDate(p.date) }}</b></li>
+              @if (p.date) { <li><span>Published</span><b>{{ formatDate(p.date) }}</b></li> }
             </ul>
           </div>
 
@@ -106,7 +111,7 @@
 
           <xh-contact-options [sidebar]="true" />
 
-          @if (!isUseCase) {
+          @if (isBlog) {
             <section class="article-side-card article-rss-card" aria-labelledby="articleRssTitle">
               <h3 id="articleRssTitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg>Subscribe via RSS</h3>
               <p>Follow our blog and get new posts in your feed reader.</p>
@@ -165,12 +170,12 @@
         </aside>
 
         <div class="article-content">
-            <div class="article-toolbar" role="group" aria-label="Listen and share this blog">
+            <div class="article-toolbar" role="group" [attr.aria-label]="'Listen and share this ' + contentNoun">
               @if (speechSupported) {
                 <div class="article-listen" aria-label="Listen to this article">
                   <div class="article-listen-copy">
                     <span class="article-listen-icon" aria-hidden="true">&#9835;</span>
-                    <div><strong>Listen to this blog</strong><span>{{ speechState() === 'idle' ? 'Audio reading' : speechState() === 'paused' ? 'Paused' : 'Playing' }}</span></div>
+                    <div><strong>Listen to this {{ contentNoun }}</strong><span>{{ speechState() === 'idle' ? 'Audio reading' : speechState() === 'paused' ? 'Paused' : 'Playing' }}</span></div>
                   </div>
                   <div class="article-listen-actions">
                     <button type="button" (click)="toggleListening()"
@@ -223,7 +228,7 @@
             </div>
           <article class="bp-body article-body">
               <section class="article-summary" aria-labelledby="article-summary-label">
-                <p id="article-summary-label" class="article-summary-label">Summarize this {{ isUseCase ? 'use case' : 'article' }} with:</p>
+                <p id="article-summary-label" class="article-summary-label">Summarize this {{ contentNoun }} with:</p>
                 <div class="article-summary-actions">
                   @for (provider of summaryLinks(); track provider.id) {
                     <a class="article-summary-button" [href]="provider.url"
@@ -269,7 +274,7 @@
               }
             }
 
-            @if (isUseCase) {
+            @if (!isBlog) {
             <div class="pp-cta article-product-cta">
               <div class="article-product-cta-copy">
                 <h3>Want results like these for your business?</h3>
@@ -400,7 +405,7 @@
           <section class="article-related" aria-labelledby="related-content-heading">
             <div class="article-related-head">
               <h2 id="related-content-heading">Related {{ titleCase(contentPlural) }}</h2>
-              <a class="bp-bar-link" routerLink="/insights">Explore all insights</a>
+              <a class="bp-bar-link" [routerLink]="collectionBase">Explore all {{ contentPlural }}</a>
             </div>
             <div class="article-related-carousel">
               <button class="article-related-arrow previous" type="button" aria-label="Previous related articles" aria-controls="related-blog-track" (click)="scrollRelatedBlogs(relatedTrack, -1)"><span aria-hidden="true">&#8249;</span></button>

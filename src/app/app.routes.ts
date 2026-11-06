@@ -15,6 +15,12 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'microsoft-365-governance', title: 'Microsoft 365 Governance India | XcellHost', loadComponent: () => import('./pages/microsoft-365-governance.page').then(m => m.Microsoft365GovernancePage) },
+  { path: 'azure-ai-foundry-copilot-studio', title: 'Azure AI Foundry & Copilot Studio India | XcellHost', loadComponent: () => import('./pages/azure-ai-foundry-copilot-studio.page').then(m => m.AzureAiFoundryCopilotStudioPage) },
+  { path: 'cloud-native-security-platform', title: 'Cloud Native Security Platform (CNAPP) India | XcellHost', loadComponent: () => import('./pages/cloud-native-security-platform.page').then(m => m.CloudNativeSecurityPlatformPage) },
+  { path: 'digital-twin', title: 'Digital Twin as a Service India | XcellHost', loadComponent: () => import('./pages/digital-twin.page').then(m => m.DigitalTwinPage) },
+  { path: 'dpdp-compliance-platform', title: 'DPDP Compliance Platform India | XcellHost', loadComponent: () => import('./pages/dpdp-compliance-platform.page').then(m => m.DpdpCompliancePlatformPage) },
+  { path: 'ai-workers', title: 'AI Workers Workspace India | XcellHost', loadComponent: () => import('./pages/ai-workers.page').then(m => m.AiWorkersPage) },
   { path: 'uk-go-to-market-strategy', title: 'UK Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/uk-go-to-market.page').then(m => m.UkGoToMarketPage) },
   { path: 'saudi-arabia-go-to-market-strategy', title: 'Saudi Arabia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/saudi-arabia-go-to-market.page').then(m => m.SaudiArabiaGoToMarketPage) },
   { path: 'rwanda-go-to-market-strategy', title: 'Rwanda Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/rwanda-go-to-market.page').then(m => m.RwandaGoToMarketPage) },
@@ -904,8 +910,9 @@ export const routes: Routes = [
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
     path: 'case-studies/:id',
+    data: { contentType: 'case-study' },
     loadComponent: () =>
-      import('./pages/case-study-detail.page').then((m) => m.CaseStudyDetailPage),
+      import('./pages/blog.page').then((m) => m.BlogPage),
   },
   { path: 'case-studies', loadComponent: () => import('./pages/case-studies.page').then((m) => m.CaseStudiesPage) },
   { path: 'insights', loadComponent: () => import('./pages/insights.page').then((m) => m.InsightsPage) },
@@ -1280,6 +1287,7 @@ export const routes: Routes = [
   })),
   { path: 'identity-access-management', redirectTo: 'identity-and-access-management', pathMatch: 'full' },
   { path: 'identity-governance-administration', redirectTo: 'identity-governance-and-administration', pathMatch: 'full' },
+  { path: 'vortex-soc', redirectTo: 'soc-as-a-services', pathMatch: 'full' },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 ];

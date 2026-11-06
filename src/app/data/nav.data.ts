@@ -1535,6 +1535,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Managed awareness training with short lessons, role-based paths, quizzes, certificates and completion reports."
               },
+              {
+                "title": "Microsoft 365 Governance",
+                "href": "/microsoft-365-governance",
+                "pill": null,
+                "desc": "Govern identity, data protection, workloads, monitoring and resilience"
+              },
             ]
           }
         ]
@@ -1774,6 +1780,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }, 
+              {
+                "title": "Azure AI Foundry & Copilot Studio",
+                "href": "/azure-ai-foundry-copilot-studio",
+                "pill": null,
+                "desc": "Build, govern and deploy enterprise AI agents on Azure"
+              },
               
             ]
           }
@@ -2835,17 +2847,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Free trial",
                 "desc": null
               },
-              {
-                "title": "Scrutiny EDR",
-                "href": "/scrutiny-edr",
-                "pill": "Free trial",
-                "desc": null
-              },
-              {
-                "title": "Acronis MDR",
-                "pill": "Free trial",
-                "desc": null
-              },
+              
               {
                 "title": "Acronis XDR",
                 "pill": "Free trial",
@@ -2923,6 +2925,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/applied-blockchain-security",
                 "pill": null,
                 "desc": "Smart contract audits, key-custody reviews and on-chain monitoring."
+              },
+              {
+                "title": "Cloud Native Security Platform",
+                "href": "/cloud-native-security-platform",
+                "pill": null,
+                "desc": "Protect cloud workloads, containers, identities and code with one CNAPP"
               },
             ]
           }
@@ -3106,6 +3114,62 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "File Integrity Monitoring",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "DPDP Compliance Platform",
+                "pill": null,
+                "desc": "Manage consent, privacy rights and compliance evidence",
+                "href": "/dpdp-compliance-platform"
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "Data Privacy",
+        "label": "Data Privacy",
+        "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Data Encryption",
+            "body": "Protect sensitive business information with encryption.",
+            "image": "/assets/images/menu-security-data-encryption-v1.png",
+            "link": "/data-encryption"
+          },
+          {
+            "label": "Security",
+            "title": "Data Security Posture Mgmt",
+            "body": "Understand and manage security risks across business data.",
+            "image": "/assets/images/menu-security-data-security-posture-v1.png",
+            "link": "/data-security-posture-mgmt"
+          }
+        ],
+        "groups": [
+          {
+            "heading": "Data Privacy",
+            "items": [
+              
+              {
+                "title": "DPDPA For SMB",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Enterprise DPDP Platform",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "vDPO-as-a-Service",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "DPDP Training",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3386,7 +3450,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "SOC as a Services",
                 "pill": null,
                 "desc": null,
-                "href": "/vortex-soc"
+                "href": "/soc-as-a-services"
               },
               {
                 "title": "WAAP as-a-Service",
@@ -3424,13 +3488,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Managed Threat Hunting",
                 "pill": null,
                 "desc": null,
-                "href": "/vortex-soc"
+                "href": "/soc-as-a-services"
               },
               {
                 "title": "Managed Threat Intelligence",
                 "pill": null,
                 "desc": null,
-                "href": "/vortex-soc"
+                "href": "/soc-as-a-services"
               },
               
               
@@ -3704,6 +3768,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Build and manage AI agents for business workflows"
               },
+                {
+                  "title": "AI Workers",
+                  "pill": null,
+                  "desc": "Bring your team and AI agents together in one workspace",
+                  "href": "/ai-workers"
+                },
               
               
             ]
@@ -3950,16 +4020,16 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Governance",
             "items": [
               {
+                "title": "Urban Co-operative Banks Go-to-Market Strategy",
+                "href": "/urban-cooperative-banks-go-to-market-strategy",
+                "pill": null,
+                "desc": "Explore UCB segments, service priorities, revenue modelling and partner strategy."
+              },
+              {
                 "title": "AI Adoption Framework",
                 "href": "/ai-adoption-framework",
                 "pill": null,
                 "desc": "Plan AI adoption across strategy, readiness, governance, pilots and scale."
-              },
-              {
-                "title": "AI Factory",
-                "href": "/ai-factory",
-                "pill": null,
-                "desc": "Sovereign GPU infrastructure, training and inference in India"
               },
        
             ]
@@ -5033,6 +5103,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Case Management",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Digital Twin",
+                "pill": null,
+                "desc": "Model factories, buildings and supply chains with live data",
+                "href": "/digital-twin"
               }
             ]
           }
@@ -5472,7 +5548,7 @@ export const MEGA_MENU: MenuTop[] = [
             "title": "Cyber Insurance",
             "body": "Contact our team to discuss cyber insurance.",
             "image": "/assets/images/menu-solutions-cyber-insurance-v1.png",
-            "link": "/contact"
+            "link": "/cyber-insurance-for-businesses"
           }
         ],
         "groups": [
@@ -5480,11 +5556,23 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cyber Insurance",
             "items": [
               {
-                "title": "No Data",
-                "pill": "In focus",
-                "desc": null
+                "title": "Cyber Insurance for Businesses",
+                "href": "/cyber-insurance-for-businesses",
+                "pill": null,
+                "desc": "Assess business cyber cover readiness, identify control gaps and configure security services with evidence for renewal."
               },
-              
+              {
+                "title": "Cyber Insurance for Individuals",
+                "href": "/cyber-insurance-for-individuals",
+                "pill": null,
+                "desc": "Explore online scam awareness, the reporting-clock tool, a personal cyber safety check and family safety services."
+              },
+              {
+                "title": "Cyber Insurance for Executives",
+                "href": "/cyber-insurance-for-executives",
+                "pill": null,
+                "desc": "Review executive digital exposure, incident playbooks and protection services for leaders and their families."
+              }
             ]
           }
         ]
@@ -5554,6 +5642,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/acronis-workflow-automation",
                 "pill": "In focus",
                 "desc": "No-code workflows across backup, IT management and security"
+              },
+              {
+                "title": "Scrutiny EDR",
+                "href": "/scrutiny-edr",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Acronis MDR",
+                "pill": "Free trial",
+                "desc": null
               },
             ],
           }
