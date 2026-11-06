@@ -1508,21 +1508,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               
-              {
-                "title": "Microsoft 365 Security Assessment",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Google Security Assessment",
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Microsoft Security Posture Management",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Phishing Incident Response",
                 "href": "/phishing-incident-response",
@@ -1541,10 +1533,20 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Microsoft Security Posture Management",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Microsoft 365 Governance",
                 "href": "/microsoft-365-governance",
                 "pill": null,
                 "desc": "Govern identity, data protection, workloads, monitoring and resilience"
+              },
+              {
+                "title": "Microsoft 365 Security Assessment",
+                "pill": null,
+                "desc": null
               },
             ]
           }
@@ -1785,6 +1787,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }, 
+               {
+                "title": "Microsoft Agent 365",
+                "href": "/microsoft-agent-365",
+                "pill": null,
+                "desc": "Discover, govern and secure your AI agents with XcellHost"
+              },
               {
                 "title": "Azure AI Foundry & Copilot Studio",
                 "href": "/azure-ai-foundry-copilot-studio",
@@ -1843,12 +1851,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               
-              {
-                "title": "Microsoft Agent 365",
-                "href": "/microsoft-agent-365",
-                "pill": null,
-                "desc": "Discover, govern and secure your AI agents with XcellHost"
-              },
+             
             ]
           }
         ]
@@ -6220,7 +6223,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Webinars"
               },
               {
-                "title": "Podcasts",
+                "title": "Podcasts catalog",
                 "pill": null,
                 "desc": "Podcasts"
               },
