@@ -15,6 +15,12 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'microsoft-365-governance', title: 'Microsoft 365 Governance India | XcellHost', loadComponent: () => import('./pages/microsoft-365-governance.page').then(m => m.Microsoft365GovernancePage) },
+  { path: 'azure-ai-foundry-copilot-studio', title: 'Azure AI Foundry & Copilot Studio India | XcellHost', loadComponent: () => import('./pages/azure-ai-foundry-copilot-studio.page').then(m => m.AzureAiFoundryCopilotStudioPage) },
+  { path: 'cloud-native-security-platform', title: 'Cloud Native Security Platform (CNAPP) India | XcellHost', loadComponent: () => import('./pages/cloud-native-security-platform.page').then(m => m.CloudNativeSecurityPlatformPage) },
+  { path: 'digital-twin', title: 'Digital Twin as a Service India | XcellHost', loadComponent: () => import('./pages/digital-twin.page').then(m => m.DigitalTwinPage) },
+  { path: 'dpdp-compliance-platform', title: 'DPDP Compliance Platform India | XcellHost', loadComponent: () => import('./pages/dpdp-compliance-platform.page').then(m => m.DpdpCompliancePlatformPage) },
+  { path: 'ai-workers', title: 'AI Workers Workspace India | XcellHost', loadComponent: () => import('./pages/ai-workers.page').then(m => m.AiWorkersPage) },
   { path: 'uk-go-to-market-strategy', title: 'UK Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/uk-go-to-market.page').then(m => m.UkGoToMarketPage) },
   { path: 'saudi-arabia-go-to-market-strategy', title: 'Saudi Arabia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/saudi-arabia-go-to-market.page').then(m => m.SaudiArabiaGoToMarketPage) },
   { path: 'rwanda-go-to-market-strategy', title: 'Rwanda Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/rwanda-go-to-market.page').then(m => m.RwandaGoToMarketPage) },

@@ -10,6 +10,12 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'microsoft-365-governance'
+  | 'azure-ai-foundry-copilot-studio'
+  | 'cloud-native-security-platform'
+  | 'digital-twin'
+  | 'dpdp-compliance-platform'
+  | 'ai-workers'
   | 'openshift-as-a-service'
   | 'all-cloudflare-products'
   | 'qualys-services'
@@ -270,6 +276,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'sectigo-supplied' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'ai-workers': '/imported-ai-workers.html',
+    'digital-twin': '/imported-digital-twin.html',
+    'cloud-native-security-platform': '/imported-cloud-native-security-platform.html',
+    'azure-ai-foundry-copilot-studio': '/imported-azure-ai-foundry-copilot-studio.html',
+    'microsoft-365-governance': '/imported-microsoft-365-governance.html',
+    'dpdp-compliance-platform': '/imported-dpdp-compliance-platform.html',
     'acronis-licensing-guide': '/imported-acronis-licensing-guide.html',
     'microsoft-csp-licensing-guide': '/imported-microsoft-csp-licensing-guide.html',
     'microsoft-365-licensing-guide': '/imported-microsoft-365-licensing-guide.html',
@@ -562,6 +574,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'ai-workers': 'AI Workers Workspace, agent catalogue, workspace configurator, ROI calculator and readiness quiz',
+    'digital-twin': 'Digital Twin as a Service, live models, simulations and deployment options',
+    'cloud-native-security-platform': 'Cloud Native Security Platform, cloud posture, workload protection, identity and application security',
+    'azure-ai-foundry-copilot-studio': 'Azure AI Foundry and Copilot Studio, enterprise agents, RAG, governance and credit estimator',
+    'microsoft-365-governance': 'Microsoft 365 governance architecture, maturity check, RACI template and licence coverage checker',
+    'dpdp-compliance-platform': 'DPDP Compliance Platform, consent, privacy rights and compliance workflows',
     'ai-training-live-online': 'Live Online AI Training',
     'ai-training-educators': 'AI Training for Educators',
     'ai-adoption-framework': 'AI Adoption Framework',
