@@ -57,6 +57,8 @@ type InteractiveContentSource =
   | 'staff-augmentation'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
+  | 'cloud-disaster-recovery-smb-faq'
+  | 'cloud-disaster-recovery-smb'
   | 'ai-training-live-online'
   | 'ai-training-educators'
   | 'ai-adoption-framework'
@@ -251,6 +253,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'acronis-licensing-guide': '/imported-acronis-licensing-guide.html',
     'microsoft-csp-licensing-guide': '/imported-microsoft-csp-licensing-guide.html',
     'microsoft-365-licensing-guide': '/imported-microsoft-365-licensing-guide.html',
+    'cloud-disaster-recovery-smb-faq': '/imported-cloud-disaster-recovery-smb-faq.html',
+    'cloud-disaster-recovery-smb': '/imported-cloud-disaster-recovery-smb.html',
     'ai-training-live-online': '/imported-ai-training-live-online.html',
     'ai-training-educators': '/imported-ai-training-educators.html',
     'ai-adoption-framework': '/imported-ai-adoption-framework.html',
@@ -518,6 +522,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
+    'cloud-disaster-recovery-smb': 'Cloud Disaster Recovery for SMB',
     'ai-training-live-online': 'Live Online AI Training',
     'ai-training-educators': 'AI Training for Educators',
     'ai-adoption-framework': 'AI Adoption Framework',
@@ -925,7 +931,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         this.overlay.open('trial');
         return;
       }
-      const scopeTitle = this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
+      const scopeTitle = this.source === 'cloud-disaster-recovery-smb' ? 'Cloud Disaster Recovery for SMB'
+        : this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
         : this.source === 'ai-factory' ? 'AI Factory'
         : this.source === 'mobile-app-security' ? 'Mobile App Security'
         : this.source === 'data-center-build-services' ? 'Data Center Build Services'
