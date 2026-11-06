@@ -20,7 +20,7 @@ function loadTypeScriptModule(filename) {
 
 function slugify(name) {
   const normalized = name.toLowerCase().trim();
-  if (normalized === 'xcellsoc') return 'vortex-soc';
+  if (normalized === 'xcellsoc') return 'soc-as-a-services';
   return normalized
     .replace(/&/g, 'and')
     .replace(/[().,/]/g, '')
