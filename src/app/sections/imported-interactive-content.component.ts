@@ -62,8 +62,8 @@ type InteractiveContentSource =
   | 'staff-augmentation'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
+  | 'cloud-disaster-recovery-smb-opening'
   | 'cloud-disaster-recovery-smb-faq'
-  | 'cloud-disaster-recovery-smb'
   | 'ai-training-live-online'
   | 'ai-training-educators'
   | 'ai-adoption-framework'
@@ -276,7 +276,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'microsoft-csp-licensing-guide': '/imported-microsoft-csp-licensing-guide.html',
     'microsoft-365-licensing-guide': '/imported-microsoft-365-licensing-guide.html',
     'cloud-disaster-recovery-smb-faq': '/imported-cloud-disaster-recovery-smb-faq.html',
-    'cloud-disaster-recovery-smb': '/imported-cloud-disaster-recovery-smb.html',
+    'cloud-disaster-recovery-smb-opening': '/imported-cloud-disaster-recovery-smb-opening.html',
     'ai-training-live-online': '/imported-ai-training-live-online.html',
     'ai-training-educators': '/imported-ai-training-educators.html',
     'ai-adoption-framework': '/imported-ai-adoption-framework.html',
@@ -567,7 +567,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
     'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
-    'cloud-disaster-recovery-smb': 'Cloud Disaster Recovery for SMB',
+    'cloud-disaster-recovery-smb-opening': 'Cloud Disaster Recovery for SMB',
     'ai-training-live-online': 'Live Online AI Training',
     'ai-training-educators': 'AI Training for Educators',
     'ai-adoption-framework': 'AI Adoption Framework',
@@ -997,7 +997,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         this.overlay.open('trial');
         return;
       }
-      const scopeTitle = this.source === 'cloud-disaster-recovery-smb' ? 'Cloud Disaster Recovery for SMB'
+      const scopeTitle = (this.source === 'cloud-disaster-recovery-smb' || this.source === 'cloud-disaster-recovery-smb-opening') ? 'Cloud Disaster Recovery for SMB'
         : this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
         : this.source === 'ai-factory' ? 'AI Factory'
         : this.source === 'mobile-app-security' ? 'Mobile App Security'

@@ -28,7 +28,7 @@
   document.addEventListener('click', function (event) {
     const link = event.target.closest('a[href="#picker"]');
     if (!link || document.getElementById('picker') || !window.frameElement) return;
-    const content = parent.document.querySelector('iframe[src="/imported-cloud-disaster-recovery-smb.html"]');
+    const content = parent.document.querySelector('iframe[src="/imported-cloud-disaster-recovery-smb-opening.html"]');
     if (!content) return;
     event.preventDefault();
     content.contentWindow.drSmbJumpTo('picker');
