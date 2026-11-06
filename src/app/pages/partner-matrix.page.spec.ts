@@ -13,9 +13,10 @@ describe('Partner Matrix', () => {
     page = TestBed.runInInjectionContext(() => new PartnerMatrixPage());
   });
 
-  it('publishes only the 11 visible workbook contacts', () => {
-    expect(page.contactCount).toBe(11);
-    expect(page.visibleCount()).toBe(11);
+  it('publishes the 10 active partner contacts', () => {
+    expect(page.contactCount).toBe(10);
+    expect(page.visibleCount()).toBe(10);
+    expect(page.teams.flatMap(team => team.contacts).some(contact => contact.email === 'mayuris@xcellhost.cloud')).toBeFalse();
   });
 
   it('filters contacts by team', () => {
