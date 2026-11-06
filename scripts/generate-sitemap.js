@@ -25,7 +25,7 @@ const { PRODUCT_COMPARISONS } = load(path.join(root, 'src/app/data/product-compa
 const slugify = name => {
   const normalized = name.toLowerCase().trim();
   if (normalized === 'erpnext hosting') return 'erp-next-hosting';
-  if (normalized === 'xcellsoc') return 'vortex-soc';
+  if (normalized === 'xcellsoc') return 'soc-as-a-services';
   return normalized.replace(/&/g, 'and').replace(/[().,/]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 };
 const paths = new Set();

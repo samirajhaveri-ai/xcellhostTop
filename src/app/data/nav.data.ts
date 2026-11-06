@@ -2829,17 +2829,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Free trial",
                 "desc": null
               },
-              {
-                "title": "Scrutiny EDR",
-                "href": "/scrutiny-edr",
-                "pill": "Free trial",
-                "desc": null
-              },
-              {
-                "title": "Acronis MDR",
-                "pill": "Free trial",
-                "desc": null
-              },
+              
               {
                 "title": "Acronis XDR",
                 "pill": "Free trial",
@@ -3100,6 +3090,56 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "File Integrity Monitoring",
+                "pill": "Free trial",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "Data Privacy",
+        "label": "Data Privacy",
+        "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Data Encryption",
+            "body": "Protect sensitive business information with encryption.",
+            "image": "/assets/images/menu-security-data-encryption-v1.png",
+            "link": "/data-encryption"
+          },
+          {
+            "label": "Security",
+            "title": "Data Security Posture Mgmt",
+            "body": "Understand and manage security risks across business data.",
+            "image": "/assets/images/menu-security-data-security-posture-v1.png",
+            "link": "/data-security-posture-mgmt"
+          }
+        ],
+        "groups": [
+          {
+            "heading": "Data Privacy",
+            "items": [
+              
+              {
+                "title": "DPDPA For SMB",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Enterprise DPDP Platform",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "vDPO-as-a-Service",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "DPDP Training",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3380,7 +3420,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "SOC as a Services",
                 "pill": null,
                 "desc": null,
-                "href": "/vortex-soc"
+                "href": "/soc-as-a-services"
               },
               {
                 "title": "WAAP as-a-Service",
@@ -3417,13 +3457,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Managed Threat Hunting",
                 "pill": null,
                 "desc": null,
-                "href": "/vortex-soc"
+                "href": "/soc-as-a-services"
               },
               {
                 "title": "Managed Threat Intelligence",
                 "pill": null,
                 "desc": null,
-                "href": "/vortex-soc"
+                "href": "/soc-as-a-services"
               },
               
               
@@ -3947,12 +3987,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/ai-adoption-framework",
                 "pill": null,
                 "desc": "Plan AI adoption across strategy, readiness, governance, pilots and scale."
-              },
-              {
-                "title": "AI Factory",
-                "href": "/ai-factory",
-                "pill": null,
-                "desc": "Sovereign GPU infrastructure, training and inference in India"
               },
        
             ]
@@ -5450,6 +5484,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/acronis-workflow-automation",
                 "pill": "In focus",
                 "desc": "No-code workflows across backup, IT management and security"
+              },
+              {
+                "title": "Scrutiny EDR",
+                "href": "/scrutiny-edr",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Acronis MDR",
+                "pill": "Free trial",
+                "desc": null
               },
             ],
           }

@@ -116,7 +116,7 @@
     [class.scrutiny-page]="
       slug() === 'scrutiny-dlp' ||
       slug() === 'scrutiny-edr' ||
-      slug() === 'vortex-soc' ||
+      slug() === 'soc-as-a-services' ||
       slug() === 'vortex-seg'
     "
     [class.cctv-page]="slug() === 'video-surveillance-as-a-service'"
@@ -144,7 +144,7 @@
       <xh-managed-gcp-source />
     } @else if (slug() === 'open-ai-managed-services') {
       <xh-openai-managed-source />
-    } @else if (slug() === 'vortex-soc') {
+    } @else if (slug() === 'soc-as-a-services') {
       <xh-vortex-soc-source />
     } @else if (slug() === 'smb-cloud-desktop') {
       <xh-imported-interactive-content source="smb-cloud-desktop" />
@@ -3013,7 +3013,7 @@
           } @else if (slug() === 'wordpress-vps') {
             <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
           }
-          @if (slug() !== 'gemini-managed-services' && slug() !== 'synapsem-ai-training-live-online' && slug() !== 'ai-training-for-educators' && slug() !== 'smb-cloud-desktop' && slug() !== 'certificate-lifecycle-management-platforms' && slug() !== 'autoinstall-ssl-for-web-hosts' && slug() !== 'autoinstall-ssl-for-linux-and-windows' && slug() !== 'waap-as-a-service' && slug() !== 'threat-intelligence' && slug() !== 'cyber-security-audit' && slug() !== 'third-party-risk-management' && slug() !== 'managed-bug-bounty' && slug() !== 'ot-assessment' && slug() !== 'blue-team-assessment' && slug() !== 'red-team-assessment' && slug() !== 'cloud-security-assessment' && slug() !== 'digital-risk-monitoring' && slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() !== 'gemini-managed-services' && slug() !== 'synapsem-ai-training-live-online' && slug() !== 'ai-training-for-educators' && slug() !== 'smb-cloud-desktop' && slug() !== 'certificate-lifecycle-management-platforms' && slug() !== 'autoinstall-ssl-for-web-hosts' && slug() !== 'autoinstall-ssl-for-linux-and-windows' && slug() !== 'waap-as-a-service' && slug() !== 'threat-intelligence' && slug() !== 'cyber-security-audit' && slug() !== 'third-party-risk-management' && slug() !== 'managed-bug-bounty' && slug() !== 'ot-assessment' && slug() !== 'blue-team-assessment' && slug() !== 'red-team-assessment' && slug() !== 'cloud-security-assessment' && slug() !== 'digital-risk-monitoring' && slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'soc-as-a-services' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -3173,7 +3173,7 @@
                     <xh-scrutiny-dlp-content />
                   } @else if (slug() === 'vortex-seg') {
                     <xh-vortex-seg-content [productName]="v.name" />
-                  } @else if (slug() === 'vortex-soc') {
+                  } @else if (slug() === 'soc-as-a-services') {
                     <xh-vortex-soc-content />
                   } @else if (slug() === 'cloud-migration') {
                     <section
@@ -4181,7 +4181,7 @@
                   slug() !== 'cloud-migration' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
-                  slug() !== 'vortex-soc'
+                  slug() !== 'soc-as-a-services'
                 ) {
                   <div class="pp-sec">Plans &amp; pricing</div>
                   <div class="pp-plans" id="ppPlans">
@@ -4411,7 +4411,7 @@
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
-                  slug() !== 'vortex-soc'
+                  slug() !== 'soc-as-a-services'
                 ) {
                   @if (isAdvancedEdr()) {
                     <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
@@ -5075,7 +5075,7 @@
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
-                  slug() !== 'vortex-soc'
+                  slug() !== 'soc-as-a-services'
                 ) {
                   <div class="pp-sec" [attr.id]="isTally() ? 'tallyWhyChoose' : null">
                     {{
@@ -5763,7 +5763,7 @@
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
-                  slug() !== 'vortex-soc'
+                  slug() !== 'soc-as-a-services'
                 ) {
                   @if (slug() !== 'cybird' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot' && slug() !== 'thawte-ssl-certificates') {
                   <div class="pp-sec">Use cases</div>
@@ -6130,7 +6130,7 @@
             slug() !== 'rtx-8000' &&
             slug() !== 'scrutiny-dlp' &&
             slug() !== 'vortex-seg' &&
-            slug() !== 'vortex-soc'
+            slug() !== 'soc-as-a-services'
           ) {
 <div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
             <div class="pp-why" id="ppWhy">
@@ -6257,7 +6257,7 @@
             </section>
           }
 
-          @if (slug() === 'vortex-soc' && !showcaseVideos().length && !videosInInsights()) {
+          @if (slug() === 'soc-as-a-services' && !showcaseVideos().length && !videosInInsights()) {
             <section class="tally-videos vortex-soc-video" aria-labelledby="vortexSocActionTitle">
               <div class="pp-sec" id="vortexSocActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
