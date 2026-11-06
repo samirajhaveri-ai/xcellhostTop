@@ -7,7 +7,7 @@
       @if (!aiMode()) {
       <div class="srch-field">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-        <input id="srchI" #srchI [placeholder]="aiMode() ? 'Ask a question about XcellHost…' : 'Search products, pages and blogs…'"
+        <input id="srchI" #srchI [placeholder]="aiMode() ? 'Ask a question about XcellHost…' : 'Search products, pages and insights…'"
           autocomplete="off" aria-label="Search or ask a question" [value]="q()" (input)="onInput($event)" />
         @if (q()) { <button class="srch-clear" type="button" aria-label="Clear query" (click)="setQuery(''); focusSearch()">×</button> }
       </div>

@@ -97,4 +97,25 @@ describe('Current website search inventory', () => {
     expect(service.search('Orion migration').some(item => item.url === '/use-cases/orion-migration')).toBeTrue();
     expect(service.search('Unified observatory')[0].url).toBe('/case-studies/orion-customer');
   });
+
+  it('searches story taxonomy, outcomes and formats and updates future publications reactively', () => {
+    const results = computed(() => service.search('Case studies Science'));
+    const story = {
+      id: 'future-observatory', headline: 'Observatory transformation', summary: 'Customer outcome',
+      mainCategory: 'Science', subCategory: 'Astronomy', profile: 'Enterprise',
+      metric: '8 weeks', metricLabel: 'Evidence ready', challenge: 'Scattered records',
+      solution: 'Unified observatory', impact: ['Faster decisions'], services: ['Orion'], industry: 'Research',
+    } as CaseStudy;
+    expect(results()).toEqual([]);
+    studies.next([story]);
+    expect(results()[0].url).toBe('/case-studies/future-observatory');
+    expect(results()[0].kind).toBe('Case Study');
+    expect(service.search('Astronomy evidence ready')[0].url).toBe('/case-studies/future-observatory');
+    studies.next([{ ...story, id: 'updated-observatory' }]);
+    expect(results()[0].url).toBe('/case-studies/updated-observatory');
+    studies.next([]);
+    expect(results()).toEqual([]);
+    useCases.next([{ ...post(), kind: 'use-case' } as CmsInsightResource]);
+    expect(service.search('use cases lunar relay')[0].kind).toBe('Use Case');
+  });
 });

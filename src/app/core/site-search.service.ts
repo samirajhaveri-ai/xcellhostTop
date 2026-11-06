@@ -13,7 +13,7 @@ import { COMPANY_PAGES } from '../data/company.data';
 import { DEEP_CONTENT, RICH_PRODUCTS } from '../data/products.data';
 import { SIMPLE_PAGES } from '../data/site.data';
 
-export type SearchResultKind = 'Product' | 'Blog' | 'Page';
+export type SearchResultKind = 'Product' | 'Blog' | 'Page' | 'Use Case' | 'Case Study';
 
 export interface SiteSearchResult {
   readonly name: string;
@@ -58,7 +58,7 @@ export class SiteSearchService {
     });
     this.blogApi.useCases$.pipe(takeUntilDestroyed()).subscribe({
       next: items => this.useCaseItems.set(items.map(item => ({
-        ...this.blogResult(item), label: item.mainCategory || item.category || 'Use Case',
+        ...this.blogResult(item), kind: 'Use Case', searchText: this.normalise(`use case use cases ${this.blogResult(item).searchText}`), label: item.mainCategory || item.category || 'Use Case',
         url: `/use-cases/${item.slug}`,
       }))),
       error: () => {},
@@ -259,9 +259,9 @@ export class SiteSearchService {
   private caseStudyResult(study: CaseStudy): SiteSearchResult {
     const name = study.headline || study.metricLabel || study.customer || 'Customer story';
     return {
-      name, desc: this.plainText(study.summary), label: 'Case Study', kind: 'Blog',
+      name, desc: this.plainText(study.summary), label: study.mainCategory || study.industry || 'Case Study', kind: 'Case Study',
       url: `/case-studies/${study.id}`, color: BLOG_COLOR, publishedAt: study.publishedAt,
-      searchText: this.normalise(`${name} ${study.summary} ${study.challenge} ${study.solution} ${study.impact.join(' ')} ${study.services.join(' ')} ${study.customer || ''} ${study.industry} ${study.id} ${(study.relatedPages || []).join(' ')}`),
+      searchText: this.normalise(`case study case studies customer story ${name} ${study.mainCategory} ${study.subCategory} ${study.profile} ${study.metric} ${study.metricLabel} ${study.quote || ''} ${study.quoteBy || ''} ${study.summary} ${study.challenge} ${study.solution} ${study.impact.join(' ')} ${study.services.join(' ')} ${study.customer || ''} ${study.industry} ${study.id} ${(study.relatedPages || []).join(' ')}`),
     };
   }
 
