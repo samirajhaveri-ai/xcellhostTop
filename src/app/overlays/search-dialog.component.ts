@@ -88,8 +88,8 @@ export class SearchDialogComponent {
     return this.search.search(s, this.search.browse().length);
   });
 
-  readonly sourceOptions = computed(() => ['Product', 'Page', 'Blog'].map((value) => ({
-    value, label: value === 'Product' ? 'Products & services' : value === 'Page' ? 'Website pages' : 'Blog & insights',
+  readonly sourceOptions = computed(() => ['Product', 'Page', 'Blog', 'Use Case', 'Case Study'].map((value) => ({
+    value, label: value === 'Product' ? 'Products & services' : value === 'Page' ? 'Website pages' : value === 'Blog' ? 'Blogs & insights' : value === 'Use Case' ? 'Use cases' : 'Case studies',
     count: this.candidates().filter((hit) => hit.kind === value && (!this.categories().length || this.categories().includes(hit.label))).length,
   })));
   readonly categoryOptions = computed(() => {

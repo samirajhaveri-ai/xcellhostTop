@@ -32,6 +32,14 @@ describe('Insights pagination', () => {
     page = TestBed.runInInjectionContext(() => new InsightsPage());
   });
 
+  it('finds case studies by solution content and words entered in a different order', () => {
+    page.selectTab('Case Studies');
+    page.search({ target: { value: 'role-based XcellHost' } } as unknown as Event);
+    expect(page.visible().some(item => item.slug === 'tally-cloud')).toBeTrue();
+    page.search({ target: { value: 'no-such-story-xyz' } } as unknown as Event);
+    expect(page.visible()).toEqual([]);
+  });
+
   it('shows all document tabs with shared categories, search and downloadable cards', () => {
     documents.next(INSIGHT_DOCUMENT_TYPES.map(type => ({
       documentId: type.kind, kind: type.kind, title: 'Tally ' + type.label,

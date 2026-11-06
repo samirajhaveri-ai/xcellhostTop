@@ -508,7 +508,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
     return branches;
   });
   readonly visible = computed(() => {
-    const query = this.query().trim().toLocaleLowerCase();
+    const terms = this.query().toLocaleLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
     return this.sourceItems().filter((item) => {
       const matchesCategory = !this.activeMain() || this.matchesPlacement(
         item,
@@ -519,8 +519,8 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
       const placementText = this.itemPlacements(item)
         .map((placement) => `${placement.mainCategory} ${placement.subCategory} ${placement.product}`)
         .join(' ');
-      const haystack = `${item.title} ${item.description} ${placementText} ${item.author}`.toLocaleLowerCase();
-      return matchesCategory && (!query || haystack.includes(query));
+      const haystack = `${item.title} ${item.description} ${item.content} ${placementText} ${item.author} ${item.category} ${item.metric || ''} ${item.profile || ''} ${(item.services || []).join(' ')}`.toLocaleLowerCase().replace(/[^a-z0-9]+/g, ' ');
+      return matchesCategory && terms.every(term => haystack.includes(term));
     });
   });
   readonly pageSize = 20;

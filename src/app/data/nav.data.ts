@@ -1536,6 +1536,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Managed awareness training with short lessons, role-based paths, quizzes, certificates and completion reports."
               },
               {
+                "title": "Managed Phishing Simulation",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Microsoft 365 Governance",
                 "href": "/microsoft-365-governance",
                 "pill": null,
@@ -1837,11 +1842,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Managed Phishing Simulation",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Microsoft Agent 365",
                 "href": "/microsoft-agent-365",
@@ -3169,7 +3170,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "DPDP Training",
+                "title": "DPDPA Training",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3769,7 +3770,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Build and manage AI agents for business workflows"
               },
                 {
-                  "title": "AI Workers",
+                  "title": "AI Workspace",
                   "pill": null,
                   "desc": "Bring your team and AI agents together in one workspace",
                   "href": "/ai-workers"
