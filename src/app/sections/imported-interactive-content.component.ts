@@ -10,6 +10,10 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'cyber-insurance-for-businesses'
+  | 'cyber-insurance-for-individuals'
+  | 'cyber-insurance-for-executives'
+  | 'urban-cooperative-banks-go-to-market-strategy'
   | 'openshift-as-a-service'
   | 'all-cloudflare-products'
   | 'qualys-services'
@@ -275,6 +279,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'acronis-licensing-guide': '/imported-acronis-licensing-guide.html',
     'microsoft-csp-licensing-guide': '/imported-microsoft-csp-licensing-guide.html',
     'microsoft-365-licensing-guide': '/imported-microsoft-365-licensing-guide.html',
+    'urban-cooperative-banks-go-to-market-strategy': '/imported-urban-cooperative-banks-go-to-market-strategy.html',
+    'cyber-insurance-for-businesses': '/imported-cyber-insurance-for-businesses.html',
+    'cyber-insurance-for-individuals': '/imported-cyber-insurance-for-individuals.html',
+    'cyber-insurance-for-executives': '/imported-cyber-insurance-for-executives.html',
     'cloud-disaster-recovery-smb-faq': '/imported-cloud-disaster-recovery-smb-faq.html',
     'cloud-disaster-recovery-smb-opening': '/imported-cloud-disaster-recovery-smb-opening.html',
     'ai-training-live-online': '/imported-ai-training-live-online.html',
@@ -566,6 +574,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'urban-cooperative-banks-go-to-market-strategy': 'Urban Co-operative Banks Go-to-Market Strategy',
+    'cyber-insurance-for-businesses': 'Cyber Insurance for Businesses',
+    'cyber-insurance-for-individuals': 'Cyber Insurance for Individuals',
+    'cyber-insurance-for-executives': 'Cyber Insurance for Executives',
     'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
     'cloud-disaster-recovery-smb-opening': 'Cloud Disaster Recovery for SMB',
     'ai-training-live-online': 'Live Online AI Training',

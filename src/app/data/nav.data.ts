@@ -3950,6 +3950,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Governance",
             "items": [
               {
+                "title": "Urban Co-operative Banks Go-to-Market Strategy",
+                "href": "/urban-cooperative-banks-go-to-market-strategy",
+                "pill": null,
+                "desc": "Explore UCB segments, service priorities, revenue modelling and partner strategy."
+              },
+              {
                 "title": "AI Adoption Framework",
                 "href": "/ai-adoption-framework",
                 "pill": null,
@@ -5472,7 +5478,7 @@ export const MEGA_MENU: MenuTop[] = [
             "title": "Cyber Insurance",
             "body": "Contact our team to discuss cyber insurance.",
             "image": "/assets/images/menu-solutions-cyber-insurance-v1.png",
-            "link": "/contact"
+            "link": "/cyber-insurance-for-businesses"
           }
         ],
         "groups": [
@@ -5480,11 +5486,23 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cyber Insurance",
             "items": [
               {
-                "title": "No Data",
-                "pill": "In focus",
-                "desc": null
+                "title": "Cyber Insurance for Businesses",
+                "href": "/cyber-insurance-for-businesses",
+                "pill": null,
+                "desc": "Assess business cyber cover readiness, identify control gaps and configure security services with evidence for renewal."
               },
-              
+              {
+                "title": "Cyber Insurance for Individuals",
+                "href": "/cyber-insurance-for-individuals",
+                "pill": null,
+                "desc": "Explore online scam awareness, the reporting-clock tool, a personal cyber safety check and family safety services."
+              },
+              {
+                "title": "Cyber Insurance for Executives",
+                "href": "/cyber-insurance-for-executives",
+                "pill": null,
+                "desc": "Review executive digital exposure, incident playbooks and protection services for leaders and their families."
+              }
             ]
           }
         ]

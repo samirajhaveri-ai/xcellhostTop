@@ -15,6 +15,11 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'cyber-insurance-for-businesses', title: 'Cyber Insurance for Businesses | XcellHost', data: { insuranceSource: 'cyber-insurance-for-businesses', description: 'Assess business cyber cover readiness, identify control gaps and configure security services with evidence for renewal.' }, loadComponent: () => import('./pages/cyber-insurance.page').then(m => m.CyberInsurancePage) },
+  { path: 'cyber-insurance-for-individuals', title: 'Cyber Insurance for Individuals | XcellHost', data: { insuranceSource: 'cyber-insurance-for-individuals', description: 'Explore online scam awareness, the reporting-clock tool, a personal cyber safety check and family safety services.' }, loadComponent: () => import('./pages/cyber-insurance.page').then(m => m.CyberInsurancePage) },
+  { path: 'cyber-insurance-for-executives', title: 'Cyber Insurance for Executives | XcellHost', data: { insuranceSource: 'cyber-insurance-for-executives', description: 'Review executive digital exposure, incident playbooks and protection services for leaders and their families.' }, loadComponent: () => import('./pages/cyber-insurance.page').then(m => m.CyberInsurancePage) },
+  { path: 'urban-co-operative-banks-go-to-market-strategy', redirectTo: 'urban-cooperative-banks-go-to-market-strategy', pathMatch: 'full' },
+  { path: 'urban-cooperative-banks-go-to-market-strategy', title: 'Urban Co-operative Banks Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/urban-cooperative-banks-go-to-market.page').then(m => m.UrbanCooperativeBanksGoToMarketPage) },
   { path: 'uk-go-to-market-strategy', title: 'UK Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/uk-go-to-market.page').then(m => m.UkGoToMarketPage) },
   { path: 'saudi-arabia-go-to-market-strategy', title: 'Saudi Arabia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/saudi-arabia-go-to-market.page').then(m => m.SaudiArabiaGoToMarketPage) },
   { path: 'rwanda-go-to-market-strategy', title: 'Rwanda Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/rwanda-go-to-market.page').then(m => m.RwandaGoToMarketPage) },
