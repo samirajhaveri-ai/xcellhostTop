@@ -3769,7 +3769,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Build and manage AI agents for business workflows"
               },
                 {
-                  "title": "AI Workers",
+                  "title": "AI Workerspace",
                   "pill": null,
                   "desc": "Bring your team and AI agents together in one workspace",
                   "href": "/ai-workers"
