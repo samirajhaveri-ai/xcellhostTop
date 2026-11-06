@@ -10,6 +10,7 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'enterprise-dpdp-platform'
   | 'cyber-insurance-for-businesses'
   | 'cyber-insurance-for-individuals'
   | 'cyber-insurance-for-executives'
@@ -283,6 +284,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cyber-insurance-for-businesses': '/imported-cyber-insurance-for-businesses.html',
     'cyber-insurance-for-individuals': '/imported-cyber-insurance-for-individuals.html',
     'cyber-insurance-for-executives': '/imported-cyber-insurance-for-executives.html',
+    'enterprise-dpdp-platform': '/imported-enterprise-dpdp-platform.html',
     'cloud-disaster-recovery-smb-faq': '/imported-cloud-disaster-recovery-smb-faq.html',
     'cloud-disaster-recovery-smb-opening': '/imported-cloud-disaster-recovery-smb-opening.html',
     'ai-training-live-online': '/imported-ai-training-live-online.html',
@@ -578,6 +580,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cyber-insurance-for-businesses': 'Cyber Insurance for Businesses',
     'cyber-insurance-for-individuals': 'Cyber Insurance for Individuals',
     'cyber-insurance-for-executives': 'Cyber Insurance for Executives',
+    'enterprise-dpdp-platform': 'Enterprise DPDP Platform',
     'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
     'cloud-disaster-recovery-smb-opening': 'Cloud Disaster Recovery for SMB',
     'ai-training-live-online': 'Live Online AI Training',
