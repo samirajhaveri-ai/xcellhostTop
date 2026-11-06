@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+
 const { parse } = require('parse5');
 
 if (!process.argv[2]) throw new Error('Pass the supplied cloud-disaster-recovery-smb.html file.');
@@ -61,3 +62,6 @@ const html = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta c
 for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
 fs.writeFileSync(path.join(root, 'public/imported-cloud-disaster-recovery-smb.html'), html);
 console.log('Imported Cloud Disaster Recovery for SMBs content, animations, configurator, sizing tools, FAQs and related services.');
+
+// The older product URL replaces only its opening sections and keeps its FAQ separate.
+require('./import-cloud-disaster-recovery-smb-opening.cjs');

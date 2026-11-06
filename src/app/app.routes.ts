@@ -1286,6 +1286,7 @@ export const routes: Routes = [
   })),
   { path: 'identity-access-management', redirectTo: 'identity-and-access-management', pathMatch: 'full' },
   { path: 'identity-governance-administration', redirectTo: 'identity-governance-and-administration', pathMatch: 'full' },
+  { path: 'vortex-soc', redirectTo: 'soc-as-a-services', pathMatch: 'full' },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 ];

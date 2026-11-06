@@ -1,0 +1,13 @@
+html, body { height: auto; overflow-x: clip; }
+main { display: flow-root; }
+[hidden] { display: none !important; }
+.hero-grid > * { min-width: 0; }
+.ci-hero .lh-ctas { flex-wrap: wrap !important; overflow: visible !important; }
+:is(#cbHero, #cvHero, #ceHero) .xh-banner-actions-line { flex-wrap: wrap !important; overflow: visible !important; }
+:is(#cbHero, #cvHero, #ceHero) .xh-banner-ai-nowrap { flex-wrap: wrap !important; white-space: normal !important; overflow: visible !important; }
+:is(#cbHero, #cvHero, #ceHero) .xh-banner-ai-nowrap .chips { flex-wrap: wrap !important; }
+.crumb a[href="#"] { pointer-events: none; }
+@media (max-width: 600px) {
+  .ci-hero .lh-title { overflow-wrap: anywhere; }
+  .cta .btn { white-space: normal; }
+}

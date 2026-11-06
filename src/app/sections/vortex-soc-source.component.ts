@@ -138,7 +138,7 @@ export class VortexSocSourceComponent implements OnDestroy {
     button.disabled = true;
     const result = await this.leads.submit('callback', {
       product: 'XcellSOC',
-      topic: 'XcellSOC quotation', customer, scope, page: '/vortex-soc',
+      topic: 'XcellSOC quotation', customer, scope, page: '/soc-as-a-services',
     });
     button.disabled = false;
     let status = form.querySelector<HTMLElement>('.vs-quote-status');

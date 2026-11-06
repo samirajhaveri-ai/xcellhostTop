@@ -57,7 +57,6 @@ export const PARTNER_TEAMS: readonly PartnerTeam[] = [
     contacts: [
       { name: 'Mr. Abhishek Pandey', designation: 'Billing Manager', email: 'abhishekp@xcellhost.cloud', officePhone: '+912267111521', city: 'Mumbai', mobile: '+919004660960', purpose: 'Billing' },
       { name: 'Mr. Sanjay Jade', designation: 'Accounts Payable', email: 'sanjayj@xcellhost.cloud', officePhone: '+912267111520', city: 'Mumbai', mobile: '+918657475375', purpose: 'Vendors only' },
-      { name: 'Mrs. Mayuri Shinde', designation: 'General Admin', email: 'mayuris@xcellhost.cloud', officePhone: '+912267111555', city: 'Mumbai', mobile: '+918657475374', purpose: 'Vendors only' },
     ],
   },
   {

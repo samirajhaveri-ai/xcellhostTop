@@ -10,12 +10,20 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+
   | 'microsoft-365-governance'
   | 'azure-ai-foundry-copilot-studio'
   | 'cloud-native-security-platform'
   | 'digital-twin'
   | 'dpdp-compliance-platform'
   | 'ai-workers'
+
+  | 'enterprise-dpdp-platform'
+  | 'cyber-insurance-for-businesses'
+  | 'cyber-insurance-for-individuals'
+  | 'cyber-insurance-for-executives'
+  | 'urban-cooperative-banks-go-to-market-strategy'
+
   | 'openshift-as-a-service'
   | 'all-cloudflare-products'
   | 'qualys-services'
@@ -68,6 +76,8 @@ type InteractiveContentSource =
   | 'staff-augmentation'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
+  | 'cloud-disaster-recovery-smb-opening'
+  | 'cloud-disaster-recovery-smb-faq'
   | 'ai-training-live-online'
   | 'ai-training-educators'
   | 'ai-adoption-framework'
@@ -285,6 +295,13 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'acronis-licensing-guide': '/imported-acronis-licensing-guide.html',
     'microsoft-csp-licensing-guide': '/imported-microsoft-csp-licensing-guide.html',
     'microsoft-365-licensing-guide': '/imported-microsoft-365-licensing-guide.html',
+    'urban-cooperative-banks-go-to-market-strategy': '/imported-urban-cooperative-banks-go-to-market-strategy.html',
+    'cyber-insurance-for-businesses': '/imported-cyber-insurance-for-businesses.html',
+    'cyber-insurance-for-individuals': '/imported-cyber-insurance-for-individuals.html',
+    'cyber-insurance-for-executives': '/imported-cyber-insurance-for-executives.html',
+    'enterprise-dpdp-platform': '/imported-enterprise-dpdp-platform.html',
+    'cloud-disaster-recovery-smb-faq': '/imported-cloud-disaster-recovery-smb-faq.html',
+    'cloud-disaster-recovery-smb-opening': '/imported-cloud-disaster-recovery-smb-opening.html',
     'ai-training-live-online': '/imported-ai-training-live-online.html',
     'ai-training-educators': '/imported-ai-training-educators.html',
     'ai-adoption-framework': '/imported-ai-adoption-framework.html',
@@ -574,12 +591,22 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+
     'ai-workers': 'AI Workers Workspace, agent catalogue, workspace configurator, ROI calculator and readiness quiz',
     'digital-twin': 'Digital Twin as a Service, live models, simulations and deployment options',
     'cloud-native-security-platform': 'Cloud Native Security Platform, cloud posture, workload protection, identity and application security',
     'azure-ai-foundry-copilot-studio': 'Azure AI Foundry and Copilot Studio, enterprise agents, RAG, governance and credit estimator',
     'microsoft-365-governance': 'Microsoft 365 governance architecture, maturity check, RACI template and licence coverage checker',
     'dpdp-compliance-platform': 'DPDP Compliance Platform, consent, privacy rights and compliance workflows',
+
+    'urban-cooperative-banks-go-to-market-strategy': 'Urban Co-operative Banks Go-to-Market Strategy',
+    'cyber-insurance-for-businesses': 'Cyber Insurance for Businesses',
+    'cyber-insurance-for-individuals': 'Cyber Insurance for Individuals',
+    'cyber-insurance-for-executives': 'Cyber Insurance for Executives',
+    'enterprise-dpdp-platform': 'Enterprise DPDP Platform',
+    'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
+    'cloud-disaster-recovery-smb-opening': 'Cloud Disaster Recovery for SMB',
+
     'ai-training-live-online': 'Live Online AI Training',
     'ai-training-educators': 'AI Training for Educators',
     'ai-adoption-framework': 'AI Adoption Framework',
@@ -1009,7 +1036,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         this.overlay.open('trial');
         return;
       }
-      const scopeTitle = this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
+      const scopeTitle = (this.source === 'cloud-disaster-recovery-smb' || this.source === 'cloud-disaster-recovery-smb-opening') ? 'Cloud Disaster Recovery for SMB'
+        : this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
         : this.source === 'ai-factory' ? 'AI Factory'
         : this.source === 'mobile-app-security' ? 'Mobile App Security'
         : this.source === 'data-center-build-services' ? 'Data Center Build Services'

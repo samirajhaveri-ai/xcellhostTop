@@ -113,9 +113,18 @@
             <div class="pm-contact-grid">
               @for (contact of team.contacts; track contact.email) {
                 <article class="pm-contact">
-                  <div class="pm-card-top"><span>{{ contact.purpose }}</span><b><span class="material-symbols-outlined" aria-hidden="true">location_on</span>{{ contact.city }}</b></div>
-                  <h4>{{ contact.name }}</h4>
-                  <p class="pm-role">{{ contact.designation }}</p>
+                  <div class="pm-contact-heading">
+                    <div class="pm-contact-identity">
+                      <div class="pm-card-top"><span>{{ contact.purpose }}</span><b><span class="material-symbols-outlined" aria-hidden="true">location_on</span>{{ contact.city }}</b></div>
+                      <h4>{{ contact.name }}</h4>
+                      <p class="pm-role">{{ contact.designation }}</p>
+                    </div>
+                    @if (contact.image) {
+                      <div class="pm-contact-photo" [class.pm-photo-framed]="contact.framedPortrait" [class.pm-photo-founder]="contact.founderPortrait">
+                        <img [src]="contact.image" [alt]="contact.name" width="192" height="192" loading="lazy" decoding="async" />
+                      </div>
+                    }
+                  </div>
                   <div class="pm-contact-links">
                     <a [href]="'mailto:' + contact.email"><span class="material-symbols-outlined" aria-hidden="true">mail</span><span><small>Email &amp; Teams</small>{{ contact.email }}</span><b aria-hidden="true">&#8599;</b></a>
                     @if (contact.officePhone) { <a [href]="'tel:' + contact.officePhone"><span class="material-symbols-outlined" aria-hidden="true">business_center</span><span><small>Office</small>{{ formatPhone(contact.officePhone) }}</span><b aria-hidden="true">&#8599;</b></a> }

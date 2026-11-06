@@ -1,0 +1,25 @@
+.hero-grid > * { min-width: 0; }
+.crumb a[href="#"] { pointer-events: none; }
+.dr-hero .lh-title { font-size: clamp(26px, 2.2vw, 32px) !important; margin-bottom: 26px !important; }
+.dr-hero .lh-title .nm { display: block; font-size: 1em; }
+.hero.lh .hero-grid.dr-hg { align-items: start; }
+.dr-copy { padding-top: 28px; }
+.hero.lh .dr-stage { padding-top: 28px; }
+.dr-answers { padding: 24px 0; }
+.dr-answers .wrap { padding: 0; }
+.dr-answers .sh, .dr-answers .dr-answer-list { max-width: none; margin-left: 0; margin-right: 0; }
+.dr-answer-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.dr-answer-list > .fq { min-width: 0; }
+.dr-answer-list .fq.open > .fa { max-height: none; }
+@media (min-width: 981px) {
+  .dr-hero .lh-title { white-space: nowrap; }
+}
+@media (max-width: 600px) {
+  main .lh-title { overflow-wrap: anywhere; }
+}
+@media (max-width: 980px) {
+  .dr-copy { padding-top: 0; }
+}
+@media (max-width: 760px) {
+  .dr-answer-list { grid-template-columns: minmax(0, 1fr); }
+}
