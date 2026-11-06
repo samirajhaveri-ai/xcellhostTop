@@ -37,6 +37,13 @@
   # Public RSS subscription URL executes PHP rather than exposing a source file.
   RewriteRule ^feeds/blog/?$ feeds/blog.php [L]
 
+  # Blogs and use cases are published independently in the CMS. If a slug was
+  # added after the latest static deployment, start Angular so it can load the
+  # live CMS entry instead of returning Apache's 404 page.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(?:insights|use-cases)/[^/]+/?$ index.html [L]
+
   # Serve real files and folders as-is
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d

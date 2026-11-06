@@ -910,8 +910,9 @@ export const routes: Routes = [
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
     path: 'case-studies/:id',
+    data: { contentType: 'case-study' },
     loadComponent: () =>
-      import('./pages/case-study-detail.page').then((m) => m.CaseStudyDetailPage),
+      import('./pages/blog.page').then((m) => m.BlogPage),
   },
   { path: 'case-studies', loadComponent: () => import('./pages/case-studies.page').then((m) => m.CaseStudiesPage) },
   { path: 'insights', loadComponent: () => import('./pages/insights.page').then((m) => m.InsightsPage) },

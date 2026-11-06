@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { RevealDirective } from '../shared/reveal.directive';
+import { GlobalInfrastructureGlobeComponent } from './global-infrastructure-globe.component';
 
 interface DataCenterLocation {
   readonly flag: string;
@@ -34,7 +35,7 @@ const ACRONIS_REGIONS = [
 @Component({
   selector: 'xh-global-locations-map',
   standalone: true,
-  imports: [RevealDirective],
+  imports: [RevealDirective, GlobalInfrastructureGlobeComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -76,28 +77,7 @@ const ACRONIS_REGIONS = [
 
         @if (activeView() === 'xcellhost') {
         <div id="xcellhost-dcs" class="dc-tab-panel" role="tabpanel" aria-label="XcellHost data centers">
-        <div class="map-stage">
-          <iframe
-            class="global-dc-globe"
-            src="/assets/animations/xcellhost-globe.html?mode=globe"
-            title="Interactive globe showing XcellHost data center locations"
-            scrolling="no"
-            loading="eager"
-          ></iframe>
-        </div>
-
-        <div class="location-marquee" aria-label="Datacenter regions" xhReveal>
-          <div class="location-track">
-            @for (pass of passes; track pass) {
-              @for (location of locations; track location.code) {
-                <div class="location-chip" [attr.aria-hidden]="pass === 1 ? 'true' : null">
-                  <img class="location-flag" [src]="flagUrl(location.code)" [alt]="location.name + ' flag'" loading="lazy" />
-                  <strong>{{ location.name }}</strong>
-                </div>
-              }
-            }
-          </div>
-        </div>
+        <xh-global-infrastructure-globe variant="global-cloud" />
         </div>
         } @else {
         <div id="acronis-dcs" class="dc-tab-panel" role="tabpanel" aria-label="Acronis data centers">
@@ -229,18 +209,6 @@ const ACRONIS_REGIONS = [
       font: 600 14px/1 var(--mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-    }
-
-    .map-stage .global-dc-globe {
-      position: relative;
-      z-index: 1;
-      display: block;
-      width: min(100%, 720px);
-      height: clamp(430px, 65vw, 720px);
-      margin: 0 auto;
-      border: 0;
-      overflow: hidden;
-      background: transparent;
     }
 
     .location-marquee {
