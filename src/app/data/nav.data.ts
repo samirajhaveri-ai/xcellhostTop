@@ -1535,6 +1535,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Managed awareness training with short lessons, role-based paths, quizzes, certificates and completion reports."
               },
+              {
+                "title": "Microsoft 365 Governance",
+                "href": "/microsoft-365-governance",
+                "pill": null,
+                "desc": "Govern identity, data protection, workloads, monitoring and resilience"
+              },
             ]
           }
         ]
@@ -1774,6 +1780,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }, 
+              {
+                "title": "Azure AI Foundry & Copilot Studio",
+                "href": "/azure-ai-foundry-copilot-studio",
+                "pill": null,
+                "desc": "Build, govern and deploy enterprise AI agents on Azure"
+              },
               
             ]
           }
@@ -2914,6 +2926,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Smart contract audits, key-custody reviews and on-chain monitoring."
               },
+              {
+                "title": "Cloud Native Security Platform",
+                "href": "/cloud-native-security-platform",
+                "pill": null,
+                "desc": "Protect cloud workloads, containers, identities and code with one CNAPP"
+              },
             ]
           }
         ]
@@ -3098,6 +3116,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "File Integrity Monitoring",
                 "pill": "Free trial",
                 "desc": null
+              },
+              {
+                "title": "DPDP Compliance Platform",
+                "pill": null,
+                "desc": "Manage consent, privacy rights and compliance evidence",
+                "href": "/dpdp-compliance-platform"
               },
               
             ]
@@ -3744,6 +3768,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Build and manage AI agents for business workflows"
               },
+                {
+                  "title": "AI Workers",
+                  "pill": null,
+                  "desc": "Bring your team and AI agents together in one workspace",
+                  "href": "/ai-workers"
+                },
               
               
             ]
@@ -5073,6 +5103,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Case Management",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Digital Twin",
+                "pill": null,
+                "desc": "Model factories, buildings and supply chains with live data",
+                "href": "/digital-twin"
               }
             ]
           }
