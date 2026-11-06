@@ -1,0 +1,41 @@
+#qlHero {
+  --ink: #ffffff;
+  --text: #d5e0f4;
+  --qlgrey: #b6c2da;
+  --qlcard: #14213d;
+  --qlline: #304363;
+  background: #0b132b;
+  color: var(--text);
+}
+#qlHero .lh-title { color: #fff !important; }
+#qlHero .lh-title .brd, #qlHero .lh-title .nm,
+#qlHero .ql-big, #qlHero .ql-lead b { color: #fff; }
+#qlHero .ql-big span, #qlHero .crumb, #qlHero .crumb .c,
+#qlHero .ql-stats div:first-child b { color: #7fb0ff; }
+#qlHero .crumb a { color: #b6c2da; }
+#qlHero .ql-hgrid { opacity: .65; }
+#qlHero .ql-hs input::placeholder { color: #b6c2da; opacity: 1; }
+#qlHero .ql-hs > i svg { color: #7fb0ff; }
+#qlHero .lh-ask.xh-icon-ask { background: #102344; border-color: #35537d; }
+#qlHero .lh-ask.xh-icon-ask .k { color: #fff; }
+/* Keep the animated catalogue diagram readable in its original light panel. */
+#qlHero .ql-vis {
+  --ink: #0b132b;
+  --qlgrey: #5b6782;
+  --qlcard: #ffffff;
+  --qlline: #dce5f3;
+}
+#qlHero .hero-grid.ql-hg { align-items: center; }
+#qlHero .ql-copy, #qlHero .ql-vis { min-width: 0; align-self: center; }
+#qlHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap {
+  width: 100%; flex-wrap: wrap !important; white-space: normal !important;
+  overflow: visible !important; gap: 10px 12px;
+}
+#qlHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap .k {
+  flex: 1 1 220px !important; min-width: 0; white-space: normal !important;
+  font-size: 12px; line-height: 1.6;
+}
+#qlHero .lh-ask.xh-icon-ask .chips { flex: 0 0 auto !important; flex-wrap: nowrap !important; }
+@media (max-width: 600px) {
+  #qlHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap .k { flex-basis: 100% !important; }
+}

@@ -580,7 +580,7 @@ const CYBIRD_PAYMENT_URLS = {
 
 /* ── STATE (standalone Cybird cart in localStorage; passwords NEVER persisted) ── */
 const CART_KEY = "xcellhost_cybird_cart";
-let state = { step:"account", custType:"new", entity:"business", packageId:"essentials", termId:"1y", quantity:1, inCart:false, account:{}, profile:{} };
+let state = { step:"account", custType:"new", entity:"business", packageId:"essentials", termId:"1y", quantity:1, inCart:false, account:{}, profile:{}, verifiedCustomer:null };
 
 /* Cybird Hardware Appliance — a REAL Zoho Billing one-time addon, mandatory and
    always quantity 1 (never multiplied by the package quantity). Its price is part
@@ -728,7 +728,7 @@ const reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin
 
 function validateAccount(){
   let ok=true;
-  if(state.custType==="new"){
+  if(state.custType==="new" || state.verifiedCustomer){
     [["firstName",v=>v.trim().length>=1],["lastName",v=>v.trim().length>=1],["email",v=>reEmail.test(v.trim())],["mobile",v=>reMobile.test(v.trim())],["company",v=>v.trim().length>=1]]
       .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
   }else{
@@ -738,7 +738,7 @@ function validateAccount(){
   return ok;
 }
 function captureAccount(){
-  if(state.custType==="new"){
+  if(state.custType==="new" || state.verifiedCustomer){
     state.account={ firstName:$("#firstName").value.trim(), lastName:$("#lastName").value.trim(), email:$("#email").value.trim(), mobile:$("#mobile").value.trim(), company:$("#company").value.trim() };
   }else{
     state.account={ email:$("#exEmail").value.trim(), company:$("#exCompany").value.trim(), mobile:$("#exMobile").value.trim(), acct:$("#exAcct").value.trim() };  // no password collected or stored
@@ -788,7 +788,13 @@ function goStep(name){
    PAYMENT HANDOFF — exact per package+term Zoho Hosted Payment Page
    Top-level browser navigation (NOT an iframe, NOT fetched, NOT in a modal).
    ============================================================================ */
-function cybNavigate(url){ window.location.assign(url); }   // top-level, same-tab redirect
+function cybNavigate(url){
+  if(window.top===window){ window.location.assign(url); return true; }
+  const paymentWindow=window.open(url,"_blank");
+  if(!paymentWindow) return false;
+  try{ paymentWindow.opener=null; }catch(e){}
+  return true;
+}
 
 const IN_STATE_CODES = {
   "maharashtra":"MH","gujarat":"GJ","delhi":"DL","karnataka":"KA","tamil nadu":"TN",
@@ -855,7 +861,9 @@ function proceedToPayment(){
   if(!priceReady()){ msg.classList.add("no"); msg.textContent="Pricing for this selection is not configured yet. Please contact XcellHost support."; return; }
   const url=buildPaymentUrl(state.packageId, state.termId, state.quantity);
   if(url!==""){
-    cybNavigate(url);   // opens the exact per package+term Zoho Hosted Payment Page (top-level)
+    if(!cybNavigate(url)){
+      msg.classList.add("no"); msg.textContent="Your browser blocked the secure payment page. Please allow pop-ups for XcellHost and try again.";
+    }
   }else{
     msg.classList.add("no"); msg.textContent="Payment integration is pending for this selection. Please contact XcellHost support.";
   }
@@ -905,6 +913,21 @@ function init(){
   renderAll();
   goStep("account");
 }
+function applyVerifiedZohoCustomer(customer){
+  if(!customer || !customer.customerId) return;
+  state.verifiedCustomer=customer; state.custType="existing";
+  $("#optNew").classList.remove("sel"); $("#optExisting").classList.add("sel");
+  $("#formNew").style.display=""; $("#formExisting").classList.remove("show");
+  const values={firstName:customer.firstName,lastName:customer.lastName,email:customer.email,mobile:customer.mobile,company:customer.company};
+  Object.entries(values).forEach(([id,value])=>{ if(value && $("#"+id)) $("#"+id).value=value; });
+  if(customer.company && !$("#legalName").value) $("#legalName").value=customer.company;
+  const profileValues={street:customer.street,address2:customer.address2,city:customer.city,state:customer.state,pin:customer.postalCode,country:customer.country};
+  Object.entries(profileValues).forEach(([id,value])=>{ if(value && $("#"+id)) $("#"+id).value=value; });
+  if(customer.gstin){ $("#gstReg").value="yes"; $("#gstin").value=customer.gstin; toggleGstin(); }
+  const label=document.querySelector('#cardAccount .continue .ctxt'); if(label) label.textContent="Continue as Verified Customer";
+  saveCart();
+}
+window.addEventListener("xcellhost:zoho-customer",event=>applyVerifiedZohoCustomer(event.detail));
 document.addEventListener("DOMContentLoaded", init);
 </script>
 </body>

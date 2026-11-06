@@ -14,6 +14,7 @@ const TRUSTED_CLIENTS: readonly { name: string; className: string; src: string }
   { name: 'HRH', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/hrh.png' },
   { name: 'SBI Mutual Fund', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/sbi-mutual-fund.png' },
   { name: 'All India Football Federation', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/aiff.webp' },
+  { name: 'Sun Pharma', className: 'trusted-logo-image trusted-logo-sun-pharma', src: '/assets/images/trusted-clients/sun-pharma.jpg' },
 ] as const;
 
 /** Client proof strip placed immediately below the homepage case studies. */
@@ -52,6 +53,7 @@ const TRUSTED_CLIENTS: readonly { name: string; className: string; src: string }
     .trusted-logo-iifl img { transform: scale(1.6); }
     .trusted-logo-raheja img, .trusted-logo-pibm img { transform: scale(1.3); }
     .trusted-logo-invara img { transform: scale(.9); }
+    .trusted-logo-sun-pharma img { transform: scale(.85); }
   `,
 })
 export class TrustedByComponent {

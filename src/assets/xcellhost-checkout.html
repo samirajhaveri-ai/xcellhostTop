@@ -546,6 +546,7 @@ const fmt = n => CURRENCY + Math.round(n).toLocaleString("en-IN");
 const state = { productId:null, product:null, billing:null, quantity:1, coupon:null };
 // cart-ready architecture (single item for now; array shape for future multi-item)
 const customer = { type:"new", firstName:"", lastName:"", email:"", mobile:"", company:"" };
+let verifiedZohoCustomer = null;
 const checkoutSteps = { current:0, order:["account","service","profile","payment"] };
 
 // ── REUSABLE PRICE ENGINE ──
@@ -755,7 +756,7 @@ function goToStep(n){
 
 // ── CONTINUE (Account → Service) ──
 document.getElementById("continueBtn").addEventListener("click",()=>{
-  if(customer.type==="new"){
+  if(customer.type==="new" || verifiedZohoCustomer){
     let bad=false;
     Object.keys(validators).forEach(id=>{const el=document.getElementById(id);const m=validators[id](el.value);setErr(el,m);if(m)bad=true;});
     if(bad){const f=document.querySelector("#newForm input.err");if(f){f.focus();f.scrollIntoView({behavior:"smooth",block:"center"});}return;}
@@ -1168,8 +1169,15 @@ document.getElementById('payBtn').addEventListener('click',function(){
 
   const qs = params.toString();
   const finalUrl = qs ? (url + (url.includes('?') ? '&' : '?') + qs) : url;
-  // Payment leaves the embedded checkout and opens in the full browser window.
-  window.top.location.href = finalUrl;
+  // Embedded portal checkouts cannot replace Zoho's cross-origin top window.
+  // Open the hosted payment page from this user click instead.
+  if(window.top===window){
+    window.location.href = finalUrl;
+  }else{
+    const paymentWindow=window.open(finalUrl,"_blank");
+    if(paymentWindow){ try{ paymentWindow.opener=null; }catch(e){} }
+    else alert("Your browser blocked the secure payment page. Please allow pop-ups for XcellHost and try again.");
+  }
 });
 
 // ── ADD TO CART (uses current product + selected billing cycle) ──
@@ -1242,6 +1250,23 @@ function closeDrawer(){ document.getElementById("cartOverlay").classList.remove(
 document.getElementById("drawerClose").addEventListener("click",closeDrawer);
 document.getElementById("cartOverlay").addEventListener("click",closeDrawer);
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDrawer(); });
+
+function applyVerifiedZohoCustomer(saved){
+  if(!saved || !saved.customerId) return;
+  verifiedZohoCustomer=saved;
+  customer.type="existing";
+  const map={fn:saved.firstName,ln:saved.lastName,em:saved.email,mb:saved.mobile,co:saved.company,
+    pf_company:saved.company,pf_street:saved.street,pf_address1:saved.address2,pf_city:saved.city,
+    pf_state:saved.state,pf_zip:saved.postalCode,pf_country:saved.country,pf_gstin:saved.gstin};
+  Object.entries(map).forEach(([id,value])=>{ const field=document.getElementById(id); if(field && value) field.value=value; });
+  Object.assign(customer,{firstName:saved.firstName||"",lastName:saved.lastName||"",email:saved.email||"",mobile:saved.mobile||"",company:saved.company||""});
+  Object.assign(profile,{company:saved.company||"",street:saved.street||"",address1:saved.address2||"",city:saved.city||"",state:saved.state||"",zipCode:saved.postalCode||"",country:saved.country||"India",gstRegistered:saved.gstin?"yes":"no",gstin:saved.gstin||""});
+  document.querySelectorAll(".acct-opt").forEach(opt=>opt.classList.toggle("sel",opt.dataset.acct==="existing"));
+  document.getElementById("newForm").style.display="";
+  document.getElementById("loginForm").classList.remove("show");
+  const label=document.querySelector("#continueBtn .ctxt"); if(label) label.textContent="Continue as Verified Customer";
+}
+window.addEventListener("xcellhost:zoho-customer",event=>applyVerifiedZohoCustomer(event.detail));
 
 // ── INIT (URL-driven) ──
 // Entry-point product for this checkout when no ?product= is supplied.

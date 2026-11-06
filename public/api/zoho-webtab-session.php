@@ -8,6 +8,15 @@ header('X-Content-Type-Options: nosniff');
 
 const XCELLHOST_TALLY_WEBTAB_ID = '1818279000018410001';
 
+function xh_webtab_config(): array {
+    static $config;
+    if (is_array($config)) return $config;
+    $configPath = dirname(__DIR__, 2) . '/xcellhost-zoho-config.php';
+    $loaded = is_file($configPath) ? require $configPath : [];
+    $config = is_array($loaded) ? $loaded : [];
+    return $config;
+}
+
 function xh_webtab_reply(int $status, array $body): never {
     http_response_code($status);
     echo json_encode($body, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
@@ -16,6 +25,9 @@ function xh_webtab_reply(int $status, array $body): never {
 
 function xh_webtab_env(string $name, bool $required = true): string {
     $value = trim((string) getenv($name));
+    if ($value === '') {
+        $value = trim((string) (xh_webtab_config()[$name] ?? ''));
+    }
     if ($required && $value === '') throw new RuntimeException($name . ' is not configured.');
     return $value;
 }

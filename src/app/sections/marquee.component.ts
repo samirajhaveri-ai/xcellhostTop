@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 interface Brand {
   readonly name: string;
   readonly slug: string;
+  readonly route?: string;
   /** rendered as a pill instead of plain text */
   readonly feat?: boolean;
   /** the Microsoft four-square logo instead of a letter mark */
@@ -31,7 +32,7 @@ const BRANDS: readonly Brand[] = [
   { name: 'Kaspersky', slug: 'kaspersky', mark: 'K', bg: '#006D5C', fg: '#fff' },
   { name: 'SentinelOne', slug: 'sentinelone', mark: 'S1', bg: '#6B4EFF', fg: '#fff' },
   { name: 'Fortinet', slug: 'fortinet', mark: 'F', bg: '#EE3124', fg: '#fff' },
-  { name: 'Palo Alto', slug: 'palo-alto', mark: 'PA', bg: '#F97316', fg: '#fff' },
+  { name: 'Palo Alto', slug: 'palo-alto', route: '/all-paloalto-products', mark: 'PA', bg: '#F97316', fg: '#fff' },
   { name: 'HPE', slug: 'hpe', mark: 'H', bg: '#01A982', fg: '#fff' },
   { name: 'Dell', slug: 'dell', mark: 'D', bg: '#0672CB', fg: '#fff' },
   { name: 'Cybird', slug: 'cybird', mark: 'C', bg: '#5B3CC4', fg: '#fff' },
@@ -60,7 +61,7 @@ const BRANDS: readonly Brand[] = [
         @for (pass of passes; track pass) {
           @for (b of brands; track b.name) {
             <a
-              [routerLink]="['/vendor-partners', b.slug]"
+              [routerLink]="b.route ?? ['/vendor-partners', b.slug]"
               [class.feat]="b.feat"
               [style.color]="b.textColor"
               [attr.aria-label]="'Learn more about ' + b.name"

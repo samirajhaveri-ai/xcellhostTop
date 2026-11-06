@@ -1,0 +1,102 @@
+#pmHero .hero-grid.pm-hg {
+  align-items: center;
+}
+
+/* Reserve the tallest phrase at the current width, including after fonts load. */
+#pmHero .lh-type {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  line-height: 1.5;
+}
+
+#pmHero .lh-type .tw,
+#pmHero .lh-type .pm-type-reserve {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+#pmHero .lh-type .pm-type-reserve {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#pmHero .lh-type .cur {
+  display: none;
+}
+
+#pmHero .lh-type .tw::after,
+#pmHero .lh-type .pm-type-reserve::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -.15em;
+  background: currentColor;
+}
+
+#pmHero .lh-type .tw::after {
+  animation: lhBlink 1s steps(2) infinite;
+}
+
+#pmHero .pm-copy,
+#pmHero .stage.pm-stage {
+  width: 100%;
+  max-width: 520px;
+  justify-self: center;
+  align-self: center;
+  min-width: 0;
+}
+
+@media (min-width: 981px) {
+  #pmHero .hero-grid.pm-hg {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  }
+}
+
+#pmHero .stage.pm-stage {
+  min-height: 0;
+  margin-top: 0;
+  padding-bottom: 36px;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+#pmHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap {
+  width: 100%;
+  flex-wrap: wrap !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  gap: 10px 12px;
+}
+
+#pmHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap .k {
+  flex: 1 1 200px !important;
+  min-width: 0;
+  white-space: normal !important;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+#pmHero .lh-ask.xh-icon-ask .chips {
+  flex: 0 0 auto !important;
+  flex-wrap: nowrap !important;
+  gap: 8px;
+}
+
+#pmHero .lh-ask.xh-icon-ask .chips a {
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+}
+
+@media (max-width: 600px) {
+  #pmHero .lh-ask.xh-icon-ask.xh-banner-ai-nowrap .k {
+    flex-basis: 100% !important;
+  }
+
+  #pmHero .stage.pm-stage {
+    padding-bottom: 0;
+  }
+}

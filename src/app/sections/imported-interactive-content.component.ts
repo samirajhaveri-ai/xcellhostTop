@@ -10,6 +10,11 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'openshift-as-a-service'
+  | 'all-cloudflare-products'
+  | 'qualys-services'
+  | 'patch-mgmt-as-a-service'
+  | 'cloud-disaster-recovery-smb'
   | 'acronis-licensing-guide'
   | 'microsoft-csp-licensing-guide'
   | 'microsoft-365-licensing-guide'
@@ -93,6 +98,23 @@ type InteractiveContentSource =
   | 'hpe-services'
   | 'all-paloalto-products'
   | 'vietnam-go-to-market-strategy'
+  | 'poland-go-to-market-strategy'
+  | 'uk-go-to-market-strategy'
+  | 'saudi-arabia-go-to-market-strategy'
+  | 'rwanda-go-to-market-strategy'
+  | 'new-zealand-go-to-market-strategy'
+  | 'canada-go-to-market-strategy'
+  | 'tanzania-go-to-market-strategy'
+  | 'singapore-go-to-market-strategy'
+  | 'malaysia-go-to-market-strategy'
+  | 'australia-go-to-market-strategy'
+  | 'uae-go-to-market-strategy'
+  | 'south-africa-go-to-market-strategy'
+  | 'india-go-to-market-strategy'
+  | 'germany-go-to-market-strategy'
+  | 'usa-go-to-market-strategy'
+  | 'nigeria-go-to-market-strategy'
+  | 'kenya-go-to-market-strategy'
   | 'veeam-services'
   | 'dell-services'
   | 'oracle-cloud-services'
@@ -345,6 +367,23 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'hpe-services': '/imported-hpe-services.html',
     'all-paloalto-products': '/imported-all-paloalto-products.html',
     'vietnam-go-to-market-strategy': '/imported-vietnam-go-to-market-strategy.html',
+    'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
+    'uk-go-to-market-strategy': '/imported-uk-go-to-market-strategy.html',
+    'saudi-arabia-go-to-market-strategy': '/imported-saudi-arabia-go-to-market-strategy.html',
+    'rwanda-go-to-market-strategy': '/imported-rwanda-go-to-market-strategy.html',
+    'new-zealand-go-to-market-strategy': '/imported-new-zealand-go-to-market-strategy.html',
+    'canada-go-to-market-strategy': '/imported-canada-go-to-market-strategy.html',
+    'tanzania-go-to-market-strategy': '/imported-tanzania-go-to-market-strategy.html',
+    'singapore-go-to-market-strategy': '/imported-singapore-go-to-market-strategy.html',
+    'malaysia-go-to-market-strategy': '/imported-malaysia-go-to-market-strategy.html',
+    'australia-go-to-market-strategy': '/imported-australia-go-to-market-strategy.html',
+    'uae-go-to-market-strategy': '/imported-uae-go-to-market-strategy.html',
+    'south-africa-go-to-market-strategy': '/imported-south-africa-go-to-market-strategy.html',
+    'india-go-to-market-strategy': '/imported-india-go-to-market-strategy.html',
+    'germany-go-to-market-strategy': '/imported-germany-go-to-market-strategy.html',
+    'usa-go-to-market-strategy': '/imported-usa-go-to-market-strategy.html',
+    'nigeria-go-to-market-strategy': '/imported-nigeria-go-to-market-strategy.html',
+    'kenya-go-to-market-strategy': '/imported-kenya-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
     'oracle-cloud-services': '/imported-oracle-cloud-services.html',
@@ -402,6 +441,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cdn-cloud': '/imported-cdn-cloud.html',
     'email-security-enterprise': '/imported-email-security-enterprise.html',
     'red-hat': '/imported-red-hat.html',
+    'openshift-as-a-service': '/imported-openshift-as-a-service.html',
+    'all-cloudflare-products': '/imported-all-cloudflare-products.html',
+    'qualys-services': '/imported-qualys-services.html',
+    'patch-mgmt-as-a-service': '/imported-patch-mgmt-as-a-service.html',
+    'cloud-disaster-recovery-smb': '/imported-cloud-disaster-recovery-smb.html',
     'sitelock': '/imported-sitelock.html',
     'ssl-installation-service': '/imported-ssl-installation-service.html',
     'acronis-ot': '/imported-acronis-ot.html',
@@ -601,6 +645,23 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'hpe-services': 'HPE Products and Services',
     'all-paloalto-products': 'Palo Alto Networks Products and Services',
     'vietnam-go-to-market-strategy': 'Vietnam Go-to-Market Strategy',
+    'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
+    'uk-go-to-market-strategy': 'UK Go-to-Market Strategy',
+    'saudi-arabia-go-to-market-strategy': 'Saudi Arabia Go-to-Market Strategy',
+    'rwanda-go-to-market-strategy': 'Rwanda Go-to-Market Strategy',
+    'new-zealand-go-to-market-strategy': 'New Zealand Go-to-Market Strategy',
+    'canada-go-to-market-strategy': 'Canada Go-to-Market Strategy',
+    'tanzania-go-to-market-strategy': 'Tanzania Go-to-Market Strategy',
+    'singapore-go-to-market-strategy': 'Singapore Go-to-Market Strategy',
+    'malaysia-go-to-market-strategy': 'Malaysia Go-to-Market Strategy',
+    'australia-go-to-market-strategy': 'Australia Go-to-Market Strategy',
+    'uae-go-to-market-strategy': 'UAE Go-to-Market Strategy',
+    'south-africa-go-to-market-strategy': 'South Africa Go-to-Market Strategy',
+    'india-go-to-market-strategy': 'India Go-to-Market Strategy',
+    'germany-go-to-market-strategy': 'Germany Go-to-Market Strategy',
+    'usa-go-to-market-strategy': 'USA Go-to-Market Strategy',
+    'nigeria-go-to-market-strategy': 'Nigeria Go-to-Market Strategy',
+    'kenya-go-to-market-strategy': 'Kenya Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
     'oracle-cloud-services': 'Oracle Cloud Products and Services',
@@ -680,6 +741,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',
     'email-security-enterprise': 'Email Security Enterprise, animated mail estate, high availability, DLP, DMARC and archive scenes, estate sizing and change-managed rollout',
     'red-hat': 'Red Hat services, animated RHEL, Ansible, OpenShift, virtualisation and AI scenes, service explorer and Stack Builder',
+    'openshift-as-a-service': 'OpenShift as a Service, managed clusters, virtualization, pricing configurator, workload sizing and platform finder',
+    'all-cloudflare-products': 'All Cloudflare Products, searchable catalogue, product filters, recommendations and stack builder',
+    'qualys-services': 'All Qualys Products, searchable catalogue, product filters, recommendations and stack builder',
+    'patch-mgmt-as-a-service': 'Patch Management as a Service, patch operations, pricing configurator, risk calculator and SLA finder',
+    'cloud-disaster-recovery-smb': 'Cloud Disaster Recovery for SMBs, failover animations, recovery tiers, pricing, downtime calculator and recovery picker',
     'sitelock': 'SiteLock Website Security, animated scan, WAF, CDN, patching and trust seal scenes, plans and Why XcellHost',
     'ssl-installation-service': 'SSL Installation Service, animated installation desk, platforms, pricing, installation configurator and related certificates',
     'acronis-ot': 'Acronis Cyber Protect for OT, animated demo, coverage, plant sizing, recovery calculator and quotation',
@@ -995,7 +1061,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
 
 
 
-      if (this.source !== 'ai-factory' && this.source !== 'acronis-workflow-automation' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit' && this.source !== 'azure-services' && this.source !== 'aws-services' && this.source !== 'acronis-ransomware-warranty') return;
+      if (this.source !== 'qualys-services' && this.source !== 'all-cloudflare-products' && this.source !== 'ai-factory' && this.source !== 'acronis-workflow-automation' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit' && this.source !== 'azure-services' && this.source !== 'aws-services' && this.source !== 'acronis-ransomware-warranty') return;
 
 
 
@@ -1005,6 +1071,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
       }>).detail;
+      const qualys = this.source === 'qualys-services';
+      const cloudflare = this.source === 'all-cloudflare-products';
       const redHat = this.source === 'red-hat';
       const emailSecurity = this.source === 'email-security-enterprise';
       const office365E5 = this.source === 'office-365-e5';
@@ -1016,8 +1084,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const awsServices = this.source === 'aws-services';
       const cyberSecurityAudit = this.source === 'cyber-security-audit';
       const workflowAutomation = this.source === 'acronis-workflow-automation';
-      const hasSummary = awsServices || aiFactory || workflowAutomation || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit || azureServices || acronisWarranty;
-      const topic = awsServices ? 'Amazon Web Services quotation' : aiFactory ? 'AI Factory quotation' : acronisWarranty ? 'Acronis Anti-Ransomware Warranty quotation' : azureServices ? 'Microsoft Azure services quotation' : workflowAutomation ? 'Acronis Workflow Automation quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+      const hasSummary = qualys || cloudflare || awsServices || aiFactory || workflowAutomation || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit || azureServices || acronisWarranty;
+      const topic = qualys ? 'Qualys stack quotation' : cloudflare ? 'Cloudflare stack quotation' : awsServices ? 'Amazon Web Services quotation' : aiFactory ? 'AI Factory quotation' : acronisWarranty ? 'Acronis Anti-Ransomware Warranty quotation' : azureServices ? 'Microsoft Azure services quotation' : workflowAutomation ? 'Acronis Workflow Automation quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
 
       const subject = topic + ' request';
       const payload = {
@@ -1028,7 +1096,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
 
 
 
-        page: awsServices ? '/vendor-partners/amazon-web-services' : aiFactory ? '/ai-factory' : acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+        page: qualys ? '/qualys-services' : cloudflare ? '/all-cloudflare-products' : awsServices ? '/vendor-partners/amazon-web-services' : aiFactory ? '/ai-factory' : acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
 
 
 
