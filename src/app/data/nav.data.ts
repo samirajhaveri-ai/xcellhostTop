@@ -3163,7 +3163,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "DPDP For Enterprise Platform",
+                "title": "Enterprise DPDP Platform",
                 "pill": "Free trial",
                 "desc": null
               },
