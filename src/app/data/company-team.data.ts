@@ -11,6 +11,7 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
     { initials: 'JS', name: 'James Soosai', role: 'Chief Business Strategist', image: '/assets/images/TEAMS PHOTO/James.png' },
 
     { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director-Africa ', image: '/assets/images/Yogesh Trivedi.png' },
+    { initials: 'NS', name: 'Neerav Shah', role: 'Chief Technical Officer', image: '/assets/images/TEAMS PHOTO/Neerav Shah.png' },
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
     
     { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
