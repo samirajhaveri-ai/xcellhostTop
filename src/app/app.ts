@@ -136,7 +136,7 @@ export class App {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       startWith(null),
-      map(() => /^\/(?:signup|(?:customer|partner|vendor|employee)-login)(?:[/?#]|$)/.test(this.router.url)),
+      map(() => /^\/(?:signup|(?:customer|partner|vendor|employee)-login|(?:ai|cloud|software)-marketplace)(?:[/?#]|$)/.test(this.router.url)),
     ),
     { initialValue: false },
   );

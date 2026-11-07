@@ -52,13 +52,15 @@ export class ExperienceHubComponent {
     { title: 'Vendor Alliances', label: 'STRONGER TOGETHER', description: 'Connect with our partner ecosystem.', icon: 'groups', art: 'handshake', theme: 'hub-alliances', category: 'alliances' },
   ].map(card => ({
     ...card,
-    route: card.category === 'alliances' ? '/company/vendor-partners'
+    route: card.category === 'ai' ? '/ai-marketplace'
+      : card.category === 'licenses' ? '/software-marketplace'
+      : card.category === 'alliances' ? '/company/vendor-partners'
       : card.category === 'accelerators' ? '/about-us'
       : card.category === 'professional' ? '/contact'
-      : card.category === 'all' ? '/marketplace' : '/explore-marketplace',
+      : card.category === 'all' ? '/cloud-marketplace' : '/explore-marketplace',
     params: card.category === 'professional'
       ? { service: card.title }
-      : card.category === 'all' || card.category === 'alliances' || card.category === 'accelerators' ? {}
+      : card.category === 'all' || card.category === 'ai' || card.category === 'licenses' || card.category === 'alliances' || card.category === 'accelerators' ? {}
       : { category: card.category },
   }));
 }
