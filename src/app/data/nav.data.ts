@@ -4820,6 +4820,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Give your AI programme a senior owner for strategy, governance and board reporting."
               },
+              {
+                "title": "Software Marketplace",           
+                "pill": null,
+                "desc": "Give your AI programme a senior owner for strategy, governance and board reporting."
+              },
             ]
           }
         ]
@@ -4830,10 +4835,10 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "Security Marketplace",
+            "heading": "Cloud Marketplace",
             "items": [
               {
-                "title": "No Data",
+                "title": "Cloud Marketplace",
                 "pill": null,
                 "desc": null
               },
@@ -4850,7 +4855,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Apps Marketplace",
             "items": [
               {
-                "title": "No Data",
+                "title": "AI Marketplace",
                 "pill": null,
                 "desc": null
               },

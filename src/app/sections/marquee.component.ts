@@ -19,7 +19,7 @@ interface Brand {
 const BRANDS: readonly Brand[] = [
   { name: 'Acronis', slug: 'acronis', mark: 'A', bg: '#143BEB', fg: '#fff' },
   { name: 'OpenText', slug: 'opentext', mark: 'OT', bg: '#7E93B4', fg: '#fff', textColor: '#7E93B4' },
-  { name: 'Microsoft ', slug: 'microsoft', ms: true },
+  { name: 'Microsoft', slug: 'microsoft-services', route: '/vendor-partners/microsoft-services', ms: true },
   { name: 'DPOGenie 365', slug: 'dpo-genie', mark: 'DP', bg: '#7C3AED', fg: '#fff' },
   { name: 'Microsoft Azure', slug: 'microsoft-azure', ms: true },
   { name: 'Amazon Web Services', slug: 'amazon-web-services', mark: 'aws', bg: '#232F3E', fg: '#FF9900' },
@@ -36,11 +36,11 @@ const BRANDS: readonly Brand[] = [
   { name: 'HPE', slug: 'hpe', mark: 'H', bg: '#01A982', fg: '#fff' },
   { name: 'Dell', slug: 'dell', mark: 'D', bg: '#0672CB', fg: '#fff' },
   { name: 'Cybird', slug: 'cybird', mark: 'C', bg: '#5B3CC4', fg: '#fff' },
-  { name: 'Veeam', slug: 'veeam', mark: 'C', bg: '#0a8a59', fg: '#fff' },
-  { name: 'Druva', slug: 'Druva', mark: 'D', bg: '#0a5491', fg: '#fff' },
-  { name: 'Oracle Cloud', slug: 'dpo-genie', mark: 'DP', bg: '#7C3AED', fg: '#fff' },
-  { name: 'Akamai', slug: 'Akamai', mark: 'A', bg: '#2563EB', fg: '#fff' },
-  { name: 'Cloudfare', slug: 'Cloudfare', mark: 'CF', bg: '#F97316', fg: '#fff' },
+  { name: 'Veeam', slug: 'veeam', mark: 'V', bg: '#0a8a59', fg: '#fff' },
+  { name: 'Druva', slug: 'druva', route: '/explore-druva-platform', mark: 'D', bg: '#0a5491', fg: '#fff' },
+  { name: 'Oracle Cloud', slug: 'oracle-cloud', route: '/vendor-partners/oracle-cloud', mark: 'O', bg: '#C74634', fg: '#fff' },
+  { name: 'Akamai', slug: 'akamai', mark: 'A', bg: '#2563EB', fg: '#fff' },
+  { name: 'Cloudflare', slug: 'cloudflare', route: '/all-cloudflare-products', mark: 'CF', bg: '#F97316', fg: '#fff' },
 ];
 
 /**

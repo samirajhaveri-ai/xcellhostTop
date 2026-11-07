@@ -25,6 +25,7 @@ const PARTNERS: Readonly<Record<string, string>> = {
   hpe: 'HPE',
   dell: 'Dell',
   cybird: 'Cybird',
+  akamai: 'Akamai',
 };
 
 @Component({
