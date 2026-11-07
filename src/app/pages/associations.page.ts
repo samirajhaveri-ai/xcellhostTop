@@ -53,6 +53,7 @@ export class AssociationsPage {
     { name: 'MSME', image: '/assets/images/logotm.webp', website: '' },
     { name: 'CYBER SECURITY ASSOCIATION OF INDIA', image: '/assets/images/unnamed.png', website: 'https://www.ncsai.in/' },
     { name: 'NASSCOM', image: '/assets/images/nasscom.png', website: '' },
+    { name: 'Mobile and Electronic Devices Export Promotion Council', image: '/assets/images/MEDEPC.png', website: '' },
   ];
   readonly industryAssociations: readonly Association[] = [
     {
@@ -90,6 +91,10 @@ export class AssociationsPage {
     {
       name: 'Corporate Connections',
       image: '/assets/images/corp.jpg',
+    },
+    {
+      name: 'BNI',
+      image: '/assets/images/BNI.png',
     },
   ];
 
