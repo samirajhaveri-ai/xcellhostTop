@@ -3182,7 +3182,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Enterprise DPDP Platform",
+                "title": "DPDP For Enterprise Platform",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3915,6 +3915,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AI Training for Lawyer",
+                "pill": null,
+                "desc": "Apply AI to GST, audit, tax and Excel with professional review"
+              },
+              {
+                "title": "AI Training for Financial Professional",
                 "pill": null,
                 "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
@@ -4827,6 +4832,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Tokenize and trace real-world assets with a managed Hyperledger Fabric network."
               },
+
               {
                 "title": "Fractional Chief AI Officer",
                 "href": "/fractional-chief-ai-officer",
@@ -4845,6 +4851,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Host and manage GitLab with deployment sizing, licences, runners and migration support."
               },
+
+
             ]
           }
         ]
