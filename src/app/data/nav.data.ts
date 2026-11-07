@@ -666,6 +666,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/hybrid-cloud"
               },
               {
+                "title": "Edge Cloud",
+                "href": "/edge-cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Edge Cloud Platform",
                 "href": "/edge-cloud-platform",
                 "pill": null,

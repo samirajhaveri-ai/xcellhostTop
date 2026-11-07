@@ -38,7 +38,6 @@ export const routes: Routes = [
     title: 'Edge Cloud Platform | XcellHost',
     loadComponent: () => import('./pages/edge-cloud-platform.page').then(m => m.EdgeCloudPlatformPage),
   },
-  { path: 'edge-cloud', redirectTo: 'edge-cloud-platform', pathMatch: 'full' },
   {
     path: 'urban-cooperative-banks-go-to-market-strategy',
     title: 'Urban Co-operative Banks Go-to-Market Strategy | XcellHost',
