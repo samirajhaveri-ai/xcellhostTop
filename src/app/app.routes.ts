@@ -15,6 +15,39 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  {
+    path: 'urban-cooperative-banks-go-to-market-strategy',
+    title: 'Urban Co-operative Banks Go-to-Market Strategy | XcellHost',
+    loadComponent: () => import('./pages/urban-cooperative-banks-go-to-market.page').then(m => m.UrbanCooperativeBanksGoToMarketPage),
+  },
+  { path: 'urban-co-operative-banks-go-to-market-strategy', redirectTo: 'urban-cooperative-banks-go-to-market-strategy', pathMatch: 'full' },
+  {
+    path: 'cyber-insurance-for-businesses',
+    title: 'Cyber Insurance for Businesses | XcellHost',
+    data: {
+      insuranceSource: 'cyber-insurance-for-businesses',
+      description: 'Assess business cyber cover readiness, identify control gaps and configure security services with evidence for renewal.',
+    },
+    loadComponent: () => import('./pages/cyber-insurance.page').then(m => m.CyberInsurancePage),
+  },
+  {
+    path: 'cyber-insurance-for-individuals',
+    title: 'Cyber Insurance for Individuals | XcellHost',
+    data: {
+      insuranceSource: 'cyber-insurance-for-individuals',
+      description: 'Explore online scam awareness, the reporting-clock tool, a personal cyber safety check and family safety services.',
+    },
+    loadComponent: () => import('./pages/cyber-insurance.page').then(m => m.CyberInsurancePage),
+  },
+  {
+    path: 'cyber-insurance-for-executives',
+    title: 'Cyber Insurance for Executives | XcellHost',
+    data: {
+      insuranceSource: 'cyber-insurance-for-executives',
+      description: 'Review executive digital exposure, incident playbooks and protection services for leaders and their families.',
+    },
+    loadComponent: () => import('./pages/cyber-insurance.page').then(m => m.CyberInsurancePage),
+  },
   { path: 'microsoft-365-governance', title: 'Microsoft 365 Governance India | XcellHost', loadComponent: () => import('./pages/microsoft-365-governance.page').then(m => m.Microsoft365GovernancePage) },
   { path: 'azure-ai-foundry-copilot-studio', title: 'Azure AI Foundry & Copilot Studio India | XcellHost', loadComponent: () => import('./pages/azure-ai-foundry-copilot-studio.page').then(m => m.AzureAiFoundryCopilotStudioPage) },
   { path: 'cloud-native-security-platform', title: 'Cloud Native Security Platform (CNAPP) India | XcellHost', loadComponent: () => import('./pages/cloud-native-security-platform.page').then(m => m.CloudNativeSecurityPlatformPage) },
