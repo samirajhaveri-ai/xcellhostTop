@@ -39,7 +39,7 @@ export class AssociationsPage {
     { name: 'Indo-American Chamber of Commerce', image: '/assets/images/associations/country/indo-american-chamber.png' },
     { name: 'Indo-African Chamber of Commerce & Industry', image: '/assets/images/associations/country/indo-african-chamber.jpg' },
     { name: 'Asian-African Chamber of Commerce & Industry', image: '/assets/images/associations/industry-asian-african-chamber.png' },
-    { name: 'WTC', image: '/assets/images/images.jpg' },
+    { name: 'World Trade Center', image: '/assets/images/images.jpg' },
   ];
 
   readonly itTradeAssociations: readonly LinkedAssociation[] = [
@@ -52,7 +52,7 @@ export class AssociationsPage {
     { name: 'CMDA', image: '/assets/images/associations/industry-cmda.png', website: 'https://cmdapune.org/' },
     { name: 'MSME', image: '/assets/images/logotm.webp', website: '' },
     { name: 'CYBER SECURITY ASSOCIATION OF INDIA', image: '/assets/images/unnamed.png', website: 'https://www.ncsai.in/' },
-    { name: 'ASCMO', image: '/assets/images/Ascom.png', website: '' },
+    { name: 'NASSCOM', image: '/assets/images/nasscom.png', website: '' },
   ];
   readonly industryAssociations: readonly Association[] = [
     {
@@ -64,7 +64,7 @@ export class AssociationsPage {
       image: '/assets/images/associations/industry-sme-chamber-india.png',
     },
     {
-      name: 'Taloja',
+      name: 'Taloja Industries Association',
       image: '/assets/images/taloja.webp',
     },
     
@@ -80,7 +80,7 @@ export class AssociationsPage {
       image: '/assets/images/associations/business-india-business-group.jpg',
     },
     {
-      name: 'Tajurba',
+      name: 'Tajurba Business Network',
       image: '/assets/images/associations/business-tajurba.jpg',
     },
     {
@@ -88,7 +88,7 @@ export class AssociationsPage {
       image: '/assets/images/associations/business-leadership-league.jpg',
     },
     {
-      name: 'CORPORATE CONNECTIONS',
+      name: 'Corporate Connections',
       image: '/assets/images/corp.jpg',
     },
   ];
