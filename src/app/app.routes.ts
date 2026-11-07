@@ -16,6 +16,29 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 
 export const routes: Routes = [
   {
+    path: 'github-services',
+    title: 'GitHub Services | XcellHost',
+    data: {
+      gitSource: 'github-services',
+      description: 'Explore GitHub Enterprise, Copilot, Actions runners, security, migration and managed services with sizing tools and service configuration.',
+    },
+    loadComponent: () => import('./pages/git-services.page').then(m => m.GitServicesPage),
+  },
+  {
+    path: 'gitlab-services',
+    title: 'GitLab Services | XcellHost',
+    data: {
+      gitSource: 'gitlab-services',
+      description: 'Explore GitLab hosting, dedicated and self-managed deployments, licences, runners, migration and managed services with sizing and configuration tools.',
+    },
+    loadComponent: () => import('./pages/git-services.page').then(m => m.GitServicesPage),
+  },
+  {
+    path: 'edge-cloud-platform',
+    title: 'Edge Cloud Platform | XcellHost',
+    loadComponent: () => import('./pages/edge-cloud-platform.page').then(m => m.EdgeCloudPlatformPage),
+  },
+  {
     path: 'urban-cooperative-banks-go-to-market-strategy',
     title: 'Urban Co-operative Banks Go-to-Market Strategy | XcellHost',
     loadComponent: () => import('./pages/urban-cooperative-banks-go-to-market.page').then(m => m.UrbanCooperativeBanksGoToMarketPage),

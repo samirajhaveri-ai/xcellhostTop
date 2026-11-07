@@ -667,8 +667,15 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Edge Cloud",
+                "href": "/edge-cloud",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Edge Cloud Platform",
+                "href": "/edge-cloud-platform",
+                "pill": null,
+                "desc": "Run AI inference, GPU and CPU workloads close to your users with hourly billing."
               },
               {
                 "title": "CDN Cloud",
@@ -2813,6 +2820,24 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "Blockchain Security",
+        "label": "Blockchain Security",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Blockchain Security",
+            "items": [
+              {
+                "title": "Applied Blockchain Security",
+                "href": "/applied-blockchain-security",
+                "pill": null,
+                "desc": "Smart contract audits, key-custody reviews and on-chain monitoring."
+              }
+            ]
+          }
+        ]
+      },
       
     ]
   },
@@ -3899,6 +3924,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
+              {
+                "title": "AI Training for Financial Professional",
+                "pill": null,
+                "desc": "Apply AI to GST, audit, tax and Excel with professional review"
+              },
             ]
           }
         ]
@@ -4023,12 +4053,6 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "AI Governance",
             "items": [
-              {
-                "title": "Urban Co-operative Banks Go-to-Market Strategy",
-                "href": "/urban-cooperative-banks-go-to-market-strategy",
-                "pill": null,
-                "desc": "Explore UCB segments, service priorities, revenue modelling and partner strategy."
-              },
               {
                 "title": "AI Adoption Framework",
                 "href": "/ai-adoption-framework",
@@ -4814,6 +4838,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Tokenize and trace real-world assets with a managed Hyperledger Fabric network."
               },
+
               {
                 "title": "Fractional Chief AI Officer",
                 "href": "/fractional-chief-ai-officer",
@@ -4821,9 +4846,22 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Give your AI programme a senior owner for strategy, governance and board reporting."
               },
               {
-                "title": "Software Marketplace",           
+                "title": "Software Marketplace",
+                "href": "/software-marketplace",
                 "pill": null,
-                "desc": "Give your AI programme a senior owner for strategy, governance and board reporting."
+                "desc": "Browse software licences, subscriptions and managed services from leading technology vendors."
+              },
+              {
+                "title": "GitHub Services",
+                "href": "/github-services",
+                "pill": null,
+                "desc": "Explore GitHub Enterprise, Copilot, Actions, security and managed services for engineering teams."
+              },
+              {
+                "title": "GitLab Services",
+                "href": "/gitlab-services",
+                "pill": null,
+                "desc": "Host and manage GitLab with deployment sizing, licences, runners and migration support."
               },
             ]
           }
@@ -4911,6 +4949,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/bfsi-cloud",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Urban Co-operative Banks Go-to-Market Strategy",
+                "href": "/urban-cooperative-banks-go-to-market-strategy",
+                "pill": null,
+                "desc": "Explore UCB segments, service priorities, revenue modelling and partner strategy."
               },
               {
                 "title": "Insurance Cloud",

@@ -10,6 +10,9 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'github-services'
+  | 'gitlab-services'
+  | 'edge-cloud-platform'
 
   | 'microsoft-365-governance'
   | 'azure-ai-foundry-copilot-studio'
@@ -443,6 +446,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-quantum-central': '/imported-digicert-quantum-central.html',
     'hybrid-cloud-service': '/imported-hybrid-cloud-service.html',
     'edge-cloud': '/imported-edge-cloud.html',
+    'edge-cloud-platform': '/imported-edge-cloud-platform.html',
+    'github-services': '/imported-github-services.html',
+    'gitlab-services': '/imported-gitlab-services.html',
     'ot-assessment': '/imported-ot-assessment.html',
     'blue-team-assessment': '/imported-blue-team-assessment.html',
     'red-team-assessment': '/imported-red-team-assessment.html',
@@ -776,6 +782,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'breach-and-attack-simulation': 'Breach and Attack Simulation, continuous control validation, self-check, programme planner, pricing and FAQs',
     'hybrid-cloud-service': 'Hybrid Cloud, animated connectivity, cloud bursting, placement, recovery and operations scenes, pricing, placement advisor, link sizer and Why XcellHost',
     'edge-cloud': 'Edge Cloud, animated fleet, offline operation, edge AI, deployment and security scenes, node pricing, latency map, backhaul savings and onboarding',
+    'edge-cloud-platform': 'Edge Cloud Platform: workload animations, edge zones, hourly pricing and console preview',
+    'github-services': 'GitHub Services: Enterprise, Copilot, Actions, sizing and service configuration',
+    'gitlab-services': 'GitLab Services: hosting, licences, sizing and service configuration',
     'iot-cloud': 'IoT Cloud, animated telemetry, device identity, edge buffering, alert and OTA scenes, fleet simulator, device pricing, protocol picker and Why XcellHost',
     'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',
     'email-security-enterprise': 'Email Security Enterprise, animated mail estate, high availability, DLP, DMARC and archive scenes, estate sizing and change-managed rollout',
