@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
@@ -38,13 +38,55 @@ export class FooterComponent {
   private readonly catalog = inject(CatalogService);
   private readonly overlay = inject(OverlayService);
   private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly site = SITE;
   readonly year = new Date().getFullYear();
   readonly videoStarted = signal(false);
+  readonly digicertLoaded = signal(false);
 
   /** Resolved once so the slugs match the directory the service pages use. */
   readonly catalogLinks = CATALOG_LINKS;
+
+  constructor() {
+    afterNextRender(() => {
+      const window = this.document.defaultView as (Window & {
+        __dcid?: Array<{ cid: string; tag: string }>;
+      }) | null;
+      // DigiCert's loader only initializes on HTTPS. Keep the local badge on HTTP previews.
+      if (!window || window.location.protocol !== 'https:') return;
+
+      const container = this.document.getElementById('DigiCertClickID_C0bhhaNw');
+      if (!container) return;
+      const observer = new MutationObserver(() => {
+        const image = container.querySelector('img');
+        if (!image) return;
+        const showLiveSeal = () => {
+          if (image.naturalWidth > 0) {
+            this.digicertLoaded.set(true);
+            observer.disconnect();
+          }
+        };
+        if (image.complete) showLiveSeal();
+        else image.addEventListener('load', showLiveSeal, { once: true });
+      });
+      observer.observe(container, { childList: true, subtree: true });
+      this.destroyRef.onDestroy(() => observer.disconnect());
+
+      const seals = window.__dcid = window.__dcid || [];
+      if (!seals.some(seal => seal.cid === 'DigiCertClickID_C0bhhaNw')) {
+        seals.push({ cid: 'DigiCertClickID_C0bhhaNw', tag: 'C0bhhaNw' });
+      }
+
+      if (!this.document.getElementById('digicert-seal-script')) {
+        const script = this.document.createElement('script');
+        script.id = 'digicert-seal-script';
+        script.async = true;
+        script.src = 'https://seal.digicert.com/seals/cascade/seal.min.js';
+        this.document.body.appendChild(script);
+      }
+    });
+  }
 
   openSiteLock(event: MouseEvent): void {
     if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;

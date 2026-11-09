@@ -142,7 +142,12 @@
         aria-label="Verify XcellHost with SiteLock (opens in a new window)" (click)="openSiteLock($event)">
         <img class="nf-sitelock-image" src="https://shield.sitelock.com/shield/www.xcellhost.cloud" alt="SiteLock" title="SiteLock" />
       </a>
-      <img class="nf-protection-image" src="/assets/images/geotrust-secured-powered-by-digicert.png" alt="GeoTrust Secured powered by DigiCert" />
+      <div class="nf-digicert-seal">
+        @if (!digicertLoaded()) {
+          <img class="nf-digicert-preview" src="/assets/images/digicert-secured-transparent.svg" alt="DigiCert Secured" width="120" height="56" />
+        }
+        <div id="DigiCertClickID_C0bhhaNw" class="nf-digicert-live" [style.display]="digicertLoaded() ? null : 'none'"></div>
+      </div>
       <img class="nf-protection-image" src="/assets/images/footer-trust-badge.webp" alt="Security trust badge" />
       <span class="nf-acronis-badge"><img src="/assets/images/acronis-cyber-protect-cloud.png" alt="Powered by Acronis Cyber Protect Cloud" width="1117" height="479" loading="lazy" /></span>
       <span class="nf-sitelock">🔒 SiteLock — MALWARE-FREE · xcellhost.cloud</span>
