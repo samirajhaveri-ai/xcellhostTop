@@ -22,6 +22,7 @@ const { MEGA_MENU } = load(path.join(root, 'src/app/data/nav.data.ts'));
 const { SITE } = load(path.join(root, 'src/app/data/site.data.ts'));
 const { CASE_STUDIES } = load(path.join(root, 'src/app/data/case-studies.data.ts'));
 const { PRODUCT_COMPARISONS } = load(path.join(root, 'src/app/data/product-comparisons.data.ts'));
+const { SITE_TOOLS } = load(path.join(root, 'src/app/data/tools.data.ts'));
 const slugify = name => {
   const normalized = name.toLowerCase().trim();
   if (normalized === 'erpnext hosting') return 'erp-next-hosting';
@@ -107,6 +108,11 @@ for (const comparison of PRODUCT_COMPARISONS) {
   const pathname = `compare-products/${detailSlug}`;
   paths.add(pathname);
   titles.set(pathname, comparison.title ?? `${comparison.leftLabel ?? comparison.left} vs ${comparison.rightLabel ?? comparison.right}`);
+}
+for (const tool of SITE_TOOLS) {
+  const pathname = `tools/${tool.id}`;
+  paths.add(pathname);
+  titles.set(pathname, tool.name + ' | XcellHost Tools');
 }
 const cmsSnapshotPath = path.join(root, 'public/sitemap-cms-pages.json');
 if (fs.existsSync(cmsSnapshotPath)) {

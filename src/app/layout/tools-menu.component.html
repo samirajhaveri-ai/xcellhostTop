@@ -1,0 +1,30 @@
+<button #trigger class="tools-trigger" type="button" (click)="toggle()" aria-controls="xh-tools-popover" aria-haspopup="dialog" [attr.aria-expanded]="opened()">
+  Tools <svg viewBox="0 0 16 16" aria-hidden="true" [class.flipped]="opened()"><path d="m4 6 4 4 4-4" /></svg>
+</button>
+<div #panel id="xh-tools-popover" class="tools-popover" popover="auto" role="dialog" aria-label="XcellHost tools" (toggle)="syncOpen()">
+  <div class="tools-panel-top">
+    <span>XCELLHOST TOOLS</span>
+    <label class="tools-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6" /><path d="m15 15 5 5" /></svg><input type="search" placeholder="Find a tool…" aria-label="Find a tool" [value]="query()" (input)="search($event)" /></label>
+    <button class="tools-close" type="button" (click)="close()" aria-label="Close tools">×</button>
+  </div>
+  <div class="tools-panel-body">
+    <nav class="tools-categories" aria-label="Tool categories">
+      @for (category of categories; track category.id) {
+        <button type="button" [class.selected]="selected() === category.id && !query()" [attr.aria-pressed]="selected() === category.id && !query()" (pointerenter)="hoverCategory(category.id, $event)" (click)="choose(category.id)">
+          <span class="material-symbols-outlined category-icon" [style.color]="category.color" aria-hidden="true">{{ category.icon }}</span><strong>{{ category.name }}</strong><b>{{ category.tools.length }}</b>
+        </button>
+      }
+    </nav>
+    <section class="tools-content">
+      <header><h2>{{ query() ? 'Search results' : active().name + ' Tools' }}</h2><a routerLink="/tools" [queryParams]="query() ? {} : { category: selected() }" (click)="close()">View all <span aria-hidden="true">→</span></a></header>
+      <div class="tools-link-groups">
+        @for (group of groups(); track group.name) {
+          <section><h3>{{ group.name }}</h3>
+            @for (tool of group.tools; track tool.id) { <a [routerLink]="['/tools', tool.id]" (click)="close()">{{ tool.name }}</a> }
+          </section>
+        } @empty { <p class="tools-empty">No tools match “{{ query() }}”. Try DNS, email or JSON.</p> }
+      </div>
+    </section>
+  </div>
+  <footer><span>Lookups, generators and utilities</span><a routerLink="/tools" (click)="close()">Explore the tools directory <span aria-hidden="true">→</span></a></footer>
+</div>

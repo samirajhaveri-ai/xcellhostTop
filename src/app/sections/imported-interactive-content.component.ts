@@ -10,6 +10,7 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'national-industrial-corridor-development-programme'
   | 'github-services'
   | 'gitlab-services'
   | 'edge-cloud-platform'
@@ -450,6 +451,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'edge-cloud': '/imported-edge-cloud.html',
     'edge-cloud-platform': '/imported-edge-cloud-platform.html',
     'github-services': '/imported-github-services.html',
+    'national-industrial-corridor-development-programme': '/imported-national-industrial-corridor-development-programme.html',
     'gitlab-services': '/imported-gitlab-services.html',
     'ot-assessment': '/imported-ot-assessment.html',
     'blue-team-assessment': '/imported-blue-team-assessment.html',
@@ -787,6 +789,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'edge-cloud': 'Edge Cloud, animated fleet, offline operation, edge AI, deployment and security scenes, node pricing, latency map, backhaul savings and onboarding',
     'edge-cloud-platform': 'Edge Cloud Platform: workload animations, edge zones, hourly pricing and console preview',
     'github-services': 'GitHub Services: Enterprise, Copilot, Actions, sizing and service configuration',
+    'national-industrial-corridor-development-programme': 'National Industrial Corridor Development Programme: corridor explorer, factory IT builder and smart-city readiness',
     'gitlab-services': 'GitLab Services: hosting, licences, sizing and service configuration',
     'iot-cloud': 'IoT Cloud, animated telemetry, device identity, edge buffering, alert and OTA scenes, fleet simulator, device pricing, protocol picker and Why XcellHost',
     'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',

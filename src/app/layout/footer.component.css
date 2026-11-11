@@ -1,0 +1,82 @@
+.nf-about-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 18px;
+}
+.nf-services-status {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 48px;
+  padding: 8px 16px 8px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  font: 750 13px/1.4 var(--body, sans-serif);
+  transition: transform .2s;
+  animation: nf-status-button-beat 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+.nf-services-status::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: #303030;
+  box-shadow: 0 6px 20px #09265935;
+  animation: nf-status-glow 2.5s ease-out infinite;
+}
+.nf-services-status:hover { color: #fff; transform: translateY(-2px); }
+.nf-services-status:active { animation: none; transform: scale(.97); }
+.nf-services-status:focus-visible { outline: 3px solid #ffbe63; outline-offset: 4px; }
+.nf-status-label { position: relative; }
+.nf-status-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff0a;
+  color: #34d399;
+  animation: nf-status-color 5s ease-in-out infinite;
+}
+.nf-status-icon::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  animation: nf-status-ring 2.5s ease-out infinite;
+}
+.nf-status-icon svg { position: relative; width: 27px; height: 27px; }
+.nf-status-arrow { position: relative; margin-left: 3px; color: #d3d9e2; font-size: 17px; }
+@keyframes nf-status-button-beat {
+  0%, 34%, 100% { transform: scale(1); }
+  10%, 23% { transform: scale(1.045); }
+  16%, 29% { transform: scale(.99); }
+}
+@keyframes nf-status-glow {
+  0%, 34%, 100% { box-shadow: 0 6px 20px #09265935, 0 0 0 0 #22d3ee00; }
+  10%, 23% { box-shadow: 0 6px 20px #09265935, 0 0 0 5px #22d3ee30, 0 0 22px #34d39940; }
+  16%, 29% { box-shadow: 0 6px 20px #09265935, 0 0 0 2px #60a5fa18; }
+}
+@keyframes nf-status-color { 0%,100% { color: #34d399; } 50% { color: #60a5fa; } 75% { color: #22d3ee; } }
+@keyframes nf-status-ring { 0% { transform: scale(.8); opacity: .6; } 55%,100% { transform: scale(1.7); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .nf-services-status, .nf-services-status::before, .nf-status-label, .nf-status-arrow,
+  .nf-status-icon, .nf-status-icon::before { animation: none; }
+  .nf-status-icon::before { display: none; }
+  .nf-services-status { transition: none; }
+  .nf-services-status:hover { transform: none; }
+}
