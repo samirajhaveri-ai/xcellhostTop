@@ -1523,10 +1523,9 @@ export const MEGA_MENU: MenuTop[] = [
               },
               
               {
-                "title": "Phishing Incident Response",
-                "href": "/phishing-incident-response",
+                "title": "Managed Phishing Simulation",
                 "pill": null,
-                "desc": "Report, analyse and quarantine phishing messages with SOC triage and response playbooks."
+                "desc": null
               },
               {
                 "title": "Security Awareness LMS",
@@ -1534,13 +1533,20 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Managed awareness training with short lessons, role-based paths, quizzes, certificates and completion reports."
               },
+              
               {
-                "title": "Managed Phishing Simulation",
+                "title": "Phishing Incident Response",
+                "href": "/phishing-incident-response",
                 "pill": null,
-                "desc": null
+                "desc": "Report, analyse and quarantine phishing messages with SOC triage and response playbooks."
               },
               {
                 "title": "Microsoft Security Posture Management",
+                "pill": null,
+                "desc": null
+              },
+               {
+                "title": "Microsoft 365 Security Assessment",
                 "pill": null,
                 "desc": null
               },
@@ -1550,11 +1556,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Govern identity, data protection, workloads, monitoring and resilience"
               },
-              {
-                "title": "Microsoft 365 Security Assessment",
-                "pill": null,
-                "desc": null
-              },
+             
             ]
           }
         ]
@@ -2876,12 +2878,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Free trial",
                 "desc": null
               },
-              
               {
-                "title": "Acronis XDR",
+                "title": "Scrutiny EDR",
+                "href": "/scrutiny-edr",
                 "pill": "Free trial",
                 "desc": null
               },
+              
               {
                 "title": "Mobile Device Mgmt",
                 "pill": null,
@@ -5721,13 +5724,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "No-code workflows across backup, IT management and security"
               },
               {
-                "title": "Scrutiny EDR",
-                "href": "/scrutiny-edr",
+                "title": "Acronis MDR",
                 "pill": "Free trial",
                 "desc": null
               },
               {
-                "title": "Acronis MDR",
+                "title": "Acronis XDR",
                 "pill": "Free trial",
                 "desc": null
               },

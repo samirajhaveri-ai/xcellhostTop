@@ -1,4 +1,3 @@
-<xh-algolia-search [active]="overlay.isOpen('search') && !websiteSearch()" [mode]="searchLaunch.mode()" (closed)="close()" (websiteSearch)="websiteSearch.set(true)" />
 <div class="srch" id="srch" role="dialog" aria-modal="true" [attr.aria-label]="aiMode() ? 'Ask XcellHost AI' : 'Search the website'"
   [class.open]="overlay.isOpen('search') && websiteSearch()" [attr.aria-hidden]="overlay.isOpen('search') && websiteSearch() ? null : 'true'"
   [attr.inert]="overlay.isOpen('search') && websiteSearch() ? null : ''" (click)="onBackdrop($event)">
@@ -17,15 +16,27 @@
       @if (aiMode()) {
         <button class="srch-ai-toggle" type="button" (click)="toggleAi()">Back to search</button>
       }
-      <button class="srch-ai-toggle" type="button" (click)="openAlgoliaAskAi()">
+      @if (!aiMode()) {
+      <button class="srch-ai-toggle" type="button" (click)="openAskAi()">
         <span class="material-symbols-outlined srch-ai-icon" aria-hidden="true">auto_awesome</span>
         <span>Ask AI</span>
       </button>
+      }
       <button class="srch-x" type="button" aria-label="Close search" (click)="close()">esc</button>
     </div>
-    @if (aiMode()) {
-      <xh-ai-assistant [initialQuestion]="aiQuestion()" (navigate)="close()" />
-    } @else {
+    <div class="srch-customgpt" [hidden]="!aiMode()">
+      @if (customGptStatus() === 'loading') {
+        <p class="srch-embed-status" role="status">Loading AI assistant…</p>
+      }
+      @if (customGptStatus() === 'error') {
+        <div class="srch-embed-status" role="alert">
+          <p>AI assistant could not load. Please try again.</p>
+          <button type="button" (click)="loadCustomGpt()">Try again</button>
+        </div>
+      }
+      <div id="customgpt_chat" #customGptHost></div>
+    </div>
+    @if (!aiMode()) {
     <div class="srch-body">
       <aside class="srch-filters" aria-label="Search filters">
         <div class="srch-filter-heading"><h2>Filter by source</h2>@if (hasFilters()) { <button type="button" (click)="clearFilters()">Reset</button> }</div>
