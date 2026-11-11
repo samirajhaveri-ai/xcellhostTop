@@ -1,0 +1,35 @@
+html, body { height: auto; overflow-x: clip; }
+main { display: flow-root; }
+[hidden] { display: none !important; }
+#ncHero .hero-grid > * { min-width: 0; }
+#ncHero .lh-ctas { flex-wrap: wrap !important; overflow: visible !important; }
+#ncHero .xh-banner-actions-line { flex-wrap: wrap !important; overflow: visible !important; }
+#ncHero .xh-banner-ai-nowrap { flex-wrap: wrap !important; white-space: normal !important; overflow: visible !important; }
+#ncHero .xh-banner-ai-nowrap .chips { flex-wrap: wrap !important; }
+#proof { padding: 24px 0; border-bottom: 0; }
+#proof .nc-pg { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+#proof .nc-pg > div {
+  padding: 26px 20px 18px;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px;
+  background: var(--surface);
+}
+#proof .nc-pg > div::before { left: 20px; top: 12px; }
+#proof .nc-pg small { line-height: 1.6; overflow-wrap: anywhere; }
+.nc-sub .nc-subt { flex-wrap: wrap; gap: 8px; overflow: visible; padding: 12px 0; }
+.nc-sub .nc-subt a { padding: 9px 12px; border: 1px solid var(--line); background: var(--surface-2); }
+.nc-sub .nc-subt a.on { border-color: var(--blue); background: var(--blue); color: #fff; }
+@media (max-width: 700px) {
+  #proof .nc-pg { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #proof .nc-pg > div { padding: 26px 14px 16px; }
+  #proof .nc-pg > div::before { left: 14px; }
+  .nc-sub .nc-subt { gap: 6px; }
+  .nc-sub .nc-subt a { padding: 8px 10px; font-size: 11px; }
+}
+@media (max-width: 380px) {
+  #proof .nc-pg { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  #ncHero .lh-title { overflow-wrap: anywhere; }
+  #contact .btn { white-space: normal; }
+}

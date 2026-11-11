@@ -16,6 +16,11 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 
 export const routes: Routes = [
   {
+    path: 'national-industrial-corridor-development-programme',
+    title: 'National Industrial Corridor Development Programme | XcellHost',
+    loadComponent: () => import('./pages/national-industrial-corridor-development-programme.page').then(m => m.NationalIndustrialCorridorDevelopmentProgrammePage),
+  },
+  {
     path: 'github-services',
     title: 'GitHub Services | XcellHost',
     data: {
