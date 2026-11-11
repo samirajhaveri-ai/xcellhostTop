@@ -98,6 +98,7 @@ export const routes: Routes = [
   { path: 'malaysia-go-to-market-strategy', title: 'Malaysia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/malaysia-go-to-market.page').then(m => m.MalaysiaGoToMarketPage) },
   { path: 'singapore-go-to-market-strategy', title: 'Singapore Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/singapore-go-to-market.page').then(m => m.SingaporeGoToMarketPage) },
   { path: 'kenya-go-to-market-strategy', title: 'Kenya Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/kenya-go-to-market.page').then(m => m.KenyaGoToMarketPage) },
+  { path: 'europe-go-to-market-strategy', title: 'Europe Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/europe-go-to-market.page').then(m => m.EuropeGoToMarketPage) },
   { path: 'poland-go-to-market-strategy', title: 'Poland Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/poland-go-to-market.page').then(m => m.PolandGoToMarketPage) },
   { path: 'vietnam-go-to-market-strategy', title: 'Vietnam Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/vietnam-go-to-market.page').then(m => m.VietnamGoToMarketPage) },
   {

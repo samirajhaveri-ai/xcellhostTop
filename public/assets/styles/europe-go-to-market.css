@@ -1,0 +1,19 @@
+/* Match the site's standard trust strip and rounded section bookmarks. */
+.vg-proof .wrap {
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.vg-proof .wrap::-webkit-scrollbar { display: none; }
+.vg-proof span { flex: 0 0 auto; }
+.vg-toc .vg-toct a::after,
+.vg-tocbar { display: none; }
+.vg-toc .vg-toct a.on {
+  color: #075fc7 !important;
+  background: #fff !important;
+}
+#sources .vg-tocpr { margin: 0 0 20px; }
+@media print {
+  #sources .vg-tocpr { display: none; }
+}

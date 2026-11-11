@@ -116,6 +116,7 @@ type InteractiveContentSource =
   | 'all-paloalto-products'
   | 'vietnam-go-to-market-strategy'
   | 'poland-go-to-market-strategy'
+  | 'europe-go-to-market-strategy'
   | 'uk-go-to-market-strategy'
   | 'saudi-arabia-go-to-market-strategy'
   | 'rwanda-go-to-market-strategy'
@@ -397,6 +398,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': '/imported-all-paloalto-products.html',
     'vietnam-go-to-market-strategy': '/imported-vietnam-go-to-market-strategy.html',
     'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
+    'europe-go-to-market-strategy': '/imported-europe-go-to-market-strategy.html',
     'uk-go-to-market-strategy': '/imported-uk-go-to-market-strategy.html',
     'saudi-arabia-go-to-market-strategy': '/imported-saudi-arabia-go-to-market-strategy.html',
     'rwanda-go-to-market-strategy': '/imported-rwanda-go-to-market-strategy.html',
@@ -691,6 +693,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': 'Palo Alto Networks Products and Services',
     'vietnam-go-to-market-strategy': 'Vietnam Go-to-Market Strategy',
     'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
+    'europe-go-to-market-strategy': 'Europe Go-to-Market Strategy',
     'uk-go-to-market-strategy': 'UK Go-to-Market Strategy',
     'saudi-arabia-go-to-market-strategy': 'Saudi Arabia Go-to-Market Strategy',
     'rwanda-go-to-market-strategy': 'Rwanda Go-to-Market Strategy',

@@ -785,6 +785,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Dedicated NVIDIA GPU servers in Mumbai for AI training, fine-tuning and inference."
               },
+              {
+                "title": "AMD EPYC CPU Comparison",
+                "href": "/amd-epyc-cpu-comparison",
+                "pill": null,
+                "desc": "Compare AMD EPYC processors by specifications, workload fit and per-core licensing."
+              },
       
               
             ]
@@ -874,12 +880,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/amd-mi300",
                 "pill": null,
                 "desc": "AMD Instinct MI300X GPU rental with 192 GB HBM3 and ROCm."
-              },
-              {
-                "title": "AMD EPYC CPU Comparison",
-                "href": "/amd-epyc-cpu-comparison",
-                "pill": null,
-                "desc": "Compare AMD EPYC processors by specifications, workload fit and per-core licensing."
               },
               {
                 "title": "NVIDIA Server GPU Comparison",
@@ -5479,6 +5479,12 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "By Country",
             "items": [
+              {
+                "title": "Europe Go-to-Market Strategy",
+                "href": "/europe-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Europe, with sector insights and revenue modelling."
+              },
                {
                 "title": "Vietnam Go-to-Market Strategy",
                   "href": "/vietnam-go-to-market-strategy",
@@ -5587,6 +5593,24 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Nigeria, with sector insights and revenue modelling."
               },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "By Government",
+        "label": "By Government",
+        "on": false,
+        "groups": [
+          {
+            "heading": "By Government",
+            "items": [
+              {
+                "title": "Government Cloud",
+                "href": "/government-cloud",
+                "pill": null,
+                "desc": "Cloud infrastructure, data protection and security for government workloads and public services."
+              }
             ]
           }
         ]
