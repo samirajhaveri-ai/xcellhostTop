@@ -33,6 +33,7 @@ const CATALOG_LINKS = [
   host: { style: 'display: contents' },
   imports: [RouterLink],
   templateUrl: './footer.component.html',
+  styleUrl: './footer.component.css',
 })
 export class FooterComponent {
   private readonly catalog = inject(CatalogService);

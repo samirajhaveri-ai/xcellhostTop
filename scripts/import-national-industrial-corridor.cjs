@@ -21,6 +21,7 @@ const aliases = {
   'ai-training-integrated-program': 'synapsem-ai-training-integrated-program',
 };
 const content = slice(main)
+  .replace('<span class="brd">Cloud</span>', '<span class="brd">Infra</span>')
   .replace('<main id="main">', '<main id="main" data-preserve-copy data-customer-testimonials="off">')
   .replace(/href="https:\/\/(?:www\.)?xcellhost\.(?:cloud|top)\/([^"\s]*)"/g, (_, route) => `href="/${route}" target="_top"`)
   .replace(/href="([a-z0-9-]+)\.html"/g, (_, route) => `href="/${aliases[route] || route}" target="_top"`);

@@ -5606,7 +5606,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "By Government",
             "items": [
               {
-                "title": "National Industrial Corridor Development Programme",
+                "title": "Indian GOVT",
                 "href": "/national-industrial-corridor-development-programme",
                 "pill": null,
                 "desc": "Explore industrial corridors, smart cities and factory IT with an interactive map, stack builder and readiness checklist."
@@ -5955,6 +5955,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Services Status",
+                "href": "https://statuspage.xcellhost.cloud/",
                 "pill": null,
                 "desc": "Support contacts and escalation levels"
               },
