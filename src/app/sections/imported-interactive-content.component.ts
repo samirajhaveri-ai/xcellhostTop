@@ -10,6 +10,7 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'national-industrial-corridor-development-programme'
   | 'github-services'
   | 'gitlab-services'
   | 'edge-cloud-platform'
@@ -120,6 +121,7 @@ type InteractiveContentSource =
   | 'all-paloalto-products'
   | 'vietnam-go-to-market-strategy'
   | 'poland-go-to-market-strategy'
+  | 'europe-go-to-market-strategy'
   | 'uk-go-to-market-strategy'
   | 'saudi-arabia-go-to-market-strategy'
   | 'rwanda-go-to-market-strategy'
@@ -405,6 +407,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': '/imported-all-paloalto-products.html',
     'vietnam-go-to-market-strategy': '/imported-vietnam-go-to-market-strategy.html',
     'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
+    'europe-go-to-market-strategy': '/imported-europe-go-to-market-strategy.html',
     'uk-go-to-market-strategy': '/imported-uk-go-to-market-strategy.html',
     'saudi-arabia-go-to-market-strategy': '/imported-saudi-arabia-go-to-market-strategy.html',
     'rwanda-go-to-market-strategy': '/imported-rwanda-go-to-market-strategy.html',
@@ -456,6 +459,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'edge-cloud': '/imported-edge-cloud.html',
     'edge-cloud-platform': '/imported-edge-cloud-platform.html',
     'github-services': '/imported-github-services.html',
+    'national-industrial-corridor-development-programme': '/imported-national-industrial-corridor-development-programme.html',
     'gitlab-services': '/imported-gitlab-services.html',
     'ot-assessment': '/imported-ot-assessment.html',
     'blue-team-assessment': '/imported-blue-team-assessment.html',
@@ -703,6 +707,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': 'Palo Alto Networks Products and Services',
     'vietnam-go-to-market-strategy': 'Vietnam Go-to-Market Strategy',
     'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
+    'europe-go-to-market-strategy': 'Europe Go-to-Market Strategy',
     'uk-go-to-market-strategy': 'UK Go-to-Market Strategy',
     'saudi-arabia-go-to-market-strategy': 'Saudi Arabia Go-to-Market Strategy',
     'rwanda-go-to-market-strategy': 'Rwanda Go-to-Market Strategy',
@@ -796,6 +801,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'edge-cloud': 'Edge Cloud, animated fleet, offline operation, edge AI, deployment and security scenes, node pricing, latency map, backhaul savings and onboarding',
     'edge-cloud-platform': 'Edge Cloud Platform: workload animations, edge zones, hourly pricing and console preview',
     'github-services': 'GitHub Services: Enterprise, Copilot, Actions, sizing and service configuration',
+    'national-industrial-corridor-development-programme': 'National Industrial Corridor Development Programme: corridor explorer, factory IT builder and smart-city readiness',
     'gitlab-services': 'GitLab Services: hosting, licences, sizing and service configuration',
     'iot-cloud': 'IoT Cloud, animated telemetry, device identity, edge buffering, alert and OTA scenes, fleet simulator, device pricing, protocol picker and Why XcellHost',
     'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',

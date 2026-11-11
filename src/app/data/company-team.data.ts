@@ -10,7 +10,7 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
   managementTeam: [
     { initials: 'JS', name: 'James Soosai', role: 'Chief Business Strategist', image: '/assets/images/TEAMS PHOTO/James.png' },
 
-    { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director-Africa ', image: '/assets/images/Yogesh Trivedi.png' },
+    { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director - Africa ', image: '/assets/images/Yogesh Trivedi.png' },
     { initials: 'NS', name: 'Neerav Shah', role: 'Chief Technical Officer', image: '/assets/images/TEAMS PHOTO/Neerav Shah.png' },
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
     
@@ -24,15 +24,15 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
   advisoryTeam: [
     
     { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
-    { initials: 'UJ', name: 'Upendra Joshi ', role: 'International Alliances', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
+    { initials: 'UJ', name: 'Upendra Joshi ', role: 'International Alliances - Africa', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
     { initials: 'CP', name: 'Christopher Pinto', role: 'Sales Consultant', image: '/assets/images/TEAMS PHOTO/cristopher.png' },
-    { initials: 'JP', name: 'Jaman Patel', role: 'International Alliances', image: '/assets/images/TEAMS PHOTO/Jama Patel.png' },
+    { initials: 'JP', name: 'Jaman Patel', role: 'International Alliances - Faris', image: '/assets/images/TEAMS PHOTO/Jama Patel.png' },
   ],
 
   salesTeam: [
     { initials: 'RS', name: 'Rahul Sanghavi', role: 'Cloud Sales Head', image: '/assets/images/TEAMS PHOTO/Rahul Sanghavi.png' },
-    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/TEAMS PHOTO/Abhishek Pandey.png' },
     { initials: 'SK', name: 'Sushil Kumar', role: 'Cloud-PreSales Manager', image: 'assets/images/TEAMS PHOTO/Sudhil.png' },
+    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/TEAMS PHOTO/Abhishek Pandey.png' },
     { initials: 'RS', name: 'Rashed Syed', role: 'Cloud Sales Advisor', image: '/assets/images/TEAMS PHOTO/Rashed.png' },
     { initials: 'MG', name: 'Mihir Ambokar ', role: 'Cloud Sales Advisor', image: '/assets/images/TEAMS PHOTO/Mihir.png' },
     { initials: 'AG', name: 'Ajay Gupta', role: 'Cloud Sales Advisor', image: '/assets/images/TEAMS PHOTO/Ajay Gupta.png' },

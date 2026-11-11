@@ -4,6 +4,7 @@ import { ThemeService } from '../core/theme.service';
 import { SITE } from '../data/site.data';
 import { LanguagePickerComponent } from './language-picker.component';
 import { RouterLink } from '@angular/router';
+import { ToolsMenuComponent } from './tools-menu.component';
 
 /**
  * The navy strip above the header: portal shortcuts on the left, phone number
@@ -14,7 +15,7 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
   templateUrl: './utility-bar.component.html',
-  imports: [LanguagePickerComponent, RouterLink],
+  imports: [LanguagePickerComponent, RouterLink, ToolsMenuComponent],
 })
 export class UtilityBarComponent implements AfterViewInit {
   readonly linksExpanded = signal(false);
