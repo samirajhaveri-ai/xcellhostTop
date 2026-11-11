@@ -53,5 +53,8 @@ export class ToolsMenuComponent {
   }
   syncOpen(): void { this.opened.set(this.panel.nativeElement.matches(':popover-open')); }
   choose(id: string): void { this.selected.set(id); this.query.set(''); }
+  hoverCategory(id: string, event: PointerEvent): void {
+    if (event.pointerType === 'mouse') this.choose(id);
+  }
   search(event: Event): void { this.query.set((event.target as HTMLInputElement).value); }
 }

@@ -10,7 +10,7 @@
   <div class="tools-panel-body">
     <nav class="tools-categories" aria-label="Tool categories">
       @for (category of categories; track category.id) {
-        <button type="button" [class.selected]="selected() === category.id && !query()" [attr.aria-pressed]="selected() === category.id && !query()" (click)="choose(category.id)">
+        <button type="button" [class.selected]="selected() === category.id && !query()" [attr.aria-pressed]="selected() === category.id && !query()" (pointerenter)="hoverCategory(category.id, $event)" (click)="choose(category.id)">
           <span class="material-symbols-outlined category-icon" [style.color]="category.color" aria-hidden="true">{{ category.icon }}</span><strong>{{ category.name }}</strong><b>{{ category.tools.length }}</b>
         </button>
       }
