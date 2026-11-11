@@ -15,6 +15,8 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'tools', title: 'Free Online Tools | XcellHost', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
+  { path: 'tools/:tool', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
   {
     path: 'national-industrial-corridor-development-programme',
     title: 'National Industrial Corridor Development Programme | XcellHost',
