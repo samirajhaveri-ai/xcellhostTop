@@ -114,6 +114,8 @@ export const routes: Routes = [
   { path: 'email-encryptionu', redirectTo: 'email-encryption', pathMatch: 'full' },
   { path: 'google-security-assessmentupload', redirectTo: 'google-security-assessment', pathMatch: 'full' },
 
+  { path: 'druva-licensing-guide', title: 'Druva Licensing Guide | XcellHost', data: { searchTitle: 'Druva Licensing Guide', searchDescription: 'Explore Druva licensing, workload rules, editions, pricing calculators and FAQs for India.' }, loadComponent: () => import('./pages/backup-licensing-guide.page').then(m => m.BackupLicensingGuidePage) },
+  { path: 'veeam-licensing-guide', title: 'Veeam Licensing Guide | XcellHost', data: { searchTitle: 'Veeam Licensing Guide', searchDescription: 'Explore Veeam licensing, workload rules, editions, pricing calculators and FAQs for India.' }, loadComponent: () => import('./pages/backup-licensing-guide.page').then(m => m.BackupLicensingGuidePage) },
   { path: 'acronis-licensing-guide', title: 'Acronis Licensing Guide | XcellHost', data: { searchTitle: 'Acronis Licensing Guide', searchDescription: 'Explore Acronis licensing models, workloads, storage, pricing calculators and FAQs for India.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
   { path: 'acronis-licencing-guide', redirectTo: 'acronis-licensing-guide', pathMatch: 'full' },
   { path: 'microsoft-csp-licensing-guide', title: 'Microsoft CSP Licensing Guide | XcellHost', data: { searchTitle: 'Microsoft CSP Licensing Guide', searchDescription: 'Understand Microsoft CSP subscriptions, NCE terms, billing, renewals and licensing tools for India.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
@@ -688,6 +690,8 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/microsoft-365-e7.page').then((m) => m.Microsoft365E7Page),
   },
 
+  { path: 'cybersecurity-frameworks/nigeria-data-protection-act-ndpa', loadComponent: () => import('./pages/nigeria-ndpa.page').then(m => m.NigeriaNdpaPage) },
+  { path: 'nigeria-data-protection-act-ndpa', redirectTo: 'cybersecurity-frameworks/nigeria-data-protection-act-ndpa', pathMatch: 'full' },
   ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
   {
     path: 'microsoft-365-business-standard-no-teams',
@@ -1081,7 +1085,7 @@ export const routes: Routes = [
   {
     path: 'digicert-ssl-certificates',
     data: { productSlug: 'digicert-ssl-certificates' },
-    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+    loadComponent: () => import('./pages/digicert-catalogue.page').then((m) => m.DigicertCataloguePage),
   },
   {
     path: 'digicert',

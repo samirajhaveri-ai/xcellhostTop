@@ -1,0 +1,16 @@
+html,body{height:auto;min-height:0;margin:0;max-width:100%;overflow-x:clip}
+main{display:flow-root}
+/* Preserve the supplied catalogue styling, including its prices and controls. */
+.dc-c a:focus-visible,.dc-tw a:focus-visible{outline:2px solid #0066ff;outline-offset:4px}
+#dcHero .hero-grid{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)!important;gap:24px!important}
+#dcHero .dc-copy{min-width:0}
+#dcHero .stage{width:100%!important;min-width:0;max-width:100%}
+#dcHero .lh-title{font-size:var(--dc-title-size,34px)!important;white-space:nowrap;letter-spacing:-.04em}
+#dcHero .lh-title .nm{display:inline!important}
+#dcHero .lh-type{max-width:100%;overflow:hidden;white-space:nowrap}
+#dcHero .lh-ask{width:fit-content;max-width:100%;box-sizing:border-box;gap:6px;flex-wrap:nowrap!important;overflow:visible!important}
+#dcHero .lh-ask .k{font-size:10px;white-space:nowrap!important}
+#dcHero .lh-ask .chips{display:flex;gap:5px;flex-wrap:nowrap!important}
+#dcHero .lh-ask a{font-size:10px;padding:6px 7px;flex:none}
+@media(max-width:1200px){#dcHero .hero-grid{grid-template-columns:minmax(0,1fr)!important}#dcHero .stage{max-width:650px;margin-inline:auto}#dcHero .lh-ctas.xh-banner-actions-line{flex-wrap:wrap!important;overflow:visible!important}#dcHero .lh-ask.xh-banner-ai-nowrap{flex-wrap:wrap!important;white-space:normal!important}#dcHero .lh-ask.xh-banner-ai-nowrap .chips{flex-wrap:wrap!important;min-width:0;flex-shrink:1!important}}
+@media(max-width:760px){#dcHero .lh-ask .k{white-space:normal!important;flex-shrink:1!important}}

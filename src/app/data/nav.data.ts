@@ -5745,6 +5745,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/microsoft-365-licensing-guide",
                 "pill": "In focus",
                 "desc": null
+              },
+              {
+                "title": "Druva Licensing Guide",
+                "href": "/druva-licensing-guide",
+                "pill": "In focus",
+                "desc": "Explore Druva licensing, plans and workload calculators."
+              },
+              {
+                "title": "Veeam Licensing Guide",
+                "href": "/veeam-licensing-guide",
+                "pill": "In focus",
+                "desc": "Explore Veeam licensing, plans and workload calculators."
               }
             ]
           }

@@ -32,6 +32,8 @@ type InteractiveContentSource =
   | 'qualys-services'
   | 'patch-mgmt-as-a-service'
   | 'cloud-disaster-recovery-smb'
+  | 'druva-licensing-guide'
+  | 'veeam-licensing-guide'
   | 'acronis-licensing-guide'
   | 'microsoft-csp-licensing-guide'
   | 'microsoft-365-licensing-guide'
@@ -103,6 +105,8 @@ type InteractiveContentSource =
   | 'entra-id-backup'
   | 'ca-cloud'
   | 'microsoft-agent-365'
+  | 'nigeria-ndpa'
+  | 'digicert-catalogue'
   | 'microsoft-services'
   | 'digicert-services'
   | 'geotrust-services'
@@ -295,6 +299,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'azure-ai-foundry-copilot-studio': '/imported-azure-ai-foundry-copilot-studio.html',
     'microsoft-365-governance': '/imported-microsoft-365-governance.html',
     'dpdp-compliance-platform': '/imported-dpdp-compliance-platform.html',
+    'druva-licensing-guide': '/imported-druva-licensing-guide.html',
+    'veeam-licensing-guide': '/imported-veeam-licensing-guide.html',
     'acronis-licensing-guide': '/imported-acronis-licensing-guide.html',
     'microsoft-csp-licensing-guide': '/imported-microsoft-csp-licensing-guide.html',
     'microsoft-365-licensing-guide': '/imported-microsoft-365-licensing-guide.html',
@@ -384,6 +390,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
+    'nigeria-ndpa': '/imported-nigeria-data-protection-act-ndpa.html',
+    'digicert-catalogue': '/imported-digicert-catalogue.html',
     'microsoft-services': '/imported-microsoft-services.html',
     'digicert-services': '/imported-digicert-services.html',
     'geotrust-services': '/imported-geotrust-services.html',
@@ -674,10 +682,14 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'vcio-why': 'Why XcellHost for vCIO as a Service',
     'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
     'ca-cloud': 'CA Cloud',
+    'druva-licensing-guide': 'Druva Licensing Guide',
+    'veeam-licensing-guide': 'Veeam Licensing Guide',
     'acronis-licensing-guide': 'Acronis Licensing Guide',
     'microsoft-csp-licensing-guide': 'Microsoft CSP Licensing Guide',
     'microsoft-365-licensing-guide': 'Microsoft 365 Licensing Guide',
     'microsoft-agent-365': 'Microsoft Agent 365',
+    'nigeria-ndpa': 'Nigeria Data Protection Act (NDPA)',
+    'digicert-catalogue': 'DigiCert SSL Certificates',
     'microsoft-services': 'Microsoft Products and Services',
     'digicert-services': 'DigiCert Products and Services',
     'geotrust-services': 'GeoTrust Products and Services',
@@ -1058,6 +1070,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'entra-id-backup' ? 'Entra ID Backup'
         : this.source === 'ca-cloud' ? 'CA Cloud'
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
+        : ['druva-licensing-guide', 'veeam-licensing-guide'].includes(this.source) ? this.sourceTitles[this.source]
+        : this.source === 'nigeria-ndpa' ? 'Nigeria Data Protection Act (NDPA)'
+        : this.source === 'digicert-catalogue' ? 'DigiCert SSL Certificates'
         : this.source.startsWith('ai-training-') ? this.sourceTitles[this.source]
         : this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
@@ -1183,6 +1198,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       else if (this.source === 'entra-id-backup') this.overlay.open('trial', 'Entra ID Backup');
       else if (this.source === 'ca-cloud') this.overlay.open('trial', 'CA Cloud');
       else if (this.source === 'microsoft-agent-365') this.overlay.open('trial', 'Microsoft Agent 365');
+      else if (this.source === 'nigeria-ndpa') this.overlay.open('trial', 'Nigeria Data Protection Act (NDPA)');
+      else if (this.source === 'digicert-catalogue') this.overlay.open('trial', 'DigiCert SSL Certificates');
       else if (this.source.startsWith('ai-training-')) this.overlay.open('trial', this.sourceTitles[this.source]);
       else if (this.source in IDENTITY_SECURITY_PAGES) this.overlay.open('trial', this.sourceTitles[this.source]);
       else if (['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source)) this.overlay.open('trial', this.sourceTitles[this.source]);
