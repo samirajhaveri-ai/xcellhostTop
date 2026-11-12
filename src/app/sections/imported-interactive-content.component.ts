@@ -106,6 +106,7 @@ type InteractiveContentSource =
   | 'entra-id-backup'
   | 'ca-cloud'
   | 'microsoft-agent-365'
+  | 'register-a-domain-name'
   | 'secure-file-transfer'
   | 'eccouncil-services'
   | 'podcast-catalog'
@@ -395,6 +396,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
+    'register-a-domain-name': '/imported-register-a-domain-name.html',
     'secure-file-transfer': '/imported-secure-file-transfer.html',
     'eccouncil-services': '/imported-eccouncil-services.html',
     'podcast-catalog': '/imported-podcast-catalog.html',
@@ -698,6 +700,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'microsoft-csp-licensing-guide': 'Microsoft CSP Licensing Guide',
     'microsoft-365-licensing-guide': 'Microsoft 365 Licensing Guide',
     'microsoft-agent-365': 'Microsoft Agent 365',
+    'register-a-domain-name': 'Register A Domain Name',
     'secure-file-transfer': 'Secure File Transfer',
     'eccouncil-services': 'EC-Council Programs',
     'podcast-catalog': 'The XcellHost Podcast',
@@ -1086,6 +1089,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'ca-cloud' ? 'CA Cloud'
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
         : ['druva-licensing-guide', 'veeam-licensing-guide'].includes(this.source) ? this.sourceTitles[this.source]
+        : this.source === 'register-a-domain-name' ? 'Register A Domain Name'
         : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
         : this.source === 'eccouncil-services' ? 'EC-Council Programs'
         : this.source === 'podcast-catalog' ? 'The XcellHost Podcast'
@@ -1119,6 +1123,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const add = (event: Event) => {
       const item = (event as CustomEvent).detail;
+      if (this.source === 'register-a-domain-name' && item.dm) {
+        this.cart.add(item.name + ' - ' + (item.dm.type === 'transfer' ? 'Domain Transfer' : 'Domain Registration'), 'INR ' + item.price, 1,
+          { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: ' excl. GST', domain: { name: item.name, type: item.dm.type, register: item.dm.reg, renew: item.dm.renew, tld: item.dm.tld } });
+        this.cart.open(); return;
+      }
       if (this.source === 'eccouncil-services' && Number(item.price) === 0) {
         this.cart.add(item.name + ' - ' + item.sub, 'Quote on request', item.qty);
         this.cart.open();
@@ -1275,6 +1284,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     doc.addEventListener('import-identity-enquiry', identityEnquiry);
     doc.addEventListener('import-trial', trial);
     doc.addEventListener('import-callback', callback);
+    const openDomainCart = () => { if (this.source === 'register-a-domain-name') this.cart.open(); };
+    doc.addEventListener('import-cart-open', openDomainCart);
     doc.addEventListener('import-cart', add);
     doc.addEventListener('import-newsletter', newsletter);
     doc.addEventListener('import-enquiry', enquiry);
@@ -1287,6 +1298,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       () => doc.removeEventListener('import-identity-enquiry', identityEnquiry),
       () => doc.removeEventListener('import-marketplace-enquiry', marketplaceEnquiry),
       () => doc.removeEventListener('import-callback', callback),
+      () => doc.removeEventListener('import-cart-open', openDomainCart),
       () => doc.removeEventListener('import-cart', add),
       () => doc.removeEventListener('import-newsletter', newsletter),
       () => doc.removeEventListener('import-enquiry', enquiry),

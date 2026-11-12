@@ -885,6 +885,7 @@ export const routes: Routes = [
   { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/promotion-and-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/trust-watch', redirectTo: 'company/trust-watch', pathMatch: 'full' },
+  { path: 'register-a-domain-name', title: 'Register A Domain Name | XcellHost', loadComponent: () => import('./pages/register-a-domain-name.page').then(m => m.DomainRegistrationPage) },
   { path: 'domains', redirectTo: 'register-a-domain-name', pathMatch: 'full' },
   { path: 'iot-infrastructure', redirectTo: 'iot-cloud', pathMatch: 'full' },
   { path: 'why-xcellhost', redirectTo: 'about-us', pathMatch: 'full' },
