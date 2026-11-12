@@ -106,6 +106,9 @@ type InteractiveContentSource =
   | 'entra-id-backup'
   | 'ca-cloud'
   | 'microsoft-agent-365'
+  | 'secure-file-transfer'
+  | 'eccouncil-services'
+  | 'podcast-catalog'
   | 'nigeria-ndpa'
   | 'digicert-catalogue'
   | 'microsoft-services'
@@ -392,6 +395,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
+    'secure-file-transfer': '/imported-secure-file-transfer.html',
+    'eccouncil-services': '/imported-eccouncil-services.html',
+    'podcast-catalog': '/imported-podcast-catalog.html',
     'nigeria-ndpa': '/imported-nigeria-data-protection-act-ndpa.html',
     'digicert-catalogue': '/imported-digicert-catalogue.html',
     'microsoft-services': '/imported-microsoft-services.html',
@@ -692,6 +698,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'microsoft-csp-licensing-guide': 'Microsoft CSP Licensing Guide',
     'microsoft-365-licensing-guide': 'Microsoft 365 Licensing Guide',
     'microsoft-agent-365': 'Microsoft Agent 365',
+    'secure-file-transfer': 'Secure File Transfer',
+    'eccouncil-services': 'EC-Council Programs',
+    'podcast-catalog': 'The XcellHost Podcast',
     'nigeria-ndpa': 'Nigeria Data Protection Act (NDPA)',
     'digicert-catalogue': 'DigiCert SSL Certificates',
     'microsoft-services': 'Microsoft Products and Services',
@@ -1077,6 +1086,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'ca-cloud' ? 'CA Cloud'
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
         : ['druva-licensing-guide', 'veeam-licensing-guide'].includes(this.source) ? this.sourceTitles[this.source]
+        : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
+        : this.source === 'eccouncil-services' ? 'EC-Council Programs'
+        : this.source === 'podcast-catalog' ? 'The XcellHost Podcast'
         : this.source === 'nigeria-ndpa' ? 'Nigeria Data Protection Act (NDPA)'
         : this.source === 'digicert-catalogue' ? 'DigiCert SSL Certificates'
         : this.source.startsWith('ai-training-') ? this.sourceTitles[this.source]
@@ -1107,6 +1119,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const add = (event: Event) => {
       const item = (event as CustomEvent).detail;
+      if (this.source === 'eccouncil-services' && Number(item.price) === 0) {
+        this.cart.add(item.name + ' - ' + item.sub, 'Quote on request', item.qty);
+        this.cart.open();
+        return;
+      }
       this.cart.add(item.name + ' - ' + item.sub, 'INR ' + item.price, item.qty,
         { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: '' });
       this.cart.open();
@@ -1225,14 +1242,14 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);
       this.topics.ask(this.sourceTitles[this.source], {
         firstName, lastName: lastName.join(' '), company: values['company'] || values['org'] || '', email: values['email'] || '',
         phone: values['phone'] || '', help: 'Request a CallBack',
-        details: (catalogue ? this.sourceTitles[this.source] + ' quotation\n' : 'Training enrolment request\n') + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
+        details: (this.source === 'podcast-catalog' ? 'Podcast launch notification request\n' : catalogue ? this.sourceTitles[this.source] + ' quotation\n' : 'Training enrolment request\n') + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
       });
       this.overlay.open('callback');
     };
