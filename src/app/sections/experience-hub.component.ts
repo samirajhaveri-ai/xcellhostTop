@@ -57,7 +57,7 @@ export class ExperienceHubComponent {
       : card.category === 'alliances' ? '/company/vendor-partners'
       : card.category === 'accelerators' ? '/about-us'
       : card.category === 'professional' ? '/contact'
-      : card.category === 'all' ? '/cloud-marketplace' : '/explore-marketplace',
+      : '/explore-marketplace',
     params: card.category === 'professional'
       ? { service: card.title }
       : card.category === 'all' || card.category === 'ai' || card.category === 'licenses' || card.category === 'alliances' || card.category === 'accelerators' ? {}

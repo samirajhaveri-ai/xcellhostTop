@@ -9,7 +9,7 @@
 .xh-service-banner-ai-links img{display:block;width:24px;height:24px;border-radius:4px;object-fit:contain;background:#fff}
 .xh-service-banner-actions>button:hover{filter:brightness(1.12)}
 .xh-service-banner-actions>button:focus-visible,.xh-service-banner-ai-links>a:focus-visible{outline:2px solid #65b7ff;outline-offset:3px}
-@media(max-width:760px){.xh-service-banner-actions{gap:10px}.xh-service-banner-actions>button{min-height:48px;padding:12px 16px;font-size:14px}.xh-service-banner-ai{width:100%;flex-wrap:wrap}.xh-service-banner-ai-label{flex-basis:100%}}
+@media(max-width:760px){.xh-service-banner-actions{gap:10px}.xh-service-banner-actions>button{min-height:48px;padding:12px 16px;font-size:14px}.xh-service-banner-ai{width:100%;flex-wrap:nowrap}.xh-service-banner-ai-label{flex-basis:auto}}
 [data-banner-ready] img:is([src*="/xcellhost-logo."],[src*="/xcellhost-login-logo."]){display:none!important}
 .xh-banner-actions{display:flex!important;align-items:center;flex-wrap:nowrap;gap:7px;margin:18px 0 0;max-width:100%;position:relative;z-index:2;overflow-x:auto;scrollbar-width:none}
 .xh-banner-actions>.xh-banner-button{flex:0 0 auto}
@@ -28,10 +28,11 @@
 .xh-banner-ai .xh-banner-ai-links{display:flex;align-items:center;gap:8px;flex:none}
 .xh-banner-ai .xh-banner-ai-links a{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;min-width:32px;padding:0;border:0;border-radius:9px;background:#ffffff14}
 .xh-banner-ai .xh-banner-ai-links img{width:19px;height:19px;object-fit:contain;border-radius:4px}
-/* Preserve labels and all providers in one keyboard-scrollable row. */
-.xh-banner-ai-nowrap.xh-banner-ai-nowrap{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;white-space:nowrap!important;max-width:100%!important;overflow-x:auto!important;scrollbar-width:none;box-sizing:border-box}
-.xh-banner-ai-nowrap::-webkit-scrollbar{display:none}
+/* Keep the label and every AI provider together in one non-scrolling row. */
+.xh-banner-ai-nowrap.xh-banner-ai-nowrap{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;white-space:nowrap!important;max-width:100%!important;overflow:visible!important;box-sizing:border-box}
 .home-hero-copy .xh-banner-actions{justify-content:center}
 .home-hero-copy .xh-banner-ai{margin-left:auto;margin-right:auto}
-.xh-banner-ai-nowrap.xh-banner-ai-nowrap>*,.xh-banner-ai-nowrap.xh-banner-ai-nowrap .chips{flex-shrink:0!important;flex-basis:auto!important;white-space:nowrap!important;flex-wrap:nowrap!important}
+.xh-banner-ai-nowrap.xh-banner-ai-nowrap>*{min-width:0!important;white-space:nowrap!important}
+.xh-banner-ai-nowrap.xh-banner-ai-nowrap .chips{display:flex!important;flex:1 1 auto!important;min-width:0!important;white-space:nowrap!important;flex-wrap:nowrap!important}
+.xh-banner-ai-nowrap.xh-banner-ai-nowrap .chips>a{flex:1 1 auto!important;min-width:0!important;white-space:nowrap!important}
 @media(max-width:480px){.xh-banner-actions .xh-banner-button{font-size:10px;padding:9px 8px}.xh-banner-actions{gap:5px}.xh-banner-ai{padding:8px 10px}}
