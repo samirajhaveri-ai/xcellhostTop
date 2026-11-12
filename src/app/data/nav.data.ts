@@ -5592,8 +5592,8 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "By Indian GOVT",
-        "label": "By Indian GOVT",
+        "g": "By Indian Govt",
+        "label": "By Indian Govt",
         "on": false,
         "groups": [
           {
