@@ -106,6 +106,10 @@ type InteractiveContentSource =
   | 'entra-id-backup'
   | 'ca-cloud'
   | 'microsoft-agent-365'
+  | 'register-a-domain-name'
+  | 'secure-file-transfer'
+  | 'eccouncil-services'
+  | 'podcast-catalog'
   | 'nigeria-ndpa'
   | 'digicert-catalogue'
   | 'microsoft-services'
@@ -392,6 +396,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
+    'register-a-domain-name': '/imported-register-a-domain-name.html',
+    'secure-file-transfer': '/imported-secure-file-transfer.html',
+    'eccouncil-services': '/imported-eccouncil-services.html',
+    'podcast-catalog': '/imported-podcast-catalog.html',
     'nigeria-ndpa': '/imported-nigeria-data-protection-act-ndpa.html',
     'digicert-catalogue': '/imported-digicert-catalogue.html',
     'microsoft-services': '/imported-microsoft-services.html',
@@ -621,7 +629,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cyber-insurance-for-businesses': 'Cyber Insurance for Businesses',
     'cyber-insurance-for-individuals': 'Cyber Insurance for Individuals',
     'cyber-insurance-for-executives': 'Cyber Insurance for Executives',
-    'enterprise-dpdp-platform': 'Enterprise DPDP Platform',
+    'enterprise-dpdp-platform': 'DPDPA for Enterprise',
     'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
     'cloud-disaster-recovery-smb-opening': 'Cloud Disaster Recovery for SMB',
 
@@ -692,6 +700,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'microsoft-csp-licensing-guide': 'Microsoft CSP Licensing Guide',
     'microsoft-365-licensing-guide': 'Microsoft 365 Licensing Guide',
     'microsoft-agent-365': 'Microsoft Agent 365',
+    'register-a-domain-name': 'Register A Domain Name',
+    'secure-file-transfer': 'Secure File Transfer',
+    'eccouncil-services': 'EC-Council Programs',
+    'podcast-catalog': 'The XcellHost Podcast',
     'nigeria-ndpa': 'Nigeria Data Protection Act (NDPA)',
     'digicert-catalogue': 'DigiCert SSL Certificates',
     'microsoft-services': 'Microsoft Products and Services',
@@ -1077,6 +1089,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'ca-cloud' ? 'CA Cloud'
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
         : ['druva-licensing-guide', 'veeam-licensing-guide'].includes(this.source) ? this.sourceTitles[this.source]
+        : this.source === 'register-a-domain-name' ? 'Register A Domain Name'
+        : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
+        : this.source === 'eccouncil-services' ? 'EC-Council Programs'
+        : this.source === 'podcast-catalog' ? 'The XcellHost Podcast'
         : this.source === 'nigeria-ndpa' ? 'Nigeria Data Protection Act (NDPA)'
         : this.source === 'digicert-catalogue' ? 'DigiCert SSL Certificates'
         : this.source.startsWith('ai-training-') ? this.sourceTitles[this.source]
@@ -1107,6 +1123,16 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const add = (event: Event) => {
       const item = (event as CustomEvent).detail;
+      if (this.source === 'register-a-domain-name' && item.dm) {
+        this.cart.add(item.name + ' - ' + (item.dm.type === 'transfer' ? 'Domain Transfer' : 'Domain Registration'), 'INR ' + item.price, 1,
+          { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: ' excl. GST', domain: { name: item.name, type: item.dm.type, register: item.dm.reg, renew: item.dm.renew, tld: item.dm.tld } });
+        this.cart.open(); return;
+      }
+      if (this.source === 'eccouncil-services' && Number(item.price) === 0) {
+        this.cart.add(item.name + ' - ' + item.sub, 'Quote on request', item.qty);
+        this.cart.open();
+        return;
+      }
       this.cart.add(item.name + ' - ' + item.sub, 'INR ' + item.price, item.qty,
         { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: '' });
       this.cart.open();
@@ -1225,14 +1251,14 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);
       this.topics.ask(this.sourceTitles[this.source], {
         firstName, lastName: lastName.join(' '), company: values['company'] || values['org'] || '', email: values['email'] || '',
         phone: values['phone'] || '', help: 'Request a CallBack',
-        details: (catalogue ? this.sourceTitles[this.source] + ' quotation\n' : 'Training enrolment request\n') + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
+        details: (this.source === 'podcast-catalog' ? 'Podcast launch notification request\n' : catalogue ? this.sourceTitles[this.source] + ' quotation\n' : 'Training enrolment request\n') + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
       });
       this.overlay.open('callback');
     };
@@ -1258,6 +1284,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     doc.addEventListener('import-identity-enquiry', identityEnquiry);
     doc.addEventListener('import-trial', trial);
     doc.addEventListener('import-callback', callback);
+    const openDomainCart = () => { if (this.source === 'register-a-domain-name') this.cart.open(); };
+    doc.addEventListener('import-cart-open', openDomainCart);
     doc.addEventListener('import-cart', add);
     doc.addEventListener('import-newsletter', newsletter);
     doc.addEventListener('import-enquiry', enquiry);
@@ -1270,6 +1298,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       () => doc.removeEventListener('import-identity-enquiry', identityEnquiry),
       () => doc.removeEventListener('import-marketplace-enquiry', marketplaceEnquiry),
       () => doc.removeEventListener('import-callback', callback),
+      () => doc.removeEventListener('import-cart-open', openDomainCart),
       () => doc.removeEventListener('import-cart', add),
       () => doc.removeEventListener('import-newsletter', newsletter),
       () => doc.removeEventListener('import-enquiry', enquiry),
