@@ -7,6 +7,18 @@
 <meta property="og:title" content="XcellHost Software Marketplace India | Microsoft 365, Security, Backup, SSL &amp; Licences in INR — XcellHost"><meta property="og:description" content="XcellHost Software Marketplace: search every software licence and subscription XcellHost resells — Microsoft 365, Google Workspace, Acronis, Veeam, Fortinet, Palo Alto, SentinelOne, Kaspersky, Qualys, Cloudflare, Barracuda, DigiCert, Sectigo, GeoTrust, Red Hat, Oracle, IBM, HPE, Dell, TSplus and more. Build a multi-vendor quote basket. INR invoicing with GST, 24×7 support from Mumbai since 1999."><meta property="og:type" content="website">
 <link rel="canonical" href="https://xcellhost.cloud/software-marketplace">
 <meta name="theme-color" content="#041E42">
+<script>
+if (window.self !== window.top) document.documentElement.classList.add('site-embedded');
+</script>
+<style>
+html.site-embedded, .site-embedded body { height: auto !important; overflow: hidden !important; }
+.site-embedded .ubar, .site-embedded .promo, .site-embedded .hdr,
+.site-embedded .mnav, .site-embedded .srch, .site-embedded .lnl-wrap,
+.site-embedded .lft, .site-embedded .lfab, .site-embedded .rfab,
+.site-embedded .side-cb, .site-embedded #xhProgress, .site-embedded #xhBot,
+.site-embedded .sm-ctab { display: none !important; }
+.site-embedded .rv { opacity: 1 !important; transform: none !important; }
+</style>
 <script>try{var t=localStorage.getItem('xh-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -1835,6 +1847,17 @@ size();go(0);if(!X.reduce)requestAnimationFrame(loop);
 if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){paint();});
 window.__aoHero={go:go,pause:function(p){paused=!!p;},seek:function(t){el=+t;paint();}};
 })();
+</script>
+<script>
+if (window.self !== window.top) {
+  const main = document.querySelector('main');
+  const reportHeight = () => {
+    if (main) parent.postMessage({ type: 'marketplace-height', height: Math.ceil(main.getBoundingClientRect().bottom) + 4 }, location.origin);
+  };
+  if (main) new ResizeObserver(reportHeight).observe(main);
+  reportHeight();
+  document.fonts.ready.then(reportHeight);
+}
 </script>
 </body>
 </html>

@@ -48,7 +48,11 @@ export class CatalogService {
    * indexed here too — otherwise every one of those menu links would dead-end.
    */
   private readonly bySlug: Record<string, DirectoryEntry> = (() => {
-    const m: Record<string, DirectoryEntry> = {};
+    // Retain these product pages independently of their visibility in the menu.
+    const m: Record<string, DirectoryEntry> = {
+      'nvidia-rtx-6000-ada': { name: 'NVIDIA RTX 6000 Ada', desc: '', cat: 'Cloud', group: 'GPU Servers' },
+      'rtx-a6000': { name: 'RTX A6000', desc: '', cat: 'Cloud', group: 'GPU Servers' },
+    };
     for (const e of DIRECTORY) {
       const s = slugify(e.name);
       if (!m[s]) m[s] = e;
