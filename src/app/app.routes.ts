@@ -386,7 +386,8 @@ export const routes: Routes = [
   { path: 'network-access-control-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
 
   // Veritas renders the supplied page content inside the existing site shell.
-  { path: 'veritas', title: 'AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
+  { path: 'veritas', redirectTo: 'ai-visibility-seo-platform', pathMatch: 'full' },
+  { path: 'ai-visibility-seo-platform', title: 'AI Visibility + SEO Platform | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
 
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
   { path: 'bare-metal-servers/checkout', title: 'Complete Your Bare Metal Server Order | XcellHost', data: { checkoutProduct: 'bare-metal' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
@@ -848,7 +849,7 @@ export const routes: Routes = [
   {
     path: 'cloud-marketplace',
     data: {
-      documentUrl: '/cloud-marketplace.html',
+      documentUrl: '/imported-cloud-marketplace.html',
       heading: 'XcellHost Cloud Marketplace',
       title: 'XcellHost Cloud Marketplace India | XcellHost',
       description: 'Browse XcellHost cloud, security, data protection, digital trust, productivity, AI, connectivity and training services in one searchable catalogue.',
@@ -859,7 +860,7 @@ export const routes: Routes = [
   {
     path: 'ai-marketplace',
     data: {
-      documentUrl: '/ai-marketplace.html',
+      documentUrl: '/imported-ai-marketplace.html',
       heading: 'XcellHost AI Marketplace',
       title: 'XcellHost AI Marketplace | XcellHost',
       description: 'Explore XcellHost AI models, agents, RAG, GPU compute, AI security, governance, training and managed AI services.',
@@ -870,7 +871,7 @@ export const routes: Routes = [
   {
     path: 'software-marketplace',
     data: {
-      documentUrl: '/software-marketplace.html',
+      documentUrl: '/imported-software-marketplace.html',
       heading: 'XcellHost Software Marketplace',
       title: 'XcellHost Software Marketplace India | XcellHost',
       description: 'Search software licences and subscriptions from Microsoft, Google, Acronis, Veeam, Fortinet, DigiCert, Sectigo and other leading vendors.',
@@ -1395,6 +1396,9 @@ export const routes: Routes = [
   { path: 'identity-access-management', redirectTo: 'identity-and-access-management', pathMatch: 'full' },
   { path: 'identity-governance-administration', redirectTo: 'identity-governance-and-administration', pathMatch: 'full' },
   { path: 'vortex-soc', redirectTo: 'soc-as-a-services', pathMatch: 'full' },
+  { path: 'enterprise-dpdp-platform', redirectTo: 'dpdpa-for-enterprise', pathMatch: 'full' },
+  { path: 'nvidia-rtx-6000-ada', title: 'NVIDIA RTX 6000 Ada | XcellHost', data: { productSlug: 'nvidia-rtx-6000-ada' }, loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
+  { path: 'rtx-a6000', title: 'RTX A6000 | XcellHost', data: { productSlug: 'rtx-a6000' }, loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 ];

@@ -629,7 +629,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cyber-insurance-for-businesses': 'Cyber Insurance for Businesses',
     'cyber-insurance-for-individuals': 'Cyber Insurance for Individuals',
     'cyber-insurance-for-executives': 'Cyber Insurance for Executives',
-    'enterprise-dpdp-platform': 'Enterprise DPDP Platform',
+    'enterprise-dpdp-platform': 'DPDPA for Enterprise',
     'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
     'cloud-disaster-recovery-smb-opening': 'Cloud Disaster Recovery for SMB',
 
