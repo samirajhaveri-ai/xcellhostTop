@@ -82,7 +82,10 @@ export class GpuLeadHeroComponent {
   }
 
   readonly slug = input.required<string>();
-  readonly freeCredits = computed(() => this.slug() === 'nvidia-l40s' ? '₹10,000' : '₹20,000');
+  readonly freeCredits = computed(() => {
+    if (this.slug() === 'rtx-a6000') return '₹10,000';
+    return this.slug() === 'nvidia-l40s' ? '₹10,000' : '₹20,000';
+  });
   readonly productName = input.required<string>();
   readonly usesCompactLayout = computed(() => COMPACT_GPU_PAGE_SLUGS.has(this.slug()));
   readonly copy = computed(() => GPU_HERO_COPY[this.slug()] ?? gpu(

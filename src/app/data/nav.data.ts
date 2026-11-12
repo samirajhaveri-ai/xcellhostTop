@@ -5032,12 +5032,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Managed cloud infrastructure, security and support for GCC teams."
               },
               {
-                "title": "Industrial Park Digital Transformation",
-                "href": "/industrial-park-digital-transformation",
-                "pill": null,
-                "desc": "Managed connectivity, IoT, OT security and AI for industrial parks and tenants."
-              },
-              {
                 "title": "Food and Beverage Cloud",
                 "href": "/food-and-beverage",
                 "pill": null,
@@ -5601,15 +5595,15 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "By Government",
-        "label": "By Government",
+        "g": "By Indian GOVT",
+        "label": "By Indian GOVT",
         "on": false,
         "groups": [
           {
-            "heading": "By Government",
+            "heading": "By Indian GOVT",
             "items": [
               {
-                "title": "Indian GOVT",
+                "title": "National Industrial Corridor Development Programme",
                 "href": "/national-industrial-corridor-development-programme",
                 "pill": null,
                 "desc": "Explore industrial corridors, smart cities and factory IT with an interactive map, stack builder and readiness checklist."
@@ -5619,6 +5613,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/government-cloud",
                 "pill": null,
                 "desc": "Cloud infrastructure, data protection and security for government workloads and public services."
+              },
+              {
+                "title": "Industrial Park Digital Transformation",
+                "href": "/industrial-park-digital-transformation",
+                "pill": null,
+                "desc": "Managed connectivity, IoT, OT security and AI for industrial parks and tenants."
               }
             ]
           }

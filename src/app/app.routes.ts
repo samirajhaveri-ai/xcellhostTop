@@ -15,6 +15,8 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 export const routes: Routes = [
+  { path: 'tools/dns-lookup', title: 'DNS Lookup | XcellHost Tools', loadComponent: () => import('./pages/dns-lookup.page').then(m => m.DnsLookupPage) },
+  { path: 'tools/all-dns-records', title: 'All DNS Records | XcellHost Tools', loadComponent: () => import('./pages/all-dns-records.page').then(m => m.AllDnsRecordsPage) },
   { path: 'tools', title: 'Free Online Tools | XcellHost', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
   { path: 'tools/:tool', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
   {

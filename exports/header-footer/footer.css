@@ -1,0 +1,17 @@
+xh-footer .nf-about-actions { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-top: 18px; }
+xh-footer .nf-services-status { position: relative; isolation: isolate; display: inline-flex; align-items: center; gap: 11px; min-height: 48px; padding: 8px 16px 8px 10px; border: 0px; border-radius: 999px; background: transparent; color: rgb(255, 255, 255); text-decoration: none; white-space: nowrap; font: 750 13px/1.4 var(--body, sans-serif); transition: transform 0.2s; animation: 2.5s ease-in-out 0s infinite normal none running nf-status-button-beat; transform-origin: center center; }
+xh-footer .nf-services-status::before { content: ""; position: absolute; inset: 0px; z-index: -1; border-radius: inherit; background: rgb(48, 48, 48); box-shadow: rgba(9, 38, 89, 0.208) 0px 6px 20px; animation: 2.5s ease-out 0s infinite normal none running nf-status-glow; }
+xh-footer .nf-services-status:hover { color: rgb(255, 255, 255); transform: translateY(-2px); }
+xh-footer .nf-services-status:active { animation: auto ease 0s 1 normal none running none; transform: scale(0.97); }
+xh-footer .nf-services-status:focus-visible { outline: rgb(255, 190, 99) solid 3px; outline-offset: 4px; }
+xh-footer .nf-status-label { position: relative; }
+xh-footer .nf-status-icon { position: relative; display: grid; place-items: center; flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 255, 255, 0.04); color: rgb(52, 211, 153); animation: 5s ease-in-out 0s infinite normal none running nf-status-color; }
+xh-footer .nf-status-icon::before { content: ""; position: absolute; inset: 3px; border: 1px solid; border-radius: 50%; animation: 2.5s ease-out 0s infinite normal none running nf-status-ring; }
+xh-footer .nf-status-icon svg { position: relative; width: 27px; height: 27px; }
+xh-footer .nf-status-arrow { position: relative; margin-left: 3px; color: rgb(211, 217, 226); font-size: 17px; }
+@media (prefers-reduced-motion: reduce) {
+  xh-footer .nf-services-status, xh-footer .nf-services-status::before, xh-footer .nf-status-label, xh-footer .nf-status-arrow, xh-footer .nf-status-icon, xh-footer .nf-status-icon::before { animation: auto ease 0s 1 normal none running none; }
+  xh-footer .nf-status-icon::before { display: none; }
+  xh-footer .nf-services-status { transition: none; }
+  xh-footer .nf-services-status:hover { transform: none; }
+}
