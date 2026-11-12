@@ -116,6 +116,9 @@ export const routes: Routes = [
   { path: 'web3-blockchain-infrastructure', redirectTo: blockchainInfrastructureRedirect, pathMatch: 'full' },
   { path: 'web3-and-blockchain-infrastructure', redirectTo: blockchainInfrastructureRedirect, pathMatch: 'full' },
   { path: 'all-paloalto-products', title: 'All Palo Alto Networks Products | XcellHost', loadComponent: () => import('./pages/all-paloalto-products.page').then(m => m.AllPaloaltoProductsPage) },
+  { path: 'secure-file-transfer', title: 'Secure File Transfer | XcellHost', loadComponent: () => import('./pages/secure-file-transfer.page').then(m => m.SecureFileTransferPage) },
+  { path: 'vendor-partners/eccouncil', title: 'EC-Council Programs | XcellHost', loadComponent: () => import('./pages/eccouncil-services.page').then(m => m.EccouncilServicesPage) },
+  { path: 'eccouncil-services', redirectTo: 'vendor-partners/eccouncil', pathMatch: 'full' },
   { path: 'vendor-partners/veeam', title: 'Veeam Products and Services | XcellHost', loadComponent: () => import('./pages/veeam-services.page').then(m => m.VeeamServicesPage) },
   { path: 'veeam-services', redirectTo: 'vendor-partners/veeam', pathMatch: 'full' },
 
@@ -671,6 +674,8 @@ export const routes: Routes = [
   { path: 'xcellworkspace', title: 'XcellWorkSpace - XcellHost', loadComponent: () => import('./pages/sarv-workspace.page').then(m => m.SarvWorkspacePage) },
   { path: 'cloud-contact-center', title: 'Cloud Contact Center - XcellHost', loadComponent: () => import('./pages/cloud-contact-center.page').then(m => m.CloudContactCenterPage) },
   { path: 'managed-kubernetes', title: 'Managed Kubernetes - XcellHost', loadComponent: () => import('./pages/managed-kubernetes.page').then(m => m.ManagedKubernetesPage) },
+  { path: 'under-construction/podcasts-catalog', title: 'Podcasts Catalog | XcellHost', loadComponent: () => import('./pages/podcast-catalog.page').then(m => m.PodcastCatalogPage) },
+  { path: 'podcasts-catalog', redirectTo: 'under-construction/podcasts-catalog', pathMatch: 'full' },
   { path: 'under-construction/podcasts', title: 'The Cloud Podcast - XcellHost', loadComponent: () => import('./pages/podcasts.page').then(m => m.PodcastsPage) },
 
   {

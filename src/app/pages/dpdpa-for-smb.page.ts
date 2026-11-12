@@ -15,7 +15,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { DocKind, DocRequestService } from '../core/doc-request.service';
 import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
-import { SMB_SOCIAL_PREVIEWS } from '../data/smb-social-previews.data';
+import { PAGE_SEO } from '../data/page-seo.data';
 
 @Component({
   selector: 'xh-dpdpa-for-smb-page',
@@ -46,7 +46,7 @@ export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
   ] as const;
 
   constructor() {
-    const preview = SMB_SOCIAL_PREVIEWS['dpdpa-for-smb'];
+    const preview = PAGE_SEO['dpdpa-for-smb'];
     this.seo.set(
       preview.title,
       preview.description,

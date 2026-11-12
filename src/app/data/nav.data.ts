@@ -1688,6 +1688,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },  
               
+              { "title": "Secure File Transfer", "href": "/secure-file-transfer", "pill": null, "desc": "Encrypted file sharing, team storage and access controls" }
             ]
           }
         ]
@@ -5312,6 +5313,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "OpenText vendor partnership",
                 "href": "/vendor-partners/opentext"
               },
+              {
+                "title": "EC-Council",
+                "pill": null,
+                "desc": "Cybersecurity certifications, role-based training and team plans",
+                "href": "/vendor-partners/eccouncil"
+              },
               
             ]
           }
@@ -6307,7 +6314,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Webinars"
               },
               {
-                "title": "Podcasts catalog",
+                "title": "Podcasts Catalog",
+                "href": "/under-construction/podcasts-catalog",
                 "pill": null,
                 "desc": "Podcasts"
               },

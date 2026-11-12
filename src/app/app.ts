@@ -9,6 +9,7 @@ import { DocRequestService } from './core/doc-request.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import { SiteCopyService } from './core/site-copy.service';
 import { SeoService } from './core/seo.service';
+import { PAGE_SEO } from './data/page-seo.data';
 import sitemapPages from '../../public/sitemap-pages.json';
 import { installBookmarkScrolling } from './sections/bookmark-scroll';
 import { installFaqLayout } from './sections/faq-layout';
@@ -187,13 +188,14 @@ export class App {
         const leaf = this.leafRoute(this.router.routerState.snapshot.root);
         const routeDescription = this.routeDescription(leaf);
         const canonicalPath = event.urlAfterRedirects.split(/[?#]/, 1)[0] || '/';
-        const pageTitle = this.sitemapTitle(canonicalPath) || this.pageTitle(leaf);
+        const curatedSeo = PAGE_SEO[canonicalPath.replace(/^\/+|\/+$/g, '')];
+        const pageTitle = curatedSeo?.title || this.sitemapTitle(canonicalPath) || this.pageTitle(leaf);
         const componentSetDescription = this.seo.descriptionRevision !== expectedDescriptionRevision;
         const pageDescription = componentSetDescription
           ? this.currentDescription()
           : routeDescription || this.descriptionFromPage() || this.genericDescription(pageTitle);
-        const uniqueDescription = this.uniqueDescription(pageTitle, pageDescription);
-        this.seo.set(pageTitle, uniqueDescription, canonicalPath);
+        const uniqueDescription = curatedSeo?.description || this.uniqueDescription(pageTitle, pageDescription);
+        this.seo.set(pageTitle, uniqueDescription, canonicalPath, curatedSeo?.image);
         this.updateRouteSeoSummary(pageTitle, uniqueDescription);
         this.updateStructuredData(canonicalPath, pageTitle, uniqueDescription);
       });
