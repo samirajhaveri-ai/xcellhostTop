@@ -272,6 +272,7 @@ import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
 import { ACRONIS_EDR_FAQS, SCRUTINY_EDR_FAQS } from '../data/edr-seo.data';
 import { CLOUD_DRIVE_SEO_FAQS } from '../data/cloud-drive-seo.data';
 import { SMB_SOCIAL_PREVIEWS } from '../data/smb-social-previews.data';
+import { PAGE_SEO } from '../data/page-seo.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { ChangeDetectionStrategy, Component, HostListener, computed, effect, inject, signal } from '@angular/core';
@@ -5335,7 +5336,7 @@ class ProductPageComponent {
       const isAcronisEdr = slug === 'advanced-endpoint-security-edr';
       const isScrutinyEdr = slug === 'scrutiny-edr';
       const isCloudDrive = slug === 'cloud-drive';
-      const smbPreview = SMB_SOCIAL_PREVIEWS[slug];
+      const smbPreview = PAGE_SEO[slug] ?? SMB_SOCIAL_PREVIEWS[slug];
       this.seo.set(
         smbPreview?.title ?? (isCloudDrive
           ? 'Business Cloud Drive India — Secure File Sharing | XcellHost'
