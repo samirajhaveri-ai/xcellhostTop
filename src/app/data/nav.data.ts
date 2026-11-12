@@ -414,8 +414,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
               {
-                "title": "Veritas",
-                "href": "/veritas",
+                "title": "AI Visibility + SEO Platform",
+                "href": "/ai-visibility-seo-platform",
                 "pill": "New",
                 "desc": "Site audits, keyword research, local SEO and AI-answer visibility in one workspace."
               },
@@ -826,6 +826,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "RTX Pro 6000",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "NVIDIA H200",
                 "pill": null,
                 "desc": null
@@ -842,21 +847,6 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "NVIDIA B300",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "RTX Pro 6000",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "NVIDIA RTX 6000 Ada",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "RTX A6000",
                 "pill": null,
                 "desc": null
               },
@@ -3191,7 +3181,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Enterprise DPDP Platform",
+                "title": "DPDPA for Enterprise",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -5688,6 +5678,16 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Acronis Solutions",
             "items": [
               {
+                "title": "Acronis MDR",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Acronis XDR",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
                 "title": "Acronis AI",
                 "href": "/acronis-ai",
                 "pill": "In focus",
@@ -5728,16 +5728,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/acronis-workflow-automation",
                 "pill": "In focus",
                 "desc": "No-code workflows across backup, IT management and security"
-              },
-              {
-                "title": "Acronis MDR",
-                "pill": "Free trial",
-                "desc": null
-              },
-              {
-                "title": "Acronis XDR",
-                "pill": "Free trial",
-                "desc": null
               },
             ],
           }
