@@ -8,6 +8,12 @@ const installations = new WeakMap<Root, () => void>();
 const heroSelector = '.home-hero-slide,section[class*="hero"],section[id$="Hero"],header[class*="hero"],section.xh[aria-labelledby],section.xts,.hero,.pp-hero,#hero,.people-banner,.testimonials-intro';
 const aiSelector = '.lh-ask,.xt-ai,.ask-ai,.ai-ask,[class*="ask-ai"],[class*="askai"],[class*="-ask"],[class*="-ai"],[data-banner-ai]';
 const clean = (text: string | null | undefined) => (text || '').replace(/\s+/g, ' ').trim();
+const askAiLabel = (product: string): string => {
+  const name = clean(product)
+    .replace(/^XcellHost\s*/i, '')
+    .replace(/\s*(?:·|-)\s*XcellHost\s*$/i, '') || 'XcellHost';
+  return '✦ Ask AI About ' + name + (name === 'XcellHost' ? '' : ' · XcellHost');
+};
 export function bannerActionFor(control: HTMLElement): BannerAction | null {
   if (control.closest('form,[role="dialog"],dialog')) return null;
   const label = clean(control.textContent);
@@ -41,6 +47,9 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
   let timer = 0, disposed = false;
 
   function serviceBanner(hero: HTMLElement, copy: HTMLElement, product: string): void {
+    hero.querySelectorAll<HTMLElement>('a,button').forEach(control => {
+      if (bannerActionFor(control) === 'tour') control.remove();
+    });
     if (hero.dataset['serviceBanner'] === product) return;
     const oldActions = copy.querySelector('.lh-ctas');
     const oldAi = hero.querySelector<HTMLElement>('.lh-ask');
@@ -49,7 +58,7 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
     actions.className = 'xh-service-banner-actions';
     actions.setAttribute('role', 'group');
     actions.setAttribute('aria-label', product + ' actions');
-    for (const [action, label] of [['tour', 'Screenshot Tour'], ['trial', "7 Day's Free Trial"], ['callback', "Let's Talk"]] as const) {
+    for (const [action, label] of [['trial', "7 Day's Free Trial"], ['callback', "Let's Talk"]] as const) {
       const button = doc.createElement('button');
       button.type = 'button'; button.textContent = label;
       button.dataset['bannerAction'] = action;
@@ -61,7 +70,7 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
     ai.setAttribute('aria-label', 'Ask AI about ' + product);
     const label = doc.createElement('span');
     label.className = 'xh-service-banner-ai-label';
-    label.textContent = '✦ Ask AI About ' + product + ' from XcellHost';
+    label.textContent = askAiLabel(product);
     const links = doc.createElement('div');
     links.className = 'xh-service-banner-ai-links';
     for (const [name, domain, url] of providers) {
@@ -101,6 +110,9 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
       delete hero.dataset['bannerOriginalActions'];
     }
     hero.dataset['bannerProduct'] = product;
+    hero.querySelectorAll<HTMLElement>('a,button').forEach(control => {
+      if (bannerActionFor(control) === 'tour') control.remove();
+    });
     const controls = Array.from(hero.querySelectorAll<HTMLElement>('a,button'));
     controls.forEach(control => {
       const action = bannerActionFor(control);
@@ -108,7 +120,6 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
     });
     const labels = controls.map(c => clean(c.textContent).replace(/[’']/g, '').toLowerCase());
     const present = {
-      tour: labels.some(t => /screenshot\s*tour/.test(t)),
       trial: labels.some(t => /free\s*trial/.test(t)),
       callback: labels.some(t => /let.?s talk|talk to (?:sales|us|an expert)/.test(t)),
     };
@@ -125,7 +136,6 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
         if (anchor) anchor.before(row); else if (dots) dots.before(row); else copy.appendChild(row);
       }
       for (const [action, label, icon] of [
-        ['tour', 'Screenshot Tour', '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>'],
         ['trial', '7 Days Free Trial', '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/>'],
         ['callback', "Let's Talk →", ''],
       ] as const) {
@@ -159,7 +169,7 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
     } else {
       const bar = doc.createElement('div'); bar.className = 'xh-banner-ai xh-banner-ai-nowrap'; bar.dataset['bannerAi'] = '';
       bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Ask AI about ' + product);
-      const label = doc.createElement('span'); label.className = 'xh-banner-ai-label'; label.textContent = '✦ Ask AI About ' + product + ' from XcellHost';
+      const label = doc.createElement('span'); label.className = 'xh-banner-ai-label'; label.textContent = askAiLabel(product);
       const links = doc.createElement('div'); links.className = 'xh-banner-ai-links';
       const intro = clean(hero.querySelector('p')?.textContent).slice(0, 600);
       const prompt = 'Explain ' + product + ' from XcellHost. ' + intro + ' What are its features, use cases, pricing options and questions to ask before choosing it?';

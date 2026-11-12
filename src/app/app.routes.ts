@@ -14,9 +14,109 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
   return '/blockchain-infrastructure' + (query.size ? '?' + query.toString() : '') + (fragment ? '#' + fragment : '');
 };
 
+const suppliedPageRoutes: Routes = [
+  {
+    path: 'zoho-workdrive',
+    title: 'Zoho WorkDrive for Enterprises in India | XcellHost',
+    data: { suppliedPageSlug: 'zoho-workdrive', pageTitle: 'Zoho WorkDrive for Enterprises in India | XcellHost', searchTitle: 'Zoho WorkDrive', searchDescription: 'Zoho WorkDrive licensing, governance, DLP, migration, SSO, storage planning and enterprise deployment from XcellHost.' },
+  },
+  {
+    path: 'acronis-training-certification',
+    title: 'Acronis Training & Certification for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'acronis-training-certification', pageTitle: 'Acronis Training & Certification for XcellHost Staff | XcellHost', searchTitle: 'Acronis Training & Certification', searchDescription: 'Acronis Academy courses, certification paths, badges, renewal tracking and partner-tier guidance for XcellHost staff.' },
+  },
+  {
+    path: 'xcellhost-certifications',
+    title: 'XcellHost Certifications Hub for Staff | XcellHost',
+    data: { suppliedPageSlug: 'xcellhost-certifications', pageTitle: 'XcellHost Certifications Hub for Staff | XcellHost', searchTitle: 'XcellHost Certifications Hub', searchDescription: 'Staff certification programmes, learning paths, badges, renewals and partner requirements across XcellHost vendors.' },
+  },
+  {
+    path: 'm365-certifications',
+    title: 'Microsoft 365 Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'm365-certifications', pageTitle: 'Microsoft 365 Certifications for XcellHost Staff | XcellHost', searchTitle: 'Microsoft 365 Certifications', searchDescription: 'Microsoft 365, security and Copilot certification paths, exams, renewals, badges and staff progress tracking.' },
+  },
+  {
+    path: 'microsoft-csp-certifications',
+    title: 'Microsoft CSP Partner Credentials for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'microsoft-csp-certifications', pageTitle: 'Microsoft CSP Partner Credentials for XcellHost Staff | XcellHost', searchTitle: 'Microsoft CSP Certifications', searchDescription: 'Microsoft CSP partner credentials, Solutions Partner designations, specializations, role paths and staff certification tracking.' },
+  },
+  {
+    path: 'paloalto-certifications',
+    title: 'Palo Alto Networks Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'paloalto-certifications', pageTitle: 'Palo Alto Networks Certifications for XcellHost Staff | XcellHost', searchTitle: 'Palo Alto Networks Certifications', searchDescription: 'Palo Alto Networks certification tiers, exams, legacy mappings, role paths, badges and partner requirements.' },
+  },
+  {
+    path: 'fortinet-certifications',
+    title: 'Fortinet Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'fortinet-certifications', pageTitle: 'Fortinet Certifications for XcellHost Staff | XcellHost', searchTitle: 'Fortinet Certifications', searchDescription: 'Fortinet NSE certifications, learning tracks, exams, renewal rules, staff badges and Engage partner requirements.' },
+  },
+  {
+    path: 'fintech-india',
+    title: 'Fintech in India 2026 | Cloud & Security for Fintechs | XcellHost',
+    data: { suppliedPageSlug: 'fintech-india', pageTitle: 'Fintech in India 2026 | Cloud & Security for Fintechs | XcellHost', searchTitle: 'Fintech in India 2026', searchDescription: 'India fintech infrastructure, RBI requirements, PCI DSS, DPDP, cloud security, HSM, SOC and disaster recovery planning.' },
+  },
+  {
+    path: 'deeptech-india',
+    title: 'Deeptech in India 2026 | Cloud & GPU Infrastructure | XcellHost',
+    data: { suppliedPageSlug: 'deeptech-india', pageTitle: 'Deeptech in India 2026 | Cloud & GPU Infrastructure | XcellHost', searchTitle: 'Deeptech in India 2026', searchDescription: 'India deeptech schemes, funding, AI, semiconductor, quantum, space and biotech infrastructure planning from XcellHost.' },
+  },
+  {
+    path: 'lateral-movement',
+    title: 'Lateral Movement Protection in India | XcellHost',
+    data: { suppliedPageSlug: 'lateral-movement', pageTitle: 'Lateral Movement Protection in India | XcellHost', searchTitle: 'Lateral Movement Protection', searchDescription: 'Reduce lateral movement with tiered administration, PAM, LAPS, microsegmentation, EDR, NDR, UEBA and a 24x7 SOC.' },
+  },
+  {
+    path: 'malware-protection',
+    title: 'Malware Protection in India | XcellHost',
+    data: { suppliedPageSlug: 'malware-protection', pageTitle: 'Malware Protection in India | XcellHost', searchTitle: 'Malware Protection', searchDescription: 'Layered malware protection with EDR, patching, email sandboxing, application control, immutable backups and SOC monitoring.' },
+  },
+  {
+    path: 'ransomware-protection',
+    title: 'Ransomware Protection in India | XcellHost',
+    data: { suppliedPageSlug: 'ransomware-protection', pageTitle: 'Ransomware Protection in India | XcellHost', searchTitle: 'Ransomware Protection', searchDescription: 'Prevent, detect, respond to and recover from ransomware using layered security, immutable backups and a 24x7 SOC.' },
+  },
+  {
+    path: 'security-stack-consolidation',
+    title: 'Security Stack Consolidation in India | XcellHost',
+    data: { suppliedPageSlug: 'security-stack-consolidation', pageTitle: 'Security Stack Consolidation in India | XcellHost', searchTitle: 'Security Stack Consolidation', searchDescription: 'Consolidate overlapping security tools, close control gaps and simplify operations with one incident queue and roadmap.' },
+  },
+  {
+    path: 'ndr',
+    title: 'Network Detection & Response (NDR) in India | XcellHost',
+    data: { suppliedPageSlug: 'ndr', pageTitle: 'Network Detection & Response (NDR) in India | XcellHost', searchTitle: 'Network Detection & Response (NDR)', searchDescription: 'NDR for east-west and north-south traffic, encrypted traffic analytics, threat detection and 24x7 SOC response.' },
+  },
+  {
+    path: 'ng-siem',
+    title: 'Next-Gen SIEM (NG-SIEM) in India | XcellHost',
+    data: { suppliedPageSlug: 'ng-siem', pageTitle: 'Next-Gen SIEM (NG-SIEM) in India | XcellHost', searchTitle: 'Next-Gen SIEM (NG-SIEM)', searchDescription: 'Cloud-native next-gen SIEM with detection-as-code, UEBA, SOAR, threat mappings and a 24x7 SOC.' },
+  },
+  {
+    path: 'case-management',
+    title: 'Security Case Management in India | XcellHost',
+    data: { suppliedPageSlug: 'case-management', pageTitle: 'Security Case Management in India | XcellHost', searchTitle: 'Security Case Management', searchDescription: 'Security case management for incident lifecycle, evidence, playbooks, SLA clocks and regulatory response timelines.' },
+  },
+  {
+    path: 'ueba',
+    title: 'UEBA in India | User & Entity Behaviour Analytics | XcellHost',
+    data: { suppliedPageSlug: 'ueba', pageTitle: 'UEBA in India | User & Entity Behaviour Analytics | XcellHost', searchTitle: 'User & Entity Behaviour Analytics (UEBA)', searchDescription: 'Privacy-aware UEBA with behavioural baselines, risk scoring, anomaly detection, entity timelines and SOC investigation.' },
+  },
+  {
+    path: 'workforce-analytics',
+    title: 'Workforce Analytics in India | XcellHost',
+    data: { suppliedPageSlug: 'workforce-analytics', pageTitle: 'Workforce Analytics in India | XcellHost', searchTitle: 'Workforce Analytics', searchDescription: 'Privacy-first workforce analytics for capacity, focus time, collaboration, hybrid work and Microsoft 365 adoption.' },
+  },
+].map((route) => ({
+  ...route,
+  loadComponent: () => import('./pages/supplied-content.page').then((module) => module.SuppliedContentPage),
+}));
+
 export const routes: Routes = [
+
   { path: 'tools/dns-lookup', title: 'DNS Lookup | XcellHost Tools', loadComponent: () => import('./pages/dns-lookup.page').then(m => m.DnsLookupPage) },
   { path: 'tools/all-dns-records', title: 'All DNS Records | XcellHost Tools', loadComponent: () => import('./pages/all-dns-records.page').then(m => m.AllDnsRecordsPage) },
+
+  ...suppliedPageRoutes,
+
   { path: 'tools', title: 'Free Online Tools | XcellHost', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
   { path: 'tools/:tool', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
   {
