@@ -11,7 +11,7 @@
     "cms:sync": "node scripts/sync-sitemap-content.cjs",
     "package": "npm run cms:sync && npm run build && node scripts/package-for-plesk.js",
     "test": "ng test",
-    "test:tools": "node --test scripts/test-tools.cjs scripts/test-dns-lookup.cjs scripts/test-dns-exports.cjs scripts/test-all-dns-records.cjs",
+    "test:tools": "node --test scripts/test-tools.cjs scripts/test-dns-lookup.cjs scripts/test-dns-exports.cjs scripts/test-all-dns-records.cjs scripts/test-mx-lookup.cjs scripts/test-txt-lookup.cjs scripts/test-cname-lookup.cjs scripts/test-soa-lookup.cjs scripts/test-ns-lookup.cjs scripts/test-caa-lookup.cjs scripts/test-ptr-lookup.cjs scripts/test-dnssec-check.cjs scripts/test-caa-generator.cjs",
     "frontend": "node scripts/serve-with-asset-reloads.mjs",
     "ai:build": "tsc -p server/tsconfig.json",
     "ai:start": "node server/dist/index.js",
