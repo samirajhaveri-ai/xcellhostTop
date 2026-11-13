@@ -5600,6 +5600,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "By Indian GOVT",
             "items": [
               {
+                "title": "Industrial Park Digital Transformation",
+                "href": "/industrial-park-digital-transformation",
+                "pill": null,
+                "desc": "Managed connectivity, IoT, OT security and AI for industrial parks and tenants."
+              },
+              {
                 "title": "National Industrial Corridor Development Programme",
                 "href": "/national-industrial-corridor-development-programme",
                 "pill": null,
@@ -5610,12 +5616,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/government-cloud",
                 "pill": null,
                 "desc": "Cloud infrastructure, data protection and security for government workloads and public services."
-              },
-              {
-                "title": "Industrial Park Digital Transformation",
-                "href": "/industrial-park-digital-transformation",
-                "pill": null,
-                "desc": "Managed connectivity, IoT, OT security and AI for industrial parks and tenants."
               }
             ]
           }
