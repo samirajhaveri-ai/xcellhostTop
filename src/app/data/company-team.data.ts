@@ -9,6 +9,7 @@ export interface CompanyTeamMember {
 export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | 'salesTeam' | 'marketing' | 'AITeams' | 'developers' | 'accountantTeam' | 'graphicDesignerTeam' | 'adminTeam' | 'technicalSupportTeam', readonly CompanyTeamMember[]>> = {
   managementTeam: [
     { initials: 'JS', name: 'James Soosai', role: 'Chief Business Strategist', image: '/assets/images/TEAMS PHOTO/James.png' },
+    { initials: 'RM', name: 'Rafiq Merchant', role: 'Chief Product Officer', image: '/assets/images/TEAMS PHOTO/Rafiq Merchant.png' },
 
     { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director - Africa ', image: '/assets/images/Yogesh Trivedi.png' },
     { initials: 'NS', name: 'Neerav Shah', role: 'Chief Technical Officer', image: '/assets/images/TEAMS PHOTO/Neerav Shah.png' },

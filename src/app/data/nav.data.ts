@@ -101,7 +101,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Workforce Analytics",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/workforce-analytics"
               },
               
               
@@ -5070,7 +5071,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Lateral Movement",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/lateral-movement"
               },
               {
                 "title": "Malware",
@@ -5090,12 +5092,14 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Ransomware",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/ransomware-protection"
               },
               {
                 "title": "Security Stack Consolidation",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/security-stack-consolidation"
               }
             ]
           }
@@ -5128,22 +5132,26 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "NG-SIEM",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/ng-siem"
               },
               {
                 "title": "NDR",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/ndr"
               },
               {
                 "title": "UEBA",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/ueba"
               },
               {
                 "title": "Case Management",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/case-management"
               },
               {
                 "title": "Digital Twin",
@@ -5484,6 +5492,18 @@ export const MEGA_MENU: MenuTop[] = [
                   "href": "/vietnam-go-to-market-strategy",
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Vietnam, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Cambodia Go-to-Market Strategy",
+                "href": "/cambodia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Cambodia, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Japan Go-to-Market Strategy",
+                "href": "/japan-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Japan, with sector insights and revenue modelling."
               },
               {
                 "title": "Poland Go-to-Market Strategy",
@@ -6083,6 +6103,54 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Build your future with XcellHost"
               },
+              {
+                "title": "Xcellhost Certification",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/xcellhost-certifications"
+              },
+              {
+                "title": "Acronis Training Certification",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/acronis-training-certification"
+              },
+              {
+                "title": "m365-certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/m365-certifications"
+              },
+              {
+                "title": "Palo Alto Certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/paloalto-certifications"
+              },
+              {
+                "title": "Fortinet Certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/fortinet-certifications"
+              },
+              {
+                "title": "Druva Certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/druva-certifications"
+              },
+              {
+                "title": "Veeam Certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/veeam-certifications"
+              },
+              {
+                "title": "Gemini Certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/gemini-certifications"
+              }
             ]
           }
         ]
