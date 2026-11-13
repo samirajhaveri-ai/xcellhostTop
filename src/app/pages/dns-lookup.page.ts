@@ -52,7 +52,7 @@ export class DnsLookupPage {
     const params = inject(ActivatedRoute).snapshot.queryParamMap;
     this.domain.set((params.get('domain') || '').slice(0, 2048));
     const type = params.get('type');
-    if (DNS_LOOKUP_TYPES.includes(type as DnsLookupType)) this.type.set(type as DnsLookupType);
+    if (DNS_LOOKUP_TYPES.some(item => item === type)) this.type.set(type as DnsLookupType);
     const resolver = params.get('resolver');
     if (DNS_LOOKUP_RESOLVERS.some(r => r.id === resolver)) this.resolver.set(resolver as DnsResolverId);
     this.includeWww.set(params.get('www') !== '0');

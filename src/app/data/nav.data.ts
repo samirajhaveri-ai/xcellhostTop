@@ -5400,6 +5400,24 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Managed Fabric, Besu and Corda networks, smart contracts and consortium operations.",
                   "href": "/blockchain-as-a-service"
+              },
+              {
+                "title": "DevSecOps",
+                "pill": null,
+                "desc": "Secure code, dependencies, infrastructure and releases with managed delivery pipelines.",
+                "href": "/devsecops"
+              },
+              {
+                "title": "CloudOps",
+                "pill": null,
+                "desc": "Run, secure and optimise your cloud with IaC, SRE, ITIL and FinOps.",
+                "href": "/cloudops"
+              },
+              {
+                "title": "DataOps",
+                "pill": null,
+                "desc": "Build reliable, tested and governed data pipelines with observability and data contracts.",
+                "href": "/dataops"
               }
             ]
           }

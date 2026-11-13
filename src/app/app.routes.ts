@@ -115,8 +115,27 @@ export const routes: Routes = [
   { path: 'tools/dns-lookup', title: 'DNS Lookup | XcellHost Tools', loadComponent: () => import('./pages/dns-lookup.page').then(m => m.DnsLookupPage) },
   { path: 'tools/all-dns-records', title: 'All DNS Records | XcellHost Tools', loadComponent: () => import('./pages/all-dns-records.page').then(m => m.AllDnsRecordsPage) },
   { path: 'tools/mx-lookup', title: 'MX Lookup | XcellHost Tools', loadComponent: () => import('./pages/mx-lookup.page').then(m => m.MxLookupPage) },
+  { path: 'tools/txt-lookup', title: 'TXT Lookup | XcellHost Tools', loadComponent: () => import('./pages/txt-lookup.page').then(m => m.TxtLookupPage) },
+  { path: 'tools/cname-lookup', title: 'CNAME Lookup | XcellHost Tools', loadComponent: () => import('./pages/cname-lookup.page').then(m => m.CnameLookupPage) },
+  { path: 'tools/soa-lookup', title: 'SOA Lookup | XcellHost Tools', loadComponent: () => import('./pages/soa-lookup.page').then(m => m.SoaLookupPage) },
+  { path: 'tools/ns-lookup', title: 'NS Lookup | XcellHost Tools', loadComponent: () => import('./pages/ns-lookup.page').then(m => m.NsLookupPage) },
+  { path: 'tools/caa-lookup', title: 'CAA Lookup | XcellHost Tools', loadComponent: () => import('./pages/caa-lookup.page').then(m => m.CaaLookupPage) },
+  { path: 'tools/ptr-lookup', title: 'PTR Lookup | XcellHost Tools', loadComponent: () => import('./pages/ptr-lookup.page').then(m => m.PtrLookupPage) },
+  { path: 'tools/dnssec-check', title: 'DNSSEC Check | XcellHost Tools', loadComponent: () => import('./pages/dnssec-check.page').then(m => m.DnssecCheckPage) },
+  { path: 'tools/caa-generator', title: 'CAA Record Generator | XcellHost Tools', loadComponent: () => import('./pages/caa-generator.page').then(m => m.CaaGeneratorPage) },
 
   ...suppliedPageRoutes,
+
+  ...[
+    { path: 'devsecops', name: 'DevSecOps', description: 'Secure delivery pipelines with code, dependency, secrets, infrastructure and container checks, signed releases and managed triage.' },
+    { path: 'cloudops', name: 'CloudOps', description: 'Cloud operations with infrastructure as code, SRE, ITIL, FinOps, cost and SLO tools, run by the XcellHost 24x7 NOC and SOC.' },
+    { path: 'dataops', name: 'DataOps', description: 'Reliable, governed data pipelines with automated tests, observability, data contracts, lineage and DPDP-ready governance.' },
+  ].map(page => ({
+    path: page.path,
+    title: page.name + ' | XcellHost',
+    data: { opsSource: page.path, description: page.description },
+    loadComponent: () => import('./pages/ops-services.page').then(m => m.OpsServicesPage),
+  })),
 
   { path: 'tools', title: 'Free Online Tools | XcellHost', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
   { path: 'tools/:tool', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },

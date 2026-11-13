@@ -10,6 +10,7 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'devsecops' | 'cloudops' | 'dataops'
   | 'national-industrial-corridor-development-programme'
   | 'github-services'
   | 'gitlab-services'
@@ -451,6 +452,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'active-directory-assessment': '/imported-active-directory-assessment.html',
     'security-hardware-token': '/imported-security-hardware-token.html',
     'digital-authenticity-verification': '/imported-digital-authenticity-verification.html',
+    'devsecops': '/imported-devsecops.html',
+    'cloudops': '/imported-cloudops.html',
+    'dataops': '/imported-dataops.html',
     'acronis-cyber-intelligence': '/imported-acronis-cyber-intelligence.html',
     'acronis-cyber-frame': '/imported-acronis-cyber-frame.html',
     'acronis-workflow-automation': '/imported-acronis-workflow-automation.html',
@@ -756,6 +760,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'active-directory-assessment': 'Active Directory Assessment',
     'security-hardware-token': 'Security Hardware Token',
     'digital-authenticity-verification': 'Digital Authenticity Verification',
+    'devsecops': 'DevSecOps: secure delivery pipelines, assessments and service configuration',
+    'cloudops': 'CloudOps: cloud operations, cost and SLO tools, service configuration',
+    'dataops': 'DataOps: data pipelines, contracts, observability and service configuration',
     'acronis-cyber-intelligence': 'Acronis Cyber Intelligence',
     'acronis-cyber-frame': 'Acronis Cyber Frame',
     'acronis-workflow-automation': 'Acronis Workflow Automation',
@@ -1286,7 +1293,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     doc.addEventListener('import-identity-enquiry', identityEnquiry);
     doc.addEventListener('import-trial', trial);
     doc.addEventListener('import-callback', callback);
-    const openDomainCart = () => { if (this.source === 'register-a-domain-name') this.cart.open(); };
+    const openDomainCart = () => { if (['register-a-domain-name', 'devsecops', 'cloudops', 'dataops'].includes(this.source)) this.cart.open(); };
     doc.addEventListener('import-cart-open', openDomainCart);
     doc.addEventListener('import-cart', add);
     doc.addEventListener('import-newsletter', newsletter);
