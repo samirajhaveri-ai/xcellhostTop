@@ -1,4 +1,8 @@
 export const IDENTITY_SECURITY_PAGES = {
+  "digital-authenticity-verification": {
+    "title": "Digital Authenticity Verification",
+    "description": "Explore deepfake detection, liveness checks and trust-score policies, with interactive simulators, deployment planning and XcellSecure package configuration."
+  },
   "multi-factor-authentication": {
     "title": "Multi-Factor Authentication",
     "description": "Plan authentication methods, access policies and recovery procedures around your users and applications. Pilot the agreed controls before extending the rollout."

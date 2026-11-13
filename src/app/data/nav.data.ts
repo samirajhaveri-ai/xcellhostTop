@@ -3085,7 +3085,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Free trial",
                 "desc": null
               },
-              
+              {
+                "title": "Digital Authenticity Verification",
+                "href": "/digital-authenticity-verification",
+                "pill": null,
+                "desc": "Explore deepfake detection, liveness checks and trust-score policies for digital identity verification."
+              }
             ]
           }
         ]

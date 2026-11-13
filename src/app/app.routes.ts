@@ -114,6 +114,7 @@ export const routes: Routes = [
 
   { path: 'tools/dns-lookup', title: 'DNS Lookup | XcellHost Tools', loadComponent: () => import('./pages/dns-lookup.page').then(m => m.DnsLookupPage) },
   { path: 'tools/all-dns-records', title: 'All DNS Records | XcellHost Tools', loadComponent: () => import('./pages/all-dns-records.page').then(m => m.AllDnsRecordsPage) },
+  { path: 'tools/mx-lookup', title: 'MX Lookup | XcellHost Tools', loadComponent: () => import('./pages/mx-lookup.page').then(m => m.MxLookupPage) },
 
   ...suppliedPageRoutes,
 
@@ -1490,7 +1491,7 @@ export const routes: Routes = [
   },
   { path: '404', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 
-  ...(['multi-factor-authentication', 'identity-and-access-management', 'privileged-access-management', 'privileged-identity-management', 'identity-governance-and-administration', 'iam-assessment', 'active-directory-assessment', 'security-hardware-token'] as const).map(source => ({
+  ...(['multi-factor-authentication', 'identity-and-access-management', 'privileged-access-management', 'privileged-identity-management', 'identity-governance-and-administration', 'iam-assessment', 'active-directory-assessment', 'security-hardware-token', 'digital-authenticity-verification'] as const).map(source => ({
     path: source,
     data: { source },
     loadComponent: () => import('./pages/identity-security.page').then(m => m.IdentitySecurityPage),

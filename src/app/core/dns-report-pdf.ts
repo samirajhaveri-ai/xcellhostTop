@@ -58,10 +58,11 @@ export function dnsReportAnalysis(report: DnsExportReport) {
 }
 
 /** Branded A4 report with actual-answer diagnostics and repeated table headers. */
-export function dnsReportPdf(report: DnsExportReport): ArrayBuffer {
+export function dnsReportPdf(report: DnsExportReport, options: { analysis?: ReturnType<typeof dnsReportAnalysis>; toolPath?: 'dns-lookup' | 'all-dns-records' | 'mx-lookup' } = {}): ArrayBuffer {
   const pdf = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
   pdf.setProperties({ title: report.domain + (report.type === 'ALL' ? ' all DNS records' : ' DNS lookup'), author: 'XcellHost', subject: report.type + ' DNS report via ' + report.resolver });
-  const analysis = dnsReportAnalysis(report);
+  const analysis = options.analysis || dnsReportAnalysis(report);
+  const mxLabels = options.toolPath === 'mx-lookup' ? new Map(report.hosts.map((host, index) => [host.name, index ? 'MX' + index : '@'])) : null;
   const margin = 12, width = 186, bottom = 280;
   const reportTitle = report.type === 'ALL' ? 'ALL DNS RECORDS REPORT' : 'DNS ' + report.type + ' RECORD REPORT';
   let y = 0;
@@ -150,7 +151,7 @@ export function dnsReportPdf(report: DnsExportReport): ArrayBuffer {
 
   const recordRows: PdfCell[][] = [];
   for (const host of report.hosts) {
-    const hostName = host.name === report.domain ? '@' : host.name === 'www.' + report.domain ? 'www' : report.type === 'ALL' && host.name === '_dmarc.' + report.domain ? '_dmarc' : host.name;
+    const hostName = mxLabels?.get(host.name) || (host.name === report.domain ? '@' : host.name === 'www.' + report.domain ? 'www' : report.type === 'ALL' && host.name === '_dmarc.' + report.domain ? '_dmarc' : host.name);
     if (!host.records.length) recordRows.push([
       { text: hostName, mono: true }, { text: report.type, mono: true },
       { text: host.error || (host.status === 'NXDOMAIN' ? 'NXDOMAIN: hostname not found' : 'No matching records returned'), color: host.status === 'ERROR' ? COLORS.red : COLORS.muted },
@@ -163,7 +164,7 @@ export function dnsReportPdf(report: DnsExportReport): ArrayBuffer {
     ]);
   }
   table('DNS records / ' + report.type + ' lookup', ['Host', 'Type', 'Answer / value', 'Record name', 'TTL'], report.type === 'ALL' ? [20, 17, 80, 49, 20] : [16, 17, 84, 49, 20], recordRows);
-  const key = wrap('@ = ' + report.domain + (report.type === 'ALL' ? ' | _dmarc = its DMARC policy hostname' : ' | www = its www hostname'), width, 7.2);
+  const key = wrap(mxLabels ? [...mxLabels].map(([name, alias]) => alias + ' = ' + name).join(' | ') : '@ = ' + report.domain + (report.type === 'ALL' ? ' | _dmarc = its DMARC policy hostname' : ' | www = its www hostname'), width, 7.2);
   reserve(key.length * 3.5 + 8);
   key.forEach(line => { text(line, margin, y - 3, 7.2, COLORS.muted); y += 3.5; }); y += 3;
 
@@ -195,7 +196,7 @@ export function dnsReportPdf(report: DnsExportReport): ArrayBuffer {
     text('XCELLHOST | Resolver snapshot - ' + analysis.answerCount + ' returned DNS answers', margin, 291, 7, COLORS.muted);
     text(page + ' / ' + totalPages, 198, 291, 7, COLORS.muted, false, true, true);
     font(7); pdf.setTextColor(COLORS.blue);
-    const toolPath = report.type === 'ALL' ? 'all-dns-records' : 'dns-lookup';
+    const toolPath = options.toolPath || (report.type === 'ALL' ? 'all-dns-records' : 'dns-lookup');
     pdf.textWithLink('xcellhost.cloud/tools/' + toolPath, margin, 295, { url: 'https://xcellhost.cloud/tools/' + toolPath + '?domain=' + encodeURIComponent(report.domain) + (report.type === 'ALL' ? '' : '&type=' + report.type) });
   }
   return pdf.output('arraybuffer');
