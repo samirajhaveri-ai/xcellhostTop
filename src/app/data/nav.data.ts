@@ -851,6 +851,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "NVIDIA RTX PRO 4500 Blackwell",
+                "href": "/nvidia-rtx-pro-4500-blackwell",
+                "pill": null,
+                "desc": "32 GB Blackwell GPU servers for inference, rendering and virtual workstations."
+              },
+              {
                 "title": "RTX 8000",
                 "pill": null,
                 "desc": null
@@ -2848,14 +2854,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "MDM",
             "body": "Manage and protect business devices from one place.",
-            "image": "/assets/images/menu-security-mdm-v1.png",
+            "image": "/assets/images/menu-security-mdm-v2.jpeg",
             "link": "/cloud-mobile-device-mgmt"
           },
           {
             "label": "Security",
             "title": "MDR",
             "body": "Explore managed threat detection and response.",
-            "image": "/assets/images/menu-security-mdr-v1.png",
+            "image": "/assets/images/menu-security-mdr-v2.jpeg",
             "link": "/mdr"
           }
         ],
@@ -2908,14 +2914,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "AWS Security",
             "body": "Explore protection for your AWS cloud environment.",
-            "image": "/assets/images/menu-security-aws-security-v1.png",
+            "image": "/assets/images/menu-security-aws-security-v2.jpeg",
             "link": "/aws-security"
           },
           {
             "label": "Security",
             "title": "Azure Security",
             "body": "Explore security for Azure workloads and identities.",
-            "image": "/assets/images/menu-security-azure-security-v1.png",
+            "image": "/assets/images/menu-security-azure-security-v2.jpeg",
             "link": "/azure-security"
           }
         ],
@@ -2968,14 +2974,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Network Access Control (NAC)",
             "body": "Control which devices can access your business network.",
-            "image": "/assets/images/menu-security-network-access-control-v1.png",
+            "image": "/assets/images/menu-security-network-access-control-v2.jpeg",
             "link": "/network-access-control-nac"
           },
           {
             "label": "Security",
             "title": "Network Detection & Response (NDR)",
             "body": "Monitor network activity and investigate threats.",
-            "image": "/assets/images/menu-security-network-detection-response-v1.png",
+            "image": "/assets/images/menu-security-network-detection-response-v2.jpeg",
             "link": "/network-detection-and-response-ndr"
           }
         ],
@@ -3017,14 +3023,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Microsoft Entra ID",
             "body": "Explore identity and access security with Microsoft Entra ID.",
-            "image": "/assets/images/menu-security-microsoft-entra-id-v1.png",
+            "image": "/assets/images/menu-security-microsoft-entra-id-v2.jpeg",
             "link": "/microsoft-entra-id"
           },
           {
             "label": "Security",
             "title": "Multi-Factor Authentication",
             "body": "Add identity verification to protect business access.",
-            "image": "/assets/images/menu-security-multi-factor-authentication-v1.png",
+            "image": "/assets/images/menu-security-multi-factor-authentication-v2.jpeg",
             "link": "/multi-factor-authentication"
           }
         ],
@@ -3099,14 +3105,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Data Encryption",
             "body": "Protect sensitive business information with encryption.",
-            "image": "/assets/images/menu-security-data-encryption-v1.png",
+            "image": "/assets/images/menu-security-data-encryption-v2.jpeg",
             "link": "/data-encryption"
           },
           {
             "label": "Security",
             "title": "Data Security Posture Mgmt",
             "body": "Understand and manage security risks across business data.",
-            "image": "/assets/images/menu-security-data-security-posture-v1.png",
+            "image": "/assets/images/menu-security-data-security-posture-v2.jpeg",
             "link": "/data-security-posture-mgmt"
           }
         ],
@@ -3160,14 +3166,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Data Encryption",
             "body": "Protect sensitive business information with encryption.",
-            "image": "/assets/images/menu-security-data-encryption-v1.png",
+            "image": "/assets/images/menu-security-data-encryption-v2.jpeg",
             "link": "/data-encryption"
           },
           {
             "label": "Security",
             "title": "Data Security Posture Mgmt",
             "body": "Understand and manage security risks across business data.",
-            "image": "/assets/images/menu-security-data-security-posture-v1.png",
+            "image": "/assets/images/menu-security-data-security-posture-v2.jpeg",
             "link": "/data-security-posture-mgmt"
           }
         ],
@@ -3210,14 +3216,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Acronis OT",
             "body": "Explore protection for operational technology environments.",
-            "image": "/assets/images/menu-security-acronis-ot-v1.png",
+            "image": "/assets/images/menu-security-acronis-ot-v2.jpeg",
             "link": "/acronis-ot"
           },
           {
             "label": "Security",
             "title": "Kaspersky OT",
             "body": "Explore industrial cybersecurity for operational technology.",
-            "image": "/assets/images/menu-security-kaspersky-ot-v1.png",
+            "image": "/assets/images/menu-security-kaspersky-ot-v2.jpeg",
             "link": "/kaspersky-ot"
           }
         ],
@@ -3254,14 +3260,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "VAPT Services",
             "body": "Identify vulnerabilities with security testing services.",
-            "image": "/assets/images/menu-security-vapt-services-v1.png",
+            "image": "/assets/images/menu-security-vapt-services-v2.jpeg",
             "link": "/vapt-services"
           },
           {
             "label": "Security",
             "title": "Continuous Pen As a Services",
             "body": "Explore ongoing penetration testing for your systems.",
-            "image": "/assets/images/menu-security-continuous-pen-testing-v1.png",
+            "image": "/assets/images/menu-security-continuous-pen-testing-v2.jpeg",
             "link": "/continuous-pen-as-a-services"
           }
         ],
@@ -3354,14 +3360,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Cloud Security Assessment",
             "body": "Review security controls and risks in your cloud environment.",
-            "image": "/assets/images/menu-security-cloud-security-assessment-v1.png",
+            "image": "/assets/images/menu-security-cloud-security-assessment-v2.jpeg",
             "link": "/cloud-security-assessment"
           },
           {
             "label": "Security",
             "title": "Digital Risk Monitoring",
             "body": "Monitor digital exposure and external business risks.",
-            "image": "/assets/images/menu-security-digital-risk-monitoring-v1.png",
+            "image": "/assets/images/menu-security-digital-risk-monitoring-v2.jpeg",
             "link": "/digital-risk-monitoring"
           }
         ],
@@ -3438,14 +3444,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Autonomous Threat Management",
             "body": "Explore AI-driven threat detection and automated response.",
-            "image": "/assets/images/menu-security-autonomous-threat-management-v1.png",
+            "image": "/assets/images/menu-security-autonomous-threat-management-v2.jpeg",
             "link": "/autonomous-threat-management"
           },
           {
             "label": "Security",
             "title": "Cloud Security Log Monitoring",
             "body": "Monitor cloud security logs and investigate suspicious activity.",
-            "image": "/assets/images/menu-security-cloud-security-log-monitoring-v1.png",
+            "image": "/assets/images/menu-security-cloud-security-log-monitoring-v2.jpeg",
             "link": "/cloud-security-log-monitoring"
           }
         ],
@@ -3534,14 +3540,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "DPDPA Consulting",
             "body": "Explore consulting for data privacy and protection.",
-            "image": "/assets/images/menu-security-dpdpa-consulting-v1.png",
+            "image": "/assets/images/menu-security-dpdpa-consulting-v2.jpeg",
             "link": "/dpdpa-consulting"
           },
           {
             "label": "Security",
             "title": "vDPO-as-a-Service",
             "body": "Get support for data protection responsibilities.",
-            "image": "/assets/images/menu-security-vdpo-service-v1.png",
+            "image": "/assets/images/menu-security-vdpo-service-v2.jpeg",
             "link": "/vdpo-as-a-service"
           }
         ],
@@ -3629,14 +3635,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Security Awareness Training",
             "body": "Build practical cybersecurity awareness across your team.",
-            "image": "/assets/images/menu-security-security-awareness-training-v1.png",
+            "image": "/assets/images/menu-security-security-awareness-training-v2.jpeg",
             "link": "/security-awareness-training"
           },
           {
             "label": "Security",
             "title": "Incident Response Training",
             "body": "Help your team prepare for security incidents.",
-            "image": "/assets/images/menu-security-incident-response-training-v1.png",
+            "image": "/assets/images/menu-security-incident-response-training-v2.jpeg",
             "link": "/incident-response-training"
           }
         ],
@@ -3677,14 +3683,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Certificate Disk Erasure",
             "body": "Explore secure disk erasure for business data.",
-            "image": "/assets/images/menu-security-disk-erasure-v1.png",
+            "image": "/assets/images/menu-security-disk-erasure-v2.jpeg",
             "link": "/certificate-disk-erasure"
           },
           {
             "label": "Security",
             "title": "Forensic Software",
             "body": "Explore tools for digital evidence and forensic investigation.",
-            "image": "/assets/images/menu-security-forensic-software-v1.png",
+            "image": "/assets/images/menu-security-forensic-software-v2.jpeg",
             "link": "/forensic-software"
           }
         ],
@@ -3711,6 +3717,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "12",
         "label": "Security Hardware",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Hardware Security Module",
+            "body": "Explore Hardware Security Module services, features & solutions.",
+            "image": "/assets/images/menu-security-hardware-security-module-v2.jpeg",
+            "link": "/hardware-security-module"
+          },
+          {
+            "label": "Security",
+            "title": "Cloud Hardware Security Module",
+            "body": "Explore Cloud Hardware Security Module services, features & solutions.",
+            "image": "/assets/images/menu-security-cloud-hardware-security-module-v2.jpeg",
+            "link": "/cloud-hardware-security-module"
+          }
+        ],
         "groups": [
           {
             "heading": "Security Hardware",
@@ -5586,6 +5608,24 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/nigeria-go-to-market-strategy",
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Nigeria, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Hungary Go-to-Market Strategy",
+                "href": "/hungary-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Hungary, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Indonesia Go-to-Market Strategy",
+                "href": "/indonesia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Indonesia, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Ghana Go-to-Market Strategy",
+                "href": "/ghana-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Ghana, with sector insights and revenue modelling."
               },
             ]
           }

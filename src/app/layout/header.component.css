@@ -498,6 +498,22 @@
   filter: none;
   image-rendering: auto;
 }
+/* Trim only the supplied artwork's decorative outer frame, like Web Presence. */
+.xh-feature-media:has(> .xh-security-artwork) {
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  aspect-ratio: 1456 / 968;
+  background: #fff;
+}
+.xh-security-artwork {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1456 / 968;
+  overflow: hidden;
+}
 .xh-feature-media.xh-feature-media-whatsapp {
   height: auto;
   min-height: 0;
