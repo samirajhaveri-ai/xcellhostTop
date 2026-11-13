@@ -10,6 +10,7 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'devsecops' | 'cloudops' | 'dataops'
   | 'national-industrial-corridor-development-programme'
   | 'github-services'
   | 'gitlab-services'
@@ -107,6 +108,7 @@ type InteractiveContentSource =
   | 'ca-cloud'
   | 'microsoft-agent-365'
   | 'register-a-domain-name'
+  | 'career-handbook'
   | 'secure-file-transfer'
   | 'eccouncil-services'
   | 'podcast-catalog'
@@ -141,6 +143,10 @@ type InteractiveContentSource =
   | 'germany-go-to-market-strategy'
   | 'usa-go-to-market-strategy'
   | 'nigeria-go-to-market-strategy'
+  | 'hungary-go-to-market-strategy'
+  | 'indonesia-go-to-market-strategy'
+  | 'nvidia-rtx-pro-4500-blackwell'
+  | 'ghana-go-to-market-strategy'
   | 'kenya-go-to-market-strategy'
   | 'veeam-services'
   | 'dell-services'
@@ -397,6 +403,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
     'register-a-domain-name': '/imported-register-a-domain-name.html',
+    'career-handbook': '/imported-career-handbook.html',
     'secure-file-transfer': '/imported-secure-file-transfer.html',
     'eccouncil-services': '/imported-eccouncil-services.html',
     'podcast-catalog': '/imported-podcast-catalog.html',
@@ -431,6 +438,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'germany-go-to-market-strategy': '/imported-germany-go-to-market-strategy.html',
     'usa-go-to-market-strategy': '/imported-usa-go-to-market-strategy.html',
     'nigeria-go-to-market-strategy': '/imported-nigeria-go-to-market-strategy.html',
+    'hungary-go-to-market-strategy': '/imported-hungary-go-to-market-strategy.html',
+    'indonesia-go-to-market-strategy': '/imported-indonesia-go-to-market-strategy.html',
+    'nvidia-rtx-pro-4500-blackwell': '/imported-nvidia-rtx-pro-4500-blackwell.html',
+    'ghana-go-to-market-strategy': '/imported-ghana-go-to-market-strategy.html',
     'kenya-go-to-market-strategy': '/imported-kenya-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
@@ -450,6 +461,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'iam-assessment': '/imported-iam-assessment.html',
     'active-directory-assessment': '/imported-active-directory-assessment.html',
     'security-hardware-token': '/imported-security-hardware-token.html',
+    'digital-authenticity-verification': '/imported-digital-authenticity-verification.html',
+    'devsecops': '/imported-devsecops.html',
+    'cloudops': '/imported-cloudops.html',
+    'dataops': '/imported-dataops.html',
     'acronis-cyber-intelligence': '/imported-acronis-cyber-intelligence.html',
     'acronis-cyber-frame': '/imported-acronis-cyber-frame.html',
     'acronis-workflow-automation': '/imported-acronis-workflow-automation.html',
@@ -701,6 +716,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'microsoft-365-licensing-guide': 'Microsoft 365 Licensing Guide',
     'microsoft-agent-365': 'Microsoft Agent 365',
     'register-a-domain-name': 'Register A Domain Name',
+    'career-handbook': 'Career Handbook',
     'secure-file-transfer': 'Secure File Transfer',
     'eccouncil-services': 'EC-Council Programs',
     'podcast-catalog': 'The XcellHost Podcast',
@@ -735,6 +751,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'germany-go-to-market-strategy': 'Germany Go-to-Market Strategy',
     'usa-go-to-market-strategy': 'USA Go-to-Market Strategy',
     'nigeria-go-to-market-strategy': 'Nigeria Go-to-Market Strategy',
+    'hungary-go-to-market-strategy': 'Hungary Go-to-Market Strategy',
+    'indonesia-go-to-market-strategy': 'Indonesia Go-to-Market Strategy',
+    'nvidia-rtx-pro-4500-blackwell': 'NVIDIA RTX PRO 4500 Blackwell',
+    'ghana-go-to-market-strategy': 'Ghana Go-to-Market Strategy',
     'kenya-go-to-market-strategy': 'Kenya Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
@@ -754,6 +774,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'iam-assessment': 'IAM Assessment',
     'active-directory-assessment': 'Active Directory Assessment',
     'security-hardware-token': 'Security Hardware Token',
+    'digital-authenticity-verification': 'Digital Authenticity Verification',
+    'devsecops': 'DevSecOps: secure delivery pipelines, assessments and service configuration',
+    'cloudops': 'CloudOps: cloud operations, cost and SLO tools, service configuration',
+    'dataops': 'DataOps: data pipelines, contracts, observability and service configuration',
     'acronis-cyber-intelligence': 'Acronis Cyber Intelligence',
     'acronis-cyber-frame': 'Acronis Cyber Frame',
     'acronis-workflow-automation': 'Acronis Workflow Automation',
@@ -1078,6 +1102,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const scopeTitle = (this.source === 'cloud-disaster-recovery-smb' || this.source === 'cloud-disaster-recovery-smb-opening') ? 'Cloud Disaster Recovery for SMB'
         : this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
         : this.source === 'ai-factory' ? 'AI Factory'
+        : this.source === 'nvidia-rtx-pro-4500-blackwell' ? 'NVIDIA RTX PRO 4500 Blackwell'
         : this.source === 'mobile-app-security' ? 'Mobile App Security'
         : this.source === 'data-center-build-services' ? 'Data Center Build Services'
         : this.source === 'vcio-as-a-service' ? 'vCIO as a Service'
@@ -1090,6 +1115,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
         : ['druva-licensing-guide', 'veeam-licensing-guide'].includes(this.source) ? this.sourceTitles[this.source]
         : this.source === 'register-a-domain-name' ? 'Register A Domain Name'
+        : this.source === 'career-handbook' ? 'Career Handbook'
         : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
         : this.source === 'eccouncil-services' ? 'EC-Council Programs'
         : this.source === 'podcast-catalog' ? 'The XcellHost Podcast'
@@ -1284,7 +1310,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     doc.addEventListener('import-identity-enquiry', identityEnquiry);
     doc.addEventListener('import-trial', trial);
     doc.addEventListener('import-callback', callback);
-    const openDomainCart = () => { if (this.source === 'register-a-domain-name') this.cart.open(); };
+    const openDomainCart = () => { if (['register-a-domain-name', 'devsecops', 'cloudops', 'dataops'].includes(this.source)) this.cart.open(); };
     doc.addEventListener('import-cart-open', openDomainCart);
     doc.addEventListener('import-cart', add);
     doc.addEventListener('import-newsletter', newsletter);

@@ -36,9 +36,9 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     tool('dns-lookup', 'DNS Lookup', 'Query public DNS records and inspect their time to live.', 'Record lookup', [domain(), select('type', 'Record type', ['A', 'AAAA', 'MX', 'TXT', 'CNAME', 'NS', 'SOA', 'CAA'])], 'select'),
     tool('all-dns-records', 'All DNS Records', 'Review common DNS types, SPF and DMARC together.', 'Record lookup', [domain()], 'all'),
     ...['MX', 'TXT', 'CNAME', 'SOA', 'NS', 'CAA'].map(type => tool(type.toLowerCase() + '-lookup', type + ' Lookup', 'Inspect the ' + type + ' records published for a domain.', ['MX', 'TXT'].includes(type) ? 'Record lookup' : 'More records', [domain()], type)),
-    tool('ptr-lookup', 'PTR Lookup', 'Resolve the reverse DNS name of an IPv4 address.', 'Advanced', [text('input', 'IPv4 address', '', '8.8.8.8')], 'PTR'),
-    tool('dnssec-check', 'DNSSEC Check', 'Check whether Google Public DNS authenticates the DNS response.', 'Advanced', [domain()], 'DNSSEC'),
-    tool('caa-generator', 'CAA Generator', 'Create a certificate authority authorization record.', 'Advanced', [domain(), text('authority', 'Certificate authority domain', 'letsencrypt.org'), select('tag', 'Authorization', ['issue', 'issuewild'])]),
+    tool('ptr-lookup', 'PTR Lookup', 'Resolve IPv4 or IPv6 reverse DNS and check forward confirmation.', 'Advanced', [text('input', 'IP address', '', '8.8.8.8 or 2001:4860:4860::8888')], 'PTR'),
+    tool('dnssec-check', 'DNSSEC Check', 'Inspect resolver validation, DNSKEY, DS digests and RRSIG timing.', 'Advanced', [domain()], 'DNSSEC'),
+    tool('caa-generator', 'CAA Generator', 'Build issuer, wildcard and reporting CAA records with copy and download options.', 'Advanced', [domain(), text('authority', 'Certificate authority domain', 'letsencrypt.org'), select('tag', 'Authorization', ['issue', 'issuewild'])]),
   ] },
   { id: 'security', name: 'SSL & Security', icon: 'lock', color: '#34d399', tools: [
     tool('password-generator', 'Password Generator', 'Generate a password with cryptographically secure randomness.', 'Generators', [number('length', 'Password length', 24, 12, 128)]),

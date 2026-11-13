@@ -852,6 +852,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "NVIDIA RTX PRO 4500 Blackwell",
+                "href": "/nvidia-rtx-pro-4500-blackwell",
+                "pill": null,
+                "desc": "32 GB Blackwell GPU servers for inference, rendering and virtual workstations."
+              },
+              {
                 "title": "RTX 8000",
                 "pill": null,
                 "desc": null
@@ -1923,14 +1929,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Data Protection",
             "title": "Microsoft 365 Backup",
             "body": "Protect Microsoft 365 email and files with cloud backup.",
-            "image": "/assets/images/menu-data-protection-microsoft-365-backup-v1.png",
+            "image": "/assets/images/menu-data-protection-microsoft-365-backup-v2.jpeg",
             "link": "/microsoft-365-backup"
           },
           {
             "label": "Data Protection",
             "title": "Google Workspace Backup",
             "body": "Back up Google Workspace data and restore it when needed.",
-            "image": "/assets/images/menu-data-protection-google-workspace-backup-v1.png",
+            "image": "/assets/images/menu-data-protection-google-workspace-backup-v2.jpeg",
             "link": "/google-workspace-backup"
           }
         ],
@@ -1998,7 +2004,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Data Protection",
             "title": "Cloud Object Storage",
             "body": "Store and protect your business data in cloud object storage.",
-            "image": "/assets/images/menu-data-protection-cloud-object-storage-v1.png",
+            "image": "/assets/images/menu-data-protection-cloud-object-storage-v2.jpeg",
             "link": "/cloud-object-storage"
           }
         ],
@@ -2026,14 +2032,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Data Protection",
             "title": "Acronis Backup Advanced",
             "body": "Protect business workloads with advanced backup and recovery.",
-            "image": "/assets/images/menu-data-protection-acronis-backup-advanced-v1.png",
+            "image": "/assets/images/menu-data-protection-acronis-backup-advanced-v2.jpeg",
             "link": "/acronis-backup-advanced"
           },
           {
             "label": "Data Protection",
             "title": "Acronis True Image",
             "body": "Keep computers and important files backed up and protected.",
-            "image": "/assets/images/menu-data-protection-acronis-true-image-v1.png",
+            "image": "/assets/images/menu-data-protection-acronis-true-image-v2.jpeg",
             "link": "/acronis-true-image"
           }
         ],
@@ -2071,14 +2077,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Data Protection",
             "title": "Explore Druva Platform",
             "body": "Explore cloud data protection and resilience with Druva.",
-            "image": "/assets/images/menu-data-protection-druva-platform-v1.png",
+            "image": "/assets/images/menu-data-protection-druva-platform-v2.jpeg",
             "link": "/explore-druva-platform"
           },
           {
             "label": "Data Protection",
             "title": "AI Resilience",
             "body": "Explore AI resilience for your business data.",
-            "image": "/assets/images/menu-data-protection-ai-resilience-v1.png",
+            "image": "/assets/images/menu-data-protection-ai-resilience-v2.jpeg",
             "link": "/ai-resilience"
           }
         ],
@@ -2130,7 +2136,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Data Protection",
             "title": "Veeam Overview",
             "body": "Explore backup, recovery and data resilience with Veeam.",
-            "image": "/assets/images/menu-data-protection-veeam-platform-v1.png",
+            "image": "/assets/images/menu-data-protection-veeam-platform-v2.jpeg",
             "link": "/veeam-overview"
           }
         ],
@@ -2157,7 +2163,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Data Protection",
             "title": "CommVault Overview",
             "body": "Explore enterprise data protection with CommVault.",
-            "image": "/assets/images/menu-data-protection-commvault-platform-v1.png",
+            "image": "/assets/images/menu-data-protection-commvault-platform-v2.jpeg",
             "link": "/commvault-overview"
           }
         ],
@@ -2184,14 +2190,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Data Protection",
             "title": "Cloud Disaster Recovery for SMB",
             "body": "Keep your business ready with cloud disaster recovery.",
-            "image": "/assets/images/menu-data-protection-cloud-dr-smb-v1.png",
+            "image": "/assets/images/menu-data-protection-cloud-dr-smb-v2.jpeg",
             "link": "/cloud-disaster-recovery-for-smb"
           },
           {
             "label": "Data Protection",
             "title": "Cloud Disaster Recovery for Enterprise",
             "body": "Support business continuity with enterprise disaster recovery.",
-            "image": "/assets/images/menu-data-protection-cloud-dr-enterprise-v1.png",
+            "image": "/assets/images/menu-data-protection-cloud-dr-enterprise-v2.jpeg",
             "link": "/cloud-disaster-recovery-for-enterprise"
           }
         ],
@@ -2250,14 +2256,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "GeoTrust SSL Certificates",
             "body": "Secure websites with GeoTrust SSL certificates.",
-            "image": "/assets/images/menu-digital-trust-geotrust-ssl-v1.png",
+            "image": "/assets/images/menu-digital-trust-geotrust-ssl-v2.jpeg",
             "link": "/geotrust-ssl-certificates"
           },
           {
             "label": "Digital Trust",
             "title": "DigiCert SSL Certificates",
             "body": "Explore DigiCert certificates for website security.",
-            "image": "/assets/images/menu-digital-trust-digicert-ssl-v1.png",
+            "image": "/assets/images/menu-digital-trust-digicert-ssl-v2.jpeg",
             "link": "/digicert-ssl-certificates"
           }
         ],
@@ -2295,14 +2301,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "SSL Certificates",
             "body": "Secure website connections with SSL certificates.",
-            "image": "/assets/images/menu-digital-trust-ssl-certificates-v1.png",
+            "image": "/assets/images/menu-digital-trust-ssl-certificates-v2.jpeg",
             "link": "/ssl-certificates"
           },
           {
             "label": "Digital Trust",
             "title": "Code Signing Certificates",
             "body": "Verify software authenticity with code signing certificates.",
-            "image": "/assets/images/menu-digital-trust-code-signing-certificates-v1.png",
+            "image": "/assets/images/menu-digital-trust-code-signing-certificates-v2.jpeg",
             "link": "/code-signing-certificates"
           }
         ],
@@ -2359,14 +2365,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "AutoInstall SSL For Linux & Windows",
             "body": "Automate SSL installation for Linux and Windows.",
-            "image": "/assets/images/menu-digital-trust-autoinstall-ssl-v1.png",
+            "image": "/assets/images/menu-digital-trust-autoinstall-ssl-v2.jpeg",
             "link": "/autoinstall-ssl-for-linux-and-windows"
           },
           {
             "label": "Digital Trust",
             "title": "AutoInstall SSL For Web Hosts",
             "body": "Simplify SSL installation across web hosting environments.",
-            "image": "/assets/images/menu-digital-trust-web-host-ssl-v1.png",
+            "image": "/assets/images/menu-digital-trust-web-host-ssl-v2.jpeg",
             "link": "/autoinstall-ssl-for-web-hosts"
           }
         ],
@@ -2420,14 +2426,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "Certificate Mgmt Solutions",
             "body": "Manage digital certificates and their lifecycle.",
-            "image": "/assets/images/menu-digital-trust-certificate-management-v1.png",
+            "image": "/assets/images/menu-digital-trust-certificate-management-v2.jpeg",
             "link": "/certificate-mgmt-solutions"
           },
           {
             "label": "Digital Trust",
             "title": "Managed PKI",
             "body": "Explore managed public key infrastructure.",
-            "image": "/assets/images/menu-digital-trust-managed-pki-v1.png",
+            "image": "/assets/images/menu-digital-trust-managed-pki-v2.jpeg",
             "link": "/managed-pki"
           }
         ],
@@ -2488,14 +2494,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "Comodo Code Signing",
             "body": "Protect software integrity with trusted digital signatures.",
-            "image": "/assets/images/menu-digital-trust-comodo-code-signing-v1.png",
+            "image": "/assets/images/menu-digital-trust-comodo-code-signing-v2.jpeg",
             "link": "/comodo-code-signing"
           },
           {
             "label": "Digital Trust",
             "title": "Comodo EV Code Signing",
             "body": "Explore code signing with extended publisher validation.",
-            "image": "/assets/images/menu-digital-trust-comodo-ev-code-signing-v1.png",
+            "image": "/assets/images/menu-digital-trust-comodo-ev-code-signing-v2.jpeg",
             "link": "/comodo-ev-code-signing"
           }
         ],
@@ -2546,14 +2552,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "DigiCert S/MIME Class 1",
             "body": "Sign and protect email with DigiCert S/MIME certificates.",
-            "image": "/assets/images/menu-digital-trust-digicert-smime-class-1-v1.png",
+            "image": "/assets/images/menu-digital-trust-digicert-smime-class-1-v2.jpeg",
             "link": "/digicert-smime-class-1"
           },
           {
             "label": "Digital Trust",
             "title": "DigiCert S/MIME (OV)",
             "body": "Explore organization-validated email signing certificates.",
-            "image": "/assets/images/menu-digital-trust-digicert-smime-ov-v1.png",
+            "image": "/assets/images/menu-digital-trust-digicert-smime-ov-v2.jpeg",
             "link": "/digicert-smime-ov"
           }
         ],
@@ -2590,14 +2596,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "IoT Certificates Management",
             "body": "Manage certificate identities for connected devices.",
-            "image": "/assets/images/menu-digital-trust-iot-certificates-v1.png",
+            "image": "/assets/images/menu-digital-trust-iot-certificates-v2.jpeg",
             "link": "/iot-certificates-management"
           },
           {
             "label": "Digital Trust",
             "title": "Device Attestation Certificates",
             "body": "Verify device identities with attestation certificates.",
-            "image": "/assets/images/menu-digital-trust-device-attestation-v1.png",
+            "image": "/assets/images/menu-digital-trust-device-attestation-v2.jpeg",
             "link": "/device-attestation-certificates"
           }
         ],
@@ -2629,7 +2635,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "DigiCert Content Trust Manager",
             "body": "Sign images, video and documents with verifiable content provenance.",
-            "image": "/assets/images/menu-digital-trust-document-security-v1.png",
+            "image": "/assets/images/menu-digital-trust-content-trust-manager-v2.jpeg",
             "link": "/document-security"
           }
         ],
@@ -2658,7 +2664,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "DigiCert AI Trust Manager",
             "body": "Discover AI agents, assign accountable identities and govern their access.",
-            "image": "/assets/images/menu-digital-trust-ai-agent-trust-v1.png",
+            "image": "/assets/images/menu-digital-trust-ai-trust-manager-v2.jpeg",
             "link": "/digicert-ai-trust-manager"
           }
         ],
@@ -2685,7 +2691,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "DigiCert DNS",
             "body": "Explore authoritative DNS, DNSSEC, traffic steering and failover.",
-            "image": "/assets/images/menu-digital-trust-dns-trust-v1.png",
+            "image": "/assets/images/menu-digital-trust-digicert-dns-v2.jpeg",
             "link": "/digicert-dns"
           }
         ],
@@ -2712,14 +2718,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "Verified Mark Certificates (VMC)",
             "body": "Display your verified brand identity in supported email clients.",
-            "image": "/assets/images/menu-digital-trust-verified-mark-certificates-v1.png",
+            "image": "/assets/images/menu-digital-trust-verified-mark-certificates-v2.jpeg",
             "link": "/verified-mark-certificates-vmc"
           },
           {
             "label": "Digital Trust",
             "title": "Digicert VMC",
             "body": "Explore DigiCert Verified Mark Certificates.",
-            "image": "/assets/images/menu-digital-trust-digicert-vmc-v1.png",
+            "image": "/assets/images/menu-digital-trust-digicert-vmc-v2.jpeg",
             "link": "/digicert-vmc"
           }
         ],
@@ -2755,14 +2761,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "Docusign",
             "body": "Explore digital signing for business agreements.",
-            "image": "/assets/images/menu-digital-trust-docusign-v1.png",
+            "image": "/assets/images/menu-digital-trust-docusign-v2.jpeg",
             "link": "/docusign"
           },
           {
             "label": "Digital Trust",
             "title": "Zoho Sign",
             "body": "Send, sign and manage documents with Zoho Sign.",
-            "image": "/assets/images/menu-digital-trust-zoho-sign-v1.png",
+            "image": "/assets/images/menu-digital-trust-zoho-sign-v2.jpeg",
             "link": "/zoho-sign"
           }
         ],
@@ -2795,7 +2801,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Digital Trust",
             "title": "DigiCert Quantum Central",
             "body": "Inventory cryptography, prioritise quantum risk and plan your migration.",
-            "image": "/assets/images/menu-digital-trust-quantum-cryptography-v1.png",
+            "image": "/assets/images/menu-digital-trust-quantum-central-v2.jpeg",
             "link": "/digicert-quantum-central"
           }
         ],
@@ -2818,6 +2824,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "Blockchain Security",
         "label": "Blockchain Security",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "Applied Blockchain Security",
+            "body": "Smart contract audits, key-custody reviews and on-chain monitoring.",
+            "image": "/assets/images/menu-digital-trust-applied-blockchain-security-v2.jpeg",
+            "link": "/applied-blockchain-security"
+          }
+        ],
         "groups": [
           {
             "heading": "Blockchain Security",
@@ -2849,14 +2864,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "MDM",
             "body": "Manage and protect business devices from one place.",
-            "image": "/assets/images/menu-security-mdm-v1.png",
+            "image": "/assets/images/menu-security-mdm-v2.jpeg",
             "link": "/cloud-mobile-device-mgmt"
           },
           {
             "label": "Security",
             "title": "MDR",
             "body": "Explore managed threat detection and response.",
-            "image": "/assets/images/menu-security-mdr-v1.png",
+            "image": "/assets/images/menu-security-mdr-v2.jpeg",
             "link": "/mdr"
           }
         ],
@@ -2909,14 +2924,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "AWS Security",
             "body": "Explore protection for your AWS cloud environment.",
-            "image": "/assets/images/menu-security-aws-security-v1.png",
+            "image": "/assets/images/menu-security-aws-security-v2.jpeg",
             "link": "/aws-security"
           },
           {
             "label": "Security",
             "title": "Azure Security",
             "body": "Explore security for Azure workloads and identities.",
-            "image": "/assets/images/menu-security-azure-security-v1.png",
+            "image": "/assets/images/menu-security-azure-security-v2.jpeg",
             "link": "/azure-security"
           }
         ],
@@ -2969,14 +2984,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Network Access Control (NAC)",
             "body": "Control which devices can access your business network.",
-            "image": "/assets/images/menu-security-network-access-control-v1.png",
+            "image": "/assets/images/menu-security-network-access-control-v2.jpeg",
             "link": "/network-access-control-nac"
           },
           {
             "label": "Security",
             "title": "Network Detection & Response (NDR)",
             "body": "Monitor network activity and investigate threats.",
-            "image": "/assets/images/menu-security-network-detection-response-v1.png",
+            "image": "/assets/images/menu-security-network-detection-response-v2.jpeg",
             "link": "/network-detection-and-response-ndr"
           }
         ],
@@ -3018,14 +3033,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Microsoft Entra ID",
             "body": "Explore identity and access security with Microsoft Entra ID.",
-            "image": "/assets/images/menu-security-microsoft-entra-id-v1.png",
+            "image": "/assets/images/menu-security-microsoft-entra-id-v2.jpeg",
             "link": "/microsoft-entra-id"
           },
           {
             "label": "Security",
             "title": "Multi-Factor Authentication",
             "body": "Add identity verification to protect business access.",
-            "image": "/assets/images/menu-security-multi-factor-authentication-v1.png",
+            "image": "/assets/images/menu-security-multi-factor-authentication-v2.jpeg",
             "link": "/multi-factor-authentication"
           }
         ],
@@ -3086,7 +3101,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Free trial",
                 "desc": null
               },
-              
+              {
+                "title": "Digital Authenticity Verification",
+                "href": "/digital-authenticity-verification",
+                "pill": null,
+                "desc": "Explore deepfake detection, liveness checks and trust-score policies for digital identity verification."
+              }
             ]
           }
         ]
@@ -3100,14 +3120,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Data Encryption",
             "body": "Protect sensitive business information with encryption.",
-            "image": "/assets/images/menu-security-data-encryption-v1.png",
+            "image": "/assets/images/menu-security-data-encryption-v2.jpeg",
             "link": "/data-encryption"
           },
           {
             "label": "Security",
             "title": "Data Security Posture Mgmt",
             "body": "Understand and manage security risks across business data.",
-            "image": "/assets/images/menu-security-data-security-posture-v1.png",
+            "image": "/assets/images/menu-security-data-security-posture-v2.jpeg",
             "link": "/data-security-posture-mgmt"
           }
         ],
@@ -3161,14 +3181,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Data Encryption",
             "body": "Protect sensitive business information with encryption.",
-            "image": "/assets/images/menu-security-data-encryption-v1.png",
+            "image": "/assets/images/menu-security-data-encryption-v2.jpeg",
             "link": "/data-encryption"
           },
           {
             "label": "Security",
             "title": "Data Security Posture Mgmt",
             "body": "Understand and manage security risks across business data.",
-            "image": "/assets/images/menu-security-data-security-posture-v1.png",
+            "image": "/assets/images/menu-security-data-security-posture-v2.jpeg",
             "link": "/data-security-posture-mgmt"
           }
         ],
@@ -3211,14 +3231,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Acronis OT",
             "body": "Explore protection for operational technology environments.",
-            "image": "/assets/images/menu-security-acronis-ot-v1.png",
+            "image": "/assets/images/menu-security-acronis-ot-v2.jpeg",
             "link": "/acronis-ot"
           },
           {
             "label": "Security",
             "title": "Kaspersky OT",
             "body": "Explore industrial cybersecurity for operational technology.",
-            "image": "/assets/images/menu-security-kaspersky-ot-v1.png",
+            "image": "/assets/images/menu-security-kaspersky-ot-v2.jpeg",
             "link": "/kaspersky-ot"
           }
         ],
@@ -3255,14 +3275,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "VAPT Services",
             "body": "Identify vulnerabilities with security testing services.",
-            "image": "/assets/images/menu-security-vapt-services-v1.png",
+            "image": "/assets/images/menu-security-vapt-services-v2.jpeg",
             "link": "/vapt-services"
           },
           {
             "label": "Security",
             "title": "Continuous Pen As a Services",
             "body": "Explore ongoing penetration testing for your systems.",
-            "image": "/assets/images/menu-security-continuous-pen-testing-v1.png",
+            "image": "/assets/images/menu-security-continuous-pen-testing-v2.jpeg",
             "link": "/continuous-pen-as-a-services"
           }
         ],
@@ -3355,14 +3375,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Cloud Security Assessment",
             "body": "Review security controls and risks in your cloud environment.",
-            "image": "/assets/images/menu-security-cloud-security-assessment-v1.png",
+            "image": "/assets/images/menu-security-cloud-security-assessment-v2.jpeg",
             "link": "/cloud-security-assessment"
           },
           {
             "label": "Security",
             "title": "Digital Risk Monitoring",
             "body": "Monitor digital exposure and external business risks.",
-            "image": "/assets/images/menu-security-digital-risk-monitoring-v1.png",
+            "image": "/assets/images/menu-security-digital-risk-monitoring-v2.jpeg",
             "link": "/digital-risk-monitoring"
           }
         ],
@@ -3439,14 +3459,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Autonomous Threat Management",
             "body": "Explore AI-driven threat detection and automated response.",
-            "image": "/assets/images/menu-security-autonomous-threat-management-v1.png",
+            "image": "/assets/images/menu-security-autonomous-threat-management-v2.jpeg",
             "link": "/autonomous-threat-management"
           },
           {
             "label": "Security",
             "title": "Cloud Security Log Monitoring",
             "body": "Monitor cloud security logs and investigate suspicious activity.",
-            "image": "/assets/images/menu-security-cloud-security-log-monitoring-v1.png",
+            "image": "/assets/images/menu-security-cloud-security-log-monitoring-v2.jpeg",
             "link": "/cloud-security-log-monitoring"
           }
         ],
@@ -3535,14 +3555,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "DPDPA Consulting",
             "body": "Explore consulting for data privacy and protection.",
-            "image": "/assets/images/menu-security-dpdpa-consulting-v1.png",
+            "image": "/assets/images/menu-security-dpdpa-consulting-v2.jpeg",
             "link": "/dpdpa-consulting"
           },
           {
             "label": "Security",
             "title": "vDPO-as-a-Service",
             "body": "Get support for data protection responsibilities.",
-            "image": "/assets/images/menu-security-vdpo-service-v1.png",
+            "image": "/assets/images/menu-security-vdpo-service-v2.jpeg",
             "link": "/vdpo-as-a-service"
           }
         ],
@@ -3630,14 +3650,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Security Awareness Training",
             "body": "Build practical cybersecurity awareness across your team.",
-            "image": "/assets/images/menu-security-security-awareness-training-v1.png",
+            "image": "/assets/images/menu-security-security-awareness-training-v2.jpeg",
             "link": "/security-awareness-training"
           },
           {
             "label": "Security",
             "title": "Incident Response Training",
             "body": "Help your team prepare for security incidents.",
-            "image": "/assets/images/menu-security-incident-response-training-v1.png",
+            "image": "/assets/images/menu-security-incident-response-training-v2.jpeg",
             "link": "/incident-response-training"
           }
         ],
@@ -3678,14 +3698,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Security",
             "title": "Certificate Disk Erasure",
             "body": "Explore secure disk erasure for business data.",
-            "image": "/assets/images/menu-security-disk-erasure-v1.png",
+            "image": "/assets/images/menu-security-disk-erasure-v2.jpeg",
             "link": "/certificate-disk-erasure"
           },
           {
             "label": "Security",
             "title": "Forensic Software",
             "body": "Explore tools for digital evidence and forensic investigation.",
-            "image": "/assets/images/menu-security-forensic-software-v1.png",
+            "image": "/assets/images/menu-security-forensic-software-v2.jpeg",
             "link": "/forensic-software"
           }
         ],
@@ -3712,6 +3732,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "12",
         "label": "Security Hardware",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Hardware Security Module",
+            "body": "Explore Hardware Security Module services, features & solutions.",
+            "image": "/assets/images/menu-security-hardware-security-module-v2.jpeg",
+            "link": "/hardware-security-module"
+          },
+          {
+            "label": "Security",
+            "title": "Cloud Hardware Security Module",
+            "body": "Explore Cloud Hardware Security Module services, features & solutions.",
+            "image": "/assets/images/menu-security-cloud-hardware-security-module-v2.jpeg",
+            "link": "/cloud-hardware-security-module"
+          }
+        ],
         "groups": [
           {
             "heading": "Security Hardware",
@@ -5403,6 +5439,24 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Managed Fabric, Besu and Corda networks, smart contracts and consortium operations.",
                   "href": "/blockchain-as-a-service"
+              },
+              {
+                "title": "DevSecOps",
+                "pill": null,
+                "desc": "Secure code, dependencies, infrastructure and releases with managed delivery pipelines.",
+                "href": "/devsecops"
+              },
+              {
+                "title": "CloudOps",
+                "pill": null,
+                "desc": "Run, secure and optimise your cloud with IaC, SRE, ITIL and FinOps.",
+                "href": "/cloudops"
+              },
+              {
+                "title": "DataOps",
+                "pill": null,
+                "desc": "Build reliable, tested and governed data pipelines with observability and data contracts.",
+                "href": "/dataops"
               }
             ]
           }
@@ -5606,6 +5660,24 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/nigeria-go-to-market-strategy",
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Nigeria, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Hungary Go-to-Market Strategy",
+                "href": "/hungary-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Hungary, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Indonesia Go-to-Market Strategy",
+                "href": "/indonesia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Indonesia, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Ghana Go-to-Market Strategy",
+                "href": "/ghana-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Ghana, with sector insights and revenue modelling."
               },
             ]
           }

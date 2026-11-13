@@ -49,7 +49,6 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
     { initials: 'AG', name: 'Aliza Ghori', role: 'Social Media Manager', image: '/assets/images/TEAMS PHOTO/Aliza Ghori.jpeg' },
     { initials: 'AN', name: 'Aryan Nair', role: 'Social Media Manager', image: '/assets/images/TEAMS PHOTO/Aryan.png' },
     { initials: 'RS', name: 'Ravi Sharma', role: 'SEO+GTM Engineer', image: '/assets/images/TEAMS PHOTO/Ravi.png' },
-    { initials: 'OM', name: 'Omkarnath Mishra', role: 'Video Editor', image: '/assets/images/TEAMS PHOTO/Omkarnath Mishra.jpeg' },
     { initials: 'RS', name: 'AI SEO/AEO/GEO Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'RS', name: 'AI Social Media Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'RS', name: 'AI Conversation Agent', role: '', image: '/assets/images/Robot-enhanced.png' },

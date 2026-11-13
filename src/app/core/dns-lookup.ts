@@ -1,5 +1,6 @@
 export const DNS_LOOKUP_TYPES = ['A', 'AAAA', 'MX', 'TXT', 'CNAME', 'NS', 'SOA', 'CAA'] as const;
-export type DnsLookupType = typeof DNS_LOOKUP_TYPES[number];
+// PTR uses the dedicated IP-input page rather than the generic hostname selector.
+export type DnsLookupType = typeof DNS_LOOKUP_TYPES[number] | 'PTR';
 export const DNS_LOOKUP_RESOLVERS = [
   { id: 'google', name: 'Google Public DNS', address: '8.8.8.8', endpoint: 'https://dns.google/resolve' },
   { id: 'cloudflare', name: 'Cloudflare', address: '1.1.1.1', endpoint: 'https://cloudflare-dns.com/dns-query' },
@@ -16,7 +17,7 @@ export interface DnsHostResult {
   raw?: DnsJson;
 }
 export interface DnsLookupReport { domain: string; type: DnsLookupType; resolver: string; checkedAt: string; durationMs: number; hosts: DnsHostResult[]; }
-const typeNames: Record<number, string> = { 1: 'A', 28: 'AAAA', 15: 'MX', 16: 'TXT', 5: 'CNAME', 2: 'NS', 6: 'SOA', 257: 'CAA' };
+const typeNames: Record<number, string> = { 1: 'A', 28: 'AAAA', 15: 'MX', 16: 'TXT', 5: 'CNAME', 2: 'NS', 6: 'SOA', 257: 'CAA', 12: 'PTR' };
 
 export function normalizeDnsDomain(input: string): string {
   const value = input.trim();
@@ -34,7 +35,7 @@ export function normalizeDnsDomain(input: string): string {
 
 export async function lookupDns(input: string, type: DnsLookupType, resolverId: DnsResolverId, includeWww: boolean, signal?: AbortSignal): Promise<DnsLookupReport> {
   const domain = normalizeDnsDomain(input);
-  if (!DNS_LOOKUP_TYPES.includes(type)) throw new Error('Choose a supported DNS record type.');
+  if (type !== 'PTR' && !DNS_LOOKUP_TYPES.includes(type)) throw new Error('Choose a supported DNS record type.');
   const resolver = DNS_LOOKUP_RESOLVERS.find(r => r.id === resolverId);
   if (!resolver) throw new Error('Choose a supported DNS resolver.');
   const start = performance.now();

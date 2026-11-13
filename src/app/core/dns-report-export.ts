@@ -1,6 +1,6 @@
 import type { DnsLookupReport, DnsLookupType, DnsResolverId } from './dns-lookup';
 
-export type DnsExportReport = Omit<DnsLookupReport, 'type'> & { type: DnsLookupType | 'ALL'; queriedTypes?: string; };
+export type DnsExportReport = Omit<DnsLookupReport, 'type'> & { type: DnsLookupType | 'ALL' | 'DNSSEC'; queriedTypes?: string; };
 
 export function dnsCsv(rows: (string | number)[][]): string {
   const cell = (value: string | number) => {
