@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { BlogApiService, CmsArticle } from '../core/blog-api.service';
+import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
 import { BlogPage } from './blog.page';
 
@@ -17,7 +18,8 @@ describe('Blog summary links', () => {
       imports: [BlogPage],
       providers: [
         provideRouter([]),
-        { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of([]) } },
+        { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of([]), cmsArticles$: of([]) } },
+        { provide: CaseStudiesApiService, useValue: { studies$: of([]) } },
         { provide: SeoService, useValue: { set: () => {}, setJsonLd: () => {} } },
       ],
     }).compileComponents();

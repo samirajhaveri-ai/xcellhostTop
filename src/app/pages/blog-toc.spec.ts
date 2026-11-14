@@ -3,6 +3,7 @@ import { provideRouter, Router, withInMemoryScrolling, withRouterConfig } from '
 import { RouterTestingHarness } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { BlogApiService, CmsArticle } from '../core/blog-api.service';
+import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
 import { BlogPage } from './blog.page';
 
@@ -22,7 +23,8 @@ describe('Article table of contents', () => {
             { path: 'use-cases/:slug', component: BlogPage, data: { contentType: 'use-case' } },
           ], withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'top' }),
           withRouterConfig({ onSameUrlNavigation: 'reload' })),
-          { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of(posts), useCases$: of(posts) } },
+          { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of(posts), cmsArticles$: of(posts), useCases$: of(posts) } },
+          { provide: CaseStudiesApiService, useValue: { studies$: of([]) } },
           { provide: SeoService, useValue: { set: () => {}, setJsonLd: () => {} } },
         ],
       }).compileComponents();

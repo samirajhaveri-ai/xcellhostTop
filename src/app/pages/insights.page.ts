@@ -752,7 +752,8 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   isExternal(item: InsightItem): boolean {
-    return item.kind !== 'blog' && item.kind !== 'use-case' && item.kind !== 'case-study';
+    if (item.kind === 'blog' || item.kind === 'use-case' || item.kind === 'case-study') return false;
+    return !item.actionUrl?.startsWith('/');
   }
 
   resourceAction(item: InsightItem): string {

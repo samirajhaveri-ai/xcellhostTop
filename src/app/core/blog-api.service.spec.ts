@@ -50,6 +50,26 @@ describe('Blog slug resolution', () => {
 });
 
 describe('Blog API pagination', () => {
+  it('opens categorised resources by slug while keeping them out of the Blogs listing', fakeAsync(() => {
+    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    const http = TestBed.inject(HttpTestingController);
+    const service = TestBed.inject(BlogApiService);
+    let blogs: readonly CmsBlogPost[] = [];
+    let detail: CmsBlogPost | null = null;
+    const listing = service.posts$.subscribe(items => blogs = items);
+    const article = service.watchBySlug('sample-whitepaper').subscribe(item => detail = item);
+    tick(0);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [
+      { title: 'Sample whitepaper', slug: 'sample-whitepaper', category: 'Whitepaper', content: 'Preview and source link' },
+      { title: 'Existing blog', slug: 'existing-blog', category: 'Cloud', content: 'Existing content' },
+    ] });
+    expect(blogs.map(item => item.slug)).toEqual(['existing-blog']);
+    expect((detail as CmsBlogPost | null)?.slug).toBe('sample-whitepaper');
+    listing.unsubscribe();
+    article.unsubscribe();
+    http.verify();
+  }));
+
   it('recovers after an initial outage and retains loaded blogs during later outages', fakeAsync(() => {
     TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
     const http = TestBed.inject(HttpTestingController);
@@ -84,6 +104,15 @@ describe('Blog API pagination', () => {
     let received: readonly CmsInsightResource[] = [];
     const subscription = service.documents$.subscribe(items => received = items);
     tick(0);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [{
+      documentId: 'ebook-from-blog',
+      title: 'Cloud handbook',
+      slug: 'cloud-handbook',
+      description: 'A practical cloud handbook.',
+      content: 'Handbook content',
+      author: 'XcellHost Team',
+      category: 'Ebook',
+    }] });
     for (const type of INSIGHT_DOCUMENT_TYPES) {
       const request = http.expectOne(req => req.url.endsWith('/api/' + type.endpoint));
       if (type.kind === 'ebook') {
@@ -96,10 +125,11 @@ describe('Blog API pagination', () => {
         ] });
       }
     }
-    expect(received.length).toBe(5);
-    expect(received.map(item => item.kind)).toEqual(['data-sheet', 'cheat-sheet', 'whitepaper', 'guide', 'checklist']);
+    expect(received.length).toBe(6);
+    expect(received.map(item => item.kind)).toEqual(['data-sheet', 'cheat-sheet', 'whitepaper', 'guide', 'checklist', 'ebook']);
     expect(received[0].downloadUrl).toContain('/uploads/resource.pdf');
     expect(received[0].relatedPages).toBe('tally-on-cloud');
+    expect(received[5].downloadUrl).toBe('/insights/cloud-handbook');
     subscription.unsubscribe();
     http.verify();
   }));
@@ -189,6 +219,8 @@ describe('Blog API pagination', () => {
     let selectedDocumentId = '';
     const listSubscription = service.useCases$.subscribe(items => received = items);
     tick(0);
+
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [] });
 
     const request = http.expectOne(req => req.url.endsWith('/api/use-cases'));
     expect(request.request.params.get('populate')).toBe('coverImage');

@@ -248,7 +248,7 @@ export class BlogPage implements OnDestroy {
       ? this.caseStudiesApi.studies$.pipe(map(studies => studies.map((study, index) => this.caseStudyArticle(study, index))))
       : this.isUseCase
         ? this.blogApi.useCases$
-        : this.blogApi.posts$;
+        : this.blogApi.cmsArticles$;
     this.route.paramMap
       .pipe(
         map((params) => params.get('slug') ?? params.get('id') ?? ''),
