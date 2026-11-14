@@ -148,6 +148,12 @@ export const routes: Routes = [
   { path: 'tools/ptr-lookup', title: 'PTR Lookup | XcellHost Tools', loadComponent: () => import('./pages/ptr-lookup.page').then(m => m.PtrLookupPage) },
   { path: 'tools/dnssec-check', title: 'DNSSEC Check | XcellHost Tools', loadComponent: () => import('./pages/dnssec-check.page').then(m => m.DnssecCheckPage) },
   { path: 'tools/caa-generator', title: 'CAA Record Generator | XcellHost Tools', loadComponent: () => import('./pages/caa-generator.page').then(m => m.CaaGeneratorPage) },
+  { path: 'tools/password-generator', title: 'Password Generator | XcellHost Tools', loadComponent: () => import('./pages/password-generator.page').then(m => m.PasswordGeneratorPage) },
+  { path: 'tools/hash-generator', title: 'Hash Generator | XcellHost Tools', loadComponent: () => import('./pages/hash-generator.page').then(m => m.HashGeneratorPage) },
+  { path: 'tools/certificate-fingerprint', title: 'Certificate Fingerprint | XcellHost Tools', loadComponent: () => import('./pages/certificate-fingerprint.page').then(m => m.CertificateFingerprintPage) },
+  { path: 'tools/pem-formatter', title: 'PEM Formatter | XcellHost Tools', loadComponent: () => import('./pages/pem-formatter.page').then(m => m.PemFormatterPage) },
+  { path: 'tools/spf-lookup', title: 'SPF Lookup | XcellHost Tools', loadComponent: () => import('./pages/spf-lookup.page').then(m => m.SpfLookupPage) },
+  { path: 'tools/dkim-lookup', title: 'DKIM Lookup | XcellHost Tools', loadComponent: () => import('./pages/dkim-lookup.page').then(m => m.DkimLookupPage) },
 
   { path: 'dhruva-certifications', redirectTo: 'druva-certifications', pathMatch: 'full' },
   ...suppliedPageRoutes,

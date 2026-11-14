@@ -58,14 +58,15 @@ export function dnsReportAnalysis(report: DnsExportReport) {
 }
 
 /** Branded A4 report with actual-answer diagnostics and repeated table headers. */
-export function dnsReportPdf(report: DnsExportReport, options: { analysis?: ReturnType<typeof dnsReportAnalysis>; toolPath?: 'dns-lookup' | 'all-dns-records' | 'mx-lookup' | 'txt-lookup' | 'cname-lookup' | 'soa-lookup' | 'ns-lookup' | 'caa-lookup' | 'ptr-lookup' | 'dnssec-check' } = {}): ArrayBuffer {
+export function dnsReportPdf(report: DnsExportReport, options: { analysis?: ReturnType<typeof dnsReportAnalysis>; toolPath?: 'dns-lookup' | 'all-dns-records' | 'mx-lookup' | 'txt-lookup' | 'cname-lookup' | 'soa-lookup' | 'ns-lookup' | 'caa-lookup' | 'ptr-lookup' | 'dnssec-check' | 'spf-lookup' | 'dkim-lookup'; queryParameters?: Record<string, string> } = {}): ArrayBuffer {
   const pdf = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
   pdf.setProperties({ title: report.domain + (report.type === 'ALL' ? ' all DNS records' : ' DNS lookup'), author: 'XcellHost', subject: report.type + ' DNS report via ' + report.resolver });
   const analysis = options.analysis || dnsReportAnalysis(report);
-  const hostPrefix = options.toolPath === 'mx-lookup' ? 'MX' : options.toolPath === 'cname-lookup' ? 'CN' : options.toolPath === 'ns-lookup' ? 'NS' : options.toolPath === 'ptr-lookup' ? 'PTR' : options.toolPath === 'dnssec-check' ? 'Q' : null;
-  const hostLabels = hostPrefix ? new Map(report.hosts.map((host, index) => [host.name, options.toolPath === 'dnssec-check' ? hostPrefix + (index + 1) : index ? hostPrefix + index : '@'])) : null;
+  const isQueryReport = ['dnssec-check', 'spf-lookup', 'dkim-lookup'].includes(options.toolPath || '');
+  const hostPrefix = options.toolPath === 'mx-lookup' ? 'MX' : options.toolPath === 'cname-lookup' ? 'CN' : options.toolPath === 'ns-lookup' ? 'NS' : options.toolPath === 'ptr-lookup' ? 'PTR' : isQueryReport ? 'Q' : null;
+  const hostLabels = hostPrefix ? new Map(report.hosts.map((host, index) => [host.name, isQueryReport ? hostPrefix + (index + 1) : index ? hostPrefix + index : '@'])) : null;
   const margin = 12, width = 186, bottom = 280;
-  const reportTitle = report.type === 'ALL' ? 'ALL DNS RECORDS REPORT' : 'DNS ' + report.type + ' RECORD REPORT';
+  const reportTitle = options.toolPath === 'dkim-lookup' ? 'DKIM KEY RECORD REPORT' : options.toolPath === 'spf-lookup' ? 'SPF POLICY REPORT' : report.type === 'ALL' ? 'ALL DNS RECORDS REPORT' : 'DNS ' + report.type + ' RECORD REPORT';
   let y = 0;
   const printable = (value: string) => value.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g, '').replace(/[^\x00-\x7f]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'));
   const font = (size: number, bold = false, mono = false) => { pdf.setFont(mono ? 'courier' : 'helvetica', bold ? 'bold' : 'normal'); pdf.setFontSize(size); pdf.setCharSpace(0); };
@@ -97,7 +98,7 @@ export function dnsReportPdf(report: DnsExportReport, options: { analysis?: Retu
   pdf.setDrawColor('#284464'); pdf.line(163, 10, 163, heroHeight - 9);
   font(28, true, true);
   text(String(analysis.rootCount), 182 - pdf.getTextWidth(String(analysis.rootCount)) / 2, 22, 28, '#ff961f', true, true);
-  text(report.type === 'ALL' ? 'DNS ANSWERS' : report.type + ' RECORDS', 167, 28, 7, '#b6c9e3', true, true);
+  text(options.toolPath === 'dkim-lookup' ? 'KEY RECORDS' : options.toolPath === 'spf-lookup' ? 'SPF RECORDS' : report.type === 'ALL' ? 'DNS ANSWERS' : report.type + ' RECORDS', 167, 28, 7, '#b6c9e3', true, true);
   pdf.setFillColor(COLORS.white); pdf.roundedRect(166, 33, 32, 6, 1.5, 1.5, 'F');
   const badgeLines = wrap(analysis.badge, 30, 5.7, true, true);
   text(badgeLines[0], 168, 37, 5.7, '#bd6a0c', true, true);
@@ -105,7 +106,7 @@ export function dnsReportPdf(report: DnsExportReport, options: { analysis?: Retu
   // Overview strip.
   pdf.setFillColor(COLORS.pale); pdf.rect(0, heroHeight, 210, 18, 'F');
   pdf.setDrawColor(COLORS.line); pdf.line(0, heroHeight + 18, 210, heroHeight + 18);
-  const stats = [['RESOLVER', report.resolver], ['TTL RANGE (' + report.type + ')', analysis.ttlRange], [options.toolPath === 'dnssec-check' ? 'DNS QUERIES' : 'HOSTNAMES CHECKED', String(report.hosts.length)]];
+  const stats = [['RESOLVER', report.resolver], ['TTL RANGE (' + report.type + ')', analysis.ttlRange], [isQueryReport ? 'DNS QUERIES' : 'HOSTNAMES CHECKED', String(report.hosts.length)]];
   stats.forEach(([name, value], index) => {
     const x = margin + index * 62;
     text(name, x, heroHeight + 6, 6.8, COLORS.muted, true, true);
@@ -202,7 +203,8 @@ export function dnsReportPdf(report: DnsExportReport, options: { analysis?: Retu
     font(7); pdf.setTextColor(COLORS.blue);
     const toolPath = options.toolPath || (report.type === 'ALL' ? 'all-dns-records' : 'dns-lookup');
     const parameters = toolPath === 'ptr-lookup' ? '?ip=' + encodeURIComponent(report.domain) : '?domain=' + encodeURIComponent(report.domain) + (report.type === 'ALL' ? '' : '&type=' + report.type);
-    pdf.textWithLink('xcellhost.cloud/tools/' + toolPath, margin, 295, { url: 'https://xcellhost.cloud/tools/' + toolPath + parameters });
+    const extraParameters = options.queryParameters ? '&' + new URLSearchParams(options.queryParameters).toString() : '';
+    pdf.textWithLink('xcellhost.cloud/tools/' + toolPath, margin, 295, { url: 'https://xcellhost.cloud/tools/' + toolPath + parameters + extraParameters });
   }
   return pdf.output('arraybuffer');
 }

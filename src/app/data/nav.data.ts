@@ -3486,11 +3486,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "SIEM-as-a-Service",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "SOC as a Services",
                 "pill": null,
                 "desc": null,
