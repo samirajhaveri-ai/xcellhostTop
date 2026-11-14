@@ -17,6 +17,7 @@ interface IndustryCard {
    * original script matched against the directory before clicking the link.
    */
   readonly service: string;
+  readonly href?: string;
 }
 
 const INDUSTRY_CARDS: readonly IndustryCard[] = [
@@ -37,6 +38,7 @@ const INDUSTRY_CARDS: readonly IndustryCard[] = [
   { icon: 'retail', label: 'Retail Cloud', blurb: 'Explore Retail Cloud services, features and solutions.', service: 'Retail Cloud' },
   { icon: 'business', label: 'GCC Cloud', blurb: 'Managed cloud infrastructure, security and support for GCC teams.', service: 'GCC Cloud' },
   { icon: 'media', label: 'Media & Entertainment', blurb: 'Cloud infrastructure for production, collaboration and digital media.', service: 'Media & Entertainment' },
+  { icon: 'bank', label: 'Urban Cooperative Banks', blurb: 'Explore UCB segments, service priorities and partner strategy.', service: 'Urban Cooperative Banks', href: '/urban-cooperative-banks-go-to-market-strategy' },
 ]; 
 
 const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
@@ -90,6 +92,6 @@ export class IndustriesComponent {
   readonly cards = INDUSTRY_CARDS.map((i) => ({
     ...i,
     iconPath: INDUSTRY_ICON_PATHS[i.icon],
-    link: '/' + slugify(this.catalog.findInDirectory(i.service)?.name ?? i.service),
+    link: i.href ?? '/' + slugify(this.catalog.findInDirectory(i.service)?.name ?? i.service),
   }));
 }

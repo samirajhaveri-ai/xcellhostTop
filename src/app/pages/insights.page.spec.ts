@@ -68,6 +68,19 @@ describe('Insights pagination', () => {
     }
   });
 
+  it('opens resource-category Blog entries on their normal Insights detail route', () => {
+    documents.next([{
+      documentId: 'datasheet-blog', kind: 'data-sheet', title: 'Tally data sheet', slug: 'tally-data-sheet',
+      description: 'Cloud accounting resource', content: 'Resource content', category: 'Datasheet',
+      date: '2026-11-04', time: '09:00', author: 'XcellHost Team',
+      downloadUrl: '/insights/tally-data-sheet',
+    } as CmsInsightResource]);
+    page.selectTab('Data Sheets');
+    const item = page.sourceItems()[0];
+    expect(page.isExternal(item)).toBeFalse();
+    expect(page.insightHref(item)).toBe('/insights/tally-data-sheet');
+  });
+
   it('renders clickable video cards and filters even when blogs fail', () => {
     const fixture = TestBed.createComponent(InsightsPage);
     videos.next([{

@@ -8,6 +8,48 @@ import { OverlayService } from '../core/overlay.service';
 import { SearchDialogComponent } from './search-dialog.component';
 
 describe('Search dialog live results', () => {
+  it('loads CustomGPT on Ask AI and preserves the embed across closing and reopening', () => {
+    TestBed.configureTestingModule({
+      imports: [SearchDialogComponent],
+      providers: [
+        provideRouter([]),
+        { provide: BlogApiService, useValue: { posts$: of([]), useCases$: of([]), postsStatus: signal('ready') } },
+        { provide: CaseStudiesApiService, useValue: { studies$: of([]) } },
+      ],
+    });
+    const fixture = TestBed.createComponent(SearchDialogComponent);
+    const overlay = TestBed.inject(OverlayService);
+    overlay.open('search');
+    fixture.detectChanges();
+    const container = fixture.nativeElement.querySelector('#customgpt_chat') as HTMLElement;
+    const append = spyOn(document.body, 'appendChild').and.stub();
+    expect(append).not.toHaveBeenCalled();
+
+    (fixture.nativeElement.querySelector('.srch-ai-toggle') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    const script = append.calls.mostRecent().args[0] as HTMLScriptElement;
+    expect(script.src).toBe('https://cdn.customgpt.ai/js/embed.js');
+    expect(script.getAttribute('div_id')).toBe('customgpt_chat');
+    expect(script.getAttribute('p_id')).toBe('101998');
+    expect(script.getAttribute('p_key')).toBe('0ba42147c660fe091a37baacf1a1cc14');
+    expect(container.parentElement!.hidden).toBeFalse();
+    expect(fixture.nativeElement.querySelector('xh-algolia-search')).toBeNull();
+
+    fixture.componentInstance.toggleAi();
+    fixture.detectChanges();
+    expect(container.parentElement!.hidden).toBeTrue();
+    fixture.componentInstance.close();
+    fixture.detectChanges();
+    overlay.open('search');
+    fixture.detectChanges();
+    fixture.componentInstance.openAskAi();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#customgpt_chat')).toBe(container);
+    expect(container.parentElement!.hidden).toBeFalse();
+    expect(append).toHaveBeenCalledTimes(1);
+    fixture.destroy();
+  });
+
   it('opens on website search by default', () => {
     TestBed.configureTestingModule({
       imports: [SearchDialogComponent],

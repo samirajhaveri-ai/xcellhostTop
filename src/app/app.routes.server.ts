@@ -23,6 +23,7 @@ function prerenderParameterizedRoute(
 }
 
 export const serverRoutes: ServerRoute[] = [
+  prerenderParameterizedRoute('tools/:tool', 'tools/', 'tool'),
   prerenderParameterizedRoute('compare-products/:comparison', 'compare-products/', 'comparison'),
   prerenderParameterizedRoute('under-construction/:slug', 'under-construction/', 'slug'),
   prerenderParameterizedRoute('case-studies/:id', 'case-studies/', 'id'),

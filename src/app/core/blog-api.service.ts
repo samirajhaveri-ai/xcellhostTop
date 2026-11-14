@@ -75,6 +75,16 @@ export const INSIGHT_DOCUMENT_TYPES = [
 
 export type CmsResourceKind = 'video' | 'use-case' | typeof INSIGHT_DOCUMENT_TYPES[number]['kind'];
 
+const BLOG_RESOURCE_CATEGORIES: readonly [RegExp, CmsResourceKind][] = [
+  [/^use\s*-?\s*cases?$/i, 'use-case'],
+  [/^data\s*-?\s*sheets?$/i, 'data-sheet'],
+  [/^cheat\s*-?\s*sheets?$/i, 'cheat-sheet'],
+  [/^white\s*-?\s*papers?$/i, 'whitepaper'],
+  [/^e\s*-?\s*books?$/i, 'ebook'],
+  [/^guides?$/i, 'guide'],
+  [/^checklists?$/i, 'checklist'],
+];
+
 /** Shared Strapi shape for the optional Videos and Use Cases collections. */
 export interface CmsInsightResource extends CmsArticle {
   readonly kind: CmsResourceKind;
@@ -127,8 +137,8 @@ export class BlogApiService {
   readonly videoStatus = signal<'loading' | 'ready' | 'cached' | 'error'>('loading');
   private lastVideos: readonly CmsInsightResource[] = [];
 
-  /** Refreshes in the background so CMS edits appear without rebuilding the UI. */
-  readonly posts$: Observable<readonly CmsBlogPost[]> = this.browser ? timer(0, 30_000).pipe(
+  /** One shared Blog request feeds both articles and resource-category entries. */
+  readonly cmsArticles$: Observable<readonly CmsBlogPost[]> = this.browser ? timer(0, 30_000).pipe(
     switchMap(() => this.list().pipe(
       tap(posts => { this.lastPosts = posts; this.postsStatus.set('ready'); }),
       catchError(() => {
@@ -138,6 +148,21 @@ export class BlogApiService {
     )),
     shareReplay({ bufferSize: 1, refCount: true })
   ) : of([]);
+
+  /** Refreshes in the background so CMS edits appear without rebuilding the UI. */
+  readonly posts$ = this.cmsArticles$.pipe(
+    map(posts => posts.filter(post => !this.blogResourceKind(post.category) && !this.isCaseStudy(post.category))),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
+
+  /** Resource formats can be authored in the existing Blog collection via `category`. */
+  private readonly blogResources$ = this.cmsArticles$.pipe(
+    map(posts => posts.flatMap(post => {
+      const kind = this.blogResourceKind(post.category);
+      return kind ? [this.normaliseBlogResource(post, kind)] : [];
+    })),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
 
   /** Latest channel uploads, with a saved channel snapshot during outages. */
   readonly videos$ = this.browser ? timer(0, 15 * 60_000).pipe(
@@ -157,21 +182,33 @@ export class BlogApiService {
     shareReplay({ bufferSize: 1, refCount: true })
   ) : of([]);
 
-  /** Strapi Use Case collection, presented alongside blogs in the Insights hub. */
-  readonly useCases$ = this.resourceStream('use-cases', 'use-case');
+  /** Dedicated Use Case records and Blog entries categorised as Use Case. */
+  readonly useCases$ = combineLatest([
+    this.resourceStream('use-cases', 'use-case'),
+    this.blogResources$.pipe(map(items => items.filter(item => item.kind === 'use-case'))),
+  ]).pipe(
+    map(([dedicated, categorised]) => this.mergeResources(dedicated, categorised)),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
 
   /** Each document collection uses the same category fields as blogs. */
-  readonly documents$ = combineLatest(INSIGHT_DOCUMENT_TYPES.map(type =>
-    this.resourceStream(type.endpoint, type.kind)
-  )).pipe(
-    map(collections => collections.flat().filter(item => Boolean(item.downloadUrl))),
+  readonly documents$ = combineLatest([
+    ...INSIGHT_DOCUMENT_TYPES.map(type => this.resourceStream(type.endpoint, type.kind)),
+    this.blogResources$,
+  ]).pipe(
+    map(collections => {
+      const categorised = collections[collections.length - 1]
+        .filter(item => item.kind !== 'use-case');
+      const dedicated = collections.slice(0, -1).flat();
+      return this.mergeResources(dedicated, categorised).filter(item => Boolean(item.downloadUrl));
+    }),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
   watchBySlug(slug: string): Observable<CmsBlogPost | null> {
     // The hosting WAF rejects Strapi filter parameters containing `$eq` with a
     // 403 response. Reuse the published list and resolve the slug client-side.
-    return this.posts$.pipe(
+    return this.cmsArticles$.pipe(
       map((posts) => findBlogBySlug(posts, slug))
     );
   }
@@ -278,8 +315,34 @@ export class BlogApiService {
   }
 
   private isAvailableArticle(post: CmsBlogPost): boolean {
-    const isCaseStudy = /^case\s*stud(?:y|ies)$/i.test(post.category?.trim() ?? '');
-    return !isCaseStudy && Boolean(post.slug?.trim() && post.title?.trim() && post.content?.trim());
+    return Boolean(post.slug?.trim() && post.title?.trim() && post.content?.trim());
+  }
+
+  private isCaseStudy(category: string | null | undefined): boolean {
+    return /^case\s*-?\s*stud(?:y|ies)$/i.test(category?.trim() ?? '');
+  }
+
+  private blogResourceKind(category: string | null | undefined): CmsResourceKind | null {
+    const value = category?.trim() ?? '';
+    return BLOG_RESOURCE_CATEGORIES.find(([pattern]) => pattern.test(value))?.[1] ?? null;
+  }
+
+  private normaliseBlogResource(post: CmsBlogPost, kind: CmsResourceKind): CmsInsightResource {
+    return {
+      ...post,
+      kind,
+      videoUrl: null,
+      downloadUrl: `/insights/${encodeURIComponent(post.slug)}`,
+      relatedPage: null,
+    };
+  }
+
+  private mergeResources(
+    preferred: readonly CmsInsightResource[],
+    fallback: readonly CmsInsightResource[],
+  ): readonly CmsInsightResource[] {
+    const keys = new Set(preferred.map(item => item.slug || item.documentId));
+    return [...preferred, ...fallback.filter(item => !keys.has(item.slug || item.documentId))];
   }
 
   private normaliseResource(item: RawCmsInsightResource, kind: CmsResourceKind): CmsInsightResource {

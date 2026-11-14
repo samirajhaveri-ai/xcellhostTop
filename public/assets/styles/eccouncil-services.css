@@ -1,0 +1,23 @@
+html,body{margin:0;height:auto;min-height:0;max-width:100%;overflow-x:clip}main{display:flow-root}
+main :is(h2,h3,h4,h5,h6){text-transform:capitalize}
+#ecHero .hero-grid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px}
+#ecHero .ec-copy,#ecHero .stage{min-width:0;max-width:100%}
+#ecHero h1{font-size:var(--ec-heading-size,32px)!important;white-space:nowrap;letter-spacing:-.04em}
+#ecHero h1 .nm{display:inline!important}
+#ecHero .lh-ctas,#ecHero .xh-banner-actions{flex-wrap:wrap!important;overflow:visible!important}
+#ecHero .lh-ask{display:flex;align-items:center;width:fit-content;max-width:100%;box-sizing:border-box;gap:8px;flex-wrap:nowrap!important;overflow:visible!important;background:#061f42;color:#fff}
+#ecHero .lh-ask .k{font-size:10px;white-space:nowrap!important}
+#ecHero .lh-ask .chips{display:flex;gap:6px;flex:none!important;flex-wrap:nowrap!important}
+#ecHero .lh-ask a{display:inline-flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;padding:0;background:rgba(255,255,255,.08);border-radius:8px}
+#ecHero .lh-ask img{width:18px;height:18px;object-fit:contain}
+.ec-site-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ec-site-grid article{padding:24px;border:1px solid var(--line,#d6e3fa);border-radius:16px;background:var(--surface,#fff)}
+.ec-site-grid h3{margin:0 0 10px;font-size:17px}.ec-site-grid p{margin:0;line-height:1.7}
+.ec-faq .sh{text-align:left;max-width:none}
+.ec-faq .faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start;width:100%;max-width:none;margin-inline:0}
+.ec-faq .fq{min-width:0;align-self:start;border:1px solid var(--line,#d6e3fa);border-radius:12px;margin:0;overflow:hidden}
+.ec-faq .fq>button{text-align:left;gap:12px}.ec-faq .fq>button i{flex-shrink:0}
+.ec-faq .fq.open .fa{max-height:none!important}
+@media(max-width:760px){.ec-faq .faq{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:1100px){#ecHero .hero-grid{grid-template-columns:minmax(0,1fr)!important}#ecHero .stage{width:100%;max-width:650px;margin-inline:auto}}
+@media(max-width:640px){.ec-site-grid{grid-template-columns:1fr}#ecHero .lh-ask{flex-wrap:wrap!important}#ecHero .lh-ask .k{white-space:normal!important}}

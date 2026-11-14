@@ -1,0 +1,29 @@
+html,body{margin:0;height:auto;min-height:0;max-width:100%;overflow-x:clip}
+main{display:flow-root}main :is(h2,h3,h4,h5,h6){text-transform:capitalize}
+.rv{opacity:1!important;transform:none!important}
+.hero .hero-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px}
+.hero .hero-grid>*{min-width:0;max-width:100%}
+.hero h1.lh-title{font-size:var(--hosting-title-size,30px)!important;white-space:nowrap}
+.hero h1 .nm{display:inline!important;font-size:1em;text-transform:capitalize}
+.hero .lh-ctas{flex-wrap:nowrap;gap:8px}
+.hero .lh-ctas .btn{padding:10px 12px;white-space:nowrap;font-size:12px;gap:6px}
+.hero .lh-ask.xh-icon-ask{width:100%!important;max-width:100%;box-sizing:border-box;container-type:inline-size;flex-wrap:nowrap!important;gap:8px;overflow:visible!important}
+.hero .lh-ask .k{white-space:nowrap;font-size:clamp(7px,1.5cqi,11px)!important;letter-spacing:0!important;min-width:0}
+.hero .lh-ask .chips{flex-wrap:nowrap!important;gap:5px;flex:none}
+.hero .lh-ask a{padding:0!important;width:clamp(19px,4.7cqi,32px)!important;height:30px!important;flex:none}
+.hero .lh-ask a img{width:18px;height:18px;object-fit:contain}
+.hero .lh-ask.xh-banner-ai-nowrap .chips{flex:0 0 auto!important}
+.hero .lh-ask.xh-banner-ai-nowrap .chips>a{flex:none!important;min-width:0!important}
+.faceoff-site-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.faceoff-site-grid article{padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.faceoff-site-grid h3{margin:0 0 10px;font-size:17px}.faceoff-site-grid p{margin:0;line-height:1.7}
+#faq .sh{max-width:none;text-align:left}
+#faq .faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start;max-width:none;width:100%}
+#faq .fq{margin:0;min-width:0;border:1px solid #d5e2f7;border-radius:14px;overflow:hidden}
+#faq .fq>button{width:100%;text-align:left;gap:12px;padding:18px 20px}
+#faq .fq>button i{flex-shrink:0}#faq .fq.open{border-color:#0066ff}#faq .fq.open .fa{max-height:none!important}
+@media(max-width:1100px){.hero .hero-grid{grid-template-columns:minmax(0,1fr)!important}.hero .stage{max-width:650px;width:100%;margin-inline:auto}}
+@media(max-width:760px){#faq .faq{grid-template-columns:1fr}.faceoff-site-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.hero .lh-ctas{gap:5px}.hero .lh-ctas .btn{padding:9px 6px;font-size:10px;gap:4px}.hero .lh-ctas svg{width:12px;height:12px}.hero .lh-ask{padding:7px;gap:5px}.hero .lh-ask .chips{gap:3px}}
+@media(max-width:360px){.hero .lh-ctas .btn{font-size:9px;padding:9px 4px;gap:3px}.hero .lh-ctas svg,.hero .lh-ctas .ar{display:none}}
+@media(max-width:600px){.hero .lh-ctas.xh-banner-actions-line{flex-wrap:wrap!important;overflow:visible}.hero .lh-ask .k{font-size:clamp(6px,1.6cqi,9px)!important}}

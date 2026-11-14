@@ -1,5 +1,4 @@
-<xh-algolia-search [active]="overlay.isOpen('search') && !websiteSearch()" [mode]="searchLaunch.mode()" (closed)="close()" (websiteSearch)="websiteSearch.set(true)" />
-<div class="srch" id="srch" role="dialog" aria-modal="true" [attr.aria-label]="aiMode() ? 'Ask XcellHost AI' : 'Search the website'"
+<div class="srch" id="srch" role="dialog" aria-modal="true" [attr.aria-label]="aiMode() ? 'Ask XcellGenie' : 'Search the website'"
   [class.open]="overlay.isOpen('search') && websiteSearch()" [attr.aria-hidden]="overlay.isOpen('search') && websiteSearch() ? null : 'true'"
   [attr.inert]="overlay.isOpen('search') && websiteSearch() ? null : ''" (click)="onBackdrop($event)">
   <div class="srch-box" #searchBox [class.srch-chat-box]="aiMode()">
@@ -12,20 +11,35 @@
         @if (q()) { <button class="srch-clear" type="button" aria-label="Clear query" (click)="setQuery(''); focusSearch()">×</button> }
       </div>
       } @else {
-        <div class="srch-chat-brand"><span aria-hidden="true">✦</span><strong>XcellHost Assist</strong><small>Ask. Explore. Find your solution.</small></div>
+        <div class="srch-chat-brand">
+          <span class="srch-chat-mark" aria-hidden="true"><svg width="57" height="61" viewBox="300 280 650 650" focusable="false"><image href="/assets/images/laughing-buddha-white-text-transparent.png" width="1254" height="1240"/></svg></span>
+          <div class="srch-chat-title"><span class="srch-chat-eyebrow">ASK AI</span><strong>XcellGenie</strong><small>Expert guidance. A conversation away.</small></div>
+        </div>
       }
       @if (aiMode()) {
-        <button class="srch-ai-toggle" type="button" (click)="toggleAi()">Back to search</button>
+        <button class="srch-ai-toggle" type="button" (click)="toggleAi()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>Back to search</span></button>
       }
-      <button class="srch-ai-toggle" type="button" (click)="openAlgoliaAskAi()">
+      @if (!aiMode()) {
+      <button class="srch-ai-toggle" type="button" (click)="openAskAi()">
         <span class="material-symbols-outlined srch-ai-icon" aria-hidden="true">auto_awesome</span>
         <span>Ask AI</span>
       </button>
-      <button class="srch-x" type="button" aria-label="Close search" (click)="close()">esc</button>
+      }
+      <button class="srch-x" type="button" [attr.aria-label]="aiMode() ? 'Close AI assistant' : 'Close search'" (click)="close()">@if (aiMode()) { <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg> } @else { esc }</button>
     </div>
-    @if (aiMode()) {
-      <xh-ai-assistant [initialQuestion]="aiQuestion()" (navigate)="close()" />
-    } @else {
+    <div class="srch-customgpt" [hidden]="!aiMode()">
+      @if (customGptStatus() === 'loading') {
+        <div class="srch-embed-status srch-embed-loading" role="status"><span class="srch-chat-loader" aria-hidden="true"></span><strong>Getting your assistant ready</strong><p>Just a moment. Your next solution starts here.</p></div>
+      }
+      @if (customGptStatus() === 'error') {
+        <div class="srch-embed-status" role="alert">
+          <p>AI assistant could not load. Please try again.</p>
+          <button type="button" (click)="loadCustomGpt()">Try again</button>
+        </div>
+      }
+      <div id="customgpt_chat" #customGptHost></div>
+    </div>
+    @if (!aiMode()) {
     <div class="srch-body">
       <aside class="srch-filters" aria-label="Search filters">
         <div class="srch-filter-heading"><h2>Filter by source</h2>@if (hasFilters()) { <button type="button" (click)="clearFilters()">Reset</button> }</div>

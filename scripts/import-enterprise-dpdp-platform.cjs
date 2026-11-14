@@ -20,7 +20,10 @@ const aliases = {
   'dpo-genie365-services': 'vendor-partners/dpo-genie',
 };
 const content = slice(main)
-  .replaceAll('DPDP Compliance Platform', 'Enterprise DPDP Platform')
+  .replaceAll('DPDP Compliance Platform', 'DPDPA for Enterprise')
+  .replaceAll('Enterprise DPDP Platform', 'DPDPA for Enterprise')
+  .replaceAll('Enterprise dpdp Platform', 'DPDPA for Enterprise')
+  .replaceAll('xcellhost.cloud/dpdp-compliance-platform', 'xcellhost.cloud/dpdpa-for-enterprise')
   .replace('<main id="main">', '<main id="main" data-preserve-copy>')
   .replace(/href="https:\/\/(?:www\.)?xcellhost\.(?:cloud|top)\/([^"\s]*)"/g, (_, route) => `href="/${route}" target="_top"`)
   .replace(/href="([a-z0-9-]+)\.html"/g, (_, route) => `href="/${aliases[route] || route}" target="_top"`);
@@ -33,7 +36,7 @@ const fonts = nodes.filter(node => node.tagName === 'link' && /^https:\/\/fonts\
 const styles = nodes.filter(node => node.tagName === 'style').map(slice).join('\n');
 const toast = nodes.find(node => attr(node, 'id') === 'xhToast');
 const output = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8">' +
-  '<meta name="viewport" content="width=device-width,initial-scale=1">' + slice(nodes.find(node => node.tagName === 'title')) + fonts + styles +
+  '<meta name="viewport" content="width=device-width,initial-scale=1">' + slice(nodes.find(node => node.tagName === 'title')).replaceAll('DPDP Compliance Platform', 'DPDPA for Enterprise').replaceAll('Enterprise DPDP Platform', 'DPDPA for Enterprise') + fonts + styles +
   '<link rel="stylesheet" href="/assets/styles/enterprise-dpdp-platform-imported.css"></head><body>' + content + (toast ? slice(toast) : '') +
   '<script>' + core + '</script><script src="/assets/scripts/enterprise-dpdp-platform-imported.js"></script><script>' + runtime + '</script></body></html>\n';
 fs.writeFileSync(path.join(root, 'public/imported-enterprise-dpdp-platform.html'), output);

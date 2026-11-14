@@ -13,7 +13,7 @@
   const originalOpen = XH.open;
   XH.open = function (id, options) {
     if (id === 'xhCallback') {
-      document.dispatchEvent(new CustomEvent('import-callback', { detail: options?.topic || 'Enterprise DPDP Platform enquiry' }));
+      document.dispatchEvent(new CustomEvent('import-callback', { detail: options?.topic || 'DPDPA for Enterprise enquiry' }));
       return;
     }
     originalOpen(id, options);

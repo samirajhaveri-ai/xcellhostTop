@@ -47,8 +47,22 @@ visible as a safe fallback.
 
 The Insights page includes Data Sheets, Cheat Sheets, Whitepapers, Guides and
 Ebooks. They use the same menu categories, subcategories and products as blogs.
-To publish content, create the following optional Strapi collection API IDs:
-`data-sheets`, `cheat-sheets`, `whitepapers`, `guides`, `ebooks`.
+Editors can publish these formats directly in the existing **Blog** collection by
+setting `category` to `Data Sheet`/`Datasheet`, `Whitepaper`, `Ebook`, `Guide` or
+`Checklist`. Set it to `Use Case` to publish a use case. These entries move out of
+the Blogs tab automatically and appear in the matching resource tab; their cards
+open the normal `/insights/:slug` detail page. `Case Study` and `Case Studies`
+continue to use the customer-story layout.
+
+The singular/plural category spellings are both accepted, as are spaces or
+hyphens (for example `Data-Sheets`, `White Papers` and `E-books`). This is the
+recommended production workflow because Strapi disables the Content-Type Builder
+outside development mode.
+
+Dedicated collections remain supported when separate schemas or downloadable
+files are needed. In that setup, create the following optional Strapi collection
+API IDs: `data-sheets`, `cheat-sheets`, `whitepapers`, `guides`, `ebooks`, and
+`checklists`.
 
 Use the blog field names: `title`, `slug`, `description`, `content`, `author`,
 `date`, `time`, `category`, `mainCategory`, `subCategory`, `product`, `relatedPages`

@@ -1,0 +1,72 @@
+<main class="dns-page" data-banner-actions="off" data-customer-testimonials="off">
+  <div class="dns-wrap">
+    <nav class="dns-crumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>›</span><a routerLink="/tools">Tools</a><span>›</span><span>DNS Lookup</span></nav>
+    <header class="dns-banner"><span class="dns-banner-icon material-symbols-outlined" aria-hidden="true">dns</span><div><span class="dns-eyebrow">DNS · XCELLHOST TOOLS</span><h1>DNS Lookup</h1></div><span class="dns-banner-tag">{{ type() === 'A' ? 'IPv4 resolution' : type() + ' records' }}</span></header>
+    <div class="dns-layout">
+      <div class="dns-main">
+        <section class="dns-card dns-lookup" aria-labelledby="dns-form-title">
+          <div class="dns-card-heading"><div><h2 id="dns-form-title">Look up {{ type() }} records for a domain</h2><p>See the DNS answers returned by a public resolver, including record values, TTLs and aliases.</p></div></div>
+          <form (submit)="run($event)" class="dns-form" novalidate>
+            <div class="dns-domain-field"><label for="dns-domain">Domain name or URL</label><span class="material-symbols-outlined" aria-hidden="true">language</span><input id="dns-domain" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="2048" placeholder="example.com or https://example.com" [value]="domain()" (input)="input($event)" [attr.aria-invalid]="error() ? true : null" [attr.aria-describedby]="error() ? 'dns-input-error' : 'dns-domain-hint'"></div>
+            <p id="dns-domain-hint" class="dns-domain-hint">Paste a full URL or enter a hostname. The lookup uses its domain name.</p>
+            <div class="dns-examples"><span>Try a domain:</span>@for (sample of ['github.com', 'cloudflare.com', 'google.com']; track sample) { <button type="button" (click)="example(sample)">{{ sample }}</button> }</div>
+            <div class="dns-types" aria-label="DNS record type">@for (recordType of types; track recordType) { <button type="button" [class.active]="type() === recordType" [attr.aria-pressed]="type() === recordType" (click)="chooseType(recordType)">{{ recordType }}</button> }</div>
+            <details class="dns-options"><summary><span class="dns-option-icon material-symbols-outlined" aria-hidden="true">tune</span><span><strong>Lookup options</strong><small>Resolver · {{ activeResolver().address }}{{ includeWww() ? ' · includes www' : '' }}</small></span><span class="material-symbols-outlined dns-chevron" aria-hidden="true">expand_more</span></summary><div class="dns-options-content"><label for="dns-resolver">DNS resolver</label><select id="dns-resolver" [value]="resolver()" (change)="chooseResolver($event)">@for (item of resolvers; track item.id) { <option [value]="item.id">{{ item.name }} · {{ item.address }}</option> }</select><p>Choose a resolver to inspect its current answer. Cached records can differ while DNS changes are taking effect.</p><label class="dns-checkbox"><input type="checkbox" [checked]="includeWww()" (change)="toggleWww($event)"><span>Also check the <code>www</code> hostname</span></label></div></details>
+            @if (error()) { <p id="dns-input-error" class="dns-error" role="alert"><span class="material-symbols-outlined" aria-hidden="true">error</span>{{ error() }}</p> }
+            <div class="dns-submit-row"><button class="dns-submit" type="submit" [disabled]="busy()"><span class="material-symbols-outlined" [class.dns-spin]="busy()" aria-hidden="true">{{ busy() ? 'progress_activity' : 'search' }}</span>{{ busy() ? 'Looking up records…' : 'Check ' + type() + ' records' }}</button><span class="dns-privacy"><span class="material-symbols-outlined" aria-hidden="true">lock</span>DNS over HTTPS · {{ activeResolver().name }}</span></div>
+          </form>
+        </section>
+
+        @if (busy()) { <div class="dns-progress" role="status"><span class="dns-spinner" aria-hidden="true"></span>Querying {{ activeResolver().name }}…</div> }
+        @if (report(); as result) {
+          <section class="dns-card dns-results" aria-labelledby="dns-result-title">
+            <div class="dns-card-heading"><div><span class="dns-section-label">LOOKUP RESULTS</span><h2 id="dns-result-title">{{ result.domain }}</h2><p>{{ result.resolver }} · {{ result.checkedAt | date:'MMM d, y, h:mm:ss a' }} · {{ result.durationMs }} ms</p></div><span class="dns-count">{{ recordCount() }} answers</span></div>
+            <div class="dns-result-toolbar">
+              <div role="group" aria-label="Result format"><button type="button" [class.active]="view() === 'records'" [attr.aria-pressed]="view() === 'records'" (click)="view.set('records')">Records</button><button type="button" [class.active]="view() === 'json'" [attr.aria-pressed]="view() === 'json'" (click)="view.set('json')">JSON</button><button type="button" (click)="copy()" aria-label="Copy results" title="Copy results"><span class="material-symbols-outlined" aria-hidden="true">content_copy</span></button></div>
+              <div class="dns-actions">
+                <button type="button" class="dns-share" (click)="share()" [disabled]="sharing()"><span class="material-symbols-outlined" aria-hidden="true">share</span>{{ sharing() ? 'Sharing…' : 'Share' }}</button>
+                <div class="dns-export-menu">
+                  <button type="button" class="dns-export-trigger" (click)="toggleExport($event)" (keydown.arrowdown)="openExport($event)" aria-haspopup="menu" aria-controls="dns-export-options" [attr.aria-expanded]="exportOpen()" [disabled]="!!exporting()"><span class="material-symbols-outlined" aria-hidden="true">download</span>{{ exporting() ? 'Exporting…' : 'Export' }}<span class="material-symbols-outlined dns-export-chevron" aria-hidden="true">{{ exportOpen() ? 'expand_less' : 'expand_more' }}</span></button>
+                  @if (exportOpen()) {
+                    <div class="dns-export-options" id="dns-export-options" role="menu" aria-label="Export DNS results" (keydown)="exportKeydown($event)">
+                      <button type="button" role="menuitem" (click)="export('pdf')"><span class="material-symbols-outlined" aria-hidden="true">picture_as_pdf</span>PDF</button>
+                      <button type="button" role="menuitem" (click)="export('csv')"><span class="material-symbols-outlined" aria-hidden="true">table_chart</span>CSV</button>
+                      <button type="button" role="menuitem" (click)="export('json')"><span class="material-symbols-outlined" aria-hidden="true">data_object</span>JSON</button>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+            @if (copyMessage()) { <p class="dns-copy-status" role="status">{{ copyMessage() }}</p> }
+            @if (shareLink()) { <div class="dns-share-fallback"><label for="dns-share-link">Share lookup link</label><input id="dns-share-link" type="text" readonly [value]="shareLink()" (click)="selectShareLink($event)"></div> }
+            @if (view() === 'json') { <pre class="dns-json" tabindex="0">{{ json() }}</pre> } @else {
+              @for (host of result.hosts; track host.name) {
+                <div class="dns-host"><div class="dns-host-heading"><h3><span class="material-symbols-outlined" aria-hidden="true">language</span>{{ host.name }}</h3><span class="dns-host-state" [class.dns-host-error]="host.status !== 'NOERROR'">{{ host.status }}</span></div>
+                  @if (host.error) { <p class="dns-response-error" role="alert">{{ host.error }}</p> } @else if (host.records.length) {
+                    <div class="dns-table-scroll"><table><thead><tr><th scope="col">Hostname</th><th scope="col">Type</th><th scope="col">TTL (seconds)</th><th scope="col">Answer</th></tr></thead><tbody>@for (record of host.records; track $index) { <tr><td>{{ record.name }}</td><td><span class="dns-type-badge">{{ record.type }}</span></td><td>{{ record.ttl }}</td><td class="dns-record-value">{{ record.value }}</td></tr> }</tbody></table></div>
+                    @if (host.authenticated) { <p class="dns-authenticated"><span class="material-symbols-outlined" aria-hidden="true">verified_user</span>Response authenticated by the resolver with DNSSEC</p> }
+                  } @else { <p class="dns-no-answers">{{ host.status === 'NXDOMAIN' ? 'This hostname does not exist according to the selected resolver.' : 'This hostname exists, but the resolver returned no records for the requested type.' }}</p> }
+                </div>
+              }
+            }
+          </section>
+        }
+
+        <section class="dns-card" aria-labelledby="dns-features"><div class="dns-card-heading"><span class="dns-section-icon material-symbols-outlined" aria-hidden="true">auto_awesome</span><div><h2 id="dns-features">What you can check</h2><p>One place to inspect the records behind your domain.</p></div><span class="dns-count">4 FEATURES</span></div><div class="dns-features">
+          <article><span class="material-symbols-outlined" aria-hidden="true">dns</span><div><h3>Eight record types</h3><p>Check address, mail, alias, nameserver and verification records.</p></div></article>
+          <article><span class="material-symbols-outlined" aria-hidden="true">account_tree</span><div><h3>Root and www answers</h3><p>Look at both names to see how your website destinations differ.</p></div></article>
+          <article><span class="material-symbols-outlined" aria-hidden="true">public</span><div><h3>Choose your resolver</h3><p>Run a fresh query through Google Public DNS or Cloudflare.</p></div></article>
+          <article><span class="material-symbols-outlined" aria-hidden="true">download</span><div><h3>Share and export</h3><p>Share a lookup link or save the results as PDF, CSV or JSON.</p></div></article>
+        </div></section>
+
+        <section class="dns-card" aria-labelledby="dns-explained"><div class="dns-card-heading"><span class="dns-section-icon material-symbols-outlined" aria-hidden="true">info</span><div><h2 id="dns-explained">Understand the answers</h2><p>How DNS connects a hostname to its destination.</p></div></div><div class="dns-content"><p>DNS records tell applications where to find a domain’s services. An <strong>A record</strong> supplies an IPv4 address; other record types describe IPv6 addresses, email routing, aliases or domain verification.</p><p>This tool asks the public resolver you select. It displays that resolver’s answer at the time of the query, so a recent change may still be waiting for an older cached response to expire.</p><div class="dns-glossary"><article><h3>A / AAAA</h3><p>Address records for IPv4 and IPv6 connections.</p></article><article><h3>TTL</h3><p>The number of seconds an answer can remain cached.</p></article><article><h3>CNAME</h3><p>An alias that points a hostname to another DNS name.</p></article></div></div></section>
+
+        <section class="dns-card" aria-labelledby="dns-steps"><div class="dns-card-heading"><span class="dns-section-icon material-symbols-outlined" aria-hidden="true">checklist</span><div><h2 id="dns-steps">Run your first lookup</h2><p>From a domain name to a readable DNS answer.</p></div></div><ol class="dns-steps"><li><b>Enter the domain</b><p>Use a hostname or paste a full website URL.</p></li><li><b>Choose what to query</b><p>Select the record type. Open Lookup options to change the resolver or include www.</p></li><li><b>Check the records</b><p>Run the lookup and review each hostname’s response, record values and TTL.</p></li><li><b>Keep a copy</b><p>Share the lookup settings or export PDF, CSV or JSON for your records.</p></li></ol></section>
+
+        <section class="dns-card" aria-labelledby="dns-related"><div class="dns-card-heading"><span class="dns-section-icon material-symbols-outlined" aria-hidden="true">grid_view</span><div><h2 id="dns-related">Continue troubleshooting</h2><p>Explore more tools on XcellHost.</p></div></div><div class="dns-related-grid">@for (tool of related; track tool.id) { <a [routerLink]="['/tools', tool.id]"><span class="material-symbols-outlined" aria-hidden="true">{{ tool.icon }}</span><div><h3>{{ tool.title }}</h3><p>{{ tool.text }}</p></div><b aria-hidden="true">→</b></a> }</div></section>
+        <section class="dns-card" aria-labelledby="dns-faq"><div class="dns-card-heading"><span class="dns-section-icon material-symbols-outlined" aria-hidden="true">help</span><div><h2 id="dns-faq">Questions about DNS</h2><p>Useful context for interpreting your results.</p></div><span class="dns-count">6 ANSWERS</span></div><div class="dns-faq">@for (question of questions; track question.q) { <details><summary>{{ question.q }}<span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary><p>{{ question.a }}</p></details> }</div></section>
+      </div>
+      <aside class="dns-sidebar" aria-label="More DNS tools"><section class="dns-card dns-sidebar-card"><span class="dns-section-label">XCELLHOST TOOLKIT</span><h2>Keep your domain<br>connected.</h2><p>Find the next tool for your DNS and email checks.</p><nav>@for (tool of related; track tool.id) { <a [routerLink]="['/tools', tool.id]"><span class="material-symbols-outlined" aria-hidden="true">{{ tool.icon }}</span>{{ tool.title }}<span aria-hidden="true">›</span></a> }<a routerLink="/tools/dnssec-check"><span class="material-symbols-outlined" aria-hidden="true">verified_user</span>DNSSEC Check<span aria-hidden="true">›</span></a></nav><a class="dns-all-tools" routerLink="/tools" [queryParams]="{category:'dns'}">View all DNS tools →</a></section><section class="dns-support"><span class="material-symbols-outlined" aria-hidden="true">support_agent</span><h2>Need a hand with DNS?</h2><p>Talk to the XcellHost team about your domain or hosting setup.</p><a routerLink="/contact">Contact our team →</a></section></aside>
+    </div>
+  </div>
+</main>

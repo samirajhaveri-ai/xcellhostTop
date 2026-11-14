@@ -14,7 +14,168 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
   return '/blockchain-infrastructure' + (query.size ? '?' + query.toString() : '') + (fragment ? '#' + fragment : '');
 };
 
+const suppliedPageRoutes: Routes = [
+  {
+    path: 'zoho-workdrive',
+    title: 'Zoho WorkDrive for Enterprises in India | XcellHost',
+    data: { suppliedPageSlug: 'zoho-workdrive', pageTitle: 'Zoho WorkDrive for Enterprises in India | XcellHost', searchTitle: 'Zoho WorkDrive', searchDescription: 'Zoho WorkDrive licensing, governance, DLP, migration, SSO, storage planning and enterprise deployment from XcellHost.' },
+  },
+  {
+    path: 'acronis-training-certification',
+    title: 'Acronis Training & Certification for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'acronis-training-certification', pageTitle: 'Acronis Training & Certification for XcellHost Staff | XcellHost', searchTitle: 'Acronis Training & Certification', searchDescription: 'Acronis Academy courses, certification paths, badges, renewal tracking and partner-tier guidance for XcellHost staff.' },
+  },
+  {
+    path: 'xcellhost-certifications',
+    title: 'XcellHost Certifications Hub for Staff | XcellHost',
+    data: { suppliedPageSlug: 'xcellhost-certifications', pageTitle: 'XcellHost Certifications Hub for Staff | XcellHost', searchTitle: 'XcellHost Certifications Hub', searchDescription: 'Staff certification programmes, learning paths, badges, renewals and partner requirements across XcellHost vendors.' },
+  },
+  {
+    path: 'm365-certifications',
+    title: 'Microsoft 365 Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'm365-certifications', pageTitle: 'Microsoft 365 Certifications for XcellHost Staff | XcellHost', searchTitle: 'Microsoft 365 Certifications', searchDescription: 'Microsoft 365, security and Copilot certification paths, exams, renewals, badges and staff progress tracking.' },
+  },
+  {
+    path: 'microsoft-csp-certifications',
+    title: 'Microsoft CSP Partner Credentials for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'microsoft-csp-certifications', pageTitle: 'Microsoft CSP Partner Credentials for XcellHost Staff | XcellHost', searchTitle: 'Microsoft CSP Certifications', searchDescription: 'Microsoft CSP partner credentials, Solutions Partner designations, specializations, role paths and staff certification tracking.' },
+  },
+  {
+    path: 'paloalto-certifications',
+    title: 'Palo Alto Networks Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'paloalto-certifications', pageTitle: 'Palo Alto Networks Certifications for XcellHost Staff | XcellHost', searchTitle: 'Palo Alto Networks Certifications', searchDescription: 'Palo Alto Networks certification tiers, exams, legacy mappings, role paths, badges and partner requirements.' },
+  },
+  {
+    path: 'fortinet-certifications',
+    title: 'Fortinet Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'fortinet-certifications', pageTitle: 'Fortinet Certifications for XcellHost Staff | XcellHost', searchTitle: 'Fortinet Certifications', searchDescription: 'Fortinet NSE certifications, learning tracks, exams, renewal rules, staff badges and Engage partner requirements.' },
+  },
+  {
+    path: 'druva-certifications',
+    title: 'Druva Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'druva-certifications', pageTitle: 'Druva Certifications for XcellHost Staff | XcellHost', searchTitle: 'Druva Certifications', searchDescription: 'Druva Partner Academy certifications, Druva Academy badges, renewal rules, learning paths, staff tracking and Partner+ tier guidance.' },
+  },
+  {
+    path: 'veeam-certifications',
+    title: 'Veeam Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'veeam-certifications', pageTitle: 'Veeam Certifications for XcellHost Staff | XcellHost', searchTitle: 'Veeam Certifications', searchDescription: 'Veeam VMCE+, VMCSE, University Pro courses, partner accreditations, learning paths, validity, exam booking and staff tracking.' },
+  },
+  {
+    path: 'gemini-certifications',
+    title: 'Gemini and Google Cloud Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'gemini-certifications', pageTitle: 'Gemini and Google Cloud Certifications for XcellHost Staff | XcellHost', searchTitle: 'Gemini Certifications', searchDescription: 'Gemini and Google Cloud AI certifications, skill badges, exam fees, validity, renewal, role-based learning paths and staff tracking.' },
+  },
+  {
+    path: 'cambodia-go-to-market-strategy',
+    title: 'Cambodia Go-to-Market Strategy | XcellHost',
+    data: { suppliedPageSlug: 'cambodia-go-to-market-strategy', pageTitle: 'Cambodia Go-to-Market Strategy | XcellHost', searchTitle: 'Cambodia Go-to-Market Strategy', searchDescription: 'Explore the Cambodia strategy briefing across cloud, cyber security, data protection, digital trust, AI and training, with sector recommendations and revenue modelling.' },
+  },
+  {
+    path: 'japan-go-to-market-strategy',
+    title: 'Japan Go-to-Market Strategy | XcellHost',
+    data: { suppliedPageSlug: 'japan-go-to-market-strategy', pageTitle: 'Japan Go-to-Market Strategy | XcellHost', searchTitle: 'Japan Go-to-Market Strategy', searchDescription: 'Explore the Japan strategy briefing across cloud, cyber security, data protection, digital trust, AI and training, with sector recommendations and revenue modelling.' },
+  },
+  {
+    path: 'fintech-india',
+    title: 'Fintech in India 2026 | Cloud & Security for Fintechs | XcellHost',
+    data: { suppliedPageSlug: 'fintech-india', pageTitle: 'Fintech in India 2026 | Cloud & Security for Fintechs | XcellHost', searchTitle: 'Fintech in India 2026', searchDescription: 'India fintech infrastructure, RBI requirements, PCI DSS, DPDP, cloud security, HSM, SOC and disaster recovery planning.' },
+  },
+  {
+    path: 'deeptech-india',
+    title: 'Deeptech in India 2026 | Cloud & GPU Infrastructure | XcellHost',
+    data: { suppliedPageSlug: 'deeptech-india', pageTitle: 'Deeptech in India 2026 | Cloud & GPU Infrastructure | XcellHost', searchTitle: 'Deeptech in India 2026', searchDescription: 'India deeptech schemes, funding, AI, semiconductor, quantum, space and biotech infrastructure planning from XcellHost.' },
+  },
+  {
+    path: 'lateral-movement',
+    title: 'Lateral Movement Protection in India | XcellHost',
+    data: { suppliedPageSlug: 'lateral-movement', pageTitle: 'Lateral Movement Protection in India | XcellHost', searchTitle: 'Lateral Movement Protection', searchDescription: 'Reduce lateral movement with tiered administration, PAM, LAPS, microsegmentation, EDR, NDR, UEBA and a 24x7 SOC.' },
+  },
+  {
+    path: 'malware-protection',
+    title: 'Malware Protection in India | XcellHost',
+    data: { suppliedPageSlug: 'malware-protection', pageTitle: 'Malware Protection in India | XcellHost', searchTitle: 'Malware Protection', searchDescription: 'Layered malware protection with EDR, patching, email sandboxing, application control, immutable backups and SOC monitoring.' },
+  },
+  {
+    path: 'ransomware-protection',
+    title: 'Ransomware Protection in India | XcellHost',
+    data: { suppliedPageSlug: 'ransomware-protection', pageTitle: 'Ransomware Protection in India | XcellHost', searchTitle: 'Ransomware Protection', searchDescription: 'Prevent, detect, respond to and recover from ransomware using layered security, immutable backups and a 24x7 SOC.' },
+  },
+  {
+    path: 'security-stack-consolidation',
+    title: 'Security Stack Consolidation in India | XcellHost',
+    data: { suppliedPageSlug: 'security-stack-consolidation', pageTitle: 'Security Stack Consolidation in India | XcellHost', searchTitle: 'Security Stack Consolidation', searchDescription: 'Consolidate overlapping security tools, close control gaps and simplify operations with one incident queue and roadmap.' },
+  },
+  {
+    path: 'ndr',
+    title: 'Network Detection & Response (NDR) in India | XcellHost',
+    data: { suppliedPageSlug: 'ndr', pageTitle: 'Network Detection & Response (NDR) in India | XcellHost', searchTitle: 'Network Detection & Response (NDR)', searchDescription: 'NDR for east-west and north-south traffic, encrypted traffic analytics, threat detection and 24x7 SOC response.' },
+  },
+  {
+    path: 'ng-siem',
+    title: 'Next-Gen SIEM (NG-SIEM) in India | XcellHost',
+    data: { suppliedPageSlug: 'ng-siem', pageTitle: 'Next-Gen SIEM (NG-SIEM) in India | XcellHost', searchTitle: 'Next-Gen SIEM (NG-SIEM)', searchDescription: 'Cloud-native next-gen SIEM with detection-as-code, UEBA, SOAR, threat mappings and a 24x7 SOC.' },
+  },
+  {
+    path: 'case-management',
+    title: 'Security Case Management in India | XcellHost',
+    data: { suppliedPageSlug: 'case-management', pageTitle: 'Security Case Management in India | XcellHost', searchTitle: 'Security Case Management', searchDescription: 'Security case management for incident lifecycle, evidence, playbooks, SLA clocks and regulatory response timelines.' },
+  },
+  {
+    path: 'ueba',
+    title: 'UEBA in India | User & Entity Behaviour Analytics | XcellHost',
+    data: { suppliedPageSlug: 'ueba', pageTitle: 'UEBA in India | User & Entity Behaviour Analytics | XcellHost', searchTitle: 'User & Entity Behaviour Analytics (UEBA)', searchDescription: 'Privacy-aware UEBA with behavioural baselines, risk scoring, anomaly detection, entity timelines and SOC investigation.' },
+  },
+  {
+    path: 'workforce-analytics',
+    title: 'Workforce Analytics in India | XcellHost',
+    data: { suppliedPageSlug: 'workforce-analytics', pageTitle: 'Workforce Analytics in India | XcellHost', searchTitle: 'Workforce Analytics', searchDescription: 'Privacy-first workforce analytics for capacity, focus time, collaboration, hybrid work and Microsoft 365 adoption.' },
+  },
+].map((route) => ({
+  ...route,
+  loadComponent: () => import('./pages/supplied-content.page').then((module) => module.SuppliedContentPage),
+}));
+
 export const routes: Routes = [
+
+  { path: 'tools/dns-lookup', title: 'DNS Lookup | XcellHost Tools', loadComponent: () => import('./pages/dns-lookup.page').then(m => m.DnsLookupPage) },
+  { path: 'tools/all-dns-records', title: 'All DNS Records | XcellHost Tools', loadComponent: () => import('./pages/all-dns-records.page').then(m => m.AllDnsRecordsPage) },
+  { path: 'tools/mx-lookup', title: 'MX Lookup | XcellHost Tools', loadComponent: () => import('./pages/mx-lookup.page').then(m => m.MxLookupPage) },
+  { path: 'tools/txt-lookup', title: 'TXT Lookup | XcellHost Tools', loadComponent: () => import('./pages/txt-lookup.page').then(m => m.TxtLookupPage) },
+  { path: 'tools/cname-lookup', title: 'CNAME Lookup | XcellHost Tools', loadComponent: () => import('./pages/cname-lookup.page').then(m => m.CnameLookupPage) },
+  { path: 'tools/soa-lookup', title: 'SOA Lookup | XcellHost Tools', loadComponent: () => import('./pages/soa-lookup.page').then(m => m.SoaLookupPage) },
+  { path: 'tools/ns-lookup', title: 'NS Lookup | XcellHost Tools', loadComponent: () => import('./pages/ns-lookup.page').then(m => m.NsLookupPage) },
+  { path: 'tools/caa-lookup', title: 'CAA Lookup | XcellHost Tools', loadComponent: () => import('./pages/caa-lookup.page').then(m => m.CaaLookupPage) },
+  { path: 'tools/ptr-lookup', title: 'PTR Lookup | XcellHost Tools', loadComponent: () => import('./pages/ptr-lookup.page').then(m => m.PtrLookupPage) },
+  { path: 'tools/dnssec-check', title: 'DNSSEC Check | XcellHost Tools', loadComponent: () => import('./pages/dnssec-check.page').then(m => m.DnssecCheckPage) },
+  { path: 'tools/caa-generator', title: 'CAA Record Generator | XcellHost Tools', loadComponent: () => import('./pages/caa-generator.page').then(m => m.CaaGeneratorPage) },
+  { path: 'tools/password-generator', title: 'Password Generator | XcellHost Tools', loadComponent: () => import('./pages/password-generator.page').then(m => m.PasswordGeneratorPage) },
+  { path: 'tools/hash-generator', title: 'Hash Generator | XcellHost Tools', loadComponent: () => import('./pages/hash-generator.page').then(m => m.HashGeneratorPage) },
+  { path: 'tools/certificate-fingerprint', title: 'Certificate Fingerprint | XcellHost Tools', loadComponent: () => import('./pages/certificate-fingerprint.page').then(m => m.CertificateFingerprintPage) },
+  { path: 'tools/pem-formatter', title: 'PEM Formatter | XcellHost Tools', loadComponent: () => import('./pages/pem-formatter.page').then(m => m.PemFormatterPage) },
+  { path: 'tools/spf-lookup', title: 'SPF Lookup | XcellHost Tools', loadComponent: () => import('./pages/spf-lookup.page').then(m => m.SpfLookupPage) },
+  { path: 'tools/dkim-lookup', title: 'DKIM Lookup | XcellHost Tools', loadComponent: () => import('./pages/dkim-lookup.page').then(m => m.DkimLookupPage) },
+
+  { path: 'dhruva-certifications', redirectTo: 'druva-certifications', pathMatch: 'full' },
+  ...suppliedPageRoutes,
+
+  ...[
+    { path: 'devsecops', name: 'DevSecOps', description: 'Secure delivery pipelines with code, dependency, secrets, infrastructure and container checks, signed releases and managed triage.' },
+    { path: 'cloudops', name: 'CloudOps', description: 'Cloud operations with infrastructure as code, SRE, ITIL, FinOps, cost and SLO tools, run by the XcellHost 24x7 NOC and SOC.' },
+    { path: 'dataops', name: 'DataOps', description: 'Reliable, governed data pipelines with automated tests, observability, data contracts, lineage and DPDP-ready governance.' },
+  ].map(page => ({
+    path: page.path,
+    title: page.name + ' | XcellHost',
+    data: { opsSource: page.path, description: page.description },
+    loadComponent: () => import('./pages/ops-services.page').then(m => m.OpsServicesPage),
+  })),
+
+  { path: 'tools', title: 'Free Online Tools | XcellHost', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
+  { path: 'tools/:tool', loadComponent: () => import('./pages/tools.page').then(m => m.ToolsPage) },
+  {
+    path: 'national-industrial-corridor-development-programme',
+    title: 'National Industrial Corridor Development Programme | XcellHost',
+    loadComponent: () => import('./pages/national-industrial-corridor-development-programme.page').then(m => m.NationalIndustrialCorridorDevelopmentProgrammePage),
+  },
   {
     path: 'github-services',
     title: 'GitHub Services | XcellHost',
@@ -86,6 +247,12 @@ export const routes: Routes = [
   { path: 'qualys-services', title: 'Qualys Services India | XcellHost', loadComponent: () => import('./pages/qualys-services.page').then(m => m.QualysServicesPage) },
   { path: 'all-cloudflare-products', title: 'All Cloudflare Products India | XcellHost', loadComponent: () => import('./pages/all-cloudflare-products.page').then(m => m.AllCloudflareProductsPage) },
   { path: 'nigeria-go-to-market-strategy', title: 'Nigeria Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/nigeria-go-to-market.page').then(m => m.NigeriaGoToMarketPage) },
+  { path: 'hungary-go-to-market-strategy', title: 'Hungary Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/hungary-go-to-market.page').then(m => m.HungaryGoToMarketPage) },
+  { path: 'indonesia-go-to-market-strategy', title: 'Indonesia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/indonesia-go-to-market.page').then(m => m.IndonesiaGoToMarketPage) },
+  { path: 'nvidia-rtx-pro-4500-blackwell', title: 'NVIDIA RTX PRO 4500 Blackwell | XcellHost', loadComponent: () => import('./pages/nvidia-rtx-pro-4500.page').then(m => m.NvidiaRtxPro4500Page) },
+  { path: 'cambodia-go-to-market-strategy', title: 'Cambodia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/cambodia-go-to-market.page').then(m => m.CambodiaGoToMarketPage) },
+  { path: 'japan-go-to-market-strategy', title: 'Japan Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/japan-go-to-market.page').then(m => m.JapanGoToMarketPage) },
+  { path: 'ghana-go-to-market-strategy', title: 'Ghana Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/ghana-go-to-market.page').then(m => m.GhanaGoToMarketPage) },
   { path: 'usa-go-to-market-strategy', title: 'USA Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/usa-go-to-market.page').then(m => m.USAGoToMarketPage) },
   { path: 'germany-go-to-market-strategy', title: 'Germany Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/germany-go-to-market.page').then(m => m.GermanyGoToMarketPage) },
   { path: 'india-go-to-market-strategy', title: 'India Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/india-go-to-market.page').then(m => m.IndiaGoToMarketPage) },
@@ -98,6 +265,7 @@ export const routes: Routes = [
   { path: 'malaysia-go-to-market-strategy', title: 'Malaysia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/malaysia-go-to-market.page').then(m => m.MalaysiaGoToMarketPage) },
   { path: 'singapore-go-to-market-strategy', title: 'Singapore Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/singapore-go-to-market.page').then(m => m.SingaporeGoToMarketPage) },
   { path: 'kenya-go-to-market-strategy', title: 'Kenya Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/kenya-go-to-market.page').then(m => m.KenyaGoToMarketPage) },
+  { path: 'europe-go-to-market-strategy', title: 'Europe Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/europe-go-to-market.page').then(m => m.EuropeGoToMarketPage) },
   { path: 'poland-go-to-market-strategy', title: 'Poland Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/poland-go-to-market.page').then(m => m.PolandGoToMarketPage) },
   { path: 'vietnam-go-to-market-strategy', title: 'Vietnam Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/vietnam-go-to-market.page').then(m => m.VietnamGoToMarketPage) },
   {
@@ -108,12 +276,17 @@ export const routes: Routes = [
   { path: 'web3-blockchain-infrastructure', redirectTo: blockchainInfrastructureRedirect, pathMatch: 'full' },
   { path: 'web3-and-blockchain-infrastructure', redirectTo: blockchainInfrastructureRedirect, pathMatch: 'full' },
   { path: 'all-paloalto-products', title: 'All Palo Alto Networks Products | XcellHost', loadComponent: () => import('./pages/all-paloalto-products.page').then(m => m.AllPaloaltoProductsPage) },
+  { path: 'secure-file-transfer', title: 'Secure File Transfer | XcellHost', loadComponent: () => import('./pages/secure-file-transfer.page').then(m => m.SecureFileTransferPage) },
+  { path: 'vendor-partners/eccouncil', title: 'EC-Council Programs | XcellHost', loadComponent: () => import('./pages/eccouncil-services.page').then(m => m.EccouncilServicesPage) },
+  { path: 'eccouncil-services', redirectTo: 'vendor-partners/eccouncil', pathMatch: 'full' },
   { path: 'vendor-partners/veeam', title: 'Veeam Products and Services | XcellHost', loadComponent: () => import('./pages/veeam-services.page').then(m => m.VeeamServicesPage) },
   { path: 'veeam-services', redirectTo: 'vendor-partners/veeam', pathMatch: 'full' },
 
   { path: 'email-encryptionu', redirectTo: 'email-encryption', pathMatch: 'full' },
   { path: 'google-security-assessmentupload', redirectTo: 'google-security-assessment', pathMatch: 'full' },
 
+  { path: 'druva-licensing-guide', title: 'Druva Licensing Guide | XcellHost', data: { searchTitle: 'Druva Licensing Guide', searchDescription: 'Explore Druva licensing, workload rules, editions, pricing calculators and FAQs for India.' }, loadComponent: () => import('./pages/backup-licensing-guide.page').then(m => m.BackupLicensingGuidePage) },
+  { path: 'veeam-licensing-guide', title: 'Veeam Licensing Guide | XcellHost', data: { searchTitle: 'Veeam Licensing Guide', searchDescription: 'Explore Veeam licensing, workload rules, editions, pricing calculators and FAQs for India.' }, loadComponent: () => import('./pages/backup-licensing-guide.page').then(m => m.BackupLicensingGuidePage) },
   { path: 'acronis-licensing-guide', title: 'Acronis Licensing Guide | XcellHost', data: { searchTitle: 'Acronis Licensing Guide', searchDescription: 'Explore Acronis licensing models, workloads, storage, pricing calculators and FAQs for India.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
   { path: 'acronis-licencing-guide', redirectTo: 'acronis-licensing-guide', pathMatch: 'full' },
   { path: 'microsoft-csp-licensing-guide', title: 'Microsoft CSP Licensing Guide | XcellHost', data: { searchTitle: 'Microsoft CSP Licensing Guide', searchDescription: 'Understand Microsoft CSP subscriptions, NCE terms, billing, renewals and licensing tools for India.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
@@ -373,7 +546,8 @@ export const routes: Routes = [
   { path: 'network-access-control-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
 
   // Veritas renders the supplied page content inside the existing site shell.
-  { path: 'veritas', title: 'AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
+  { path: 'veritas', redirectTo: 'ai-visibility-seo-platform', pathMatch: 'full' },
+  { path: 'ai-visibility-seo-platform', title: 'AI Visibility + SEO Platform | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
 
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
   { path: 'bare-metal-servers/checkout', title: 'Complete Your Bare Metal Server Order | XcellHost', data: { checkoutProduct: 'bare-metal' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
@@ -660,6 +834,8 @@ export const routes: Routes = [
   { path: 'xcellworkspace', title: 'XcellWorkSpace - XcellHost', loadComponent: () => import('./pages/sarv-workspace.page').then(m => m.SarvWorkspacePage) },
   { path: 'cloud-contact-center', title: 'Cloud Contact Center - XcellHost', loadComponent: () => import('./pages/cloud-contact-center.page').then(m => m.CloudContactCenterPage) },
   { path: 'managed-kubernetes', title: 'Managed Kubernetes - XcellHost', loadComponent: () => import('./pages/managed-kubernetes.page').then(m => m.ManagedKubernetesPage) },
+  { path: 'under-construction/podcasts-catalog', title: 'Podcasts Catalog | XcellHost', loadComponent: () => import('./pages/podcast-catalog.page').then(m => m.PodcastCatalogPage) },
+  { path: 'podcasts-catalog', redirectTo: 'under-construction/podcasts-catalog', pathMatch: 'full' },
   { path: 'under-construction/podcasts', title: 'The Cloud Podcast - XcellHost', loadComponent: () => import('./pages/podcasts.page').then(m => m.PodcastsPage) },
 
   {
@@ -688,6 +864,8 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/microsoft-365-e7.page').then((m) => m.Microsoft365E7Page),
   },
 
+  { path: 'cybersecurity-frameworks/nigeria-data-protection-act-ndpa', loadComponent: () => import('./pages/nigeria-ndpa.page').then(m => m.NigeriaNdpaPage) },
+  { path: 'nigeria-data-protection-act-ndpa', redirectTo: 'cybersecurity-frameworks/nigeria-data-protection-act-ndpa', pathMatch: 'full' },
   ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
   {
     path: 'microsoft-365-business-standard-no-teams',
@@ -831,7 +1009,7 @@ export const routes: Routes = [
   {
     path: 'cloud-marketplace',
     data: {
-      documentUrl: '/cloud-marketplace.html',
+      documentUrl: '/imported-cloud-marketplace.html',
       heading: 'XcellHost Cloud Marketplace',
       title: 'XcellHost Cloud Marketplace India | XcellHost',
       description: 'Browse XcellHost cloud, security, data protection, digital trust, productivity, AI, connectivity and training services in one searchable catalogue.',
@@ -842,7 +1020,7 @@ export const routes: Routes = [
   {
     path: 'ai-marketplace',
     data: {
-      documentUrl: '/ai-marketplace.html',
+      documentUrl: '/imported-ai-marketplace.html',
       heading: 'XcellHost AI Marketplace',
       title: 'XcellHost AI Marketplace | XcellHost',
       description: 'Explore XcellHost AI models, agents, RAG, GPU compute, AI security, governance, training and managed AI services.',
@@ -853,7 +1031,7 @@ export const routes: Routes = [
   {
     path: 'software-marketplace',
     data: {
-      documentUrl: '/software-marketplace.html',
+      documentUrl: '/imported-software-marketplace.html',
       heading: 'XcellHost Software Marketplace',
       title: 'XcellHost Software Marketplace India | XcellHost',
       description: 'Search software licences and subscriptions from Microsoft, Google, Acronis, Veeam, Fortinet, DigiCert, Sectigo and other leading vendors.',
@@ -868,6 +1046,7 @@ export const routes: Routes = [
   { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/promotion-and-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/trust-watch', redirectTo: 'company/trust-watch', pathMatch: 'full' },
+  { path: 'register-a-domain-name', title: 'Register A Domain Name | XcellHost', loadComponent: () => import('./pages/register-a-domain-name.page').then(m => m.DomainRegistrationPage) },
   { path: 'domains', redirectTo: 'register-a-domain-name', pathMatch: 'full' },
   { path: 'iot-infrastructure', redirectTo: 'iot-cloud', pathMatch: 'full' },
   { path: 'why-xcellhost', redirectTo: 'about-us', pathMatch: 'full' },
@@ -1017,6 +1196,8 @@ export const routes: Routes = [
   },
   { path: 'about', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'about' } },
   { path: 'contact', loadComponent: () => import('./pages/contact.page').then((m) => m.ContactPage) },
+  { path: 'faceoff-privacy-in-a-box', loadComponent: () => import('./pages/faceoff.page').then(m => m.FaceOffPage), data: { faceoffSource: 'faceoff-privacy-in-a-box' } },
+  { path: 'faceoff-security-in-a-box', loadComponent: () => import('./pages/faceoff.page').then(m => m.FaceOffPage), data: { faceoffSource: 'faceoff-security-in-a-box' } },
   { path: 'media-kit', loadComponent: () => import('./pages/media-kit.page').then((m) => m.MediaKitPage) },
   {
     path: 'microsoft-365-smb',
@@ -1053,12 +1234,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/company-profile.page').then((m) => m.CompanyProfilePage),
   },
-  {
-    path: 'career-handbook',
-    data: { title: 'Career Handbook' },
-    loadComponent: () =>
-      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
-  },
+  { path: 'career-handbook', redirectTo: 'company/career-handbook', pathMatch: 'full' },
+  { path: 'company/career-handbook', title: 'Career Handbook | XcellHost', loadComponent: () => import('./pages/career-handbook.page').then(m => m.CareerHandbookPage) },
   {
     path: 'partner-program',
     data: { productSlug: 'reseller-program' },
@@ -1081,7 +1258,7 @@ export const routes: Routes = [
   {
     path: 'digicert-ssl-certificates',
     data: { productSlug: 'digicert-ssl-certificates' },
-    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+    loadComponent: () => import('./pages/digicert-catalogue.page').then((m) => m.DigicertCataloguePage),
   },
   {
     path: 'digicert',
@@ -1369,7 +1546,7 @@ export const routes: Routes = [
   },
   { path: '404', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 
-  ...(['multi-factor-authentication', 'identity-and-access-management', 'privileged-access-management', 'privileged-identity-management', 'identity-governance-and-administration', 'iam-assessment', 'active-directory-assessment', 'security-hardware-token'] as const).map(source => ({
+  ...(['multi-factor-authentication', 'identity-and-access-management', 'privileged-access-management', 'privileged-identity-management', 'identity-governance-and-administration', 'iam-assessment', 'active-directory-assessment', 'security-hardware-token', 'digital-authenticity-verification'] as const).map(source => ({
     path: source,
     data: { source },
     loadComponent: () => import('./pages/identity-security.page').then(m => m.IdentitySecurityPage),
@@ -1377,6 +1554,9 @@ export const routes: Routes = [
   { path: 'identity-access-management', redirectTo: 'identity-and-access-management', pathMatch: 'full' },
   { path: 'identity-governance-administration', redirectTo: 'identity-governance-and-administration', pathMatch: 'full' },
   { path: 'vortex-soc', redirectTo: 'soc-as-a-services', pathMatch: 'full' },
+  { path: 'enterprise-dpdp-platform', redirectTo: 'dpdpa-for-enterprise', pathMatch: 'full' },
+  { path: 'nvidia-rtx-6000-ada', title: 'NVIDIA RTX 6000 Ada | XcellHost', data: { productSlug: 'nvidia-rtx-6000-ada' }, loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
+  { path: 'rtx-a6000', title: 'RTX A6000 | XcellHost', data: { productSlug: 'rtx-a6000' }, loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 ];

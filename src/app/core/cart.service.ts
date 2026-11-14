@@ -12,6 +12,7 @@ export interface CartPricing {
   currency: string;
   locale: string;
   suffix: string;
+  domain?: { name: string; type: 'register' | 'transfer'; register: number; renew: number; tld: string };
 }
 
 const STORAGE_KEY = 'xh_cart_v1';
@@ -36,6 +37,7 @@ export class CartService {
     const amount = Math.max(1, Math.trunc(quantity) || 1);
     this._lines.update((ls) => {
       const hit = ls.find((l) => l.name === name);
+      if (hit && pricing?.domain) return ls;
       if (hit) return ls.map((l) => (l === hit ? { ...l, price, pricing: pricing ?? l.pricing, qty: l.qty + amount } : l));
       return [...ls, { name, price, qty: amount, pricing }];
     });
@@ -43,6 +45,8 @@ export class CartService {
   }
 
   setQty(name: string, qty: number): void {
+    const domain = this._lines().find(l => l.name === name)?.pricing?.domain;
+    if (domain && qty > 0) qty = Math.min(domain.type === 'transfer' ? 1 : 10, Math.max(1, Math.trunc(qty) || 1));
     this._lines.update((ls) =>
       qty <= 0 ? ls.filter((l) => l.name !== name) : ls.map((l) => (l.name === name ? { ...l, qty } : l))
     );
@@ -68,7 +72,9 @@ export class CartService {
   displayPrice(line: CartLine): string {
     const pricing = line.pricing;
     if (!pricing || !Number.isFinite(pricing.unitAmount)) return line.price || 'Quote on request';
-    const total = pricing.unitAmount * line.qty;
+    const total = pricing.domain?.type === 'register'
+      ? pricing.unitAmount + pricing.domain.renew * (line.qty - 1)
+      : pricing.unitAmount * line.qty;
     return `${new Intl.NumberFormat(pricing.locale, {
       style: 'currency', currency: pricing.currency, maximumFractionDigits: 2,
       minimumFractionDigits: 0,

@@ -24,7 +24,7 @@ export class CybersecurityFrameworksPage implements OnDestroy {
   constructor() {
     this.seo.set(
       'Cybersecurity Frameworks | XcellHost',
-      'Explore 113 cybersecurity frameworks, standards and regulations across 12 security domains, with interactive search and XcellHost service mappings.',
+      'Explore 114 cybersecurity frameworks, standards and regulations across 12 security domains, with interactive search and XcellHost service mappings.',
       '/cybersecurity-frameworks/',
     );
   }

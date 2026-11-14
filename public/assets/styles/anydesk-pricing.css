@@ -1,0 +1,24 @@
+/* Team plan presentation, matching AnyDesk's INR pricing reference. */
+#pricing .ak-ladder{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;align-items:stretch;padding-top:26px}
+#pricing .ad-price-card{position:relative;display:flex;flex-direction:column;align-items:center;min-width:0;text-align:center;padding:28px 24px 30px;border:2px solid #ff9545;border-radius:8px;background:linear-gradient(140deg,#f0f0f0 45%,#d6d3df 100%);color:#000;font-family:Arial,sans-serif}
+#pricing .ad-price-card.standard{margin-top:16px}
+#pricing .ad-price-card.advanced{border-color:#ff4947;background:linear-gradient(140deg,#f0f0f0 40%,#baaac3 100%)}
+#pricing .ad-price-card.ultimate{border-color:#a06bdf;background:radial-gradient(ellipse at 50% 24%,#d5bce9,transparent 45%),linear-gradient(140deg,#f0f0f0,#edc8c2)}
+#pricing .ad-price-card img{display:block;width:100%;max-width:330px;aspect-ratio:1;object-fit:contain;margin:0 auto 20px}
+#pricing .ad-price-card h3{font-size:34px;line-height:1.2;letter-spacing:0;margin:0 0 36px;font-weight:700;color:#000}
+#pricing .ad-best{position:absolute;bottom:100%;left:21%;right:21%;border-radius:5px 5px 0 0;background:#ef403c;color:white;padding:5px 10px;font-size:14px;line-height:1.2;letter-spacing:4px;text-transform:uppercase}
+#pricing .ad-price{min-height:156px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:100%}
+#pricing .ad-was{font-size:23px;line-height:1.3;white-space:nowrap}
+#pricing .ad-discount{display:inline-block;margin-left:8px;vertical-align:top;padding:3px 5px;font-size:11px;line-height:1.2;font-weight:700;color:white;background:#f5413e;border-radius:4px;text-transform:uppercase}
+#pricing .ad-amount{font-size:46px;font-weight:700;line-height:1.2;letter-spacing:-1px;white-space:nowrap;margin-bottom:20px}
+#pricing .ad-billing{font-size:12px;line-height:1.6;max-width:355px;margin:0}
+#pricing .ad-contact{justify-content:center;font-size:16px;line-height:1.6}
+#pricing .ad-contact button{border:0;border-bottom:1px solid #f5413e;background:transparent;color:#f5413e;padding:0;cursor:pointer;font:inherit}
+#pricing .ad-summary{font-size:16px;line-height:1.6;min-height:92px;margin:20px 0 0;display:flex;align-items:center;justify-content:center}
+#pricing .ad-order{margin-top:12px;padding:11px 19px;min-height:44px;border:1px solid #ff4947;border-radius:7px;color:#f5413e;background:transparent;font:700 16px/1.3 Arial,sans-serif;letter-spacing:.4px;cursor:pointer}
+#pricing .ad-order:hover{background:#f5413e;color:#fff}
+#pricing .ad-order:focus-visible,#pricing .ad-contact button:focus-visible{outline:3px solid #0066ff;outline-offset:4px}
+#pricing .ad-features{margin:30px 0 0;padding:22px 0 0 20px;border-top:1px solid #0002;text-align:left;font-size:14px;line-height:1.65;align-self:stretch}
+#pricing .ad-features li{margin-bottom:9px}
+@media(max-width:1000px){#pricing .ad-price-card{padding:20px 14px}#pricing .ad-amount{font-size:35px}#pricing .ad-price-card h3{font-size:29px}#pricing .ad-best{left:12%;right:12%}}
+@media(max-width:760px){#pricing .ak-ladder{grid-template-columns:1fr;gap:40px}#pricing .ad-price-card.standard{margin-top:0}#pricing .ad-price-card{padding:24px}#pricing .ad-amount{font-size:42px}#pricing .ad-price-card img{max-width:290px}#pricing .ad-price{min-height:140px}}

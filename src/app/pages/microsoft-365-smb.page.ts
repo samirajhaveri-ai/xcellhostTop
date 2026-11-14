@@ -11,7 +11,7 @@ import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
-import { SMB_SOCIAL_PREVIEWS } from '../data/smb-social-previews.data';
+import { PAGE_SEO } from '../data/page-seo.data';
 
 type BusinessPlan = 'basic' | 'standard' | 'premium';
 type BillingTerm = 'upfront' | 'monthly';
@@ -89,7 +89,7 @@ export class Microsoft365SmbPage {
     'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BP-NT-A';
 
   constructor() {
-    const preview = SMB_SOCIAL_PREVIEWS['microsoft-365-smb'];
+    const preview = PAGE_SEO['microsoft-365-smb'];
     this.seo.set(
       preview.title,
       preview.description,

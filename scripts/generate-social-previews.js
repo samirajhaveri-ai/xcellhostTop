@@ -38,6 +38,7 @@ const { PRODUCT_HERO_IMAGES, CATEGORY_HERO_IMAGES } = loadTypeScriptModule(
   'product-hero-images.generated.ts',
 );
 const { SMB_SOCIAL_PREVIEWS } = loadTypeScriptModule('smb-social-previews.data.ts');
+const { PAGE_SEO } = loadTypeScriptModule('page-seo.data.ts');
 
 const overrides = {
   'acronis-genai-protection': '/assets/images/acronis-genai-protection.png',
@@ -155,6 +156,15 @@ for (const [slug, image] of Object.entries(overrides)) {
   routes[key].image = siteUrl + image;
   Object.assign(routes[key], imageMetadata(image));
   if (specialCopy[slug]) Object.assign(routes[key], specialCopy[slug]);
+}
+
+// Keep generated sharing previews in sync with curated route metadata.
+for (const [slug, metadata] of Object.entries(PAGE_SEO)) {
+  routes[`/${slug}`] = {
+    ...metadata,
+    image: siteUrl + metadata.image,
+    ...imageMetadata(metadata.image),
+  };
 }
 
 const manifest = {

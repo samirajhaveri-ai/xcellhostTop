@@ -1,0 +1,45 @@
+<main class="xt-page">
+  <div class="xt-wrap">
+    <nav class="xt-crumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>›</span><a routerLink="/tools">Tools</a>@if (tool(); as current) { <span>›</span><span>{{ current.name }}</span> }</nav>
+    @if (tool(); as current) {
+      <header class="xt-heading"><span class="xt-eyebrow">{{ current.categoryName }} · XCELLHOST TOOLS</span><h1>{{ current.name }}</h1><p>{{ current.description }}</p></header>
+      <div class="xt-workspace">
+        <section class="xt-card xt-form-card" aria-label="Tool input">
+          <form (submit)="run($event)">
+            @for (field of current.fields; track field.key) {
+              <label class="xt-field" [for]="'xt-' + field.key">{{ field.label }}</label>
+              @switch (field.type) {
+                @case ('textarea') { <textarea [id]="'xt-' + field.key" [value]="values()[field.key]" (input)="update(field, $event)" [placeholder]="field.placeholder || ''" rows="8" spellcheck="false" maxlength="250000"></textarea> }
+                @case ('select') { <select [id]="'xt-' + field.key" [value]="values()[field.key]" (change)="update(field, $event)">@for (option of field.options; track option) { <option [value]="option">{{ option }}</option> }</select> }
+                @default { <input [id]="'xt-' + field.key" [type]="field.type" [value]="values()[field.key]" (input)="update(field, $event)" [placeholder]="field.placeholder || ''" [min]="field.min ?? null" [max]="field.max ?? null" maxlength="250000" spellcheck="false" autocomplete="off" /> }
+              }
+            }
+            <button class="xt-run" type="submit" [disabled]="busy()">{{ busy() ? 'Working…' : 'Run tool' }} <span aria-hidden="true">→</span></button>
+          </form>
+          <p class="xt-input-note">{{ current.dns ? 'DNS queries are sent to Google Public DNS over HTTPS. Results reflect that resolver at the time of your request.' : 'This tool runs in your browser. Input and generated results are not sent to a tool server.' }}</p>
+        </section>
+        <section class="xt-card xt-result" aria-label="Tool result" aria-live="polite" [attr.aria-busy]="busy()">
+          <div class="xt-result-top"><h2>Result</h2>@if (result()) { <div class="xt-result-actions"><button type="button" (click)="copy()">{{ copied() ? 'Copied' : 'Copy' }}</button><button type="button" (click)="download()">Download</button></div> }</div>
+          @if (error()) { <p class="xt-error" role="alert">{{ error() }}</p> }
+          @if (busy()) { <div class="xt-empty"><span class="xt-spinner" aria-hidden="true"></span><p>Running {{ current.name }}…</p></div> }
+          @else if (result(); as output) {
+            <h3 class="xt-summary">{{ output.summary }}</h3>
+            @if (output.notice) { <p class="xt-notice">{{ output.notice }}</p> }
+            @if (output.records?.length) {
+              <div class="xt-table"><table><thead><tr><th>Name</th><th>Type</th><th>TTL (seconds)</th><th>Value</th></tr></thead><tbody>@for (record of output.records; track $index) { <tr><td>{{ record.name }}</td><td>{{ record.type }}</td><td>{{ record.ttl }}</td><td>{{ record.value }}</td></tr> }</tbody></table></div>
+            } @else { <pre class="xt-output" tabindex="0">{{ output.text }}</pre> }
+          } @else if (!error()) { <div class="xt-empty"><span class="material-symbols-outlined" aria-hidden="true">terminal</span><h3>Your result appears here</h3><p>Enter your input and choose Run tool.</p></div> }
+        </section>
+      </div>
+      <section class="xt-related"><div class="xt-section-title"><h2>Related tools</h2><a routerLink="/tools" [queryParams]="{ category: current.categoryId }">View {{ current.categoryName }} tools →</a></div><div class="xt-grid">@for (item of related(); track item.id) { <a class="xt-tool" [routerLink]="['/tools', item.id]"><small>{{ item.categoryName }}</small><h3>{{ item.name }}</h3><p>{{ item.description }}</p><b>Open tool →</b></a> }</div></section>
+    } @else if (unknown()) {
+      <section class="xt-heading"><h1>Tool not found</h1><p>Choose a tool from the directory.</p><a class="xt-run" routerLink="/tools">Browse tools →</a></section>
+    } @else {
+      <header class="xt-heading xt-directory-heading"><span class="xt-eyebrow">XCELLHOST TOOLS</span><h1>Useful tools.<br /><span>Ready when you are.</span></h1><p>Check DNS and email records, generate keys, convert data and calculate network ranges. No account needed.</p><div class="xt-metrics"><span><b>{{ tools.length }}</b> tools</span><span><b>{{ categories.length }}</b> categories</span><span>Copy or download results</span></div></header>
+      <div class="xt-directory">
+        <aside class="xt-sidebar" aria-label="Filter tools by category"><button type="button" [class.active]="category() === 'all'" (click)="category.set('all')"><span class="material-symbols-outlined" aria-hidden="true">apps</span>All tools <b>{{ tools.length }}</b></button>@for (group of categories; track group.id) { <button type="button" [class.active]="category() === group.id" (click)="category.set(group.id)"><span class="material-symbols-outlined" [style.color]="group.color" aria-hidden="true">{{ group.icon }}</span>{{ group.name }}<b>{{ group.tools.length }}</b></button> }</aside>
+        <section class="xt-results"><div class="xt-directory-toolbar"><label class="xt-directory-search"><span class="material-symbols-outlined" aria-hidden="true">search</span><input type="search" placeholder="Find a tool…" aria-label="Search tools" [value]="query()" (input)="search($event)" /></label><span>{{ filtered().length }} tools</span></div><div class="xt-grid">@for (item of filtered(); track item.id) { <a class="xt-tool" [routerLink]="['/tools', item.id]"><small>{{ item.categoryName }}</small><h3>{{ item.name }}</h3><p>{{ item.description }}</p><b>Open tool →</b></a> } @empty { <p class="xt-no-results">No tools match your search. Try another name or category.</p> }</div></section>
+      </div>
+    }
+  </div>
+</main>

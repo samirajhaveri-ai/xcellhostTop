@@ -10,6 +10,8 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'devsecops' | 'cloudops' | 'dataops'
+  | 'national-industrial-corridor-development-programme'
   | 'github-services'
   | 'gitlab-services'
   | 'edge-cloud-platform'
@@ -32,6 +34,8 @@ type InteractiveContentSource =
   | 'qualys-services'
   | 'patch-mgmt-as-a-service'
   | 'cloud-disaster-recovery-smb'
+  | 'druva-licensing-guide'
+  | 'veeam-licensing-guide'
   | 'acronis-licensing-guide'
   | 'microsoft-csp-licensing-guide'
   | 'microsoft-365-licensing-guide'
@@ -103,6 +107,16 @@ type InteractiveContentSource =
   | 'entra-id-backup'
   | 'ca-cloud'
   | 'microsoft-agent-365'
+  | 'register-a-domain-name'
+  | 'media-kit'
+  | 'faceoff-privacy-in-a-box'
+  | 'faceoff-security-in-a-box'
+  | 'career-handbook'
+  | 'secure-file-transfer'
+  | 'eccouncil-services'
+  | 'podcast-catalog'
+  | 'nigeria-ndpa'
+  | 'digicert-catalogue'
   | 'microsoft-services'
   | 'digicert-services'
   | 'geotrust-services'
@@ -116,6 +130,7 @@ type InteractiveContentSource =
   | 'all-paloalto-products'
   | 'vietnam-go-to-market-strategy'
   | 'poland-go-to-market-strategy'
+  | 'europe-go-to-market-strategy'
   | 'uk-go-to-market-strategy'
   | 'saudi-arabia-go-to-market-strategy'
   | 'rwanda-go-to-market-strategy'
@@ -131,6 +146,12 @@ type InteractiveContentSource =
   | 'germany-go-to-market-strategy'
   | 'usa-go-to-market-strategy'
   | 'nigeria-go-to-market-strategy'
+  | 'hungary-go-to-market-strategy'
+  | 'indonesia-go-to-market-strategy'
+  | 'nvidia-rtx-pro-4500-blackwell'
+  | 'cambodia-go-to-market-strategy'
+  | 'japan-go-to-market-strategy'
+  | 'ghana-go-to-market-strategy'
   | 'kenya-go-to-market-strategy'
   | 'veeam-services'
   | 'dell-services'
@@ -295,6 +316,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'azure-ai-foundry-copilot-studio': '/imported-azure-ai-foundry-copilot-studio.html',
     'microsoft-365-governance': '/imported-microsoft-365-governance.html',
     'dpdp-compliance-platform': '/imported-dpdp-compliance-platform.html',
+    'druva-licensing-guide': '/imported-druva-licensing-guide.html',
+    'veeam-licensing-guide': '/imported-veeam-licensing-guide.html',
     'acronis-licensing-guide': '/imported-acronis-licensing-guide.html',
     'microsoft-csp-licensing-guide': '/imported-microsoft-csp-licensing-guide.html',
     'microsoft-365-licensing-guide': '/imported-microsoft-365-licensing-guide.html',
@@ -384,6 +407,16 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
+    'register-a-domain-name': '/imported-register-a-domain-name.html',
+    'media-kit': '/imported-media-kit.html',
+    'faceoff-privacy-in-a-box': '/imported-faceoff-privacy-in-a-box.html',
+    'faceoff-security-in-a-box': '/imported-faceoff-security-in-a-box.html',
+    'career-handbook': '/imported-career-handbook.html',
+    'secure-file-transfer': '/imported-secure-file-transfer.html',
+    'eccouncil-services': '/imported-eccouncil-services.html',
+    'podcast-catalog': '/imported-podcast-catalog.html',
+    'nigeria-ndpa': '/imported-nigeria-data-protection-act-ndpa.html',
+    'digicert-catalogue': '/imported-digicert-catalogue.html',
     'microsoft-services': '/imported-microsoft-services.html',
     'digicert-services': '/imported-digicert-services.html',
     'geotrust-services': '/imported-geotrust-services.html',
@@ -397,6 +430,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': '/imported-all-paloalto-products.html',
     'vietnam-go-to-market-strategy': '/imported-vietnam-go-to-market-strategy.html',
     'poland-go-to-market-strategy': '/imported-poland-go-to-market-strategy.html',
+    'europe-go-to-market-strategy': '/imported-europe-go-to-market-strategy.html',
     'uk-go-to-market-strategy': '/imported-uk-go-to-market-strategy.html',
     'saudi-arabia-go-to-market-strategy': '/imported-saudi-arabia-go-to-market-strategy.html',
     'rwanda-go-to-market-strategy': '/imported-rwanda-go-to-market-strategy.html',
@@ -412,6 +446,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'germany-go-to-market-strategy': '/imported-germany-go-to-market-strategy.html',
     'usa-go-to-market-strategy': '/imported-usa-go-to-market-strategy.html',
     'nigeria-go-to-market-strategy': '/imported-nigeria-go-to-market-strategy.html',
+    'hungary-go-to-market-strategy': '/imported-hungary-go-to-market-strategy.html',
+    'indonesia-go-to-market-strategy': '/imported-indonesia-go-to-market-strategy.html',
+    'nvidia-rtx-pro-4500-blackwell': '/imported-nvidia-rtx-pro-4500-blackwell.html',
+    'cambodia-go-to-market-strategy': '/imported-cambodia-go-to-market-strategy.html',
+    'japan-go-to-market-strategy': '/imported-japan-go-to-market-strategy.html',
+    'ghana-go-to-market-strategy': '/imported-ghana-go-to-market-strategy.html',
     'kenya-go-to-market-strategy': '/imported-kenya-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
@@ -431,6 +471,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'iam-assessment': '/imported-iam-assessment.html',
     'active-directory-assessment': '/imported-active-directory-assessment.html',
     'security-hardware-token': '/imported-security-hardware-token.html',
+    'digital-authenticity-verification': '/imported-digital-authenticity-verification.html',
+    'devsecops': '/imported-devsecops.html',
+    'cloudops': '/imported-cloudops.html',
+    'dataops': '/imported-dataops.html',
     'acronis-cyber-intelligence': '/imported-acronis-cyber-intelligence.html',
     'acronis-cyber-frame': '/imported-acronis-cyber-frame.html',
     'acronis-workflow-automation': '/imported-acronis-workflow-automation.html',
@@ -448,6 +492,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'edge-cloud': '/imported-edge-cloud.html',
     'edge-cloud-platform': '/imported-edge-cloud-platform.html',
     'github-services': '/imported-github-services.html',
+    'national-industrial-corridor-development-programme': '/imported-national-industrial-corridor-development-programme.html',
     'gitlab-services': '/imported-gitlab-services.html',
     'ot-assessment': '/imported-ot-assessment.html',
     'blue-team-assessment': '/imported-blue-team-assessment.html',
@@ -609,7 +654,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cyber-insurance-for-businesses': 'Cyber Insurance for Businesses',
     'cyber-insurance-for-individuals': 'Cyber Insurance for Individuals',
     'cyber-insurance-for-executives': 'Cyber Insurance for Executives',
-    'enterprise-dpdp-platform': 'Enterprise DPDP Platform',
+    'enterprise-dpdp-platform': 'DPDPA for Enterprise',
     'cloud-disaster-recovery-smb-faq': 'Cloud DR for SMBs, answered',
     'cloud-disaster-recovery-smb-opening': 'Cloud Disaster Recovery for SMB',
 
@@ -674,10 +719,22 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'vcio-why': 'Why XcellHost for vCIO as a Service',
     'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
     'ca-cloud': 'CA Cloud',
+    'druva-licensing-guide': 'Druva Licensing Guide',
+    'veeam-licensing-guide': 'Veeam Licensing Guide',
     'acronis-licensing-guide': 'Acronis Licensing Guide',
     'microsoft-csp-licensing-guide': 'Microsoft CSP Licensing Guide',
     'microsoft-365-licensing-guide': 'Microsoft 365 Licensing Guide',
     'microsoft-agent-365': 'Microsoft Agent 365',
+    'register-a-domain-name': 'Register A Domain Name',
+    'media-kit': 'Media Kit',
+    'faceoff-privacy-in-a-box': 'FaceOff Privacy in a Box',
+    'faceoff-security-in-a-box': 'FaceOff Security in a Box',
+    'career-handbook': 'Career Handbook',
+    'secure-file-transfer': 'Secure File Transfer',
+    'eccouncil-services': 'EC-Council Programs',
+    'podcast-catalog': 'The XcellHost Podcast',
+    'nigeria-ndpa': 'Nigeria Data Protection Act (NDPA)',
+    'digicert-catalogue': 'DigiCert SSL Certificates',
     'microsoft-services': 'Microsoft Products and Services',
     'digicert-services': 'DigiCert Products and Services',
     'geotrust-services': 'GeoTrust Products and Services',
@@ -691,6 +748,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'all-paloalto-products': 'Palo Alto Networks Products and Services',
     'vietnam-go-to-market-strategy': 'Vietnam Go-to-Market Strategy',
     'poland-go-to-market-strategy': 'Poland Go-to-Market Strategy',
+    'europe-go-to-market-strategy': 'Europe Go-to-Market Strategy',
     'uk-go-to-market-strategy': 'UK Go-to-Market Strategy',
     'saudi-arabia-go-to-market-strategy': 'Saudi Arabia Go-to-Market Strategy',
     'rwanda-go-to-market-strategy': 'Rwanda Go-to-Market Strategy',
@@ -706,6 +764,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'germany-go-to-market-strategy': 'Germany Go-to-Market Strategy',
     'usa-go-to-market-strategy': 'USA Go-to-Market Strategy',
     'nigeria-go-to-market-strategy': 'Nigeria Go-to-Market Strategy',
+    'hungary-go-to-market-strategy': 'Hungary Go-to-Market Strategy',
+    'indonesia-go-to-market-strategy': 'Indonesia Go-to-Market Strategy',
+    'nvidia-rtx-pro-4500-blackwell': 'NVIDIA RTX PRO 4500 Blackwell',
+    'cambodia-go-to-market-strategy': 'Cambodia Go-to-Market Strategy',
+    'japan-go-to-market-strategy': 'Japan Go-to-Market Strategy',
+    'ghana-go-to-market-strategy': 'Ghana Go-to-Market Strategy',
     'kenya-go-to-market-strategy': 'Kenya Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
@@ -725,6 +789,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'iam-assessment': 'IAM Assessment',
     'active-directory-assessment': 'Active Directory Assessment',
     'security-hardware-token': 'Security Hardware Token',
+    'digital-authenticity-verification': 'Digital Authenticity Verification',
+    'devsecops': 'DevSecOps: secure delivery pipelines, assessments and service configuration',
+    'cloudops': 'CloudOps: cloud operations, cost and SLO tools, service configuration',
+    'dataops': 'DataOps: data pipelines, contracts, observability and service configuration',
     'acronis-cyber-intelligence': 'Acronis Cyber Intelligence',
     'acronis-cyber-frame': 'Acronis Cyber Frame',
     'acronis-workflow-automation': 'Acronis Workflow Automation',
@@ -784,6 +852,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'edge-cloud': 'Edge Cloud, animated fleet, offline operation, edge AI, deployment and security scenes, node pricing, latency map, backhaul savings and onboarding',
     'edge-cloud-platform': 'Edge Cloud Platform: workload animations, edge zones, hourly pricing and console preview',
     'github-services': 'GitHub Services: Enterprise, Copilot, Actions, sizing and service configuration',
+    'national-industrial-corridor-development-programme': 'National Industrial Corridor Development Programme: corridor explorer, factory IT builder and smart-city readiness',
     'gitlab-services': 'GitLab Services: hosting, licences, sizing and service configuration',
     'iot-cloud': 'IoT Cloud, animated telemetry, device identity, edge buffering, alert and OTA scenes, fleet simulator, device pricing, protocol picker and Why XcellHost',
     'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',
@@ -1048,6 +1117,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const scopeTitle = (this.source === 'cloud-disaster-recovery-smb' || this.source === 'cloud-disaster-recovery-smb-opening') ? 'Cloud Disaster Recovery for SMB'
         : this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
         : this.source === 'ai-factory' ? 'AI Factory'
+        : this.source === 'nvidia-rtx-pro-4500-blackwell' ? 'NVIDIA RTX PRO 4500 Blackwell'
         : this.source === 'mobile-app-security' ? 'Mobile App Security'
         : this.source === 'data-center-build-services' ? 'Data Center Build Services'
         : this.source === 'vcio-as-a-service' ? 'vCIO as a Service'
@@ -1058,6 +1128,16 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'entra-id-backup' ? 'Entra ID Backup'
         : this.source === 'ca-cloud' ? 'CA Cloud'
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
+        : ['druva-licensing-guide', 'veeam-licensing-guide'].includes(this.source) ? this.sourceTitles[this.source]
+        : this.source === 'register-a-domain-name' ? 'Register A Domain Name'
+        : this.source === 'media-kit' ? 'Media Kit'
+        : this.source.startsWith('faceoff-') ? this.sourceTitles[this.source]
+        : this.source === 'career-handbook' ? 'Career Handbook'
+        : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
+        : this.source === 'eccouncil-services' ? 'EC-Council Programs'
+        : this.source === 'podcast-catalog' ? 'The XcellHost Podcast'
+        : this.source === 'nigeria-ndpa' ? 'Nigeria Data Protection Act (NDPA)'
+        : this.source === 'digicert-catalogue' ? 'DigiCert SSL Certificates'
         : this.source.startsWith('ai-training-') ? this.sourceTitles[this.source]
         : this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
@@ -1086,6 +1166,16 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const add = (event: Event) => {
       const item = (event as CustomEvent).detail;
+      if (this.source === 'register-a-domain-name' && item.dm) {
+        this.cart.add(item.name + ' - ' + (item.dm.type === 'transfer' ? 'Domain Transfer' : 'Domain Registration'), 'INR ' + item.price, 1,
+          { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: ' excl. GST', domain: { name: item.name, type: item.dm.type, register: item.dm.reg, renew: item.dm.renew, tld: item.dm.tld } });
+        this.cart.open(); return;
+      }
+      if (this.source === 'eccouncil-services' && Number(item.price) === 0) {
+        this.cart.add(item.name + ' - ' + item.sub, 'Quote on request', item.qty);
+        this.cart.open();
+        return;
+      }
       this.cart.add(item.name + ' - ' + item.sub, 'INR ' + item.price, item.qty,
         { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: '' });
       this.cart.open();
@@ -1183,6 +1273,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       else if (this.source === 'entra-id-backup') this.overlay.open('trial', 'Entra ID Backup');
       else if (this.source === 'ca-cloud') this.overlay.open('trial', 'CA Cloud');
       else if (this.source === 'microsoft-agent-365') this.overlay.open('trial', 'Microsoft Agent 365');
+      else if (this.source === 'nigeria-ndpa') this.overlay.open('trial', 'Nigeria Data Protection Act (NDPA)');
+      else if (this.source === 'digicert-catalogue') this.overlay.open('trial', 'DigiCert SSL Certificates');
       else if (this.source.startsWith('ai-training-')) this.overlay.open('trial', this.sourceTitles[this.source]);
       else if (this.source in IDENTITY_SECURITY_PAGES) this.overlay.open('trial', this.sourceTitles[this.source]);
       else if (['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source)) this.overlay.open('trial', this.sourceTitles[this.source]);
@@ -1202,14 +1294,14 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);
       this.topics.ask(this.sourceTitles[this.source], {
         firstName, lastName: lastName.join(' '), company: values['company'] || values['org'] || '', email: values['email'] || '',
         phone: values['phone'] || '', help: 'Request a CallBack',
-        details: (catalogue ? this.sourceTitles[this.source] + ' quotation\n' : 'Training enrolment request\n') + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
+        details: (this.source === 'podcast-catalog' ? 'Podcast launch notification request\n' : catalogue ? this.sourceTitles[this.source] + ' quotation\n' : 'Training enrolment request\n') + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
       });
       this.overlay.open('callback');
     };
@@ -1235,6 +1327,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     doc.addEventListener('import-identity-enquiry', identityEnquiry);
     doc.addEventListener('import-trial', trial);
     doc.addEventListener('import-callback', callback);
+    const openDomainCart = () => { if (['register-a-domain-name', 'devsecops', 'cloudops', 'dataops'].includes(this.source)) this.cart.open(); };
+    doc.addEventListener('import-cart-open', openDomainCart);
     doc.addEventListener('import-cart', add);
     doc.addEventListener('import-newsletter', newsletter);
     doc.addEventListener('import-enquiry', enquiry);
@@ -1247,6 +1341,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       () => doc.removeEventListener('import-identity-enquiry', identityEnquiry),
       () => doc.removeEventListener('import-marketplace-enquiry', marketplaceEnquiry),
       () => doc.removeEventListener('import-callback', callback),
+      () => doc.removeEventListener('import-cart-open', openDomainCart),
       () => doc.removeEventListener('import-cart', add),
       () => doc.removeEventListener('import-newsletter', newsletter),
       () => doc.removeEventListener('import-enquiry', enquiry),

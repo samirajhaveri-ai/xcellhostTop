@@ -54,7 +54,10 @@
   RewriteRule ^ - [R=404,L]
 </IfModule>
 
-ErrorDocument 404 /404.html
+# Render the Angular wildcard route for unknown URLs. index.html is guaranteed
+# to exist in every deployment, and Apache preserves the original 404 status
+# while Angular displays the branded "page out of reach" screen.
+ErrorDocument 404 /index.html
 
 # ------------------------------------------------------------- 2. cache rules
 <IfModule mod_headers.c>

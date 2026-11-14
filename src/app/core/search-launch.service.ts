@@ -4,7 +4,7 @@ import { OverlayService } from './overlay.service';
 
 export type SearchLaunchMode = 'search' | 'ask-ai';
 
-/** Coordinates which Algolia view should be shown when the shared search overlay opens. */
+/** Coordinates whether the shared overlay opens website search or the AI assistant. */
 @Injectable({ providedIn: 'root' })
 export class SearchLaunchService {
   private readonly overlay = inject(OverlayService);

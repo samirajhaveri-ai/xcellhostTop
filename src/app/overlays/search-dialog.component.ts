@@ -17,8 +17,6 @@ import { slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
 import { SearchLaunchService } from '../core/search-launch.service';
 import { SiteSearchResult, SiteSearchService } from '../core/site-search.service';
-import { AiAssistantComponent } from './ai-assistant.component';
-import { AlgoliaSearchComponent } from './algolia-search.component';
 
 const DEBOUNCE_MS = 120;
 const MAX_COMPARE = 4;
@@ -39,7 +37,7 @@ const MAX_COMPARE = 4;
     style: 'display: contents',
     '(document:keydown)': 'onDocumentKey($event)',
   },
-  imports: [RouterLink, AiAssistantComponent, AlgoliaSearchComponent],
+  imports: [RouterLink],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css',
 })
@@ -52,6 +50,9 @@ export class SearchDialogComponent {
 
   private readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('srchI');
   private readonly boxRef = viewChild<ElementRef<HTMLElement>>('searchBox');
+  private readonly customGptHost = viewChild.required<ElementRef<HTMLElement>>('customGptHost');
+  private customGptScript?: HTMLScriptElement;
+  readonly customGptStatus = signal<'idle' | 'loading' | 'loaded' | 'error'>('idle');
 
   /** Raw field value, repainted every keystroke. */
   readonly q = signal('');
@@ -121,6 +122,13 @@ export class SearchDialogComponent {
   private focusTimer?: ReturnType<typeof setTimeout>;
 
   constructor() {
+    // Keep the embed mounted when switching views so reopening preserves the chat.
+    afterRenderEffect(() => {
+      if (this.overlay.isOpen('search') && this.aiMode()) {
+        untracked(() => this.loadCustomGpt());
+      }
+    });
+
     /* every open starts from a clean field with the caret in it */
     effect(() => {
       if (!this.overlay.isOpen('search')) {
@@ -139,10 +147,10 @@ export class SearchDialogComponent {
         return;
       }
       untracked(() => {
-        this.websiteSearch.set(this.searchLaunch.mode() !== 'ask-ai');
+        this.websiteSearch.set(true);
         this.previousFocus = this.inputRef()?.nativeElement.ownerDocument.activeElement as HTMLElement | null;
         this.resetAnswer();
-        this.aiMode.set(false);
+        this.aiMode.set(this.searchLaunch.mode() === 'ask-ai');
         this.clearFilters();
         this.q.set('');
         this.query.set('');
@@ -173,7 +181,32 @@ export class SearchDialogComponent {
     inject(DestroyRef).onDestroy(() => {
       if (this.timer) clearTimeout(this.timer);
       if (this.focusTimer) clearTimeout(this.focusTimer);
+      if (this.customGptScript) {
+        this.customGptScript.onload = null;
+        this.customGptScript.onerror = null;
+        this.customGptScript.remove();
+      }
     });
+  }
+
+  loadCustomGpt(): void {
+    if (this.customGptScript) return;
+    const document = this.customGptHost().nativeElement.ownerDocument;
+    const script = document.createElement('script');
+    script.src = 'https://cdn.customgpt.ai/js/embed.js';
+    script.defer = true;
+    script.setAttribute('div_id', 'customgpt_chat');
+    script.setAttribute('p_id', '101998');
+    script.setAttribute('p_key', '0ba42147c660fe091a37baacf1a1cc14');
+    script.onload = () => this.customGptStatus.set('loaded');
+    script.onerror = () => {
+      script.remove();
+      this.customGptScript = undefined;
+      this.customGptStatus.set('error');
+    };
+    this.customGptScript = script;
+    this.customGptStatus.set('loading');
+    document.body.appendChild(script);
   }
 
   /* ------------------------------------------------------------ input */
@@ -295,9 +328,9 @@ export class SearchDialogComponent {
     this.previousFocus?.focus();
   }
 
-  openAlgoliaAskAi(): void {
-    this.searchLaunch.select('ask-ai');
-    this.websiteSearch.set(false);
+  openAskAi(): void {
+    this.aiQuestion.set(this.q().trim());
+    this.aiMode.set(true);
   }
 
   go(hit: SiteSearchResult): void {
