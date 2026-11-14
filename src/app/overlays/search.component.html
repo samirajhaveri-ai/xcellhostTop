@@ -1,4 +1,4 @@
-<div class="srch" id="srch" role="dialog" aria-modal="true" [attr.aria-label]="aiMode() ? 'Ask XcellHost AI' : 'Search the website'"
+<div class="srch" id="srch" role="dialog" aria-modal="true" [attr.aria-label]="aiMode() ? 'Ask XcellGenie' : 'Search the website'"
   [class.open]="overlay.isOpen('search') && websiteSearch()" [attr.aria-hidden]="overlay.isOpen('search') && websiteSearch() ? null : 'true'"
   [attr.inert]="overlay.isOpen('search') && websiteSearch() ? null : ''" (click)="onBackdrop($event)">
   <div class="srch-box" #searchBox [class.srch-chat-box]="aiMode()">
@@ -12,8 +12,8 @@
       </div>
       } @else {
         <div class="srch-chat-brand">
-          <span class="srch-chat-mark" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6L12 3Z" fill="currentColor"/></svg></span>
-          <div class="srch-chat-title"><span class="srch-chat-eyebrow">ASK AI</span><strong>XcellHost Assist</strong><small>Expert guidance. A conversation away.</small></div>
+          <span class="srch-chat-mark" aria-hidden="true"><svg width="57" height="61" viewBox="300 280 650 650" focusable="false"><image href="/assets/images/laughing-buddha-white-text-transparent.png" width="1254" height="1240"/></svg></span>
+          <div class="srch-chat-title"><span class="srch-chat-eyebrow">ASK AI</span><strong>XcellGenie</strong><small>Expert guidance. A conversation away.</small></div>
         </div>
       }
       @if (aiMode()) {

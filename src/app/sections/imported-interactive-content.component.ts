@@ -108,6 +108,9 @@ type InteractiveContentSource =
   | 'ca-cloud'
   | 'microsoft-agent-365'
   | 'register-a-domain-name'
+  | 'media-kit'
+  | 'faceoff-privacy-in-a-box'
+  | 'faceoff-security-in-a-box'
   | 'career-handbook'
   | 'secure-file-transfer'
   | 'eccouncil-services'
@@ -146,6 +149,8 @@ type InteractiveContentSource =
   | 'hungary-go-to-market-strategy'
   | 'indonesia-go-to-market-strategy'
   | 'nvidia-rtx-pro-4500-blackwell'
+  | 'cambodia-go-to-market-strategy'
+  | 'japan-go-to-market-strategy'
   | 'ghana-go-to-market-strategy'
   | 'kenya-go-to-market-strategy'
   | 'veeam-services'
@@ -403,6 +408,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
     'register-a-domain-name': '/imported-register-a-domain-name.html',
+    'media-kit': '/imported-media-kit.html',
+    'faceoff-privacy-in-a-box': '/imported-faceoff-privacy-in-a-box.html',
+    'faceoff-security-in-a-box': '/imported-faceoff-security-in-a-box.html',
     'career-handbook': '/imported-career-handbook.html',
     'secure-file-transfer': '/imported-secure-file-transfer.html',
     'eccouncil-services': '/imported-eccouncil-services.html',
@@ -441,6 +449,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'hungary-go-to-market-strategy': '/imported-hungary-go-to-market-strategy.html',
     'indonesia-go-to-market-strategy': '/imported-indonesia-go-to-market-strategy.html',
     'nvidia-rtx-pro-4500-blackwell': '/imported-nvidia-rtx-pro-4500-blackwell.html',
+    'cambodia-go-to-market-strategy': '/imported-cambodia-go-to-market-strategy.html',
+    'japan-go-to-market-strategy': '/imported-japan-go-to-market-strategy.html',
     'ghana-go-to-market-strategy': '/imported-ghana-go-to-market-strategy.html',
     'kenya-go-to-market-strategy': '/imported-kenya-go-to-market-strategy.html',
     'veeam-services': '/imported-veeam-services.html',
@@ -716,6 +726,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'microsoft-365-licensing-guide': 'Microsoft 365 Licensing Guide',
     'microsoft-agent-365': 'Microsoft Agent 365',
     'register-a-domain-name': 'Register A Domain Name',
+    'media-kit': 'Media Kit',
+    'faceoff-privacy-in-a-box': 'FaceOff Privacy in a Box',
+    'faceoff-security-in-a-box': 'FaceOff Security in a Box',
     'career-handbook': 'Career Handbook',
     'secure-file-transfer': 'Secure File Transfer',
     'eccouncil-services': 'EC-Council Programs',
@@ -754,6 +767,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'hungary-go-to-market-strategy': 'Hungary Go-to-Market Strategy',
     'indonesia-go-to-market-strategy': 'Indonesia Go-to-Market Strategy',
     'nvidia-rtx-pro-4500-blackwell': 'NVIDIA RTX PRO 4500 Blackwell',
+    'cambodia-go-to-market-strategy': 'Cambodia Go-to-Market Strategy',
+    'japan-go-to-market-strategy': 'Japan Go-to-Market Strategy',
     'ghana-go-to-market-strategy': 'Ghana Go-to-Market Strategy',
     'kenya-go-to-market-strategy': 'Kenya Go-to-Market Strategy',
     'veeam-services': 'Veeam Products and Services',
@@ -1115,6 +1130,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
         : ['druva-licensing-guide', 'veeam-licensing-guide'].includes(this.source) ? this.sourceTitles[this.source]
         : this.source === 'register-a-domain-name' ? 'Register A Domain Name'
+        : this.source === 'media-kit' ? 'Media Kit'
+        : this.source.startsWith('faceoff-') ? this.sourceTitles[this.source]
         : this.source === 'career-handbook' ? 'Career Handbook'
         : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
         : this.source === 'eccouncil-services' ? 'EC-Council Programs'

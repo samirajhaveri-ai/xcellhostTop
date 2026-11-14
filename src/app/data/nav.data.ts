@@ -3167,6 +3167,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Manage consent, privacy rights and compliance evidence",
                 "href": "/dpdp-compliance-platform"
               },
+              { "title": "FaceOff Privacy in a Box", "pill": null, "desc": "On-premise privacy, consent and compliance workflows", "href": "/faceoff-privacy-in-a-box" },
+              { "title": "FaceOff Security in a Box", "pill": null, "desc": "On-premise deepfake and synthetic fraud defence", "href": "/faceoff-security-in-a-box" },
               
             ]
           }
@@ -3482,11 +3484,6 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Cloud Security Log Monitoring",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SIEM-as-a-Service",
                 "pill": null,
                 "desc": null
               },
@@ -5678,6 +5675,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/ghana-go-to-market-strategy",
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Ghana, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Japan Go-to-Market Strategy",
+                "href": "/japan-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Japan, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Cambodia Go-to-Market Strategy",
+                "href": "/cambodia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Cambodia, with sector insights and revenue modelling."
               },
             ]
           }
