@@ -218,6 +218,8 @@ export const routes: Routes = [
   { path: 'hungary-go-to-market-strategy', title: 'Hungary Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/hungary-go-to-market.page').then(m => m.HungaryGoToMarketPage) },
   { path: 'indonesia-go-to-market-strategy', title: 'Indonesia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/indonesia-go-to-market.page').then(m => m.IndonesiaGoToMarketPage) },
   { path: 'nvidia-rtx-pro-4500-blackwell', title: 'NVIDIA RTX PRO 4500 Blackwell | XcellHost', loadComponent: () => import('./pages/nvidia-rtx-pro-4500.page').then(m => m.NvidiaRtxPro4500Page) },
+  { path: 'cambodia-go-to-market-strategy', title: 'Cambodia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/cambodia-go-to-market.page').then(m => m.CambodiaGoToMarketPage) },
+  { path: 'japan-go-to-market-strategy', title: 'Japan Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/japan-go-to-market.page').then(m => m.JapanGoToMarketPage) },
   { path: 'ghana-go-to-market-strategy', title: 'Ghana Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/ghana-go-to-market.page').then(m => m.GhanaGoToMarketPage) },
   { path: 'usa-go-to-market-strategy', title: 'USA Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/usa-go-to-market.page').then(m => m.USAGoToMarketPage) },
   { path: 'germany-go-to-market-strategy', title: 'Germany Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/germany-go-to-market.page').then(m => m.GermanyGoToMarketPage) },
@@ -1162,6 +1164,8 @@ export const routes: Routes = [
   },
   { path: 'about', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'about' } },
   { path: 'contact', loadComponent: () => import('./pages/contact.page').then((m) => m.ContactPage) },
+  { path: 'faceoff-privacy-in-a-box', loadComponent: () => import('./pages/faceoff.page').then(m => m.FaceOffPage), data: { faceoffSource: 'faceoff-privacy-in-a-box' } },
+  { path: 'faceoff-security-in-a-box', loadComponent: () => import('./pages/faceoff.page').then(m => m.FaceOffPage), data: { faceoffSource: 'faceoff-security-in-a-box' } },
   { path: 'media-kit', loadComponent: () => import('./pages/media-kit.page').then((m) => m.MediaKitPage) },
   {
     path: 'microsoft-365-smb',

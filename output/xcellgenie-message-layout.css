@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap');
+
+/* Proposed message presentation. The external CustomGPT iframe cannot inherit this CSS. */
+.genie-message {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 9px 8px;
+  border-radius: 7px;
+  background: #f5f7fc;
+  color: #6a7a94;
+  font: 400 11px/1.5 'IBM Plex Sans', sans-serif;
+  overflow-wrap: anywhere;
+}
+.genie-message__heading {
+  display: block;
+  margin: 0 0 4px;
+  color: #102b53;
+  font: 600 12px/1.5 'IBM Plex Sans', sans-serif;
+}
+.genie-message p { margin: 0; }
+.genie-message p + p { margin-top: 4px; }
+.genie-message a { color: #2563eb; }
+
