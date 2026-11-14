@@ -1514,7 +1514,56 @@ html[data-theme="dark"] .ds-card:hover,html[data-theme="dark"] .ds-card:focus-wi
     </div>
   </div>
 </section>
-<section class="sec alt ds-pl" id="plans">
+<style id="bare-metal-pricing-embed-styles">
+  #plans.bm-pricing-host { padding: 0; background: #f4f7fb; }
+  #plans.bm-pricing-host > .wrap { display: none; }
+  #plans .bm-pricing-frame { display: block; width: 100%; min-height: 1180px; border: 0; background: #f4f7fb; }
+</style>
+<section class="sec alt ds-pl bm-pricing-host" id="plans">
+  <iframe
+    id="bareMetalPricingFrame"
+    class="bm-pricing-frame"
+    src="/bare-metal-pricing-catalog.html"
+    title="Bare Metal server catalogue and pricing"
+    loading="lazy"
+  ></iframe>
+  <script>
+    (function () {
+      var frame = document.getElementById('bareMetalPricingFrame');
+      if (!frame) return;
+
+      function resizePricingFrame() {
+        try {
+          var doc = frame.contentDocument;
+          if (!doc) return;
+          var height = Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
+          if (height) frame.style.height = height + 'px';
+        } catch (error) {
+          // The catalogue is served from the same origin; keep the fallback height if access is unavailable.
+        }
+      }
+
+      frame.addEventListener('load', function () {
+        resizePricingFrame();
+        window.setTimeout(resizePricingFrame, 250);
+        window.setTimeout(resizePricingFrame, 1000);
+
+        try {
+          var doc = frame.contentDocument;
+          if (doc && window.ResizeObserver) {
+            var observer = new ResizeObserver(resizePricingFrame);
+            observer.observe(doc.documentElement);
+            observer.observe(doc.body);
+            frame._pricingResizeObserver = observer;
+          }
+        } catch (error) {
+          // The fixed minimum height remains as a safe fallback.
+        }
+      });
+
+      window.addEventListener('resize', resizePricingFrame);
+    })();
+  </script>
   <div class="wrap">
     <div class="sh rv"><span class="eyebrow">Configurations &amp; pricing</span><h2>22 servers, three families. <span class="acc">Pick a tab.</span></h2><p>Monthly prices in INR, excl. 18% GST. The struck-through figure is the regular price; the bold figure is today's promotional price. Prices are the same list for every location; availability outside Mumbai is confirmed at order*.</p></div>
     <div class="ds-tabs rv">

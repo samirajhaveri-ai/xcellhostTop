@@ -51,6 +51,31 @@ const suppliedPageRoutes: Routes = [
     data: { suppliedPageSlug: 'fortinet-certifications', pageTitle: 'Fortinet Certifications for XcellHost Staff | XcellHost', searchTitle: 'Fortinet Certifications', searchDescription: 'Fortinet NSE certifications, learning tracks, exams, renewal rules, staff badges and Engage partner requirements.' },
   },
   {
+    path: 'druva-certifications',
+    title: 'Druva Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'druva-certifications', pageTitle: 'Druva Certifications for XcellHost Staff | XcellHost', searchTitle: 'Druva Certifications', searchDescription: 'Druva Partner Academy certifications, Druva Academy badges, renewal rules, learning paths, staff tracking and Partner+ tier guidance.' },
+  },
+  {
+    path: 'veeam-certifications',
+    title: 'Veeam Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'veeam-certifications', pageTitle: 'Veeam Certifications for XcellHost Staff | XcellHost', searchTitle: 'Veeam Certifications', searchDescription: 'Veeam VMCE+, VMCSE, University Pro courses, partner accreditations, learning paths, validity, exam booking and staff tracking.' },
+  },
+  {
+    path: 'gemini-certifications',
+    title: 'Gemini and Google Cloud Certifications for XcellHost Staff | XcellHost',
+    data: { suppliedPageSlug: 'gemini-certifications', pageTitle: 'Gemini and Google Cloud Certifications for XcellHost Staff | XcellHost', searchTitle: 'Gemini Certifications', searchDescription: 'Gemini and Google Cloud AI certifications, skill badges, exam fees, validity, renewal, role-based learning paths and staff tracking.' },
+  },
+  {
+    path: 'cambodia-go-to-market-strategy',
+    title: 'Cambodia Go-to-Market Strategy | XcellHost',
+    data: { suppliedPageSlug: 'cambodia-go-to-market-strategy', pageTitle: 'Cambodia Go-to-Market Strategy | XcellHost', searchTitle: 'Cambodia Go-to-Market Strategy', searchDescription: 'Explore the Cambodia strategy briefing across cloud, cyber security, data protection, digital trust, AI and training, with sector recommendations and revenue modelling.' },
+  },
+  {
+    path: 'japan-go-to-market-strategy',
+    title: 'Japan Go-to-Market Strategy | XcellHost',
+    data: { suppliedPageSlug: 'japan-go-to-market-strategy', pageTitle: 'Japan Go-to-Market Strategy | XcellHost', searchTitle: 'Japan Go-to-Market Strategy', searchDescription: 'Explore the Japan strategy briefing across cloud, cyber security, data protection, digital trust, AI and training, with sector recommendations and revenue modelling.' },
+  },
+  {
     path: 'fintech-india',
     title: 'Fintech in India 2026 | Cloud & Security for Fintechs | XcellHost',
     data: { suppliedPageSlug: 'fintech-india', pageTitle: 'Fintech in India 2026 | Cloud & Security for Fintechs | XcellHost', searchTitle: 'Fintech in India 2026', searchDescription: 'India fintech infrastructure, RBI requirements, PCI DSS, DPDP, cloud security, HSM, SOC and disaster recovery planning.' },
@@ -123,7 +148,14 @@ export const routes: Routes = [
   { path: 'tools/ptr-lookup', title: 'PTR Lookup | XcellHost Tools', loadComponent: () => import('./pages/ptr-lookup.page').then(m => m.PtrLookupPage) },
   { path: 'tools/dnssec-check', title: 'DNSSEC Check | XcellHost Tools', loadComponent: () => import('./pages/dnssec-check.page').then(m => m.DnssecCheckPage) },
   { path: 'tools/caa-generator', title: 'CAA Record Generator | XcellHost Tools', loadComponent: () => import('./pages/caa-generator.page').then(m => m.CaaGeneratorPage) },
+  { path: 'tools/password-generator', title: 'Password Generator | XcellHost Tools', loadComponent: () => import('./pages/password-generator.page').then(m => m.PasswordGeneratorPage) },
+  { path: 'tools/hash-generator', title: 'Hash Generator | XcellHost Tools', loadComponent: () => import('./pages/hash-generator.page').then(m => m.HashGeneratorPage) },
+  { path: 'tools/certificate-fingerprint', title: 'Certificate Fingerprint | XcellHost Tools', loadComponent: () => import('./pages/certificate-fingerprint.page').then(m => m.CertificateFingerprintPage) },
+  { path: 'tools/pem-formatter', title: 'PEM Formatter | XcellHost Tools', loadComponent: () => import('./pages/pem-formatter.page').then(m => m.PemFormatterPage) },
+  { path: 'tools/spf-lookup', title: 'SPF Lookup | XcellHost Tools', loadComponent: () => import('./pages/spf-lookup.page').then(m => m.SpfLookupPage) },
+  { path: 'tools/dkim-lookup', title: 'DKIM Lookup | XcellHost Tools', loadComponent: () => import('./pages/dkim-lookup.page').then(m => m.DkimLookupPage) },
 
+  { path: 'dhruva-certifications', redirectTo: 'druva-certifications', pathMatch: 'full' },
   ...suppliedPageRoutes,
 
   ...[
