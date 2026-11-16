@@ -5551,6 +5551,30 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Cloud, security, AI and training strategy for Cambodia, with sector insights and revenue modelling."
               },
               {
+                "title": "Mauritius Go-to-Market Strategy",
+                "href": "/mauritius-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Mauritius, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Ethiopia Go-to-Market Strategy",
+                "href": "/ethiopia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Ethiopia, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Sweden Go-to-Market Strategy",
+                "href": "/sweden-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Sweden, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Finland Go-to-Market Strategy",
+                "href": "/finland-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Finland, with sector insights and revenue modelling."
+              },
+              {
                 "title": "Japan Go-to-Market Strategy",
                 "href": "/japan-go-to-market-strategy",
                 "pill": null,
