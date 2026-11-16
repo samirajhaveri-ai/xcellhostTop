@@ -1,12 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SshToolsNavigationComponent } from './ssh-tools-navigation.component';
 import { SeoService } from '../core/seo.service';
 import { SSH_KEY_TYPES, SshAlgorithm, SshGeneratedKeys, generateSshKeys, sshFilename, validateSshSettings } from '../core/ssh-key-generator';
 
 @Component({
-  selector: 'xh-ssh-key-generator-page', standalone: true, imports: [RouterLink],
-  templateUrl: './ssh-key-generator.page.html', styleUrls: ['./dns-lookup.page.css', './ssh-key-generator.page.css'],
+  selector: 'xh-ssh-key-generator-page', standalone: true, imports: [RouterLink, SshToolsNavigationComponent],
+  templateUrl: './ssh-key-generator.page.html', styleUrls: ['./dns-lookup.page.css', './ssh-key-generator.page.css', './ssh-tools.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SshKeyGeneratorPage {

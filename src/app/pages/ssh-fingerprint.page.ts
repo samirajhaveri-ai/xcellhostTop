@@ -1,12 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SshToolsNavigationComponent } from './ssh-tools-navigation.component';
 import { SeoService } from '../core/seo.service';
 import { SSH_FINGERPRINT_HASHES, SSH_PUBLIC_DEMO, SSH_PUBLIC_KEY_LIMIT, SshFingerprintHash, SshPublicKeyReport, compareSshFingerprint, inspectSshPublicKey } from '../core/ssh-fingerprint';
 
 @Component({
-  selector: 'xh-ssh-fingerprint-page', standalone: true, imports: [RouterLink],
-  templateUrl: './ssh-fingerprint.page.html', styleUrls: ['./dns-lookup.page.css', './certificate-fingerprint.page.css', './ssh-fingerprint.page.css'],
+  selector: 'xh-ssh-fingerprint-page', standalone: true, imports: [RouterLink, SshToolsNavigationComponent],
+  templateUrl: './ssh-fingerprint.page.html', styleUrls: ['./dns-lookup.page.css', './certificate-fingerprint.page.css', './ssh-fingerprint.page.css', './ssh-tools.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SshFingerprintPage {

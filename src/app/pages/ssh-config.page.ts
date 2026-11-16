@@ -1,12 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SshToolsNavigationComponent } from './ssh-tools-navigation.component';
 import { SeoService } from '../core/seo.service';
 import { SSH_CONFIG_HOST_LIMIT, SshConfigHost, buildSshConfig, newSshConfigHost } from '../core/ssh-config';
 interface HostEditor { id: number; value: SshConfigHost; }
 @Component({
-  selector: 'xh-ssh-config-page', standalone: true, imports: [RouterLink],
-  templateUrl: './ssh-config.page.html', styleUrls: ['./dns-lookup.page.css', './ssh-config.page.css'],
+  selector: 'xh-ssh-config-page', standalone: true, imports: [RouterLink, SshToolsNavigationComponent],
+  templateUrl: './ssh-config.page.html', styleUrls: ['./dns-lookup.page.css', './ssh-config.page.css', './ssh-tools.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SshConfigPage {

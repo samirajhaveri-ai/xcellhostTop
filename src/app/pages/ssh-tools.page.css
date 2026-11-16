@@ -1,0 +1,64 @@
+/* Shared presentation for the three SSH tools. Functional field styles stay in each page. */
+.ssh-workspace{background:linear-gradient(180deg,#edf3fb 0,#f7f9fd 850px);padding-bottom:70px}
+.ssh-workspace .dns-wrap{width:min(1320px,calc(100% - 48px))}
+.ssh-workspace .dns-banner{min-height:126px;padding:27px 30px;border-radius:17px;background:radial-gradient(ellipse at top right,#1759a6,transparent 67%),linear-gradient(110deg,#0e2645,#18325e);box-shadow:0 10px 24px #12335a12;margin-bottom:22px}
+.ssh-workspace .dns-banner h1{font-size:clamp(27px,2.4vw,35px);line-height:1.2;letter-spacing:-.035em}
+.ssh-workspace .dns-banner-icon{width:53px;height:53px;background:#2b77e8;border-radius:13px;flex:none}
+.ssh-workspace .dns-eyebrow{font-size:10px;line-height:1.8;letter-spacing:.14em}
+.ssh-workspace .dns-banner-tag{font-size:10px;background:#ffffff0b}
+.ssh-workspace .dns-layout{grid-template-columns:minmax(0,1fr) 292px;gap:24px}
+.ssh-workspace .dns-main{min-width:0}
+.ssh-workspace .dns-card{border-color:#dbe5f2;box-shadow:0 6px 22px #183d6505;border-radius:15px}
+.ssh-workspace .dns-card-heading{padding:23px 25px;background:#fbfcff;border-bottom-color:#e4ebf5}
+.ssh-workspace .dns-card-heading h2{font-size:18px;line-height:1.5;color:#163b65}
+.ssh-workspace .dns-card-heading p{font-size:12px;line-height:1.8;color:#68809e}
+.ssh-workspace .dns-section-icon{background:#eaf2ff;color:#397ce0;box-shadow:none}
+.ssh-workspace .dns-submit{min-height:43px;font-size:12px;border-radius:8px;background:#226fe3;box-shadow:0 4px 9px #2270e321}
+.ssh-workspace .dns-submit:hover{background:#195fc8}
+.ssh-workspace .dns-count{font-size:9px;color:#547aab;background:#f0f6ff}
+.ssh-workspace .dns-privacy{font-size:11px;color:#6d86a5}
+.ssh-workspace .dns-error{font-size:12px;line-height:1.9}
+.ssh-workspace .dns-features h3,.ssh-workspace .dns-related-grid h3{font-size:13px;color:#28517f}
+.ssh-workspace .dns-features p,.ssh-workspace .dns-related-grid p{font-size:12px;line-height:1.9;color:#7086a0}
+.ssh-workspace .dns-faq summary{font-size:13px;line-height:1.8;color:#294e7a}
+.ssh-workspace .dns-faq p,.ssh-workspace .dns-content>p,.ssh-workspace .dns-prose>p{font-size:13px;line-height:1.95;color:#607b9c}
+.ssh-workspace .dns-sidebar-card{border-top:3px solid #2981be;padding:25px 22px}
+.ssh-workspace .dns-sidebar-card h2{font-size:23px;line-height:1.45;letter-spacing:-.025em;color:#23496f}
+.ssh-workspace .dns-sidebar-card>p,.ssh-workspace .dns-sidebar-card nav a{font-size:12px;color:#6b83a2}
+.ssh-workspace .dns-sidebar-card nav a{min-height:54px}
+.ssh-workspace .ssh-form,.ssh-workspace .sc-form,.ssh-workspace .cert-form,.ssh-workspace .ssh-result-body{padding:25px}
+.ssh-workspace .ssh-type-grid b{font-size:17px}
+.ssh-workspace .ssh-type-grid small{font-size:12px;line-height:1.8;color:#6c83a0}
+.ssh-workspace .ssh-type-grid em{font-size:10px}
+.ssh-workspace .ssh-field>label,.ssh-workspace .sc-field>label,.ssh-workspace .cert-field-heading>label,.ssh-workspace .cert-preferred>legend{font-size:13px;color:#355878}
+.ssh-workspace .ssh-field input,.ssh-workspace .ssh-field select,.ssh-workspace .sc-field input,.ssh-workspace .sc-field select{font-size:13px;min-height:45px;border-color:#cbd9eb;background:#fff}
+.ssh-workspace .ssh-field p,.ssh-workspace .ssh-pass-guide p,.ssh-workspace .sc-field p,.ssh-workspace .sc-group-hint,.ssh-workspace .cert-hint,.ssh-workspace .cert-preferred>p{font-size:11px;line-height:1.9;color:#7088a5}
+.ssh-workspace .ssh-secondary,.ssh-workspace .sc-secondary,.ssh-workspace .cert-secondary{font-size:12px;min-height:37px;color:#416b9d}
+.ssh-workspace .ssh-output-head h3{font-size:14px}
+.ssh-workspace .ssh-fingerprint code,.ssh-workspace .cert-fingerprint code{font-size:13px;line-height:1.9;color:#24598f}
+.ssh-workspace.ssh-page textarea,.ssh-workspace .cert-form textarea{font-size:12px;line-height:1.9}
+.ssh-workspace .ssh-format-note,.ssh-workspace .ssh-private-hidden p,.ssh-workspace .ssh-fp-row-help{font-size:11px;line-height:1.9}
+.ssh-workspace .cert-fingerprint-heading h3{font-size:14px}
+.ssh-workspace .cert-fingerprint{padding:17px;border-radius:10px;background:#fff}
+.ssh-workspace .cert-fingerprint.preferred{background:#f3f8ff;border-color:#a5c5f4}
+.ssh-workspace .cert-compare label{font-size:13px}
+.ssh-workspace .cert-compare input{min-height:43px;font-size:12px}
+.ssh-workspace .cert-details dt{font-size:12px;color:#7186a0}
+.ssh-workspace .cert-details dd{font-size:13px;color:#42688f}
+.ssh-workspace .cert-trust-note,.ssh-workspace .cert-warning{font-size:12px;line-height:1.9}
+.ssh-workspace .sc-host-header{padding:13px 14px}
+.ssh-workspace .sc-host-toggle b{font-size:14px}
+.ssh-workspace .sc-host-toggle small{font-size:11px;color:#7990ac}
+.ssh-workspace .sc-host-actions button{width:31px;height:32px}
+.ssh-workspace .sc-editor h3{font-size:13px}
+.ssh-workspace .sc-checkbox b{font-size:12px}
+.ssh-workspace .sc-checkbox small{font-size:11px}
+.ssh-workspace .sc-advanced>summary{font-size:13px;min-height:48px}
+.ssh-workspace .sc-group h4{font-size:12px}
+.ssh-workspace .sc-code{font-size:12px;line-height:1.95;background:#112a49;color:#d7e8fc}
+.ssh-workspace .sc-publication p,.ssh-workspace .sc-review li{font-size:11px;line-height:1.9}
+.ssh-workspace .sc-toolbar b{font-size:14px}
+.ssh-workspace .sc-toolbar>div>span{font-size:11px}
+.ssh-workspace .sc-status,.ssh-workspace .ssh-status,.ssh-workspace .cert-status{font-size:12px;line-height:1.85}
+@media(max-width:1000px){.ssh-workspace .dns-layout{grid-template-columns:minmax(0,1fr)}.ssh-workspace .dns-sidebar{display:none}.ssh-workspace .dns-banner-tag{display:none}}
+@media(max-width:600px){.ssh-workspace .dns-wrap{width:calc(100% - 28px)}.ssh-workspace .dns-banner{padding:22px 17px;gap:12px;min-height:110px;border-radius:13px}.ssh-workspace .dns-banner h1{font-size:25px}.ssh-workspace .dns-banner-icon{width:43px;height:43px;font-size:25px}.ssh-workspace .dns-eyebrow{font-size:8px;letter-spacing:.1em}.ssh-workspace .dns-card-heading{padding:19px 16px}.ssh-workspace .dns-card-heading h2{font-size:16px}.ssh-workspace .ssh-form,.ssh-workspace .sc-form,.ssh-workspace .cert-form,.ssh-workspace .ssh-result-body{padding:19px 15px}.ssh-workspace .ssh-type-grid b{font-size:13px}.ssh-workspace .ssh-type-grid small{font-size:10px}.ssh-workspace .ssh-type-grid em{font-size:8px}.ssh-workspace .ssh-field>label,.ssh-workspace .sc-field>label{font-size:12px}.ssh-workspace .ssh-field input,.ssh-workspace .ssh-field select,.ssh-workspace .sc-field input,.ssh-workspace .sc-field select{font-size:12px}.ssh-workspace .ssh-secondary,.ssh-workspace .sc-secondary,.ssh-workspace .cert-secondary{font-size:11px}.ssh-workspace .cert-fingerprint code,.ssh-workspace .ssh-fingerprint code{font-size:12px}.ssh-workspace .cert-fingerprint{padding:13px}.ssh-workspace .cert-details dd{font-size:12px}.ssh-workspace .sc-code{font-size:11px;padding:18px 15px}.ssh-workspace .sc-host-toggle small{font-size:10px}.ssh-workspace .sc-host-header{padding:11px}.ssh-workspace .dns-card-heading p{font-size:11px}.ssh-workspace .sc-advanced>summary{font-size:12px}}
