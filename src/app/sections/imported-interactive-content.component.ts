@@ -150,6 +150,10 @@ type InteractiveContentSource =
   | 'indonesia-go-to-market-strategy'
   | 'nvidia-rtx-pro-4500-blackwell'
   | 'cambodia-go-to-market-strategy'
+  | 'mauritius-go-to-market-strategy'
+  | 'ethiopia-go-to-market-strategy'
+  | 'sweden-go-to-market-strategy'
+  | 'finland-go-to-market-strategy'
   | 'japan-go-to-market-strategy'
   | 'ghana-go-to-market-strategy'
   | 'kenya-go-to-market-strategy'
@@ -450,6 +454,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'indonesia-go-to-market-strategy': '/imported-indonesia-go-to-market-strategy.html',
     'nvidia-rtx-pro-4500-blackwell': '/imported-nvidia-rtx-pro-4500-blackwell.html',
     'cambodia-go-to-market-strategy': '/imported-cambodia-go-to-market-strategy.html',
+    'mauritius-go-to-market-strategy': '/imported-mauritius-go-to-market-strategy.html',
+    'ethiopia-go-to-market-strategy': '/imported-ethiopia-go-to-market-strategy.html',
+    'sweden-go-to-market-strategy': '/imported-sweden-go-to-market-strategy.html',
+    'finland-go-to-market-strategy': '/imported-finland-go-to-market-strategy.html',
     'japan-go-to-market-strategy': '/imported-japan-go-to-market-strategy.html',
     'ghana-go-to-market-strategy': '/imported-ghana-go-to-market-strategy.html',
     'kenya-go-to-market-strategy': '/imported-kenya-go-to-market-strategy.html',
@@ -768,6 +776,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'indonesia-go-to-market-strategy': 'Indonesia Go-to-Market Strategy',
     'nvidia-rtx-pro-4500-blackwell': 'NVIDIA RTX PRO 4500 Blackwell',
     'cambodia-go-to-market-strategy': 'Cambodia Go-to-Market Strategy',
+    'mauritius-go-to-market-strategy': 'Mauritius Go-to-Market Strategy',
+    'ethiopia-go-to-market-strategy': 'Ethiopia Go-to-Market Strategy',
+    'sweden-go-to-market-strategy': 'Sweden Go-to-Market Strategy',
+    'finland-go-to-market-strategy': 'Finland Go-to-Market Strategy',
     'japan-go-to-market-strategy': 'Japan Go-to-Market Strategy',
     'ghana-go-to-market-strategy': 'Ghana Go-to-Market Strategy',
     'kenya-go-to-market-strategy': 'Kenya Go-to-Market Strategy',

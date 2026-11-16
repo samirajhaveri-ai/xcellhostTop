@@ -1,0 +1,14 @@
+#vgHero .lh-title { white-space: nowrap; font-size: clamp(9px, 3.5cqi, 26px) !important; }
+#vgHero .lh-title .nm { display: inline; }
+#vgHero .lh-ctas { display: flex; gap: 8px; flex-wrap: nowrap; }
+#vgHero .lh-ctas .btn { white-space: nowrap; }
+main h2, main h3, main h4 { text-transform: capitalize; }
+.kh-security-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.kh-security-grid article { padding: 24px; border: 1px solid #d5e2f7; border-radius: 16px; background: var(--surface, #fff); }
+.kh-security-grid h3 { margin: 0 0 10px; }
+#why-xcellhost a { color: inherit; }
+@media (max-width: 760px) { .kh-security-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) {
+  #vgHero .lh-ctas { gap: 5px; }
+  #vgHero .lh-ctas .btn { padding: 10px 7px; font-size: 11px; }
+}
