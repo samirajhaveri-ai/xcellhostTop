@@ -3,6 +3,14 @@ const path = require('node:path');
 const existing = require('./proxy.conf.json');
 
 module.exports = {
+  '^/(?:api/tools/open-graph/?|api/open-graph[.]php|@fs/.*[/]public[/]api[/]open-graph[.]php)(?:[?].*)?$': {
+    target: 'http://localhost',
+    bypass: require('./scripts/open-graph-dev-proxy.cjs'),
+  },
+  '^/(?:api/tools/robots/?|api/robots-fetch[.]php|@fs/.*[/]public[/]api[/]robots-fetch[.]php)(?:[?].*)?$': {
+    target: 'http://localhost',
+    bypass: require('./scripts/robots-dev-proxy.cjs'),
+  },
   // Angular rewrites public PHP assets to /@fs/... before Vite's proxy runs.
   // Use an extensionless feed URL, and also handle the legacy PHP asset URL.
   '^/(?:feeds/blog/?|feeds/blog[.]php|@fs/.*[/]public[/]feeds[/]blog[.]php)(?:[?].*)?$': {

@@ -62,11 +62,11 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
   ] },
   { id: 'web', name: 'Web', icon: 'language', color: '#22d3ee', tools: [
     tool('url-inspector', 'URL Inspector', 'Split a URL into its host, path, query and fragment.', 'Inspect', [text('input', 'URL', '', 'https://example.com/path?key=value')]),
-    tool('robots-generator', 'Robots.txt Generator', 'Create a robots.txt file with a crawler rule and sitemap.', 'Site configuration', [text('agent', 'User agent', '*'), text('disallow', 'Disallowed paths, separated by commas', '/admin/, /private/'), text('sitemap', 'Sitemap URL', '', 'https://example.com/sitemap.xml')]),
-    tool('open-graph-generator', 'Open Graph Generator', 'Generate social sharing meta tags for a webpage.', 'Site configuration', [text('title', 'Page title'), text('description', 'Description'), text('url', 'Page URL', '', 'https://example.com/'), text('image', 'Image URL', '', 'https://example.com/image.jpg')]),
+    tool('robots-generator', 'Robots.txt Tester & Generator', 'Fetch or paste robots.txt, test crawler access and matching lines, review sitemap references, or build a file.', 'Site configuration', [text('agent', 'User agent', '*'), text('disallow', 'Disallowed paths, separated by commas', '/admin/, /private/'), text('sitemap', 'Sitemap URL', '', 'https://example.com/sitemap.xml')]),
+    tool('open-graph-generator', 'Open Graph Checker & Generator', 'Inspect sharing tags, compare social previews and generate Open Graph and X card metadata.', 'Site configuration', [text('title', 'Page title'), text('description', 'Description'), text('url', 'Page URL', '', 'https://example.com/'), text('image', 'Image URL', '', 'https://example.com/image.jpg')]),
   ] },
   { id: 'network', name: 'Network', icon: 'hub', color: '#fb7185', tools: [
-    tool('subnet-calculator', 'Subnet Calculator', 'Calculate an IPv4 network, broadcast, mask and usable address range.', 'IP addressing', [text('input', 'IPv4 CIDR', '', '192.168.1.10/24')]),
+    tool('subnet-calculator', 'Subnet Calculator', 'Calculate IPv4 network and host ranges, subnet and wildcard masks, address categories and binary views.', 'IP addressing', [text('input', 'IPv4 CIDR', '', '192.168.1.10/24')]),
     tool('ipv4-converter', 'IPv4 Converter', 'Convert an IPv4 address to binary, hexadecimal and decimal.', 'IP addressing', [text('input', 'IPv4 address', '', '192.168.1.1')]),
     tool('ipv6-expand', 'IPv6 Expander', 'Expand a compressed IPv6 address into eight groups.', 'IP addressing', [text('input', 'IPv6 address', '', '2001:db8::1')]),
   ] },

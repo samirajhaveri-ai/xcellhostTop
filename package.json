@@ -11,7 +11,7 @@
     "cms:sync": "node scripts/sync-sitemap-content.cjs",
     "package": "npm run cms:sync && npm run build && node scripts/package-for-plesk.js",
     "test": "ng test",
-    "test:tools": "node --test scripts/test-tools.cjs scripts/test-dns-lookup.cjs scripts/test-dns-exports.cjs scripts/test-all-dns-records.cjs scripts/test-mx-lookup.cjs scripts/test-txt-lookup.cjs scripts/test-cname-lookup.cjs scripts/test-soa-lookup.cjs scripts/test-ns-lookup.cjs scripts/test-caa-lookup.cjs scripts/test-ptr-lookup.cjs scripts/test-dnssec-check.cjs scripts/test-caa-generator.cjs scripts/test-password-generator.cjs scripts/test-hash-generator.cjs scripts/test-certificate-fingerprint.cjs scripts/test-pem-formatter.cjs scripts/test-spf-lookup.cjs scripts/test-dkim-lookup.cjs scripts/test-dmarc-lookup.cjs scripts/test-bimi-lookup.cjs scripts/test-email-dns-health.cjs scripts/test-spf-generator.cjs scripts/test-dmarc-generator.cjs scripts/test-ssh-key-generator.cjs scripts/test-ssh-fingerprint.cjs scripts/test-ssh-config.cjs",
+    "test:tools": "node --test scripts/test-tools.cjs scripts/test-dns-lookup.cjs scripts/test-dns-exports.cjs scripts/test-all-dns-records.cjs scripts/test-mx-lookup.cjs scripts/test-txt-lookup.cjs scripts/test-cname-lookup.cjs scripts/test-soa-lookup.cjs scripts/test-ns-lookup.cjs scripts/test-caa-lookup.cjs scripts/test-ptr-lookup.cjs scripts/test-dnssec-check.cjs scripts/test-caa-generator.cjs scripts/test-password-generator.cjs scripts/test-hash-generator.cjs scripts/test-certificate-fingerprint.cjs scripts/test-pem-formatter.cjs scripts/test-spf-lookup.cjs scripts/test-dkim-lookup.cjs scripts/test-dmarc-lookup.cjs scripts/test-bimi-lookup.cjs scripts/test-email-dns-health.cjs scripts/test-spf-generator.cjs scripts/test-dmarc-generator.cjs scripts/test-ssh-key-generator.cjs scripts/test-ssh-fingerprint.cjs scripts/test-ssh-config.cjs scripts/test-robots-tool.cjs",
     "frontend": "node scripts/serve-with-asset-reloads.mjs",
     "ai:build": "tsc -p server/tsconfig.json",
     "ai:start": "node server/dist/index.js",
@@ -24,7 +24,10 @@
     "seo:audit": "node scripts/audit-prerendered-seo.js",
     "visibility:audit": "node scripts/audit-ai-visibility.js",
     "dev:node": "npm run ai:build && node scripts/dev-with-ai.cjs",
-    "test:ai:php": "php scripts/test-ai-backend.php && php scripts/test-ai-handler.php && node --test scripts/test-ai-dev-proxy.cjs"
+    "test:ai:php": "php scripts/test-ai-backend.php && php scripts/test-ai-handler.php && node --test scripts/test-ai-dev-proxy.cjs",
+    "test:robots:fetch": "php scripts/test-robots-fetch.php",
+    "test:open-graph": "node --test scripts/test-open-graph-tool.cjs && php scripts/test-open-graph.php",
+    "test:subnet": "node --test scripts/test-subnet-calculator.cjs"
   },
   "prettier": {
     "printWidth": 100,
