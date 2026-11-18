@@ -12,6 +12,8 @@ import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { caseStudiesForPage } from '../core/case-study-matching';
 import { productVideosForPage, youtubeVideoId } from '../core/product-video-matching';
 import { PRODUCT_VIDEOS } from '../data/products.data';
+import { DatasheetRequestService } from '../core/datasheet-request.service';
+import { datasheetForSlug } from '../data/product-datasheets.data';
 
 export interface InsightVideo {
   title: string;
@@ -122,7 +124,11 @@ export interface InsightArticle {
           @if (activeView() === 'datasheets') {
             <div class="insights-empty">
               <p>Contact our team for the latest product datasheets and technical specifications.</p>
-              <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ resource: 'datasheet', service: pageSlug() || undefined }">Request a datasheet</a>
+              @if (canRequestDatasheet()) {
+                <button class="btn btn-ghost" type="button" (click)="requestDatasheet()">Request a datasheet</button>
+              } @else {
+                <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ resource: 'datasheet', service: pageSlug() || undefined }">Request a datasheet</a>
+              }
             </div>
           } @else {
           <div class="insights-video-grid">
@@ -208,8 +214,11 @@ export class InsightsSectionComponent {
   private readonly catalog = inject(CatalogService);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly caseStudiesApi = inject(CaseStudiesApiService);
+  private readonly datasheetRequests = inject(DatasheetRequestService);
   private readonly allStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly pageSlug = input('');
+  readonly datasheet = computed(() => datasheetForSlug(this.pageSlug()));
+  readonly canRequestDatasheet = computed(() => !this.pageSlug().trim() || this.datasheet() !== null);
   readonly showVideos = input(true);
   readonly videos = input<readonly InsightVideo[] | null>(null);
   readonly articles = input<readonly InsightArticle[]>([]);
@@ -324,5 +333,9 @@ export class InsightsSectionComponent {
 
   scrollCarousel(direction: number): void {
     this.blogGrid?.nativeElement.scrollBy({ left: direction * 331, behavior: 'smooth' });
+  }
+
+  requestDatasheet(): void {
+    this.datasheetRequests.ask(this.pageSlug());
   }
 }
