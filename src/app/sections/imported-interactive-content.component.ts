@@ -106,6 +106,7 @@ type InteractiveContentSource =
   | 'vcio-why'
   | 'entra-id-backup'
   | 'ca-cloud'
+  | 'cloud-object-storage'
   | 'microsoft-agent-365'
   | 'register-a-domain-name'
   | 'media-kit'
@@ -154,6 +155,11 @@ type InteractiveContentSource =
   | 'ethiopia-go-to-market-strategy'
   | 'sweden-go-to-market-strategy'
   | 'finland-go-to-market-strategy'
+  | 'b2b-data-enrichment'
+  | 'naam-ai-caller-id'
+  | 'website-design-packages'
+  | 'spain-go-to-market-strategy'
+  | 'france-go-to-market-strategy'
   | 'japan-go-to-market-strategy'
   | 'ghana-go-to-market-strategy'
   | 'kenya-go-to-market-strategy'
@@ -410,6 +416,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'vcio-why': '/imported-vcio-why.html',
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
+    'cloud-object-storage': '/imported-cloud-object-storage.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
     'register-a-domain-name': '/imported-register-a-domain-name.html',
     'media-kit': '/imported-media-kit.html',
@@ -458,6 +465,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ethiopia-go-to-market-strategy': '/imported-ethiopia-go-to-market-strategy.html',
     'sweden-go-to-market-strategy': '/imported-sweden-go-to-market-strategy.html',
     'finland-go-to-market-strategy': '/imported-finland-go-to-market-strategy.html',
+    'b2b-data-enrichment': '/imported-b2b-data-enrichment.html',
+    'naam-ai-caller-id': '/imported-naam-ai-caller-id.html',
+    'website-design-packages': '/imported-website-design-packages.html',
+    'spain-go-to-market-strategy': '/imported-spain-go-to-market-strategy.html',
+    'france-go-to-market-strategy': '/imported-france-go-to-market-strategy.html',
     'japan-go-to-market-strategy': '/imported-japan-go-to-market-strategy.html',
     'ghana-go-to-market-strategy': '/imported-ghana-go-to-market-strategy.html',
     'kenya-go-to-market-strategy': '/imported-kenya-go-to-market-strategy.html',
@@ -727,6 +739,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'vcio-why': 'Why XcellHost for vCIO as a Service',
     'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
     'ca-cloud': 'CA Cloud',
+    'cloud-object-storage': 'Cloud Object Storage',
     'druva-licensing-guide': 'Druva Licensing Guide',
     'veeam-licensing-guide': 'Veeam Licensing Guide',
     'acronis-licensing-guide': 'Acronis Licensing Guide',
@@ -780,6 +793,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ethiopia-go-to-market-strategy': 'Ethiopia Go-to-Market Strategy',
     'sweden-go-to-market-strategy': 'Sweden Go-to-Market Strategy',
     'finland-go-to-market-strategy': 'Finland Go-to-Market Strategy',
+    'b2b-data-enrichment': 'B2B Data Enrichment',
+    'naam-ai-caller-id': 'Naam AI Caller ID',
+    'website-design-packages': 'Website Design Packages',
+    'spain-go-to-market-strategy': 'Spain Go-to-Market Strategy',
+    'france-go-to-market-strategy': 'France Go-to-Market Strategy',
     'japan-go-to-market-strategy': 'Japan Go-to-Market Strategy',
     'ghana-go-to-market-strategy': 'Ghana Go-to-Market Strategy',
     'kenya-go-to-market-strategy': 'Kenya Go-to-Market Strategy',
@@ -1139,11 +1157,13 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'managed-identity-service' ? 'Managed Identity Service'
         : this.source === 'entra-id-backup' ? 'Entra ID Backup'
         : this.source === 'ca-cloud' ? 'CA Cloud'
+        : this.source === 'cloud-object-storage' ? 'Cloud Object Storage'
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
         : ['druva-licensing-guide', 'veeam-licensing-guide'].includes(this.source) ? this.sourceTitles[this.source]
         : this.source === 'register-a-domain-name' ? 'Register A Domain Name'
         : this.source === 'media-kit' ? 'Media Kit'
         : this.source.startsWith('faceoff-') ? this.sourceTitles[this.source]
+        : (this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'spain-go-to-market-strategy' || this.source === 'france-go-to-market-strategy') ? this.sourceTitles[this.source]
         : this.source === 'career-handbook' ? 'Career Handbook'
         : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
         : this.source === 'eccouncil-services' ? 'EC-Council Programs'
@@ -1284,6 +1304,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       if (this.source === 'microsoft-defender') this.overlay.open('trial', 'Microsoft Defender');
       else if (this.source === 'entra-id-backup') this.overlay.open('trial', 'Entra ID Backup');
       else if (this.source === 'ca-cloud') this.overlay.open('trial', 'CA Cloud');
+      else if (this.source === 'cloud-object-storage') this.overlay.open('trial', 'Cloud Object Storage');
       else if (this.source === 'microsoft-agent-365') this.overlay.open('trial', 'Microsoft Agent 365');
       else if (this.source === 'nigeria-ndpa') this.overlay.open('trial', 'Nigeria Data Protection Act (NDPA)');
       else if (this.source === 'digicert-catalogue') this.overlay.open('trial', 'DigiCert SSL Certificates');
@@ -1306,7 +1327,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);

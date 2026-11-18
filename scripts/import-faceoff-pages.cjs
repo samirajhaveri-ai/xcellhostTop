@@ -23,6 +23,13 @@ for (const [kind, product] of Object.entries(products)) {
   const attr = (n, k) => n.attrs?.find(a => a.name === k)?.value || '';
   const html = n => source.slice(n.sourceCodeLocation.startOffset, n.sourceCodeLocation.endOffset);
   let main = html(nodes.find(n => n.tagName === 'main')).replace('<main', '<main data-customer-testimonials="off"');
+  // Keep the supplied answers, grouped into independently expanding FAQ columns.
+  const faq = nodes.find(n => n.tagName === 'section' && attr(n, 'id') === 'faq');
+  const faqGrid = nodes.find(n => attr(n, 'class').split(/\s+/).includes('faq') && n.sourceCodeLocation.startOffset > faq.sourceCodeLocation.startOffset && n.sourceCodeLocation.endOffset < faq.sourceCodeLocation.endOffset);
+  const questions = faqGrid.childNodes.filter(n => attr(n, 'class').split(/\s+/).includes('fq')).map(html);
+  if (!questions.length) throw Error(`No FAQs found for ${slug}`);
+  const middle = Math.ceil(questions.length / 2);
+  main = main.replace(html(faqGrid), '<div class="faq">' + [questions.slice(0, middle), questions.slice(middle)].map(column => '<div class="hosting-faq-column">' + column.join('\n') + '</div>').join('') + '</div>');
   for (const id of ['contact', 'related']) {
     const section = nodes.find(n => n.tagName === 'section' && attr(n, 'id') === id);
     if (section) main = main.replace(html(section), '');

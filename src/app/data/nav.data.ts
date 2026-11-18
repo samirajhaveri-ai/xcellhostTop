@@ -339,6 +339,7 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Web Design",
             "items": [
+              { "title": "Website Design Packages", "href": "/website-design-packages", "pill": null, "desc": "Compare five website packages, build your quote & plan your launch." },
               {
                 "title": "Web Design for CA, CS & Lawyers",
                 "pill": null,
@@ -4053,6 +4054,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Manage access and permissions for AI agents and services"
               },
+              { "title": "Naam AI Caller ID", "href": "/naam-ai-caller-id", "pill": null, "desc": "Identify callers, flag spam & plan team rollout with XcellHost." },
             ]
           }
         ]
@@ -5573,6 +5575,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/finland-go-to-market-strategy",
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for Finland, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Spain Go-to-Market Strategy",
+                "href": "/spain-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Spain, with sector insights and revenue modelling."
+              },
+              {
+                "title": "France Go-to-Market Strategy",
+                "href": "/france-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for France, with sector insights and revenue modelling."
               },
               {
                 "title": "Japan Go-to-Market Strategy",

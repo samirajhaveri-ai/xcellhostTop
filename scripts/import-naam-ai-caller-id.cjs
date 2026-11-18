@@ -1,0 +1,47 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const { parse } = require('parse5');
+const root = path.resolve(__dirname, '..');
+if (!process.argv[2]) throw Error('Pass the Naam AI Caller ID HTML file.');
+const source = fs.readFileSync(process.argv[2], 'utf8');
+const nodes = [];
+function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
+walk(parse(source, { sourceCodeLocationInfo: true }));
+const attr = (n, k) => n.attrs?.find(a => a.name === k)?.value || '';
+const has = (n, c) => attr(n, 'class').split(/\s+/).includes(c);
+const html = n => source.slice(n.sourceCodeLocation.startOffset, n.sourceCodeLocation.endOffset);
+const text = n => n.value || (n.childNodes || []).map(text).join('');
+const faq = nodes.find(n => n.tagName === 'section' && attr(n, 'id') === 'faq');
+if (!faq) throw Error('Missing source FAQ');
+let main = html(nodes.find(n => n.tagName === 'main')).replace('<main', '<main data-customer-testimonials="off"');
+main = main.replace('id="ciHero"', 'id="ciHero" data-banner-actions="off"');
+const powered = nodes.find(n => has(n, 'ci-pw'));
+const ask = nodes.find(n => has(n, 'lh-ask'));
+const poweredHtml = '<div class="lh-powered ci-pw"><small>Powered By</small><span><b class="ci-wm">Naam</b></span></div><p class="ci-provider-note">Rollout &amp; support by XcellHost<sup>*</sup> · Naam states: hosted on Indian servers</p>';
+main = main.replace(html(powered), '').replace(html(ask), html(ask) + poweredHtml);
+for (const n of nodes.filter(n => has(n, 'crumb') || (n.tagName === 'section' && (attr(n, 'id') === 'contact' || has(n, 'lnl-wrap'))))) main = main.replace(html(n), '');
+const grid = nodes.find(n => has(n, 'faq') && n.sourceCodeLocation.startOffset > faq.sourceCodeLocation.startOffset && n.sourceCodeLocation.endOffset < faq.sourceCodeLocation.endOffset);
+const items = grid.childNodes.filter(n => has(n, 'fq')).map(html);
+if (!items.length) throw Error('Missing source FAQ answers');
+const half = Math.ceil(items.length / 2);
+const faqHtml = html(faq).replace(html(grid), '<div class="faq">' + [items.slice(0, half), items.slice(half)].map(col => '<div class="hosting-faq-column">' + col.join('\n') + '</div>').join('') + '</div>');
+const why = '<section class="sec" id="why-xcellhost"><div class="wrap"><div class="sh"><h2>Why XcellHost For Naam AI Caller ID</h2></div><div class="ci-service-grid"><article><h3>Plan Your Rollout</h3><p>Compare team support options and estimate costs for the staff phones in your rollout.</p></article><article><h3>Coordinate Onboarding</h3><p>Discuss device compatibility, staff setup and support requirements with one team.</p></article><article><h3>Review Your Requirements</h3><p>Confirm product availability, privacy terms and the final scope in your written quotation.</p></article></div></div></section>';
+main = main.replace(html(faq), why + faqHtml);
+main = main.replace('<span class="eyebrow">Compliance</span>', '<span class="eyebrow">SECURITY &amp; COMPLIANCE</span>');
+const fonts = nodes.filter(n => n.tagName === 'link' && /^https:\/\/fonts\./.test(attr(n, 'href'))).map(html).join('\n');
+const styles = nodes.filter(n => n.tagName === 'style').map(html).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => `calc(var(--page-vh,1vh) * ${n})`);
+const scripts = nodes.filter(n => n.tagName === 'script' && !attr(n, 'type')).map(text);
+const core = scripts.find(s => s.includes('XcellHost v2 core runtime'));
+let runtime = scripts.at(-1);
+// Enquiries continue into the site's real enquiry flow; do not claim a local form was sent.
+const handler = "if(XH.onForm)XH.onForm('caller-id-enquiry',function(){if(XH.toast)XH.toast('Thanks. A specialist will reply within one business day.');});";
+if (!runtime.includes(handler)) throw Error('Source enquiry handler changed');
+runtime = runtime.replace(handler, `(function(){const f=d.querySelector('.ci-form');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();if(!f.reportValidity())return;document.dispatchEvent(new CustomEvent('import-training-enquiry',{detail:Object.fromEntries(new FormData(f).entries())}));});})();`);
+runtime = runtime.replace(/t\.scrollIntoView\(\{[^}]*\}\);/g, 'window.hostingJumpTo(t.id);').replace(/\$id\('configure'\)\.scrollIntoView\(\{[^}]*\}\);/g, "window.hostingJumpTo('configure');");
+main = main.replace('data-xhform="caller-id-enquiry"', '').replace(/data-done="[^"]*"/g, '');
+main = main.replace(/(<button[^>]*type="submit"[^>]*>)([\s\S]*?)(<\/button>)/, '$1Review Enquiry &rarr;$3');
+for (const code of [core, runtime]) { if (!code) throw Error('Missing source runtime'); new vm.Script(code); }
+const css = ['consulting-faq', 'faq-layout', 'naam-ai-caller-id'].map(n => `<link rel="stylesheet" href="/assets/styles/${n}.css">`).join('');
+fs.writeFileSync(path.join(root, 'public/imported-naam-ai-caller-id.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Naam AI Caller ID | XcellHost</title>${fonts}${styles}${css}</head><body>${main}<script src="/assets/scripts/hosting-tools-viewport.js"></script><script>${core}</script><script src="/assets/scripts/naam-ai-caller-id-integration.js"></script><script>${runtime}</script></body></html>`);
+console.log(`Imported Naam AI Caller ID: ${items.length} original FAQs and original pricing tools.`);
