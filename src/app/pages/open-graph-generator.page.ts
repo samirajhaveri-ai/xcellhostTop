@@ -1,12 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { WebToolsNavigationComponent } from './web-tools-navigation.component';
 import { SeoService } from '../core/seo.service';
 import { SocialFields, SocialSnapshot, SocialTag, analyzeSocial, escapeSocialHtml, firstSocialTag, generateSocial, socialExample, socialPageUrl, socialResource } from '../core/open-graph-tool';
 
 @Component({
-  selector:'xh-open-graph-generator-page', standalone:true, imports:[RouterLink],
-  templateUrl:'./open-graph-generator.page.html', styleUrls:['./dns-lookup.page.css','./open-graph-generator.page.css'],
+  selector:'xh-open-graph-generator-page', standalone:true, imports:[RouterLink, WebToolsNavigationComponent],
+  templateUrl:'./open-graph-generator.page.html', styleUrls:['./dns-lookup.page.css','./open-graph-generator.page.css','./web-tools.page.css'],
   changeDetection:ChangeDetectionStrategy.OnPush,
 })
 export class OpenGraphGeneratorPage {

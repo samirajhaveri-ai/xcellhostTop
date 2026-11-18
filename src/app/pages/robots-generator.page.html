@@ -1,7 +1,8 @@
-<main class="dns-page robots-page" data-banner-actions="off" data-customer-testimonials="off">
+<main class="dns-page robots-page web-workspace" data-banner-actions="off" data-customer-testimonials="off">
   <div class="dns-wrap">
     <nav class="dns-crumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>&rsaquo;</span><a routerLink="/tools">Tools</a><span>&rsaquo;</span><span>Robots.txt Tester &amp; Generator</span></nav>
     <header class="dns-banner"><span class="dns-banner-icon material-symbols-outlined" aria-hidden="true">smart_toy</span><div><span class="dns-eyebrow">WEB &middot; XCELLHOST TOOLS</span><h1>Robots.txt Tester &amp; Generator</h1></div><span class="dns-banner-tag">CRAWL RULES</span></header>
+    <xh-web-tools-navigation current="robots-generator" />
     <div class="rb-workspace-tabs" role="group" aria-label="Tool mode"><button type="button" [class.active]="mode() === 'test'" [attr.aria-pressed]="mode() === 'test'" (click)="setMode('test')"><span class="material-symbols-outlined" aria-hidden="true">fact_check</span><span><b>Test robots.txt</b><small>Fetch a file or test edited text</small></span></button><button type="button" [class.active]="mode() === 'build'" [attr.aria-pressed]="mode() === 'build'" (click)="setMode('build')"><span class="material-symbols-outlined" aria-hidden="true">edit_note</span><span><b>Build robots.txt</b><small>Create a file to publish</small></span></button></div>
     <div class="dns-layout"><div class="dns-main">
       @if (mode() === 'test') {

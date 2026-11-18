@@ -3,6 +3,10 @@ const path = require('node:path');
 const existing = require('./proxy.conf.json');
 
 module.exports = {
+  '^/(?:api/tools/ipv6/?|api/ipv6-readiness[.]php|@fs/.*[/]public[/]api[/]ipv6-readiness[.]php)(?:[?].*)?$': {
+    target: 'http://localhost',
+    bypass: require('./scripts/ipv6-dev-proxy.cjs'),
+  },
   '^/(?:api/tools/open-graph/?|api/open-graph[.]php|@fs/.*[/]public[/]api[/]open-graph[.]php)(?:[?].*)?$': {
     target: 'http://localhost',
     bypass: require('./scripts/open-graph-dev-proxy.cjs'),
