@@ -58,6 +58,16 @@ export class ContactPage implements AfterViewInit, OnDestroy {
       email: 'sales@xcellhost.cloud',
     }),
     this.createOffice({
+      city: 'Kolkata',
+      country: 'India',
+      label: 'India office',
+      company: 'XcellHost Cloud Services Pvt. Ltd.',
+      address: '18 No Rn Mukherjee Road, Dalhoousie, Kolkata-700001',
+      phoneDisplay: '+91 22 6711 1555',
+      phoneHref: '+912267111555',
+      email: 'sales@xcellhost.cloud',
+    }),
+    this.createOffice({
       city: 'Dubai',
       country: 'UAE',
       label: 'Middle East office',

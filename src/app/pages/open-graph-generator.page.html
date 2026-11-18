@@ -1,7 +1,8 @@
-<main class="dns-page og-page" data-banner-actions="off" data-customer-testimonials="off">
+<main class="dns-page og-page web-workspace" data-banner-actions="off" data-customer-testimonials="off">
   <div class="dns-wrap">
     <nav class="dns-crumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>&rsaquo;</span><a routerLink="/tools">Tools</a><span>&rsaquo;</span><span>Open Graph Checker &amp; Generator</span></nav>
     <header class="dns-banner"><span class="dns-banner-icon material-symbols-outlined" aria-hidden="true">share</span><div><span class="dns-eyebrow">WEB &middot; XCELLHOST TOOLS</span><h1>Open Graph Checker &amp; Generator</h1></div><span class="dns-banner-tag">LINK PREVIEWS</span></header>
+    <xh-web-tools-navigation current="open-graph-generator" />
     <div class="og-modes" role="group" aria-label="Tool mode">
       <button type="button" [class.active]="mode() === 'check'" [attr.aria-pressed]="mode() === 'check'" (click)="setMode('check')"><span class="material-symbols-outlined" aria-hidden="true">travel_explore</span><span><b>Check a page</b><small>Inspect tags and sharing previews</small></span></button>
       <button type="button" [class.active]="mode() === 'generate'" [attr.aria-pressed]="mode() === 'generate'" (click)="setMode('generate')"><span class="material-symbols-outlined" aria-hidden="true">code</span><span><b>Generate tags</b><small>Prepare metadata for your website</small></span></button>

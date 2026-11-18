@@ -27,7 +27,17 @@
     "test:ai:php": "php scripts/test-ai-backend.php && php scripts/test-ai-handler.php && node --test scripts/test-ai-dev-proxy.cjs",
     "test:robots:fetch": "php scripts/test-robots-fetch.php",
     "test:open-graph": "node --test scripts/test-open-graph-tool.cjs && php scripts/test-open-graph.php",
-    "test:subnet": "node --test scripts/test-subnet-calculator.cjs"
+    "test:subnet": "node --test scripts/test-subnet-calculator.cjs",
+    "test:web-tools": "node --test scripts/test-url-inspector.cjs scripts/test-robots-tool.cjs scripts/test-open-graph-tool.cjs && php scripts/test-robots-fetch.php && php scripts/test-open-graph.php",
+    "test:ipv6": "node --test scripts/test-ipv6-tools.cjs && php scripts/test-ipv6-readiness.php",
+    "test:ipv4": "node --test scripts/test-ipv4-converter.cjs",
+    "test:uuid": "node --test scripts/test-uuid-generator.cjs",
+    "test:api-key": "node --test scripts/test-api-key-generator.cjs",
+    "test:random-string": "node --test scripts/test-random-string.cjs",
+    "test:mac": "node --test scripts/test-mac-generator.cjs",
+    "test:cron": "node --test scripts/test-cron-generator.cjs",
+    "test:base64": "node --test scripts/test-base64-converter.cjs",
+    "test:url-encode": "node --test scripts/test-url-converter.cjs"
   },
   "prettier": {
     "printWidth": 100,
@@ -56,6 +66,7 @@
     "@noble/hashes": "2.4.0",
     "@peculiar/x509": "3.1.0",
     "algoliasearch": "5.35.0",
+    "cron-parser": "5.10.6",
     "express": "^5.3.0",
     "express-rate-limit": "^8.7.1",
     "helmet": "^8.3.0",

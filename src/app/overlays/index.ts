@@ -5,6 +5,7 @@ export { SigninModalComponent } from './signin-modal.component';
 export { PartnerModalComponent } from './partner-modal.component';
 export { CallbackModalComponent } from './callback-modal.component';
 export { DocModalComponent } from './doc-modal.component';
+export { DatasheetModalComponent } from './datasheet-modal.component';
 export { CallbackTopicService } from './callback-topic.service';
 export { ChatbotComponent } from './chatbot.component';
 export { SearchDialogComponent } from './search-dialog.component';

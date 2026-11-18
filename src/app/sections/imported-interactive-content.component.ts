@@ -2,6 +2,7 @@
 import { AfterViewInit, OnChanges, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { CartService } from '../core/cart.service';
+import { DocRequestService } from '../core/doc-request.service';
 import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
@@ -294,6 +295,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
   readonly embeddedDocument = signal<SafeHtml | null>(null);
   private embeddedSource: 'cybird' | 'veritas' | null = null;
   private readonly overlay = inject(OverlayService);
+  private readonly docs = inject(DocRequestService);
   private readonly topics = inject(CallbackTopicService);
   private readonly cart = inject(CartService);
   private readonly leads = inject(LeadService);
@@ -1283,6 +1285,14 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const click = (event: Event) => {
       const element = event.target as Element;
+      if (this.source === 'digicert-catalogue') {
+        const kind = element.closest<HTMLElement>('#contact [data-doc-request]')?.dataset['docRequest'];
+        if (kind === 'infosheet' || kind === 'presentation') {
+          this.docs.ask(kind, 'DigiCert SSL Certificates');
+          this.overlay.open('doc');
+          return;
+        }
+      }
       const anchor = element.closest<HTMLAnchorElement>('a[href^="#"]');
       const id = element.closest('[data-sel]') ? 'calc' : anchor?.getAttribute('href')?.slice(1);
       const target = id ? doc.getElementById(id) ?? document.getElementById(id) : null;
