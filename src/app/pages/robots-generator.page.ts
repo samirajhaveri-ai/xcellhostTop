@@ -1,12 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { WebToolsNavigationComponent } from './web-tools-navigation.component';
 import { SeoService } from '../core/seo.service';
 import { ROBOTS_CRAWLERS, ROBOTS_SAMPLE, RobotsDecision, RobotsDocument, RobotsFetchResult, generateRobots, parseRobots, robotsHttpMeaning, robotsOrigin, robotsPath, testRobots } from '../core/robots-tool';
 interface RobotsReport { source: 'live' | 'paste'; origin: string; path: string; crawler: string; checkedAt: string; state: 'rules' | 'no-file' | 'unavailable'; document: RobotsDocument | null; decision: RobotsDecision | null; fetch: RobotsFetchResult | null; }
 @Component({
-  selector: 'xh-robots-generator-page', standalone: true, imports: [RouterLink],
-  templateUrl: './robots-generator.page.html', styleUrls: ['./dns-lookup.page.css','./robots-generator.page.css'],
+  selector: 'xh-robots-generator-page', standalone: true, imports: [RouterLink, WebToolsNavigationComponent],
+  templateUrl: './robots-generator.page.html', styleUrls: ['./dns-lookup.page.css','./robots-generator.page.css','./web-tools.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RobotsGeneratorPage {
