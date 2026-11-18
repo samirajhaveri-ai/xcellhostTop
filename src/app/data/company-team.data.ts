@@ -25,6 +25,7 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
   advisoryTeam: [
     
     { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
+    { initials: 'DA', name: 'Dhiraj Ahuja', role: '', image: '/assets/images/TEAMS PHOTO/Dhiraj Ahuja.png' },
     { initials: 'UJ', name: 'Upendra Joshi ', role: 'International Alliances - Africa', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
     { initials: 'CP', name: 'Christopher Pinto', role: 'Sales Consultant', image: '/assets/images/TEAMS PHOTO/cristopher.png' },
     { initials: 'JP', name: 'Jaman Patel', role: 'International Alliances - Faris', image: '/assets/images/TEAMS PHOTO/Jama Patel.png' },
