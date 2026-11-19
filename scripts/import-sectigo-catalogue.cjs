@@ -24,6 +24,11 @@ const type = div(main, 'lh-type');
 main = main.replace(type, '<div class="sg-highlight">' + JSON.parse(type.match(/data-words='([^']+)'/)[1])[0] + '</div>');
 const providers = {chatgpt:'https://chatgpt.com/?q=',claude:'https://claude.ai/new?q=',perplexity:'https://www.perplexity.ai/search?q=',google:'https://www.google.com/search?udm=50&q=',copilot:'https://copilot.microsoft.com/?q='};
 main = main.replace(/<a data-ai="([^"]+)" href="#">/g, (_, k) => '<a data-ai="' + k + '" href="' + (providers[k] + encodeURIComponent('Compare Sectigo SSL certificates, validation, coverage and support from XcellHost.')).replaceAll('&', '&amp;') + '" target="_blank" rel="noopener noreferrer">');
+main = main.replace(/<section\b[^>]*\bid="products"[\s\S]*?<\/section>/, [
+  '<section id="products" aria-label="Sectigo products and prices">',
+  '  <iframe class="sectigo-cart-frame" src="/sectigo-ssl-cart.html" title="Sectigo SSL catalogue and checkout" style="display:block;width:100%;height:600px;border:0"></iframe>',
+  '</section>',
+].join('\n'));
 const controls = [
   ['Domain Validation', 'Complete the required domain-control checks before a certificate is issued.'],
   ['Organisation Identity', 'Choose OV or EV when your certificate needs a verified organisation identity.'],
@@ -43,6 +48,8 @@ main = main.replace(/<section\b[^>]*id="faq"[\s\S]*?<\/section>/, section => {
   return feedback + '<section class="sec" id="faq"><div class="wrap"><div class="sh"><h2>Frequently Asked Questions</h2></div><div class="faq">' + [items.slice(0,half),items.slice(half)].map(col => '<div class="hosting-faq-column">' + col.join('') + '</div>').join('') + '</div></div></section>';
 });
 let runtime = [...source.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].at(-1)[1];
+runtime = runtime.replace(/  \/\* filter \+ sort \*\/[\s\S]*?(?=  \/\* popup cart \*\/)/, '')
+  .replace('BRAND PAGE: product table filters/sort, popup cart, certificate finder', 'BRAND PAGE: popup cart and certificate finder');
 runtime = runtime.replace("$id('sgMLink').href=slug+'.html';", "$id('sgMLink').href=window.sectigoProductUrl(slug);$id('sgMLink').target='_top';")
   .replace("$id('fdGo').href=s+'.html';", "$id('fdGo').href=window.sectigoProductUrl(s);$id('fdGo').target='_top';")
   .replace('<span class="sgt" aria-hidden="true">S</span><b>Sectigo</b>', '<img class="sg-brand-logo" src="/assets/images/sectigo.svg" alt="Sectigo" width="112" height="30">');
