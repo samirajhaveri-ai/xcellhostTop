@@ -2,6 +2,18 @@
   @if (slug() === 'bare-metal-servers') {
     <xh-bare-metal-offer-popup />
   }
+  @if (slug() === 'performance-cloud') {
+    <xh-product-offer-popup
+      popupSrc="/performance-cloud-credits-popup.html"
+      popupTitle="Performance Cloud credits offer"
+    />
+  }
+  @if (slug() === 'gpu-servers') {
+    <xh-product-offer-popup
+      popupSrc="/gpu-server-offer-popup.html"
+      popupTitle="GPU Server credits offer"
+    />
+  }
   @if (slug() === 'microsoft-defender') {
     <div class="ppage as-page" id="ppage">
       <xh-imported-interactive-content source="microsoft-defender" />

@@ -7803,6 +7803,23 @@
           </div>
 
           <section class="hx-pr" id="pricing">
+            <style>
+              #pricing > .hx-cat,
+              #pricing > .hx-lay,
+              #hxFab,
+              #hxOv,
+              #hxCart {
+                display: none !important;
+              }
+              .pc-pricing-frame {
+                display: block;
+                width: 100%;
+                min-height: 1100px;
+                border: 0;
+                background: transparent;
+                overflow: hidden;
+              }
+            </style>
             <h2 class="h2s">Build your <em>cloud</em> — price it live</h2>
             <p
               style="
@@ -7815,6 +7832,29 @@
               Pick a category, choose an instance and boot-disk size, and add it to your cart.
               Prices in INR, excluding 18% GST.
             </p>
+            <iframe
+              class="pc-pricing-frame"
+              id="pcPricingFrame"
+              src="/assets/animations/performance-cloud-checkout.html?embedded=1"
+              title="Configure and price Performance Cloud"
+              scrolling="no"
+            ></iframe>
+            <script>
+              window.addEventListener('message', function (event) {
+                var frame = document.getElementById('pcPricingFrame');
+                if (
+                  !frame ||
+                  event.origin !== window.location.origin ||
+                  event.source !== frame.contentWindow ||
+                  !event.data ||
+                  event.data.type !== 'performance-cloud-pricing-height'
+                ) return;
+                var height = Number(event.data.height);
+                if (Number.isFinite(height) && height >= 600 && height <= 30000) {
+                  frame.style.height = Math.ceil(height) + 'px';
+                }
+              });
+            </script>
             <div class="hx-cat" role="tablist" aria-label="Product categories">
               <button role="tab" data-t="compute" aria-selected="true">
                 <svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">

@@ -58,6 +58,7 @@ import { ContainerRegistryContentComponent } from '../sections/container-registr
 
 import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
 import { BareMetalOfferPopupComponent } from '../sections/bare-metal-offer-popup.component';
+import { ProductOfferPopupComponent } from '../sections/product-offer-popup.component';
 import { GeminiManagedContentComponent } from '../sections/gemini-managed-content.component';
 import { GEMINI_MANAGED_FAQS } from '../data/gemini-managed-faq.data';
 import { ZoomConferenceingSourceComponent } from '../sections/zoom-conferenceing-source.component';
@@ -607,6 +608,7 @@ interface ProductTourSlide {
     DropboxMigrationContentComponent,
     ImportedInteractiveContentComponent,
     BareMetalOfferPopupComponent,
+    ProductOfferPopupComponent,
     GeminiManagedContentComponent,
     BoxMigrationContentComponent,
     ManagedRedisContentComponent,

@@ -873,6 +873,11 @@ export const routes: Routes = [
     data: { productSlug: 'performance-cloud' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
+  {
+    path: 'performance-cloud/checkout',
+    title: 'Performance Cloud Checkout | XcellHost',
+    loadComponent: () => import('./pages/performance-cloud-checkout.page').then((m) => m.PerformanceCloudCheckoutPage),
+  },
 
   {
     path: 'compare-products',
