@@ -1964,7 +1964,16 @@ html[data-theme="dark"] .dc-cfs{background:#050B1A;border:1px solid rgba(255,255
   onSeg($id('cTerm'),render);onSeg($id('cInst'),render);
   $$('#cAdds input').forEach(function(i){i.addEventListener('change',render);});
   $id('oAdd').addEventListener('click',function(){cfg().L.forEach(function(l){XH.cart.add({key:l.key,name:l.name,sub:l.sub,price:l.price,qty:l.qty});});});
-  render();
+  const catalogueWindow = window.frameElement ? window.parent : window;
+  const requestedEdition = new URLSearchParams(catalogueWindow.location.search).get('edition');
+  if (Object.hasOwn(BY, requestedEdition)) {
+    loadCfg(requestedEdition);
+    window.addEventListener('load', function () {
+      requestAnimationFrame(function () { scrollTo2('configure'); });
+    }, { once: true });
+  } else {
+    render();
+  }
 
   /* =====================================================================
      WIZARD · which certificate do I need?
