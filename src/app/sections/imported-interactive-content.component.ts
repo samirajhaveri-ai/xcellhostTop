@@ -1309,10 +1309,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const click = (event: Event) => {
       const element = event.target as Element;
-      if (this.source === 'digicert-catalogue') {
+      if (this.source === 'digicert-catalogue' || this.source === 'sectigo-catalogue') {
         const kind = element.closest<HTMLElement>('#contact [data-doc-request]')?.dataset['docRequest'];
         if (kind === 'infosheet' || kind === 'presentation') {
-          this.docs.ask(kind, 'DigiCert SSL Certificates');
+          const product = this.source === 'sectigo-catalogue' ? 'Sectigo SSL Certificates' : 'DigiCert SSL Certificates';
+          this.docs.ask(kind, product);
           this.overlay.open('doc');
           return;
         }
