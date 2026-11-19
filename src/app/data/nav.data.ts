@@ -1286,37 +1286,44 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Bandwidth",
+                "href": "/bandwidth",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Public IP",
+                "href": "/public-ip",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "CloudConnect",
+                "href": "/cloudconnect",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "DirectConnect",
+                "href": "/directconnect",
                 "pill": null,
                 "desc": null
               },
               
               {
                 "title": "WAF",
+                "href": "/web-application-firewall",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Endpoint Security",
+                "href": "/endpoint-security",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "SSL",
+                "href": "/ssl-tools",
                 "pill": null,
                 "desc": null
               },
