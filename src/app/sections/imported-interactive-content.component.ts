@@ -164,6 +164,9 @@ type InteractiveContentSource =
   | 'public-ip'
   | 'bandwidth'
   | 'network-security'
+  | 'akamai-cloud'
+  | 'commvault-overview'
+  | 'smb-digital-transformation'
   | 'b2b-data-enrichment'
   | 'naam-ai-caller-id'
   | 'website-design-packages'
@@ -483,6 +486,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'public-ip': '/imported-public-ip.html',
     'bandwidth': '/imported-bandwidth.html',
     'network-security': '/imported-network-security.html',
+    'akamai-cloud': '/imported-akamai-cloud.html',
+    'commvault-overview': '/imported-commvault-overview.html',
+    'smb-digital-transformation': '/imported-smb-digital-transformation.html',
     'b2b-data-enrichment': '/imported-b2b-data-enrichment.html',
     'naam-ai-caller-id': '/imported-naam-ai-caller-id.html',
     'website-design-packages': '/imported-website-design-packages.html',
@@ -819,6 +825,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'public-ip': 'Public IP',
     'bandwidth': 'Bandwidth',
     'network-security': 'Network & Security',
+    'akamai-cloud': 'Akamai Cloud',
+    'commvault-overview': 'Commvault',
+    'smb-digital-transformation': 'SMB Digital Transformation',
     'b2b-data-enrichment': 'B2B Data Enrichment',
     'naam-ai-caller-id': 'Naam AI Caller ID',
     'website-design-packages': 'Website Design Packages',
@@ -1189,7 +1198,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'register-a-domain-name' ? 'Register A Domain Name'
         : this.source === 'media-kit' ? 'Media Kit'
         : this.source.startsWith('faceoff-') ? this.sourceTitles[this.source]
-        : (this.source === 'ssl-tools' || this.source === 'endpoint-security' || this.source === 'web-application-firewall' || this.source === 'directconnect' || this.source === 'cloudconnect' || this.source === 'public-ip' || this.source === 'bandwidth' || this.source === 'network-security' || this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'spain-go-to-market-strategy' || this.source === 'france-go-to-market-strategy') ? this.sourceTitles[this.source]
+        : (this.source === 'ssl-tools' || this.source === 'endpoint-security' || this.source === 'web-application-firewall' || this.source === 'directconnect' || this.source === 'cloudconnect' || this.source === 'public-ip' || this.source === 'bandwidth' || this.source === 'network-security' || this.source === 'smb-digital-transformation' || this.source === 'commvault-overview' || this.source === 'akamai-cloud' || this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'spain-go-to-market-strategy' || this.source === 'france-go-to-market-strategy') ? this.sourceTitles[this.source]
         : this.source === 'career-handbook' ? 'Career Handbook'
         : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
         : this.source === 'eccouncil-services' ? 'EC-Council Programs'
@@ -1362,7 +1371,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source === 'ssl-tools' || this.source === 'endpoint-security' || this.source === 'web-application-firewall' || this.source === 'directconnect' || this.source === 'cloudconnect' || this.source === 'public-ip' || this.source === 'bandwidth' || this.source === 'network-security' || this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source === 'ssl-tools' || this.source === 'endpoint-security' || this.source === 'web-application-firewall' || this.source === 'directconnect' || this.source === 'cloudconnect' || this.source === 'public-ip' || this.source === 'bandwidth' || this.source === 'network-security' || this.source === 'smb-digital-transformation' || this.source === 'commvault-overview' || this.source === 'akamai-cloud' || this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);

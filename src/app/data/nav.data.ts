@@ -104,6 +104,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null,
                 "href": "/workforce-analytics"
               },
+              {
+                "title": "SMB Digital Transformation",
+                "pill": null,
+                "desc": "Plan cloud, cybersecurity, AI & digital marketing for your business",
+                "href": "/smb-digital-transformation"
+              },
               
               
             ]
@@ -1126,6 +1132,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Managed Kubernetes",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Akamai Cloud",
+                "pill": null,
+                "href": "/akamai-cloud",
+                "desc": "Managed compute, Kubernetes & storage on Akamai Cloud."
               },
             ]
           }
