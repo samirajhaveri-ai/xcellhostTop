@@ -1,0 +1,37 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const { parse } = require('parse5');
+const root = path.resolve(__dirname, '..');
+const source = fs.readFileSync(process.argv[2], 'utf8');
+const nodes = [];
+function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
+walk(parse(source, { sourceCodeLocationInfo: true }));
+const attr = (n, k) => n.attrs?.find(a => a.name === k)?.value || '';
+const has = (n, c) => attr(n, 'class').split(/\s+/).includes(c);
+const html = n => source.slice(n.sourceCodeLocation.startOffset, n.sourceCodeLocation.endOffset);
+const text = n => n.value || (n.childNodes || []).map(text).join('');
+let main = html(nodes.find(n => n.tagName === 'main')).replace('<main', '<main data-network-service="akamai-cloud" data-service-title="Akamai Cloud" data-customer-testimonials="off"');
+main = main.replace('id="acHero"', 'id="acHero" data-banner-actions="off"');
+for (const n of nodes.filter(n => has(n, 'crumb') || has(n, 'lnl-wrap') || has(n, 'ac-cta'))) main = main.replace(html(n), '');
+main = main.replace(/data-xhform="([^"]+)"/g, 'data-import-enquiry="$1"');
+const faq = nodes.find(n => n.tagName === 'section' && attr(n, 'id') === 'faq');
+const grid = nodes.find(n => has(n, 'faq') && n.sourceCodeLocation.startOffset > faq.sourceCodeLocation.startOffset && n.sourceCodeLocation.endOffset < faq.sourceCodeLocation.endOffset);
+const items = grid.childNodes.filter(n => has(n, 'fq')).map(html);
+if (!items.length) throw Error('Missing original FAQ answers');
+const half = Math.ceil(items.length / 2);
+const faqHtml = html(faq).replace(html(grid), '<div class="faq">' + [items.slice(0, half), items.slice(half)].map(col => '<div class="hosting-faq-column">' + col.join('\n') + '</div>').join('') + '</div>');
+const why = `<section class="sec" id="why-xcellhost"><div class="wrap"><div class="sh"><h2>Why XcellHost For Akamai Cloud</h2></div><div class="ns-service-grid"><article><h3>Plan For Your Workloads</h3><p>Review compute, Kubernetes and storage requirements with our team before selecting a region and instance mix.</p></article><article><h3>Understand Your Costs</h3><p>Compare Akamai usage estimates with the XcellHost management fee, then request an INR quotation for your configuration.</p></article><article><h3>Plan Migration And Operations</h3><p>Discuss migration, monitoring, backup and recovery responsibilities as part of your managed cloud deployment.</p></article></div></div></section>`;
+main = main.replace(html(faq), why + faqHtml);
+const compliance = nodes.find(n => n.tagName === 'section' && attr(n, 'id') === 'compliance');
+const heading = nodes.find(n => n.tagName === 'h2' && n.sourceCodeLocation.startOffset > compliance.sourceCodeLocation.startOffset && n.sourceCodeLocation.endOffset < compliance.sourceCodeLocation.endOffset);
+main = main.replace(html(heading), '<h2>SECURITY &amp; COMPLIANCE</h2>');
+const fonts = nodes.filter(n => n.tagName === 'link' && /^https:\/\/fonts\./.test(attr(n, 'href'))).map(html).join('\n');
+const styles = nodes.filter(n => n.tagName === 'style').map(html).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => `calc(var(--page-vh,1vh) * ${n})`);
+const scripts = nodes.filter(n => n.tagName === 'script' && !attr(n, 'type')).map(text);
+const core = scripts.find(s => s.includes('XcellHost v2 core runtime'));
+const runtime = scripts.at(-1).replace("cfg.scrollIntoView({behavior:RED?'auto':'smooth',block:'start'})", 'window.hostingJumpTo(cfg.id)');
+for (const code of [core, runtime]) { if (!code) throw Error('Missing runtime'); new vm.Script(code); }
+const css = ['consulting-faq', 'faq-layout', 'network-service-pages', 'akamai-cloud'].map(n => `<link rel="stylesheet" href="/assets/styles/${n}.css">`).join('');
+fs.writeFileSync(path.join(root, 'public/imported-akamai-cloud.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Akamai Cloud | XcellHost</title>${fonts}${styles}${css}</head><body>${main}<script src="/assets/scripts/hosting-tools-viewport.js"></script><script>${core}</script><script src="/assets/scripts/akamai-cloud-integration.js"></script><script>${runtime}</script></body></html>`);
+console.log(`Imported Akamai Cloud with ${items.length} original FAQ answers.`);
