@@ -164,6 +164,12 @@ export class CheckoutPage implements OnDestroy {
       checkoutDocument.querySelectorAll('.top,.nav,.ft,.foot').forEach((element) => element.remove());
     }
 
+    if (this.checkoutProduct === 'rmm') {
+      checkoutDocument.querySelector('.footer')?.remove();
+      const steps = checkoutDocument.querySelector<HTMLElement>('.steps');
+      if (steps) steps.style.paddingTop = '20px';
+    }
+
     if (this.checkoutProduct === 'smb-desktop') {
       this.applySmbDesktopPricing(checkoutDocument);
       this.applySmbDesktopThreeColumnLayout(checkoutDocument);
