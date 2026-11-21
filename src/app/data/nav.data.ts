@@ -6339,7 +6339,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/xcellhost-certifications"
               },
               {
-                "title": "Acronis Training Certification",
+                "title": "Acronis Training Certifications",
                 "pill": null,
                 "desc": "Build your future with XcellHost",
                 "href": "/acronis-training-certification"
