@@ -25,7 +25,6 @@ export const PARTNER_TEAMS: readonly PartnerTeam[] = [
     description: 'Field and regional sales contacts for channel partners and end-customer opportunities.',
     contacts: [
       { name: 'Mr. Syed Rashed', designation: 'Cloud Sales Advisor - West', email: 'rasheds@xcellhost.cloud', officePhone: '', city: 'Aurangabad', mobile: '+918433989914', purpose: 'End customers' },
-      { name: 'Mr. Ajay Gupta', designation: 'Cloud Sales Advisor - West', email: 'ajayg@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+918591857830', purpose: 'Field sales' },
       { name: 'Mr. Mihir Ambokar', designation: 'Cloud Sales Advisor - West', email: 'mihira@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+918976779385', purpose: 'Field sales' },
     ],
   },

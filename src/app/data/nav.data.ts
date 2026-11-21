@@ -5375,6 +5375,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Cybersecurity certifications, role-based training and team plans",
                 "href": "/vendor-partners/eccouncil"
               },
+              {
+                "title": "Barracuda",
+                "pill": null,
+                "desc": "Every Barracuda product. One XcellHost catalogue",
+                "href": "/vendor-partners/barracuda"
+              },
               
             ]
           }
@@ -5553,6 +5559,66 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "By Country",
             "items": [
+              {
+                "title": "Ireland Go-to-Market Strategy",
+                "href": "/ireland-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Ireland, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Oman Go-to-Market Strategy",
+                "href": "/oman-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Oman, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Argentina Go-to-Market Strategy",
+                "href": "/argentina-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Argentina, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Thailand Go-to-Market Strategy",
+                "href": "/thailand-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Thailand, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Uganda Go-to-Market Strategy",
+                "href": "/uganda-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Uganda, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Egypt Go-to-Market Strategy",
+                "href": "/egypt-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Egypt, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Brazil Go-to-Market Strategy",
+                "href": "/brazil-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Brazil, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Ivory Coast Go-to-Market Strategy",
+                "href": "/ivory-coast-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Ivory Coast, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Portugal Go-to-Market Strategy",
+                "href": "/portugal-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Portugal, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Morocco Go-to-Market Strategy",
+                "href": "/morocco-go-to-market-strategy",
+                "pill": null,
+                "desc": "Cloud, security, AI and training strategy for Morocco, with sector insights and revenue modelling."
+              },
               {
                 "title": "Europe Go-to-Market Strategy",
                 "href": "/europe-go-to-market-strategy",
@@ -5775,6 +5841,31 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Cloud infrastructure, data protection and security for government workloads and public services."
               }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "By UAE Govt",
+        "label": "By UAE Govt",
+        "on": false,
+        "groups": [
+          {
+            "heading": "By UAE GOVT",
+            "items": [
+              {
+                "title": "SAMA Compliance",
+                "href": "/sama-compliance",
+                "pill": null,
+                "desc": "SAMA expects every bank, insurer and finance company to run cyber security at maturity level 3 or higher."
+              },
+              {
+                "title": "NESA Compliance",
+                "href": "/nesa-compliance",
+                "pill": null,
+                "desc": "We map your controls, close P1 gaps first and keep evidence current for NESA audits."
+              },
+
             ]
           }
         ]
@@ -6254,7 +6345,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/acronis-training-certification"
               },
               {
-                "title": "m365-certifications",
+                "title": "M365-Certifications",
                 "pill": null,
                 "desc": "Build your future with XcellHost",
                 "href": "/m365-certifications"
@@ -6288,7 +6379,25 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Build your future with XcellHost",
                 "href": "/gemini-certifications"
-              }
+              },
+              {
+                "title": "GCP Certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/gcp-certifications"
+              },
+              {
+                "title": "Claude Certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/claude-certifications"
+              },
+              {
+                "title": "ChatGPT Certifications",
+                "pill": null,
+                "desc": "Build your future with XcellHost",
+                "href": "/chatgpt-certifications"
+              },
             ]
           }
         ]

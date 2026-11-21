@@ -248,14 +248,6 @@ export const ESCALATION_DEPARTMENTS: readonly EscalationDepartment[] = [
                          },
                          {
                              "level":  "Level 1",
-                            "role":  "Cloud Advisor",
-                             "name":  "Ajay Gupta",
-                             "email":  "ajayg@xcellhost.cloud",
-                             "phone":  "+912267111555",
-                             "mobile":  "+918591857830"
-                         },
-                         {
-                             "level":  "Level 1",
                              "role":  "Cloud Advisor",
                              "name":  "Mihir Ambokar",
                              "email":  "mihira@xcellhost.cloud",

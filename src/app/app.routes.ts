@@ -15,6 +15,42 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 const suppliedPageRoutes: Routes = [
+  ...[
+    ['ireland', 'Ireland'],
+    ['oman', 'Oman'],
+    ['argentina', 'Argentina'],
+    ['thailand', 'Thailand'],
+    ['uganda', 'Uganda'],
+    ['egypt', 'Egypt'],
+    ['brazil', 'Brazil'],
+    ['ivory-coast', 'Ivory Coast'],
+    ['portugal', 'Portugal'],
+    ['morocco', 'Morocco'],
+  ].map(([slug, country]) => ({
+    path: `${slug}-go-to-market-strategy`,
+    title: `${country} Go-to-Market Strategy | XcellHost`,
+    data: {
+      suppliedPageSlug: `${slug}-go-to-market-strategy`,
+      pageTitle: `${country} Go-to-Market Strategy | XcellHost`,
+      searchTitle: `${country} Go-to-Market Strategy`,
+      searchDescription: `Explore the ${country} strategy briefing across cloud, cyber security, data protection, digital trust, AI and training, with sector recommendations and revenue modelling.`,
+    },
+  })),
+  {
+    path: 'vendor-partners/barracuda',
+    title: 'All Barracuda Products in India | XcellHost',
+    data: { suppliedPageSlug: 'barracuda-services', pageTitle: 'All Barracuda Products in India | XcellHost', searchTitle: 'Barracuda Services', searchDescription: 'Explore Barracuda email protection, application security, network security, backup and managed XDR solutions from XcellHost.' },
+  },
+  {
+    path: 'sama-compliance',
+    title: 'SAMA Compliance Saudi Arabia | XcellHost',
+    data: { suppliedPageSlug: 'sama-compliance', pageTitle: 'SAMA Compliance Saudi Arabia | XcellHost', searchTitle: 'SAMA Compliance', searchDescription: 'SAMA Cyber Security Framework gap assessment, maturity readiness, NCA ECC and PDPL alignment delivered by XcellComply and XcellHost.' },
+  },
+  {
+    path: 'nesa-compliance',
+    title: 'NESA Compliance UAE | XcellHost',
+    data: { suppliedPageSlug: 'nesa-compliance', pageTitle: 'NESA Compliance UAE | XcellHost', searchTitle: 'NESA Compliance', searchDescription: 'NESA and UAE Information Assurance compliance assessment, control mapping, evidence readiness and managed security services from XcellHost.' },
+  },
   {
     path: 'zoho-workdrive',
     title: 'Zoho WorkDrive for Enterprises in India | XcellHost',

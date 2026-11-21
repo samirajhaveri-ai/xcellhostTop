@@ -14,7 +14,6 @@ const TEAM_NAME_ALIASES: Readonly<Record<string, string>> = {
 const TEAM_PHOTOS = new Map(HUMAN_TEAM_MEMBERS.map(member => [member.name.trim().toLowerCase(), member.image]));
 const ORIGINAL_PORTRAITS: Readonly<Record<string, string>> = {
   'rashed syed': '/assets/images/Rashed Sayed.png',
-  'ajay gupta': '/assets/images/Ajay Gupta.png',
   'mihir ambokar': '/assets/images/Mihir Ambokar.png',
   'talha mohammad': '/assets/images/Talha.png',
   'santosh kumar behera': '/assets/images/Santosh Behra.png',
