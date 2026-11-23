@@ -23,6 +23,7 @@ const { SITE } = load(path.join(root, 'src/app/data/site.data.ts'));
 const { CASE_STUDIES } = load(path.join(root, 'src/app/data/case-studies.data.ts'));
 const { PRODUCT_COMPARISONS } = load(path.join(root, 'src/app/data/product-comparisons.data.ts'));
 const { SITE_TOOLS } = load(path.join(root, 'src/app/data/tools.data.ts'));
+const { CHECKLISTS } = load(path.join(root, 'src/app/data/checklists.data.ts'));
 const slugify = name => {
   const normalized = name.toLowerCase().trim();
   if (normalized === 'erpnext hosting') return 'erp-next-hosting';
@@ -113,6 +114,12 @@ for (const tool of SITE_TOOLS) {
   const pathname = `tools/${tool.id}`;
   paths.add(pathname);
   titles.set(pathname, tool.name + ' | XcellHost Tools');
+}
+for (const item of CHECKLISTS) {
+  const pathname = `checklists/${item.slug}`;
+  paths.add(pathname);
+  titles.set(pathname, item.title + ' | XcellHost');
+  lastModified.set(pathname, item.date);
 }
 const cmsSnapshotPath = path.join(root, 'public/sitemap-cms-pages.json');
 if (fs.existsSync(cmsSnapshotPath)) {
