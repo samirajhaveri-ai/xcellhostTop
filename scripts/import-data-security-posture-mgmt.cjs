@@ -1,0 +1,34 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const { parse } = require('parse5');
+const root = path.resolve(__dirname, '..');
+const source = fs.readFileSync(process.argv[2], 'utf8');
+const nodes = [];
+function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
+walk(parse(source, { sourceCodeLocationInfo: true }));
+const attr = (n, k) => n.attrs?.find(a => a.name === k)?.value || '';
+const has = (n, c) => attr(n, 'class').split(/\s+/).includes(c);
+const html = n => source.slice(n.sourceCodeLocation.startOffset, n.sourceCodeLocation.endOffset);
+const text = n => n.value || (n.childNodes || []).map(text).join('');
+let main = html(nodes.find(n => n.tagName === 'main')).replace('<main', '<main data-network-service="data-security-posture-mgmt" data-service-title="Data Security Posture Management" data-customer-testimonials="off"');
+main = main.replace('id="dsHero"', 'id="dsHero" data-banner-actions="off"');
+for (const n of nodes.filter(n => has(n, 'crumb') || has(n, 'lnl-wrap') || ['contact', 'related'].includes(attr(n, 'id')))) main = main.replace(html(n), '');
+main = main.replace(/data-xhform="([^"]+)"/g, 'data-import-enquiry="$1"');
+const faq = nodes.find(n => n.tagName === 'section' && attr(n, 'id') === 'faq');
+const grid = nodes.find(n => has(n, 'faq') && n.sourceCodeLocation.startOffset > faq.sourceCodeLocation.startOffset && n.sourceCodeLocation.endOffset < faq.sourceCodeLocation.endOffset);
+const items = grid.childNodes.filter(n => has(n, 'fq')).map(html);
+if (!items.length) throw Error('Missing original FAQ answers');
+const half = Math.ceil(items.length / 2);
+const faqHtml = html(faq).replace(html(grid), '<div class="faq">' + [items.slice(0, half), items.slice(half)].map(col => '<div class="hosting-faq-column">' + col.join('\n') + '</div>').join('') + '</div>');
+const extra = `<section class="sec" id="security-compliance"><div class="wrap"><div class="sh"><h2>SECURITY &amp; COMPLIANCE</h2><p>Build a data security review around the stores you operate, the information they hold and the people who can access it. Confirm scanner permissions, deployment location and evidence requirements before connecting production systems.</p></div><div class="ns-service-grid"><article><h3>Discovery And Classification</h3><p>Map sensitive data across cloud, SaaS and on-premises stores, including untracked copies and AI pipelines.</p></article><article><h3>Access And Exposure</h3><p>Review public links, excessive permissions and risky data flows. Route findings to your identity, DLP and cloud teams.</p></article><article><h3>Review Evidence</h3><p>Use inventories, findings and remediation records to support your compliance reviews. Confirm applicable requirements and data residency with your team.</p></article></div></div></section><section class="sec alt" id="why-xcellhost"><div class="wrap"><div class="sh"><h2>Why XcellHost For Data Security Posture Management</h2></div><div class="ns-service-grid"><article><h3>Start With Your Data</h3><p>Scope the clouds, SaaS applications, databases and file shares that matter to your business.</p></article><article><h3>India-Specific Detectors</h3><p>Explore classification for Aadhaar, PAN, GSTIN, UPI and other sensitive records using the supplied detector examples.</p></article><article><h3>Prioritise Remediation</h3><p>Consider sensitivity, record volume and exposure together to decide which findings need attention first.</p></article><article><h3>Choose Your Deployment</h3><p>Discuss scanner placement and access boundaries before onboarding your data stores.</p></article><article><h3>Connect Existing Tools</h3><p>Plan how DSPM findings will reach your DLP, identity, cloud security and monitoring workflows.</p></article><article><h3>Configure Your Scope</h3><p>Estimate assessment and managed service costs, then request a quotation for your stores and add-ons.</p></article></div></div></section>`;
+main = main.replace(html(faq), extra + faqHtml);
+const fonts = nodes.filter(n => n.tagName === 'link' && /^https:\/\/fonts\./.test(attr(n, 'href'))).map(html).join('\n');
+const styles = nodes.filter(n => n.tagName === 'style').map(html).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => `calc(var(--page-vh,1vh) * ${n})`);
+const scripts = nodes.filter(n => n.tagName === 'script' && !attr(n, 'type')).map(text);
+const core = scripts.find(s => s.includes('XcellHost v2 core runtime'));
+const runtime = scripts.at(-1).replace(/(?:cf|c)\.scrollIntoView\(\{behavior:R\?'auto':'smooth'\}\)/g, "window.hostingJumpTo('configure')");
+for (const code of [core, runtime]) { if (!code) throw Error('Missing runtime'); new vm.Script(code); }
+const css = ['consulting-faq', 'faq-layout', 'network-service-pages', 'data-security-posture-mgmt'].map(n => `<link rel="stylesheet" href="/assets/styles/${n}.css">`).join('');
+fs.writeFileSync(path.join(root, 'public/imported-data-security-posture-mgmt.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Security Posture Management | XcellHost</title>${fonts}${styles}${css}</head><body>${main}<script src="/assets/scripts/hosting-tools-viewport.js"></script><script>${core}</script><script src="/assets/scripts/data-security-posture-mgmt-integration.js"></script><script>${runtime}</script></body></html>`);
+console.log(`Imported Data Security Posture Management with ${items.length} original FAQ answers.`);
