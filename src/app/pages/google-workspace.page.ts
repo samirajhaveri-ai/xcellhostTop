@@ -92,6 +92,18 @@ export class GoogleWorkspacePage implements AfterViewInit, OnDestroy {
     this.overlay.open('callback');
   }
 
+  openCart(event: Event, plan: string, index: number): void {
+    event.preventDefault();
+    const planCodes: Record<string, string> = {
+      Base: 'XLCS-GWS-BASE-A',
+      Starter: 'XLCS-GWS-STARTER-A',
+      Standard: 'XLCS-GWS-STANDARD-A',
+    };
+    const params = new URLSearchParams({ quantity: String(this.quantities()[index]) });
+    if (planCodes[plan]) params.set('plan', planCodes[plan]);
+    window.open(`/google-workspace/checkout?${params.toString()}`, '_blank', 'noopener');
+  }
+
   submitForm(event: SubmitEvent): void {
     event.preventDefault();
     const form = event.currentTarget as HTMLFormElement;

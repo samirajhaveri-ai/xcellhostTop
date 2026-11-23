@@ -76,6 +76,30 @@ export class Microsoft365E7Page implements OnDestroy {
 
     const click = (event: MouseEvent) => {
       if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const clicked = event.target as Element | null;
+      const configuratorButton = clicked?.closest<HTMLButtonElement>('#oAdd');
+      const pricingButton = clicked?.closest<HTMLButtonElement>('button[data-buy]');
+      if (configuratorButton || pricingButton) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        const term = (pricingButton
+          ? doc.getElementById('ptBill')?.dataset['value']
+          : doc.getElementById('cTerm')?.dataset['value']) ?? 'm';
+        const termCode = term === 't' ? '3Y' : term === 'a' ? 'A' : 'M';
+        const productCodes = ['E7', 'E5', 'E5-COPILOT', 'COPILOT', 'AGENT365', 'ENTRA'];
+        const productCode = pricingButton
+          ? productCodes[Number(pricingButton.dataset['buy'])] ?? 'E7'
+          : 'E7';
+        const quantity = configuratorButton
+          ? Math.max(1, Number((doc.getElementById('cQty') as HTMLInputElement | null)?.value) || 1)
+          : 1;
+        const params = new URLSearchParams({
+          plan: `XLCS-M365-E7-${productCode}-${termCode}`.replace('-E7-E7-', '-E7-'),
+          quantity: String(quantity),
+        });
+        window.open(`/microsoft-365-e7/checkout?${params.toString()}`, '_blank', 'noopener');
+        return;
+      }
       const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[href]');
       const href = anchor?.getAttribute('href');
       if (!anchor || !href) return;

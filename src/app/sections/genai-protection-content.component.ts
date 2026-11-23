@@ -116,8 +116,7 @@ export class GenaiProtectionContentComponent {
 
   configurePlan(plan?: GenaiPlan): void {
     if (plan) {
-      const count = this.quantity(plan);
-      window.location.assign(`/acronis-genai-checkout?quantity=${count}`);
+      window.open('/acronis-genai-checkout', '_blank', 'noopener');
       return;
     }
     this.overlay.open('callback');

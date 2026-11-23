@@ -147,12 +147,14 @@ export class Microsoft365SmbPage {
   }
 
   checkoutUrl(plan: BusinessPlan): string {
-    const links = {
-      basic: this.includesTeams() ? this.basicTeamsCheckoutUrl : this.basicNoTeamsCheckoutUrl,
-      standard: this.includesTeams() ? this.standardTeamsCheckoutUrl : this.standardNoTeamsCheckoutUrl,
-      premium: this.includesTeams() ? this.premiumTeamsCheckoutUrl : this.premiumNoTeamsCheckoutUrl,
-    };
-    return links[plan];
+    const planPrefixes = { basic: 'BB', standard: 'BS', premium: 'BP' };
+    const teamCode = this.includesTeams() ? 'WT' : 'NT';
+    const termCode = this.includesTeams() && this.billingTerms()[plan] === 'monthly' ? 'M' : 'A';
+    const params = new URLSearchParams({
+      plan: `XLCS-M365-${planPrefixes[plan]}-${teamCode}-${termCode}`,
+      quantity: String(this.quoteQuantities()[plan]),
+    });
+    return `/microsoft-365-smb/checkout?${params.toString()}`;
   }
 
   requestPlanQuote(plan: BusinessPlan): void {

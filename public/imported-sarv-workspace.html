@@ -1780,7 +1780,7 @@ html[data-theme="dark"] .swx .pill,html[data-theme="dark"] .swx .att,html[data-t
 })();
 
 
-(function(){var open=XH.open;XH.open=function(id,opts){if(id==='xhCallback'){document.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic}));return;}open(id,opts);};XH.cart={add:function(item){document.dispatchEvent(new CustomEvent('import-cart',{detail:item}));}};})();</script><script>
+(function(){var open=XH.open;XH.open=function(id,opts){if(id==='xhCallback'){document.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic}));return;}open(id,opts);};XH.cart={add:function(item){var name=String(item.name||'').toLowerCase(),tier=name.indexOf('enterprise')>=0?'ENTERPRISE':name.indexOf('business')>=0?'BUSINESS':'STARTER',term=name.indexOf('yearly')>=0?'A':'M',params=new URLSearchParams({plan:'XLCS-XWS-'+tier+'-'+term,quantity:String(item.qty||1)});window.open('/xcellworkspace/checkout?'+params.toString(),'_blank','noopener');}};})();</script><script>
 (function(){
   var XH=window.XH,$=XH.$,$$=XH.$$,reduce=XH.reduce;
   var NS='http://www.w3.org/2000/svg';

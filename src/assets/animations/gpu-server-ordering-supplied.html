@@ -1110,8 +1110,7 @@ function addToCart(gpuId){
   /* Keep checkout on its own Angular page so the standard site header and
      footer wrap the supplied checkout steps. */
   if(new URLSearchParams(window.location.search).get('checkout')!=='1'){
-    var checkoutUrl='/gpu-servers/checkout?gpu='+enc(gpuId)+'&nvme='+enc(key);
-    window.top.location.assign(checkoutUrl);
+    window.open('/gpu-servers/checkout','_blank','noopener');
     return;
   }
   /* 1-3. save selected GPU configuration, NVMe and a fresh quantity */

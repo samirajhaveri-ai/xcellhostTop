@@ -1233,6 +1233,18 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const add = (event: Event) => {
       const item = (event as CustomEvent).detail;
+      if (this.source === 'digicert-catalogue') {
+        window.open('/digicert-ssl-certificates/checkout', '_blank', 'noopener');
+        return;
+      }
+      if (this.source === 'sectigo-catalogue') {
+        window.open('/sectigo-ssl-certificates/checkout', '_blank', 'noopener');
+        return;
+      }
+      if (this.source === 'bare-metal-servers') {
+        window.open('/bare-metal-servers/checkout', '_blank', 'noopener');
+        return;
+      }
       if (this.source === 'register-a-domain-name' && item.dm) {
         this.cart.add(item.name + ' - ' + (item.dm.type === 'transfer' ? 'Domain Transfer' : 'Domain Registration'), 'INR ' + item.price, 1,
           { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: ' excl. GST', domain: { name: item.name, type: item.dm.type, register: item.dm.reg, renew: item.dm.renew, tld: item.dm.tld } });
