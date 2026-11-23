@@ -13,6 +13,7 @@ import {
   resolveInsightPlacement,
 } from '../data/insights-taxonomy.data';
 import { SIMPLE_PAGES } from '../data/site.data';
+import { mergeChecklistResources } from '../core/checklist-resources';
 
 const ALL = 'All';
 type InsightTab = 'Blogs' | 'Videos' | 'Use Cases' | 'Case Studies' | typeof INSIGHT_DOCUMENT_TYPES[number]['label'];
@@ -88,10 +89,10 @@ interface InsightCategoryBranch {
                 <div>
                   @for (tab of tabs; track tab) {
                     <a
-                      href="#insights-library"
+                      [attr.href]="tab === 'Checklists' ? '/resources/checklists' : '#insights-library'"
                       [class.active]="activeTab() === tab"
                       [attr.aria-current]="activeTab() === tab ? 'page' : null"
-                      (click)="selectTab(tab)"
+                      (click)="selectTab(tab, $event)"
                     >
                       <span>{{ tab }}</span><b>{{ tabCount(tab) }}</b>
                     </a>
@@ -596,7 +597,13 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
     this.canScrollTabsRight.set(scroller.scrollLeft + scroller.clientWidth < scroller.scrollWidth - 1);
   }
 
-  selectTab(tab: InsightTab): void {
+  selectTab(tab: InsightTab, event?: MouseEvent): void {
+    if (tab === 'Checklists') {
+      if (event && (event.button > 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)) return;
+      event?.preventDefault();
+      void this.router.navigateByUrl('/resources/checklists');
+      return;
+    }
     this.activeTab.set(tab);
     this.selectAllCategories();
     this.currentPage.set(1);
@@ -694,6 +701,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   insightHref(item: InsightItem): string {
+    if (item.kind === 'checklist') return `/checklists/${encodeURIComponent(item.slug)}`;
     if (this.isExternal(item)) return item.actionUrl ?? '#';
     return item.kind === 'use-case'
       ? `/use-cases/${encodeURIComponent(item.slug)}`
@@ -735,6 +743,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   tabCount(tab: InsightTab): number {
+    if (tab === 'Checklists') return mergeChecklistResources(this.documents()).length;
     if (tab === 'Videos') return this.videos().length;
     if (tab === 'Use Cases') return this.useCaseItems().length;
     if (tab === 'Case Studies') return this.caseStudyItems().length;
@@ -752,6 +761,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   isExternal(item: InsightItem): boolean {
+    if (item.kind === 'checklist') return false;
     if (item.kind === 'blog' || item.kind === 'use-case' || item.kind === 'case-study') return false;
     return !item.actionUrl?.startsWith('/');
   }
