@@ -6,9 +6,11 @@ describe('Blog RSS subscription availability', () => {
     return jasmine.createSpy('fetch').and.resolveTo(new Response(body, { status, headers: { 'Content-Type': contentType } }));
   }
 
-  it('uses the direct public endpoint and Feedly’s documented button format', () => {
+  it('uses the direct public endpoint and discovers the feed instead of opening a missing subscription', () => {
     expect(BLOG_RSS_URL).toBe('https://xcellhost.cloud/feeds/blog.php');
-    expect(decodeURIComponent(BLOG_RSS_SUBSCRIBE_URL.split('/i/subscription/')[1])).toBe('feed/' + BLOG_RSS_URL);
+    const destination = new URL(BLOG_RSS_SUBSCRIBE_URL);
+    expect(destination.origin).toBe('https://feedly.com');
+    expect(decodeURIComponent(destination.pathname.replace('/i/discover/sources/search/feed/', ''))).toBe(BLOG_RSS_URL);
   });
 
   it('allows a valid RSS response', async () => {

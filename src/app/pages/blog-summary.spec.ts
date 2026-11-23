@@ -48,6 +48,22 @@ describe('Blog summary links', () => {
     expect(copy).toHaveBeenCalledTimes(1);
   });
 
+  it('keeps the RSS fallback visible and opens Feedly discovery in another tab', async () => {
+    const fixture = await render();
+    const card = fixture.nativeElement.querySelector('.article-rss-card') as HTMLElement;
+    const subscribe = card.querySelector<HTMLAnchorElement>('.article-rss-subscribe')!;
+    expect(subscribe.target).toBe('_blank');
+    expect(subscribe.rel).toContain('noopener');
+    expect(decodeURIComponent(new URL(subscribe.href).pathname)).toBe(
+      '/i/discover/sources/search/feed/https://xcellhost.cloud/feeds/blog.php'
+    );
+    expect(card.querySelector('details')).toBeNull();
+    expect(card.querySelector<HTMLInputElement>('input')!.value).toBe('https://xcellhost.cloud/feeds/blog.php');
+    const copy = spyOn(fixture.componentInstance, 'copyRssFeed').and.resolveTo();
+    card.querySelector<HTMLButtonElement>('button')!.click();
+    expect(copy).toHaveBeenCalledTimes(1);
+  });
+
   it('opens the browser print dialog', async () => {
     const fixture = await render();
     const print = spyOn(window, 'print');

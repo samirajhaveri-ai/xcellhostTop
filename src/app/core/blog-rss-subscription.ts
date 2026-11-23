@@ -2,7 +2,8 @@ import { SITE } from '../data/site.data';
 
 // Use the actual PHP endpoint so subscriptions do not depend on rewrite rules.
 export const BLOG_RSS_URL = SITE.siteUrl.replace(/\/$/, '') + '/feeds/blog.php';
-export const BLOG_RSS_SUBSCRIBE_URL = 'https://feedly.com/i/subscription/' + encodeURIComponent('feed/' + BLOG_RSS_URL);
+// Discovery can look up a public feed that is not yet in Feedly's directory.
+export const BLOG_RSS_SUBSCRIBE_URL = 'https://feedly.com/i/discover/sources/search/feed/' + encodeURIComponent(BLOG_RSS_URL);
 
 export async function blogRssIsAvailable(request: typeof fetch = fetch): Promise<boolean> {
   try {

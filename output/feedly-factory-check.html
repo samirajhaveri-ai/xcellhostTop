@@ -1,0 +1,529 @@
+<html>
+<head>
+  <title>feedly. your news. delivered.</title>
+  <meta property="og:url"                  content="https://feedly.com/index.html">
+  <meta property="og:site_name"            content="Feedly. A fast and stylish way to read and share the content of your favorite sites.">
+  <meta property="og:image"                content="https://s1.feedly.com/images/feedly-512.png">
+  <meta property="og:title"                content="Feedly. A fast and stylish way to read and share the content of your favorite sites.">
+  <meta property="og:description"          content="Introducing the New Feedly. Browsing, reading and sharing your favorite sites has never been this easy, fast and rewarding. Feed your mind anytime, anywhere!">
+
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/hipbfijinpcgfogaopmgehiegacbhmob">
+  <link rel="stylesheet" type="text/css" href="button.css">
+
+<style>
+
+body
+{
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-size: 13px;
+  color: #666;
+  padding-top: 41px;
+  background-color    : white;
+  font-family: HelveticaNeue, Sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.row {
+  margin-left: -20px;
+  *zoom: 1;
+}
+
+.row:before, .row:after {
+  display: table;
+  content: "";
+}
+.row:after {
+  clear: both;
+}
+[class*="span"] {
+  float: left;
+  margin-left: 20px;
+}
+.span1 {
+  width: 60px;
+}
+.span2 {
+  width: 140px;
+}
+.span3 {
+  width: 220px;
+}
+.span4 {
+  width: 300px;
+}
+.span5 {
+  width: 380px;
+}
+.span6 {
+  width: 460px;
+}
+.span7 {
+  width: 540px;
+}
+.span8 {
+  width: 620px;
+}
+.span9 {
+  width: 700px;
+}
+.span10 {
+  width: 780px;
+}
+.span11 {
+  width: 860px;
+}
+.span12 {
+  width: 940px;
+}
+
+h1,
+h2,
+h3 {
+	font-family		: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight		: 700;
+	letter-spacing	: -0.04em;
+ 	color			: #333;
+}
+
+h1 {
+  margin: 0px 0px 10px 0px;
+  font-size: 32px;
+  text-align: left;
+  line-height: 1.3em;
+}
+
+h2 {
+  margin: 0px 0px 10px 0px;
+  font-size: 26px;
+  line-height: 1.5em;
+}
+
+p {
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0px 0px 30px 0px;
+  color: #777777;
+}
+
+a {
+  color: #187acb;
+  opacity: 1;
+  -webkit-transition: color 0.2s ease 0s;
+  -moz-transition: color 0.2s ease 0s;
+  -o-transition: color 0.2s ease 0s;
+  transition: color 0.2s ease 0s;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.step {
+  padding: 60px 0px 0px 0px;
+}
+
+section {
+  padding: 0px 0px 60px 0px;
+}
+
+.color-1 {
+  background-color: #734c8f;
+}
+
+.color-1 h1,
+.color-1 p {
+  color: white;
+}
+
+.color-2 {
+  background-color: #F7F7F7;
+}
+
+.color-3 {
+  background-color: #FFF;
+}
+
+.color-4 {
+  background-color: #53c3c7;
+}
+
+
+.button {
+  padding: 10px 20px 10px 20px;
+  margin-top: 20px;
+  line-height: 30px;
+  opacity: 0.7;
+  text-align: center;
+  font-size: 16px;
+  font-weight: normal;
+  color: white;
+  background-color: black;
+  font-family:: sans-serif;
+  text-decoration: none;
+  -moz-transition: all 0.1s ease-in;  /* Firefox */
+  -webkit-transition: all 0.1s ease-in;  /* WebKit */
+  -o-transition: all 0.1s ease-in;  /* Opera */
+  transition: all 0.1s ease-in;  /* Standard */
+  border-radius: 8px;
+}
+
+.button:hover {
+  opacity: 1;
+}
+
+.btn-hero {
+  padding: 16px 50px 16px 50px;
+  margin-top: 60px;
+  opacity: 1;
+  background-color: white;
+  color: #617777;
+}
+
+.btn-hero:hover {
+  opacity: 0.8;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 1000;
+  background-color: white;
+}
+
+.condensed .header {
+  background-color: #FFF;
+}
+
+.header a {
+  color: black;
+  text-decoration: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  opacity: 0.7;
+}
+
+.header a:hover {
+  opacity: 1;
+}
+
+.header a {
+  color: black;
+  text-decoration: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  opacity: 0.7;
+}
+
+.header a:hover {
+  opacity: 1;
+}
+
+.condensed .header a {
+  color: #262626;
+}
+
+.container {
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container:after {
+  clear:both;
+}
+
+.hero {
+  width: 100%;
+  padding: 60px 0px 60px 0px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 1;
+  background-color: #6cc655;
+}
+
+.hero h1 {
+  text-align: left;
+  margin-top: 76px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.hero span p {
+  font-size: 22px;
+  line-height: 34px;
+  opacity: 1;
+}
+
+.hero p {
+  color: white;
+}
+
+.instructions {
+  font-size: 16px;
+  line-height: 1.6em;
+  color: #969696;
+}
+
+.btn-list img {
+  padding: 10px;
+  -webkit-transition: ease 0s;
+  -moz-transition: ease 0s;
+  -o-transition: ease 0s;
+  transition: ease 0s;
+}
+
+.btn-list img:hover {
+  background-color: #e2e2e2;
+  cursor: pointer;
+}
+
+.btn-column {
+  float: left;
+}
+
+textarea,
+input {
+  width: 600px;
+  padding-left: 5px;
+  color: black;
+  font-family: HelveticaNeue, Sans-serif;
+  -webkit-font-smoothing: antialiased;
+  border: 1px solid #cecece;
+  outline: none;
+}
+
+input {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-size: 18px;
+  line-height: 1.3em;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color: #c9cacb;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #c9cacb;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #c9cacb;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #c9cacb;
+}
+
+textarea {
+  font-size: 16px;
+  line-height: 1.3em;
+  resize: none;
+}
+
+pre {
+  margin: 0px;
+  padding: 0px;
+  font-size: 13px;
+  color: #666;
+  font-family: HelveticaNeue, Sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+</style>
+
+
+  <script>
+
+  window.onload = function()
+  {
+  }
+
+  var theButtonElem = null;
+
+  window.onload = function(){
+
+    theButtonElem = document.getElementById( "theButton" );
+
+    var selectableElems = document.getElementsByClassName( "button-selectable" );
+
+    for( var i = 0; i < selectableElems.length; i++ )
+    {
+      var aButtonElem = selectableElems[ i ];
+      aButtonElem.onclick = function(){
+        theButtonElem.src = this.src;
+        theButtonElem.width = this.width;
+        theButtonElem.height = this.height;
+      };
+    }
+
+    var feedURLElem = document.getElementById( "feedURL" );
+    feedURLElem.onkeydown = function(){
+      adjustCode();
+    }
+
+    feedURLElem.onchange = function(){
+      adjustCode();
+    }
+  }
+
+  function adjustCode(){
+    var feedURL = document.getElementById( "feedURL" ).value;
+
+    var codeElem = document.getElementById( "code" );
+    var theLinkElem = document.getElementById( "theLink" );
+
+    if( feedURL == "" )
+    {
+      codeElem.value = "";
+      theLinkElem.href = "#";
+    }
+    else
+    {
+      if( feedURL.indexOf( "http://" ) != 0 && feedURL.indexOf("https://") != 0 )
+        feedURL = "http://" + feedURL;
+
+      var followURL = "https://feedly.com/i/subscription/" + encodeURIComponent( "feed/" + feedURL );
+      var snippet = "<a href='" + followURL + "'  target='blank'><img id='feedlyFollow' src='" + theButton.src + "' alt='follow us in feedly' width='" + theButtonElem.width + "' height='" + theButtonElem.height + "'></a>";
+
+      theLinkElem.href = followURL;
+
+      codeElem.value = snippet;
+    }
+   }
+
+  </script>
+</head>
+
+<style>
+
+
+
+</style>
+<body>
+
+  <div class="header">
+    <div style="font-family: HelveticaNeue, sans-serif; width:940px; height: 40px; text-align:left; margin-left: auto; margin-right: auto; line-height: 40px; border-bottom: 1px solid rgba( 255, 255, 255, 0.3 )">
+      <div style="float:right">
+        <a href="/">Home</a>
+        <a href="https://blog.feedly.com/">Blog</a>
+        <a target="new" href="https://feedly.helpscoutdocs.com">Help</a>
+      </div>
+      <img id="logo" src="https://s1.feedly.com/legacy/feedly-logo-small-black.png" height="20" style="padding-top:10px">
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="container">
+      <div class="row">
+        <div class="span5">
+          <h1>Feedly button</h1>
+          <span><p>Build your feedly network and increase your repeat traffic.</p></span>
+        </div>
+        <div class="span6">
+          <img src="https://s1.feedly.com/legacy/feedly-subscribe_2x.png" width=535 height=357 class="img-left" style="margin-left:-30px;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="color-2">
+    <div class="step btn-list">
+      <div class="container">
+        <div class="row">
+          <div class="span8">
+            <h2>Step 1: Select your design</h2>
+            <p><span class="instructions">Click on the button you want for your blog. <br />If you don&#39;t see the design you need create your own using our <a href="https://s1.feedly.com/legacy/FeedlySubscribeButtons.zip">button kit</a>. </span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <div style="float:left; width:332px;">
+              <div class="btn-column" style="width:150px; margin-left:-10px;">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-rectangle-volume-big_2x.png" alt="follow" width="131" height="56" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-rectangle-flat-big_2x.png" alt="follow" width="131" height="56" style="margin-top:21px;" class="button-selectable">
+              </div>
+              <div class="btn-column" style="width:96px;">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-rectangle-volume-medium_2x.png" alt="follow" width="71" height="28" style="margin-top:14px;" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-rectangle-flat-medium_2x.png" alt="follow" width="71" height="28" style="margin-top:50px;" class="button-selectable">
+              </div>
+              <div class="btn-column" style="width:96px;">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-rectangle-volume-small_2x.png" alt="follow" width="66" height="20" style="margin-top:18px;" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20" style="margin-top:58px;" class="button-selectable">
+              </div>
+            </div>
+            <div style="float:left; width:48px;">
+              <div class="btn-column" style="width:48px; margin-left:-10px;">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-square-volume_2x.png" alt="follow" width="28" height="28" style="margin-top:13px;" class="button-selectable">
+              </div>
+            </div>
+            <div style="float:left; width:144px;">
+              <div class="btn-column" style="width:48px; margin-left:-10px;">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-square-flat-green_2x.png" alt="follow" width="28" height="28" style="margin-top:13px;" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-square-flat-black_2x.png" alt="follow" width="28" height="28" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-square-flat-white_2x.png" alt="follow" width="28" height="28" class="button-selectable">
+              </div>
+              <div class="btn-column" style="width:48px;">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-circle-flat-green_2x.png" alt="follow" width="28" height="28" style="margin-top:13px;" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-circle-flat-black_2x.png" alt="follow" width="28" height="28" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-circle-flat-white_2x.png" alt="follow" width="28" height="28" class="button-selectable">
+              </div>
+              <div class="btn-column" style="width:48px;">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-logo-green_2x.png" alt="follow" width="28" height="28" style="margin-top:13px;" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-logo-black_2x.png" alt="follow" width="28" height="28" class="button-selectable">
+                <img src="https://s1.feedly.com/legacy/feedly-follow-logo-white_2x.png" alt="follow" width="28" height="28" class="button-selectable">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="container">
+        <div class="row">
+          <div class="span8">
+            <h2>Step 2: Insert your feed URL</h2>
+            <p><span class="instructions">This is the feed that will open on feedly when people will click on the button.</br>Find out how to find you feed URL <a href="https://zapier.com/blog/how-to-find-rss-feed-url/" target="blank">here</a>.</span></p>
+            <input type="text" id="feedURL" name="feedURL" placeholder="http://techcrunch.com/feed/">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="container">
+        <div class="row">
+          <div class="span8">
+            <h2>Step 3: Copy and embed the HTML code snippet</h2>
+            <p><span class="instructions">Below is your final button. Clicking on it to check if it opens your feed directly in feedly.</span></p>
+            <div style="margin: -24px 0px 20px 0px">
+              <a id="theLink" href="#" target="blank"> <img id="theButton" src="https://s1.feedly.com/legacy/feedly-follow-rectangle-volume-medium_2x.png" alt="follow" width="71" height="28" style="margin-top:14px;"></a>
+            </div>
+            <p style="margin-bottom:10px;"><span class="instructions" >Here is the code for your feedly button. Copy and paste it in your site's html.<span></p>
+            <textarea rows="6"  id="code" placeholder="Your button's code will appear here" col="5"></textarea>
+            <h3 style="margin-top:40px">How to embed your button into your html</h3>
+            <p><span class="instructions">
+              In Wordpress, add your button as a widget (Dashboard > Appearance > Widgets)</br>
+              In Tumblr, add your button as a custom HTML (Customize > Theme > Use Custom HTML > insert under < div id="sidebar">)</br>
+              In Blogger, add your button as a gadget (Dashboard > Design > Add a gadget > HTML/JavaScript)
+            </span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  <script type="text/javascript">
+  var pageTracker = _gat._getTracker("UA-3571881-3");
+  pageTracker._initData();
+  pageTracker._trackEvent( "website.v10", "enter" );
+  pageTracker._trackPageview();
+  </script>
+
+</body>
+</html>
