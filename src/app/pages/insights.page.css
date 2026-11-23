@@ -702,3 +702,19 @@
 .insights-lead-media .case-study-cover,
 .insights-card-media .case-study-cover { object-fit: cover; object-position: center; background: #eaf3ff; }
 .insights-card .insights-card-media .blog-cover.case-study-cover { width:100%; height:auto; aspect-ratio:3 / 2; margin:0; }
+
+.insights-lead-media .datasheet-cover,
+.insights-card .insights-card-media .blog-cover.datasheet-cover {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+  background: #eaf3ff;
+}
+.insights-lead.datasheet-lead { grid-template-columns: minmax(0, 1fr); }
+.datasheet-lead .insights-lead-media { min-height: 0; align-self: center; }
+.datasheet-lead .insights-lead-copy { align-self: center; padding: 20px 24px; }
+
+@media (min-width: 641px) {
+  .insights-lead.datasheet-lead { grid-template-columns: min(42%, 360px) minmax(0, 1fr); }
+}

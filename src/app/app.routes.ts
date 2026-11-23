@@ -323,6 +323,8 @@ export const routes: Routes = [
   { path: 'public-ip', title: 'Public IP | XcellHost', loadComponent: () => import('./pages/public-ip.page').then(m => m.PublicIpPage) },
   { path: 'bandwidth', title: 'Bandwidth | XcellHost', loadComponent: () => import('./pages/bandwidth.page').then(m => m.BandwidthPage) },
   { path: 'network-security', title: 'Network & Security | XcellHost', loadComponent: () => import('./pages/network-security.page').then(m => m.NetworkSecurityPage) },
+  { path: 'ip-address-mgmt-ipam', title: 'IP Address Management (IPAM) | XcellHost', loadComponent: () => import('./pages/ip-address-mgmt-ipam.page').then(m => m.IpAddressMgmtIpamPage) },
+  { path: 'data-security-posture-mgmt', title: 'Data Security Posture Management | XcellHost', loadComponent: () => import('./pages/data-security-posture-mgmt.page').then(m => m.DataSecurityPostureMgmtPage) },
   { path: 'akamai-cloud', title: 'Akamai Cloud | XcellHost', loadComponent: () => import('./pages/akamai-cloud.page').then(m => m.AkamaiCloudPage) },
   { path: 'commvault-overview', title: 'Commvault Overview | XcellHost', loadComponent: () => import('./pages/commvault-overview.page').then(m => m.CommvaultOverviewPage) },
   { path: 'smb-digital-transformation', title: 'SMB Digital Transformation | XcellHost', loadComponent: () => import('./pages/smb-digital-transformation.page').then(m => m.SmbDigitalTransformationPage) },
@@ -331,6 +333,7 @@ export const routes: Routes = [
   { path: 'website-design-packages', title: 'Website Design Packages | XcellHost', loadComponent: () => import('./pages/website-design-packages.page').then(m => m.WebsiteDesignPackagesPage) },
   { path: 'spain-go-to-market-strategy', title: 'Spain Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/spain-go-to-market.page').then(m => m.SpainGoToMarketPage) },
   { path: 'france-go-to-market-strategy', title: 'France Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/france-go-to-market.page').then(m => m.FranceGoToMarketPage) },
+  { path: 'russia-go-to-market-strategy', title: 'Russia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/russia-go-to-market.page').then(m => m.RussiaGoToMarketPage) },
   { path: 'japan-go-to-market-strategy', title: 'Japan Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/japan-go-to-market.page').then(m => m.JapanGoToMarketPage) },
   { path: 'ghana-go-to-market-strategy', title: 'Ghana Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/ghana-go-to-market.page').then(m => m.GhanaGoToMarketPage) },
   { path: 'usa-go-to-market-strategy', title: 'USA Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/usa-go-to-market.page').then(m => m.USAGoToMarketPage) },
@@ -438,6 +441,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/ai-training.page').then((m) => m.AiTrainingPage),
   })),
   { path: 'synapsem-ai-training-live-online', redirectTo: 'ai-training-live-online', pathMatch: 'full' },
+  ...['ai-training-bankers', 'ai-training-government-psu'].map(path => ({
+    path,
+    data: {
+      trainingSector: path,
+      searchTitle: path === 'ai-training-bankers' ? 'AI Training for Bankers' : 'AI Training for Government & PSUs',
+    },
+    loadComponent: () => import('./pages/ai-training-sector.page').then(m => m.AiTrainingSectorPage),
+  })),
 
   {
     path: 'ai-adoption-framework', title: 'AI Adoption Framework India | XcellHost',
@@ -1280,6 +1291,10 @@ export const routes: Routes = [
   },
   { path: 'case-studies', loadComponent: () => import('./pages/case-studies.page').then((m) => m.CaseStudiesPage) },
   { path: 'insights', loadComponent: () => import('./pages/insights.page').then((m) => m.InsightsPage) },
+  { path: 'resources/checklists', title: 'Checklists - Technology Review Resources | XcellHost', loadComponent: () => import('./pages/checklists.page').then(m => m.ChecklistsPage) },
+  { path: 'checklists', redirectTo: 'resources/checklists', pathMatch: 'full' },
+  { path: 'checklists/:slug', loadComponent: () => import('./pages/checklist-detail.page').then(m => m.ChecklistDetailPage) },
+  { path: 'datasheets/:slug', loadComponent: () => import('./pages/datasheet-detail.page').then(m => m.DatasheetDetailPage) },
   {
     path: 'insights/:slug',
     data: { contentType: 'blog' },

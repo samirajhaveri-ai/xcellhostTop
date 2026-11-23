@@ -3037,6 +3037,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "IP Address Mgmt (IPAM)",
+                "href": "/ip-address-mgmt-ipam",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3163,6 +3164,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Data Security Posture Mgmt",
+                "href": "/data-security-posture-mgmt",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3932,7 +3934,7 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               
               {
-                "title": "Integrated AI Training Program",
+                "title": "Integrated AI Training Programs",
                 "pill": null,
                 "desc": "Hands-on AI foundations, tools and workflows",
                 "href": "/ai-training-integrated-program"
@@ -3973,9 +3975,21 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
               {
-                "title": "AI Training for Financial Professional",
+                "title": "AI Training for Financial Professionals",
                 "pill": null,
                 "desc": "Apply AI to GST, audit, tax and Excel with professional review"
+              },
+              {
+                "title": "AI Training for Government & PSUs",
+                "pill": null,
+                "desc": "Practical AI skills for government offices and PSU teams, with responsible data handling",
+                "href": "/ai-training-government-psu"
+              },
+              {
+                "title": "AI Training for Bankers",
+                "pill": null,
+                "desc": "Hands-on AI training for banking teams, credit workflows and human review",
+                "href": "/ai-training-bankers"
               },
             ]
           }
@@ -5674,6 +5688,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Cloud, security, AI and training strategy for France, with sector insights and revenue modelling."
               },
               {
+                "title": "Russia Go-to-Market Strategy",
+                "href": "/russia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Russia strategy briefing with screening considerations, sector insights and revenue modelling."
+              },
+              {
                 "title": "Japan Go-to-Market Strategy",
                 "href": "/japan-go-to-market-strategy",
                 "pill": null,
@@ -6345,7 +6365,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/acronis-training-certification"
               },
               {
-                "title": "M365-Certifications",
+                "title": "Microsoft 365 Certifications",
                 "pill": null,
                 "desc": "Build your future with XcellHost",
                 "href": "/m365-certifications"
@@ -6640,54 +6660,54 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "7",
-        "label": "Tools Center",
-        "on": false,
-        "featureCards": [
-          {
-            "label": "Company",
-            "title": "Network Tools",
-            "body": "Explore tools for network checks and diagnostics.",
-            "image": "/assets/images/menu-company-network-tools-v1.png",
-            "link": "/under-construction/network-tools"
-          },
-          {
-            "label": "Company",
-            "title": "Mail Tools",
-            "body": "Explore tools for email checks and troubleshooting.",
-            "image": "/assets/images/menu-company-mail-tools-v1.png",
-            "link": "/under-construction/mail-tools"
-          }
-        ],
-        "groups": [
-          {
-            "heading": "Tools Center",
-            "items": [
-              {
-                "title": "Network Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Mail Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SSL Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Domain Tools",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      // {
+      //   "g": "7",
+      //   "label": "Tools Center",
+      //   "on": false,
+      //   "featureCards": [
+      //     {
+      //       "label": "Company",
+      //       "title": "Network Tools",
+      //       "body": "Explore tools for network checks and diagnostics.",
+      //       "image": "/assets/images/menu-company-network-tools-v1.png",
+      //       "link": "/under-construction/network-tools"
+      //     },
+      //     {
+      //       "label": "Company",
+      //       "title": "Mail Tools",
+      //       "body": "Explore tools for email checks and troubleshooting.",
+      //       "image": "/assets/images/menu-company-mail-tools-v1.png",
+      //       "link": "/under-construction/mail-tools"
+      //     }
+      //   ],
+      //   "groups": [
+      //     {
+      //       "heading": "Tools Center",
+      //       "items": [
+      //         {
+      //           "title": "Network Tools",
+      //           "pill": null,
+      //           "desc": null
+      //         },
+      //         {
+      //           "title": "Mail Tools",
+      //           "pill": null,
+      //           "desc": null
+      //         },
+      //         {
+      //           "title": "SSL Tools",
+      //           "pill": null,
+      //           "desc": null
+      //         },
+      //         {
+      //           "title": "Domain Tools",
+      //           "pill": null,
+      //           "desc": null
+      //         },
+      //       ]
+      //     }
+      //   ]
+      // },
       {
         "g": "Developer Tools",
         "label": "Developer Tools",
