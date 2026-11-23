@@ -441,6 +441,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/ai-training.page').then((m) => m.AiTrainingPage),
   })),
   { path: 'synapsem-ai-training-live-online', redirectTo: 'ai-training-live-online', pathMatch: 'full' },
+  ...['ai-training-bankers', 'ai-training-government-psu'].map(path => ({
+    path,
+    data: {
+      trainingSector: path,
+      searchTitle: path === 'ai-training-bankers' ? 'AI Training for Bankers' : 'AI Training for Government & PSUs',
+    },
+    loadComponent: () => import('./pages/ai-training-sector.page').then(m => m.AiTrainingSectorPage),
+  })),
 
   {
     path: 'ai-adoption-framework', title: 'AI Adoption Framework India | XcellHost',
