@@ -6345,7 +6345,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/acronis-training-certification"
               },
               {
-                "title": "M365-Certifications",
+                "title": "Microsoft 365 Certifications",
                 "pill": null,
                 "desc": "Build your future with XcellHost",
                 "href": "/m365-certifications"
@@ -6640,54 +6640,54 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "7",
-        "label": "Tools Center",
-        "on": false,
-        "featureCards": [
-          {
-            "label": "Company",
-            "title": "Network Tools",
-            "body": "Explore tools for network checks and diagnostics.",
-            "image": "/assets/images/menu-company-network-tools-v1.png",
-            "link": "/under-construction/network-tools"
-          },
-          {
-            "label": "Company",
-            "title": "Mail Tools",
-            "body": "Explore tools for email checks and troubleshooting.",
-            "image": "/assets/images/menu-company-mail-tools-v1.png",
-            "link": "/under-construction/mail-tools"
-          }
-        ],
-        "groups": [
-          {
-            "heading": "Tools Center",
-            "items": [
-              {
-                "title": "Network Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Mail Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SSL Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Domain Tools",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      // {
+      //   "g": "7",
+      //   "label": "Tools Center",
+      //   "on": false,
+      //   "featureCards": [
+      //     {
+      //       "label": "Company",
+      //       "title": "Network Tools",
+      //       "body": "Explore tools for network checks and diagnostics.",
+      //       "image": "/assets/images/menu-company-network-tools-v1.png",
+      //       "link": "/under-construction/network-tools"
+      //     },
+      //     {
+      //       "label": "Company",
+      //       "title": "Mail Tools",
+      //       "body": "Explore tools for email checks and troubleshooting.",
+      //       "image": "/assets/images/menu-company-mail-tools-v1.png",
+      //       "link": "/under-construction/mail-tools"
+      //     }
+      //   ],
+      //   "groups": [
+      //     {
+      //       "heading": "Tools Center",
+      //       "items": [
+      //         {
+      //           "title": "Network Tools",
+      //           "pill": null,
+      //           "desc": null
+      //         },
+      //         {
+      //           "title": "Mail Tools",
+      //           "pill": null,
+      //           "desc": null
+      //         },
+      //         {
+      //           "title": "SSL Tools",
+      //           "pill": null,
+      //           "desc": null
+      //         },
+      //         {
+      //           "title": "Domain Tools",
+      //           "pill": null,
+      //           "desc": null
+      //         },
+      //       ]
+      //     }
+      //   ]
+      // },
       {
         "g": "Developer Tools",
         "label": "Developer Tools",
