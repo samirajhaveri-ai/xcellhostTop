@@ -544,18 +544,11 @@ function renderCatTables(){
   });
   qs('catTables').innerHTML='<div class="catalog-grid">'+cards+'</div>';
 }
-/* Buy Now: fix the selected plan, open the checkout Service step (no plan selector shown again). */
+/* Buy Now always opens the supplied cart as a separate page. */
 function buyNow(code){
   if(!BM_PLAN_MAP[code]) { toast('This configuration is currently unavailable.'); return; }
-  if(new URLSearchParams(window.location.search).get('checkout')!=='1'){
-    window.top.location.assign('/bare-metal-servers/checkout?plan='+enc(code));
-    return;
-  }
-  cfg.planCode=code;
-  qs('viewCatalogue').style.display='none';
-  qs('viewCheckout').style.display='';
-  renderSelectedServer(); renderCats(); renderSummary(); goStep('service');
-  try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+  var cartParams=new URLSearchParams({plan:code,quantity:'1'});
+  window.open('/bare-metal-servers/checkout?'+cartParams.toString(),'_blank','noopener');
 }
 function backToCatalogue(){
   if(new URLSearchParams(window.location.search).get('checkout')==='1'){
@@ -825,12 +818,6 @@ function renderAll(){ renderSummary(); }
 function init(){
   renderCatTabs(); renderCatTables(); renderCats(); renderSummary();
   toggleGstin();
-  var params=new URLSearchParams(window.location.search);
-  if(params.get('checkout')==='1'){
-    var code=params.get('plan')||'BM-RYZ-9700X';
-    if(!BM_PLAN_MAP[code]) code='BM-RYZ-9700X';
-    buyNow(code);
-  }
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 

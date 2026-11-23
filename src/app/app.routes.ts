@@ -323,6 +323,8 @@ export const routes: Routes = [
   { path: 'public-ip', title: 'Public IP | XcellHost', loadComponent: () => import('./pages/public-ip.page').then(m => m.PublicIpPage) },
   { path: 'bandwidth', title: 'Bandwidth | XcellHost', loadComponent: () => import('./pages/bandwidth.page').then(m => m.BandwidthPage) },
   { path: 'network-security', title: 'Network & Security | XcellHost', loadComponent: () => import('./pages/network-security.page').then(m => m.NetworkSecurityPage) },
+  { path: 'ip-address-mgmt-ipam', title: 'IP Address Management (IPAM) | XcellHost', loadComponent: () => import('./pages/ip-address-mgmt-ipam.page').then(m => m.IpAddressMgmtIpamPage) },
+  { path: 'data-security-posture-mgmt', title: 'Data Security Posture Management | XcellHost', loadComponent: () => import('./pages/data-security-posture-mgmt.page').then(m => m.DataSecurityPostureMgmtPage) },
   { path: 'akamai-cloud', title: 'Akamai Cloud | XcellHost', loadComponent: () => import('./pages/akamai-cloud.page').then(m => m.AkamaiCloudPage) },
   { path: 'commvault-overview', title: 'Commvault Overview | XcellHost', loadComponent: () => import('./pages/commvault-overview.page').then(m => m.CommvaultOverviewPage) },
   { path: 'smb-digital-transformation', title: 'SMB Digital Transformation | XcellHost', loadComponent: () => import('./pages/smb-digital-transformation.page').then(m => m.SmbDigitalTransformationPage) },
@@ -331,6 +333,7 @@ export const routes: Routes = [
   { path: 'website-design-packages', title: 'Website Design Packages | XcellHost', loadComponent: () => import('./pages/website-design-packages.page').then(m => m.WebsiteDesignPackagesPage) },
   { path: 'spain-go-to-market-strategy', title: 'Spain Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/spain-go-to-market.page').then(m => m.SpainGoToMarketPage) },
   { path: 'france-go-to-market-strategy', title: 'France Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/france-go-to-market.page').then(m => m.FranceGoToMarketPage) },
+  { path: 'russia-go-to-market-strategy', title: 'Russia Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/russia-go-to-market.page').then(m => m.RussiaGoToMarketPage) },
   { path: 'japan-go-to-market-strategy', title: 'Japan Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/japan-go-to-market.page').then(m => m.JapanGoToMarketPage) },
   { path: 'ghana-go-to-market-strategy', title: 'Ghana Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/ghana-go-to-market.page').then(m => m.GhanaGoToMarketPage) },
   { path: 'usa-go-to-market-strategy', title: 'USA Go-to-Market Strategy | XcellHost', loadComponent: () => import('./pages/usa-go-to-market.page').then(m => m.USAGoToMarketPage) },
@@ -438,6 +441,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/ai-training.page').then((m) => m.AiTrainingPage),
   })),
   { path: 'synapsem-ai-training-live-online', redirectTo: 'ai-training-live-online', pathMatch: 'full' },
+  ...['ai-training-bankers', 'ai-training-government-psu'].map(path => ({
+    path,
+    data: {
+      trainingSector: path,
+      searchTitle: path === 'ai-training-bankers' ? 'AI Training for Bankers' : 'AI Training for Government & PSUs',
+    },
+    loadComponent: () => import('./pages/ai-training-sector.page').then(m => m.AiTrainingSectorPage),
+  })),
 
   {
     path: 'ai-adoption-framework', title: 'AI Adoption Framework India | XcellHost',
@@ -470,6 +481,7 @@ export const routes: Routes = [
   { path: 'tds-software-declaration', title: 'No TDS on Software Purchases | XcellHost', loadComponent: () => import('./pages/tds-software-declaration.page').then(m => m.TdsSoftwareDeclarationPage) },
   { path: 'mobile-app-security', title: 'Mobile App Security | XcellHost', loadComponent: () => import('./pages/mobile-app-security.page').then(m => m.MobileAppSecurityPage) },
   { path: 'ai-factory', title: 'AI Factory India | XcellHost', loadComponent: () => import('./pages/ai-factory.page').then(m => m.AiFactoryPage) },
+  { path: 'sectigo-ssl-certificates/checkout', title: 'Sectigo SSL Cart | XcellHost', data: { cartAsset: 'cart-sectigo-ssl-certificates.html', cartLabel: 'Sectigo SSL Certificates' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
   { path: 'sectigo-ssl-certificates', title: 'Sectigo SSL Certificates | XcellHost', loadComponent: () => import('./pages/sectigo-catalogue.page').then(m => m.SectigoCataloguePage) },
   ...[
     ['codeguard-backup', 'CodeGuard Backup'],
@@ -630,8 +642,14 @@ export const routes: Routes = [
   { path: 'ai-visibility-seo-platform', title: 'AI Visibility + SEO Platform | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
 
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
-  { path: 'bare-metal-servers/checkout', title: 'Complete Your Bare Metal Server Order | XcellHost', data: { checkoutProduct: 'bare-metal' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
-  { path: 'gpu-servers/checkout', title: 'Complete Your GPU Server Order | XcellHost', data: { checkoutProduct: 'gpu' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
+  { path: 'bare-metal-servers/checkout', title: 'Bare Metal Servers Cart | XcellHost', data: { cartAsset: 'cart-bare-metal-servers.html', cartLabel: 'Bare Metal Servers' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'gpu-servers/checkout', title: 'GPU Servers Cart | XcellHost', data: { cartAsset: 'cart-gpu-servers.html', cartLabel: 'GPU Servers' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'zoho-workspace/checkout', title: 'Zoho Workspace Cart | XcellHost', data: { cartAsset: 'cart-zoho-workspace.html', cartLabel: 'Zoho Workspace' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'microsoft-365-smb/checkout', title: 'Microsoft 365 SMB Cart | XcellHost', data: { cartAsset: 'cart-microsoft-365-smb.html', cartLabel: 'Microsoft 365 SMB' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'google-workspace/checkout', title: 'Google Workspace Cart | XcellHost', data: { cartAsset: 'cart-google-workspace.html', cartLabel: 'Google Workspace' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'microsoft-365-e7/checkout', title: 'Microsoft 365 E7 Cart | XcellHost', data: { cartAsset: 'cart-microsoft-365-e7.html', cartLabel: 'Microsoft 365 E7' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'microsoft-365-enterprise/checkout', title: 'Microsoft 365 Enterprise Cart | XcellHost', data: { cartAsset: 'cart-microsoft-365-enterprise.html', cartLabel: 'Microsoft 365 Enterprise' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'xcellworkspace/checkout', title: 'XcellWorkSpace Cart | XcellHost', data: { cartAsset: 'cart-xcellworkspace.html', cartLabel: 'XcellWorkSpace' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
   { path: 'tally-on-cloud/checkout', data: { checkoutProduct: 'tally' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
   { path: 'serverless-inference', data: { inferenceSlug: 'serverless-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
   { path: 'dedicated-inference', data: { inferenceSlug: 'dedicated-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
@@ -925,8 +943,9 @@ export const routes: Routes = [
   },
   {
     path: 'performance-cloud/checkout',
-    title: 'Performance Cloud Checkout | XcellHost',
-    loadComponent: () => import('./pages/performance-cloud-checkout.page').then((m) => m.PerformanceCloudCheckoutPage),
+    title: 'Performance Cloud Cart | XcellHost',
+    data: { cartAsset: 'cart-performance-cloud.html', cartLabel: 'Performance Cloud' },
+    loadComponent: () => import('./pages/supplied-cart.page').then((m) => m.SuppliedCartPage),
   },
 
   {
@@ -978,8 +997,9 @@ export const routes: Routes = [
   },
   {
     path: 'edr-checkout',
-    data: { checkoutProduct: 'edr' },
-    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+    title: 'Advanced Endpoint Security EDR Cart | XcellHost',
+    data: { cartAsset: 'cart-advanced-endpoint-security-edr.html', cartLabel: 'Advanced Endpoint Security EDR' },
+    loadComponent: () => import('./pages/supplied-cart.page').then((m) => m.SuppliedCartPage),
   },
   {
     path: 'rmm-checkout',
@@ -989,13 +1009,15 @@ export const routes: Routes = [
   },
   {
     path: 'acronis-genai-checkout',
-    data: { checkoutProduct: 'genai' },
-    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+    title: 'Acronis GenAI Protection Cart | XcellHost',
+    data: { cartAsset: 'cart-acronis-genai-protection.html', cartLabel: 'Acronis GenAI Protection' },
+    loadComponent: () => import('./pages/supplied-cart.page').then((m) => m.SuppliedCartPage),
   },
   {
     path: 'cybird-checkout',
-    data: { checkoutProduct: 'cybird' },
-    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+    title: 'SMB Cyber Security Appliance Cart | XcellHost',
+    data: { cartAsset: 'cart-smb-cyber-security-appliance.html', cartLabel: 'SMB Cyber Security Appliance' },
+    loadComponent: () => import('./pages/supplied-cart.page').then((m) => m.SuppliedCartPage),
   },
   {
     path: 'smb-cloud-desktop/checkout',
@@ -1269,6 +1291,10 @@ export const routes: Routes = [
   },
   { path: 'case-studies', loadComponent: () => import('./pages/case-studies.page').then((m) => m.CaseStudiesPage) },
   { path: 'insights', loadComponent: () => import('./pages/insights.page').then((m) => m.InsightsPage) },
+  { path: 'resources/checklists', title: 'Checklists - Technology Review Resources | XcellHost', loadComponent: () => import('./pages/checklists.page').then(m => m.ChecklistsPage) },
+  { path: 'checklists', redirectTo: 'resources/checklists', pathMatch: 'full' },
+  { path: 'checklists/:slug', loadComponent: () => import('./pages/checklist-detail.page').then(m => m.ChecklistDetailPage) },
+  { path: 'datasheets/:slug', loadComponent: () => import('./pages/datasheet-detail.page').then(m => m.DatasheetDetailPage) },
   {
     path: 'insights/:slug',
     data: { contentType: 'blog' },
@@ -1341,9 +1367,21 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'geotrust-ssl-certificates/checkout',
+    title: 'GeoTrust SSL Cart | XcellHost',
+    data: { cartAsset: 'cart-geotrust-ssl-certificates.html', cartLabel: 'GeoTrust SSL Certificates' },
+    loadComponent: () => import('./pages/supplied-cart.page').then((m) => m.SuppliedCartPage),
+  },
+  {
     path: 'digicert-ssl-certificates',
     data: { productSlug: 'digicert-ssl-certificates' },
     loadComponent: () => import('./pages/digicert-catalogue.page').then((m) => m.DigicertCataloguePage),
+  },
+  {
+    path: 'digicert-ssl-certificates/checkout',
+    title: 'DigiCert SSL Cart | XcellHost',
+    data: { cartAsset: 'cart-digicert-ssl-certificates.html', cartLabel: 'DigiCert SSL Certificates' },
+    loadComponent: () => import('./pages/supplied-cart.page').then((m) => m.SuppliedCartPage),
   },
   {
     path: 'digicert',
@@ -1523,8 +1561,9 @@ export const routes: Routes = [
   },
   {
     path: 'cloud-drive/checkout',
-    loadComponent: () =>
-      import('./pages/cloud-drive-checkout.page').then((m) => m.CloudDriveCheckoutPage),
+    title: 'Cloud Drive Cart | XcellHost',
+    data: { cartAsset: 'cart-cloud-drive.html', cartLabel: 'Cloud Drive' },
+    loadComponent: () => import('./pages/supplied-cart.page').then((m) => m.SuppliedCartPage),
   },
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {

@@ -1,6 +1,5 @@
 import { QuantityInputDirective } from '../core/quantity-input.directive';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { CartService } from '../core/cart.service';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'xh-zoho-workspace-content',
@@ -11,7 +10,6 @@ import { CartService } from '../core/cart.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ZohoWorkspaceContentComponent {
-  private readonly cart = inject(CartService);
   readonly plans = {
     lite: { name: 'Mail Lite', monthlyPrice: 75 },
     premium: { name: 'Mail Premium', monthlyPrice: 199 },
@@ -36,13 +34,16 @@ export class ZohoWorkspaceContentComponent {
   }
 
   addToCart(key: keyof typeof this.plans): void {
-    const plan = this.plans[key];
-    const users = this.quantities()[key];
-    const annualPrice = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(plan.monthlyPrice * 12);
-    this.cart.add(`Zoho ${plan.name} - Annual`, `${annualPrice} + GST / user / year`, users, {
-      unitAmount: plan.monthlyPrice, currency: 'INR', locale: 'en-IN',
-      suffix: '/month · annual billing + GST',
+    const planCodes: Record<keyof typeof this.plans, string> = {
+      lite: 'ZohoMAIL',
+      premium: 'XLCS-ZWS-MAIL-PREMIUM-A',
+      standard: 'XLCS-ZWS-STANDARD-A',
+      professional: 'XLCS-ZWS-PROFESSIONAL-A',
+    };
+    const params = new URLSearchParams({
+      plan: planCodes[key],
+      quantity: String(this.quantities()[key]),
     });
-    this.cart.open();
+    window.open(`/zoho-workspace/checkout?${params.toString()}`, '_blank', 'noopener');
   }
 }

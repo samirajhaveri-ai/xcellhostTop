@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { BlogApiService, CmsBlogPost, CmsInsightResource, INSIGHT_DOCUMENT_TYPES } from '../core/blog-api.service';
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
 import { CASE_STUDIES } from '../data/case-studies.data';
+import { PRODUCT_DATASHEETS } from '../data/product-datasheets.data';
 import { InsightsPage } from './insights.page';
 
 describe('Insights pagination', () => {
@@ -51,7 +52,7 @@ describe('Insights pagination', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('.insights-tabs button').length).toBe(10);
     expect(fixture.nativeElement.querySelectorAll('.insights-hero-resources a').length).toBe(10);
-    for (const type of INSIGHT_DOCUMENT_TYPES) {
+    for (const type of INSIGHT_DOCUMENT_TYPES.filter(type => type.kind !== 'checklist' && type.kind !== 'data-sheet')) {
       const component = fixture.componentInstance;
       component.selectTab(type.label);
       expect(component.tabCount(type.label)).toBe(1);
@@ -68,17 +69,60 @@ describe('Insights pagination', () => {
     }
   });
 
-  it('opens resource-category Blog entries on their normal Insights detail route', () => {
-    documents.next([{
-      documentId: 'datasheet-blog', kind: 'data-sheet', title: 'Tally data sheet', slug: 'tally-data-sheet',
-      description: 'Cloud accounting resource', content: 'Resource content', category: 'Datasheet',
-      date: '2026-11-04', time: '09:00', author: 'XcellHost Team',
-      downloadUrl: '/insights/tally-data-sheet',
-    } as CmsInsightResource]);
-    page.selectTab('Data Sheets');
-    const item = page.sourceItems()[0];
+  it('opens the dedicated checklist library from both entry points and preserves modified clicks', () => {
+    const navigate = spyOn(TestBed.inject(Router), 'navigateByUrl').and.resolveTo(true);
+    page.selectTab('Checklists');
+    expect(navigate).toHaveBeenCalledWith('/resources/checklists');
+    navigate.calls.reset();
+    const event = new MouseEvent('click', { cancelable: true });
+    page.selectTab('Checklists', event);
+    expect(event.defaultPrevented).toBeTrue();
+    expect(navigate).toHaveBeenCalledWith('/resources/checklists');
+    navigate.calls.reset();
+    page.selectTab('Checklists', new MouseEvent('click', { ctrlKey: true, cancelable: true }));
+    expect(navigate).not.toHaveBeenCalled();
+  });
+
+  it('keeps checklist card navigation inside XcellHost and includes seeded resources in the count', () => {
+    const item = { kind: 'checklist', slug: 'sample-azure-foundation-checklist', actionUrl: '/insights/sample-azure-foundation-checklist' } as unknown as Parameters<InsightsPage['insightHref']>[0];
+    expect(page.insightHref(item)).toBe('/checklists/sample-azure-foundation-checklist');
     expect(page.isExternal(item)).toBeFalse();
-    expect(page.insightHref(item)).toBe('/insights/tally-data-sheet');
+    expect(page.tabCount('Checklists')).toBe(3);
+  });
+
+  it('shows the seven product datasheets with internal links even when the CMS returns sample datasheets', () => {
+    documents.next([{
+      documentId: 'datasheet-blog', kind: 'data-sheet', title: 'Sample Data Sheet', slug: 'sample-data-sheet',
+      description: 'Sample content', content: 'Resource content', category: 'Datasheet',
+      date: '2026-11-04', time: '09:00', author: 'XcellHost Team',
+      downloadUrl: '/insights/sample-data-sheet',
+    } as CmsInsightResource]);
+    const fixture = TestBed.createComponent(InsightsPage);
+    const component = fixture.componentInstance;
+    component.selectTab('Data Sheets');
+    fixture.detectChanges();
+    const links = Array.from(fixture.nativeElement.querySelectorAll('.insights-lead, .insights-card') as NodeListOf<HTMLAnchorElement>);
+    expect(component.tabCount('Data Sheets')).toBe(7);
+    expect(links.map(link => link.pathname)).toEqual(PRODUCT_DATASHEETS.map(sheet => `/datasheets/${sheet.slug}`));
+    expect(links.every(link => link.target === '')).toBeTrue();
+    const leadColumns = getComputedStyle(links[0]).gridTemplateColumns.split(' ').map(parseFloat);
+    if (matchMedia('(min-width: 641px)').matches) {
+      expect(leadColumns.length).toBe(2);
+      expect(leadColumns[0]).toBeLessThanOrEqual(360);
+    } else {
+      expect(leadColumns.length).toBe(1);
+    }
+    for (const link of links) {
+      const style = getComputedStyle(link.querySelector('img')!);
+      expect(style.objectFit).toBe('contain');
+      expect(style.aspectRatio).toBe('auto');
+    }
+
+    component.selectProduct('Web Presence', 'SMB Cloud', 'Tally on Cloud');
+    expect(component.visible().map(item => item.slug)).toEqual(['tally-on-cloud']);
+    component.selectAllCategories();
+    component.query.set('secure backup');
+    expect(component.visible().map(item => item.slug)).toEqual(['secure-backup-cloud']);
   });
 
   it('renders clickable video cards and filters even when blogs fail', () => {

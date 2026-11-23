@@ -5795,7 +5795,27 @@ class ProductPageComponent {
     this.cart.add(plan.cartName, plan.cartPrice, this.planQuantity(plan));
   }
 
+  private suppliedCartPath(): string | null {
+    return ({
+      'acronis-genai-protection': '/acronis-genai-checkout',
+      'bare-metal-servers': '/bare-metal-servers/checkout',
+      'cloud-drive': '/cloud-drive/checkout',
+      'gpu-servers': '/gpu-servers/checkout',
+      'performance-cloud': '/performance-cloud/checkout',
+      'smb-cyber-security-appliance': '/cybird-checkout',
+    } as Record<string, string>)[this.slug()] ?? null;
+  }
+
+  private openSuppliedCart(ev: Event): boolean {
+    const path = this.suppliedCartPath();
+    if (!path) return false;
+    ev.preventDefault();
+    window.open(path, '_blank', 'noopener');
+    return true;
+  }
+
   addPlan(plan: PricingPlan, ev: Event): void {
+    if (this.openSuppliedCart(ev)) return;
     ev.preventDefault();
     this.addPlanQuantity(plan);
   }
@@ -5814,6 +5834,7 @@ class ProductPageComponent {
 
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */
   buyPlan(plan: PricingPlan, ev: Event): void {
+    if (this.openSuppliedCart(ev)) return;
     ev.preventDefault();
     this.addPlanQuantity(plan);
     this.cart.open();
@@ -5835,12 +5856,14 @@ class ProductPageComponent {
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    const planCode = years === 1
+      ? 'XLCS-SMB-EDR-YEA'
+      : `XLCS-SMB-EDR-${years}YEA`;
     const params = new URLSearchParams({
-      product: 'acronis-edr',
-      billing: `${years}-year`,
+      plan: planCode,
       quantity: String(this.edrQuantity()),
     });
-    window.location.assign(`/edr-checkout?${params.toString()}`);
+    window.open(`/edr-checkout?${params.toString()}`, '_blank', 'noopener');
   }
 
   /** Hero "Buy Now" buys the entry-level term, which is what the ladder starts at. */
@@ -6044,29 +6067,7 @@ class ProductPageComponent {
 
   selectCybirdPlan(plan: CybirdPlan, ev: Event): void {
     ev.preventDefault();
-    const packageId = plan.name.toLowerCase();
-    const termId = this.selectedCybirdTerm();
-
-    try {
-      const stored = JSON.parse(window.localStorage.getItem('xcellhost_cybird_cart') || '{}');
-      window.localStorage.setItem(
-        'xcellhost_cybird_cart',
-        JSON.stringify({
-          ...stored,
-          packageId,
-          termId,
-          quantity: 1,
-          inCart: false,
-        }),
-      );
-    } catch {
-      window.localStorage.setItem(
-        'xcellhost_cybird_cart',
-        JSON.stringify({ packageId, termId, quantity: 1, inCart: false }),
-      );
-    }
-
-    window.location.assign('/cybird-checkout');
+    window.open('/cybird-checkout', '_blank', 'noopener');
   }
 
   selectTallyTerm(term: TallyTerm): void {
@@ -6104,8 +6105,7 @@ class ProductPageComponent {
   }
 
   requestPerformanceCloudPlan(plan: string): void {
-    this.topics.ask(`Performance Cloud - ${plan}`);
-    this.overlay.open('callback');
+    window.open('/performance-cloud/checkout', '_blank', 'noopener');
   }
 
   requestCpuOptimizedPlan(plan: string): void {
@@ -6139,19 +6139,7 @@ class ProductPageComponent {
 
   selectCloudDrivePlan(plan: CloudDrivePlan, ev: Event): void {
     ev.preventDefault();
-    const storage = plan.storage.toLowerCase().replace(/\s+/g, '');
-    const term: Record<CloudDriveTerm, string> = {
-      monthly: 'mon',
-      '3m': '3mon',
-      '6m': '6mon',
-      '1y': '1y',
-    };
-    const params = new URLSearchParams({
-      storage,
-      term: term[this.selectedCloudDriveTerm()],
-      quantity: String(this.cloudDriveQuantity()),
-    });
-    window.location.assign(`/cloud-drive/checkout?${params.toString()}`);
+    window.open('/cloud-drive/checkout', '_blank', 'noopener');
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [

@@ -1,11 +1,9 @@
 import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { OverlayService } from '../core/overlay.service';
-import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { SeoService } from '../core/seo.service';
 import { ProductPage } from './product.page';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 type CertificateTier = 'DV' | 'OV' | 'EV';
 type CertificateFilter = 'all' | CertificateTier | 'Wildcard' | 'Multi';
@@ -33,9 +31,6 @@ interface GeoTrustProduct {
 })
 export class GeoTrustSslCertificatesPage {
   private readonly seo = inject(SeoService);
-  private readonly overlay = inject(OverlayService);
-  private readonly topics = inject(CallbackTopicService);
-  private readonly router = inject(Router);
 
   readonly filter = signal<CertificateFilter>('all');
   readonly quantities = signal<Record<string, number>>({});
@@ -96,28 +91,7 @@ export class GeoTrustSslCertificatesPage {
   }
 
   configure(product: GeoTrustProduct): void {
-    const checkoutPaths: Record<string, string> = {
-      'dv-flex': '/geotrust-dv-ssl-flex/checkout',
-      'quick-san': '/geotrust-quickssl-premium-san/checkout',
-      'quick-premium': '/geotrust-quickssl-premium/checkout',
-      'quick-wild': '/geotrust-quickssl-premium-wildcard/checkout',
-      'tb-ov-flex': '/geotrust-true-businessid-ov/checkout',
-      'tb-id': '/geotrust-true-businessid/checkout',
-      'tb-md': '/geotrust-true-businessid-multi-domain/checkout',
-      'tb-wild': '/geotrust-true-businessid-wildcard/checkout',
-      'tb-ev-flex': '/geotrust-true-businessid-ev-flex/checkout',
-      'tb-ev': '/geotrust-true-businessid-ev/checkout',
-      'tb-ev-md': '/geotrust-true-businessid-ev-multi-domain/checkout',
-    };
-    const checkoutPath = checkoutPaths[product.id];
-    if (checkoutPath) {
-      void this.router.navigate([checkoutPath], {
-        queryParams: { quantity: this.quantity(product) },
-      });
-      return;
-    }
-    this.topics.ask(`${product.name} - ${this.quantity(product)} certificate(s)`);
-    this.overlay.open('callback');
+    window.open('/geotrust-ssl-certificates/checkout', '_blank', 'noopener');
   }
 
   toggleFaq(event: Event): void {

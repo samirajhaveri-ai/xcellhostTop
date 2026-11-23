@@ -1,0 +1,37 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const { parse } = require('parse5');
+const root = path.resolve(__dirname, '..');
+const source = fs.readFileSync(process.argv[2], 'utf8');
+const nodes = [];
+function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
+walk(parse(source, { sourceCodeLocationInfo: true }));
+const attr = (n, k) => n.attrs?.find(a => a.name === k)?.value || '';
+const has = (n, c) => attr(n, 'class').split(/\s+/).includes(c);
+const html = n => source.slice(n.sourceCodeLocation.startOffset, n.sourceCodeLocation.endOffset);
+const text = n => n.value || (n.childNodes || []).map(text).join('');
+let main = html(nodes.find(n => n.tagName === 'main')).replace('<main', '<main data-network-service="ip-address-mgmt-ipam" data-service-title="IP Address Management (IPAM)" data-customer-testimonials="off"');
+main = main.replace('id="iaHero"', 'id="iaHero" data-banner-actions="off"');
+for (const n of nodes.filter(n => has(n, 'crumb') || has(n, 'lnl-wrap') || (n.tagName === 'section' && attr(n, 'id') === 'contact'))) main = main.replace(html(n), '');
+main = main.replace(/data-xhform="([^"]+)"/g, 'data-import-enquiry="$1"');
+const faq = nodes.find(n => n.tagName === 'section' && attr(n, 'id') === 'faq');
+const grid = nodes.find(n => has(n, 'faq') && n.sourceCodeLocation.startOffset > faq.sourceCodeLocation.startOffset && n.sourceCodeLocation.endOffset < faq.sourceCodeLocation.endOffset);
+const items = grid.childNodes.filter(n => has(n, 'fq')).map(html);
+if (!items.length) throw Error('Missing original FAQ answers');
+const half = Math.ceil(items.length / 2);
+const faqHtml = html(faq).replace(html(grid), '<div class="faq">' + [items.slice(0, half), items.slice(half)].map(col => '<div class="hosting-faq-column">' + col.join('\n') + '</div>').join('') + '</div>');
+const why = `<section class="sec" id="why-xcellhost"><div class="wrap"><div class="sh"><h2>Why XcellHost For IP Address Management</h2></div><div class="ns-service-grid"><article><h3>Plan Your Address Space</h3><p>Review subnets, address requirements and cloud ranges before selecting your IPAM plan.</p></article><article><h3>Bring Records Together</h3><p>Discuss spreadsheet and DHCP imports, discovery collectors and ownership records with our team.</p></article><article><h3>Connect Your Environments</h3><p>Plan cloud account connectors and check overlapping ranges before connecting networks.</p></article><article><h3>Choose Your Deployment</h3><p>Compare hosted and on-premises options for your network and operational requirements.</p></article><article><h3>Understand Your Quote</h3><p>Configure managed IPs, subnets and optional services, then request an INR quotation.</p></article><article><h3>Plan Ongoing Operations</h3><p>Agree discovery, access controls, change tracking and support responsibilities for your deployment.</p></article></div></div></section>`;
+main = main.replace(html(faq), why + faqHtml);
+const compliance = nodes.find(n => n.tagName === 'section' && attr(n, 'id') === 'compliance');
+const heading = nodes.find(n => n.tagName === 'h2' && n.sourceCodeLocation.startOffset > compliance.sourceCodeLocation.startOffset && n.sourceCodeLocation.endOffset < compliance.sourceCodeLocation.endOffset);
+main = main.replace(html(heading), '<h2>SECURITY &amp; COMPLIANCE</h2>');
+const fonts = nodes.filter(n => n.tagName === 'link' && /^https:\/\/fonts\./.test(attr(n, 'href'))).map(html).join('\n');
+const styles = nodes.filter(n => n.tagName === 'style').map(html).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => `calc(var(--page-vh,1vh) * ${n})`);
+const scripts = nodes.filter(n => n.tagName === 'script' && !attr(n, 'type')).map(text);
+const core = scripts.find(s => s.includes('XcellHost v2 core runtime'));
+const runtime = scripts.at(-1).replace("cfg.scrollIntoView({behavior:RED?'auto':'smooth',block:'start'})", 'window.hostingJumpTo(cfg.id)');
+for (const code of [core, runtime]) { if (!code) throw Error('Missing runtime'); new vm.Script(code); }
+const css = ['consulting-faq', 'faq-layout', 'network-service-pages', 'ip-address-mgmt-ipam'].map(n => `<link rel="stylesheet" href="/assets/styles/${n}.css">`).join('');
+fs.writeFileSync(path.join(root, 'public/imported-ip-address-mgmt-ipam.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IP Address Management (IPAM) | XcellHost</title>${fonts}${styles}${css}</head><body>${main}<script src="/assets/scripts/hosting-tools-viewport.js"></script><script>${core}</script><script src="/assets/scripts/ip-address-mgmt-ipam-integration.js"></script><script>${runtime}</script></body></html>`);
+console.log(`Imported IP Address Management (IPAM) with ${items.length} original FAQ answers.`);
