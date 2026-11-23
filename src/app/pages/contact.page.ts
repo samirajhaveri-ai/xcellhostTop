@@ -12,6 +12,7 @@ interface ContactOffice {
   label: string;
   company: string;
   address: string;
+  contactPerson?: string;
   phoneDisplay: string;
   phoneHref: string;
   email: string;
@@ -66,6 +67,17 @@ export class ContactPage implements AfterViewInit, OnDestroy {
       phoneDisplay: '+91 22 6711 1555',
       phoneHref: '+912267111555',
       email: 'sales@xcellhost.cloud',
+    }),
+    this.createOffice({
+      city: 'Delhi',
+      country: 'India',
+      label: 'India office',
+      company: 'MONARCH INTERNATIONAL',
+      address: '13/16, First Floor, West Patel Nagar, New Delhi 110008, India',
+      contactPerson: 'Dhiraj Ahuja',
+      phoneDisplay: '+91 97171 12272',
+      phoneHref: '+919717112272',
+      email: 'd.ahujagopio@gmail.com',
     }),
     this.createOffice({
       city: 'Dubai',

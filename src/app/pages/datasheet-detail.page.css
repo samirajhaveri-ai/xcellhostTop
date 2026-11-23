@@ -1,0 +1,42 @@
+:host { display: block; }
+.datasheet-detail {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+  padding: 32px 0 72px;
+  color: #123454;
+}
+.datasheet-breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: #526d87; font-size: 13px; }
+.datasheet-breadcrumb a { color: #245e9e; text-decoration: none; }
+.datasheet-breadcrumb a:hover { text-decoration: underline; }
+.datasheet-heading { margin: 28px 0; }
+.datasheet-eyebrow { color: #42698f; font: 650 11px/1.5 var(--mono, monospace); letter-spacing: .12em; text-transform: uppercase; }
+.datasheet-heading h1 { margin: 8px 0 12px; font: 800 clamp(28px, 4vw, 43px)/1.15 var(--disp, sans-serif); }
+.datasheet-heading p { margin: 0; color: #4f6882; font-size: 16px; line-height: 1.65; }
+.datasheet-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; align-items: start; }
+.datasheet-sidebar { position: sticky; top: 110px; }
+.datasheet-content { display: grid; gap: 20px; min-width: 0; }
+.datasheet-section { min-width: 0; padding: 20px 24px; border: 1px solid #d7e6f7; border-radius: 14px; background: #f8fbff; }
+.datasheet-detail h2 { margin: 0; font: 750 23px/1.25 var(--body, sans-serif); }
+.datasheet-section p, .datasheet-section ul { margin: 12px 0 0; color: #3b5c7c; line-height: 1.7; }
+.datasheet-section ul { padding-inline-start: 20px; }
+.datasheet-section li + li { margin-top: 6px; }
+.datasheet-table { margin-top: 16px; overflow-x: auto; border: 1px solid #d7e6f7; border-radius: 9px; background: #fff; }
+.datasheet-table:focus-visible { outline: 2px solid #1565d8; outline-offset: 3px; }
+.datasheet-table table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; }
+.datasheet-table th, .datasheet-table td { padding: 10px 12px; text-align: left; vertical-align: top; }
+.datasheet-table thead th { background: #edf5ff; }
+.datasheet-table tbody th { font-weight: 650; }
+.datasheet-table tbody td { color: #3b5c7c; }
+.datasheet-table tbody tr { border-top: 1px solid #e3ecf6; }
+.datasheet-related { margin-top: 50px; padding-top: 30px; border-top: 1px solid #e0e9f4; }
+.datasheet-related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); gap: 22px; margin-top: 20px; }
+@media (max-width: 820px) {
+  .datasheet-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .datasheet-sidebar { position: static; grid-row: 1; }
+}
+@media (max-width: 560px) {
+  .datasheet-detail { width: calc(100% - 32px); padding-top: 22px; }
+  .datasheet-section { padding: 16px; }
+  .datasheet-table th, .datasheet-table td { padding: 8px; }
+  .datasheet-related-grid { grid-template-columns: minmax(0, 380px); }
+}

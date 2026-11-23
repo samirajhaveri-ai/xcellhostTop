@@ -26,7 +26,8 @@ describe('Insights card navigation', () => {
     await TestBed.configureTestingModule({
       providers: [
         provideRouter([{ path: 'insights/:slug', component: BlogPage }]),
-        { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of([older, newer]) } },
+        { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of([older, newer]), cmsArticles$: of([older, newer]), useCases$: of([]) } },
+        { provide: CaseStudiesApiService, useValue: { studies$: of([]) } },
         { provide: SeoService, useValue: { set: () => {}, setJsonLd: () => {} } },
       ],
     }).compileComponents();
@@ -41,7 +42,7 @@ describe('Insights card navigation', () => {
     }
     const page = await harness.navigateByUrl('/insights/missing-article', BlogPage);
     expect(page.post()).toBeNull();
-    expect(harness.routeNativeElement?.querySelector('h1')?.textContent).toBe('Article not found');
+    expect(harness.routeNativeElement?.querySelector('h1')?.textContent).toBe('Insights not found');
   });
 
   it('opens the featured CMS article instead of the insights index', async () => {

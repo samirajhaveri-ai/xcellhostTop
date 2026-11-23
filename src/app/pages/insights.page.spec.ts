@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { BlogApiService, CmsBlogPost, CmsInsightResource, INSIGHT_DOCUMENT_TYPES } from '../core/blog-api.service';
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
@@ -51,7 +51,7 @@ describe('Insights pagination', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('.insights-tabs button').length).toBe(10);
     expect(fixture.nativeElement.querySelectorAll('.insights-hero-resources a').length).toBe(10);
-    for (const type of INSIGHT_DOCUMENT_TYPES) {
+    for (const type of INSIGHT_DOCUMENT_TYPES.filter(type => type.kind !== 'checklist')) {
       const component = fixture.componentInstance;
       component.selectTab(type.label);
       expect(component.tabCount(type.label)).toBe(1);
@@ -66,6 +66,27 @@ describe('Insights pagination', () => {
       expect(component.visible().length).toBe(0);
       component.clearSearch();
     }
+  });
+
+  it('opens the dedicated checklist library from both entry points and preserves modified clicks', () => {
+    const navigate = spyOn(TestBed.inject(Router), 'navigateByUrl').and.resolveTo(true);
+    page.selectTab('Checklists');
+    expect(navigate).toHaveBeenCalledWith('/resources/checklists');
+    navigate.calls.reset();
+    const event = new MouseEvent('click', { cancelable: true });
+    page.selectTab('Checklists', event);
+    expect(event.defaultPrevented).toBeTrue();
+    expect(navigate).toHaveBeenCalledWith('/resources/checklists');
+    navigate.calls.reset();
+    page.selectTab('Checklists', new MouseEvent('click', { ctrlKey: true, cancelable: true }));
+    expect(navigate).not.toHaveBeenCalled();
+  });
+
+  it('keeps checklist card navigation inside XcellHost and includes seeded resources in the count', () => {
+    const item = { kind: 'checklist', slug: 'sample-azure-foundation-checklist', actionUrl: '/insights/sample-azure-foundation-checklist' } as unknown as Parameters<InsightsPage['insightHref']>[0];
+    expect(page.insightHref(item)).toBe('/checklists/sample-azure-foundation-checklist');
+    expect(page.isExternal(item)).toBeFalse();
+    expect(page.tabCount('Checklists')).toBe(3);
   });
 
   it('opens resource-category Blog entries on their normal Insights detail route', () => {

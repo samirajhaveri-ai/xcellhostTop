@@ -1,0 +1,76 @@
+<main class="datasheet-detail">
+  @if (sheet(); as product) {
+    <nav class="datasheet-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span aria-hidden="true">/</span>
+      <a [routerLink]="['/' + product.pageSlugs[0]]">{{ product.productName }}</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Datasheet</span>
+    </nav>
+
+    <header class="datasheet-heading">
+      <span class="datasheet-eyebrow">PDF datasheet</span>
+      <h1>{{ product.productName }}</h1>
+      <p>{{ product.description }}</p>
+    </header>
+
+    <div class="datasheet-layout">
+      <article class="datasheet-content" aria-label="Datasheet contents">
+        @for (section of product.sections; track section.title) {
+          <section class="datasheet-section">
+            <h2>{{ section.title }}</h2>
+            @if (section.summary) {
+              <p>{{ section.summary }}</p>
+            }
+            @if (section.points; as points) {
+              <ul>
+                @for (point of points; track point) {
+                  <li>{{ point }}</li>
+                }
+              </ul>
+            }
+            @if (section.table; as table) {
+              <div class="datasheet-table" role="region" [attr.aria-label]="section.title" tabindex="0">
+                <table>
+                  <thead>
+                    <tr>
+                      @for (column of table.columns; track column) {
+                        <th scope="col">{{ column }}</th>
+                      }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (row of table.rows; track $index) {
+                      <tr>
+                        <th scope="row">{{ row[0] }}</th>
+                        @for (cell of row.slice(1); track $index) {
+                          <td>{{ cell }}</td>
+                        }
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+          </section>
+        }
+      </article>
+
+      <aside class="datasheet-sidebar" aria-label="Download form">
+        <xh-datasheet-modal [sheet]="product" />
+      </aside>
+    </div>
+  } @else {
+    <header class="datasheet-heading">
+      <h1>Datasheet unavailable</h1>
+      <p>This datasheet could not be found.</p>
+    </header>
+  }
+
+  <section class="datasheet-related" aria-labelledby="more-datasheets-title">
+    <h2 id="more-datasheets-title">More datasheets</h2>
+    <div class="datasheet-related-grid">
+      @for (item of related(); track item.slug) {
+        <xh-datasheet-card [sheet]="item" />
+      }
+    </div>
+  </section>
+</main>

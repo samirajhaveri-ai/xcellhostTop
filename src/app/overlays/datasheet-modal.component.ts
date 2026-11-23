@@ -1,9 +1,9 @@
-import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, inject, signal, untracked } from '@angular/core';
+import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, input, signal, untracked, viewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { DatasheetRequestService } from '../core/datasheet-request.service';
-import { PRODUCT_DATASHEETS } from '../data/product-datasheets.data';
+import { PRODUCT_DATASHEETS, ProductDatasheet } from '../data/product-datasheets.data';
 import { EMAIL_VALIDATORS, PHONE_VALIDATORS } from './form.util';
 
 type DatasheetField = 'product' | 'firstName' | 'lastName' | 'phone' | 'email';
@@ -14,7 +14,7 @@ const ZOHO_DATASHEET_ENDPOINT =
 @Component({
   selector: 'xh-datasheet-modal',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [NgTemplateOutlet, ReactiveFormsModule],
   templateUrl: './datasheet-modal.component.html',
   styleUrl: './datasheet-modal.component.css',
   host: {
@@ -27,9 +27,14 @@ export class DatasheetModalComponent {
   readonly requests = inject(DatasheetRequestService);
   private readonly document = inject(DOCUMENT);
   private readonly fb = inject(FormBuilder);
+  private readonly zohoFrame = viewChild<ElementRef<HTMLIFrameElement>>('zohoFrame');
+  private revision = 0;
 
-  readonly datasheet = this.requests.datasheet;
-  readonly requiresSelection = this.requests.requiresSelection;
+  readonly sheet = input<ProductDatasheet>();
+  readonly datasheet = computed(() => this.sheet() ?? this.requests.datasheet());
+  readonly requiresSelection = computed(() => !this.sheet() && this.requests.requiresSelection());
+  readonly titleId = computed(() => this.sheet() ? 'ds-inline-title' : 'ds-title');
+  readonly frameName = computed(() => this.sheet() ? 'xhZohoDatasheetFrameInline' : 'xhZohoDatasheetFrame');
   readonly productOptions = PRODUCT_DATASHEETS;
   readonly busy = signal(false);
   readonly done = signal(false);
@@ -45,12 +50,12 @@ export class DatasheetModalComponent {
 
   constructor() {
     effect(() => {
-      if (this.requests.isOpen()) untracked(() => this.reset());
+      if (this.sheet() || this.requests.isOpen()) untracked(() => this.reset());
     });
   }
 
   close(): void {
-    this.requests.close();
+    if (!this.sheet()) this.requests.close();
   }
 
   onBackdrop(event: Event): void {
@@ -86,6 +91,7 @@ export class DatasheetModalComponent {
       return;
     }
 
+    const revision = this.revision;
     try {
       const submission = this.postToZoho({
         Name_First: values.firstName.trim(),
@@ -98,11 +104,11 @@ export class DatasheetModalComponent {
       // not treat it as an unsolicited delayed download.
       this.startDownload();
       await submission;
-      this.done.set(true);
+      if (revision === this.revision) this.done.set(true);
     } catch {
-      this.error.set('The request could not be submitted. Please try again.');
+      if (revision === this.revision) this.error.set('The request could not be submitted. Please try again.');
     } finally {
-      this.busy.set(false);
+      if (revision === this.revision) this.busy.set(false);
     }
   }
 
@@ -120,12 +126,11 @@ export class DatasheetModalComponent {
 
   private postToZoho(values: Record<string, string>): Promise<void> {
     return new Promise((resolve) => {
-      const targetName = 'xhZohoDatasheetFrame';
-      const frame = this.document.querySelector<HTMLIFrameElement>(`iframe[name="${targetName}"]`);
+      const frame = this.zohoFrame()?.nativeElement;
       const zohoForm = this.document.createElement('form');
       zohoForm.method = 'POST';
       zohoForm.action = ZOHO_DATASHEET_ENDPOINT;
-      zohoForm.target = targetName;
+      zohoForm.target = this.frameName();
       zohoForm.acceptCharset = 'UTF-8';
       zohoForm.enctype = 'multipart/form-data';
       zohoForm.hidden = true;
@@ -173,6 +178,7 @@ export class DatasheetModalComponent {
   }
 
   private reset(): void {
+    this.revision++;
     this.form.reset({
       product: this.requiresSelection() ? '' : (this.datasheet()?.pageSlugs[0] ?? ''),
       firstName: '',

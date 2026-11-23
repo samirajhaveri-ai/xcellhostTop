@@ -1,65 +1,73 @@
-@if (requests.isOpen()) {
+@if (sheet()) {
+  <section class="ds-card ds-card-inline" [attr.aria-labelledby]="titleId()">
+    <ng-container [ngTemplateOutlet]="downloadForm" />
+  </section>
+} @else if (requests.isOpen()) {
   <div class="ds-backdrop" aria-hidden="true"></div>
-  <div class="ds-layer" role="dialog" aria-modal="true" aria-labelledby="ds-title" (click)="onBackdrop($event)">
+  <div class="ds-layer" role="dialog" aria-modal="true" [attr.aria-labelledby]="titleId()" (click)="onBackdrop($event)">
     <section class="ds-card">
       <button class="ds-close" type="button" aria-label="Close datasheet form" (click)="close()">&times;</button>
-      @if (!done()) {
-        <div class="ds-copy">
-          <span class="ds-kicker">Product datasheet</span>
-          <h2 id="ds-title">Get Your Datasheet</h2>
-          <p>Complete the form to download {{ datasheet() ? 'the ' + datasheet()!.productName + ' datasheet' : 'your selected product datasheet' }}.</p>
-        </div>
-        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-          @if (requiresSelection()) {
-            <label>
-              <span>Which product datasheet do you need?</span>
-              <select formControlName="product" [class.invalid]="fieldError('product')">
-                <option value="" disabled>Select a product</option>
-                @for (option of productOptions; track option.assetUrl) {
-                  <option [value]="option.pageSlugs[0]">{{ option.productName }}</option>
-                }
-              </select>
-              <small>{{ fieldError('product') }}</small>
-            </label>
-          }
-          <div class="ds-name-row">
-            <label>
-              <span>First Name</span>
-              <input type="text" formControlName="firstName" placeholder="Enter First Name" autocomplete="given-name" [class.invalid]="fieldError('firstName')" />
-              <small>{{ fieldError('firstName') }}</small>
-            </label>
-            <label>
-              <span>Last Name</span>
-              <input type="text" formControlName="lastName" placeholder="Enter Last Name" autocomplete="family-name" [class.invalid]="fieldError('lastName')" />
-              <small>{{ fieldError('lastName') }}</small>
-            </label>
-          </div>
-          <label>
-            <span>Phone Number</span>
-            <input type="tel" formControlName="phone" placeholder="+91 98765 43210" autocomplete="tel" [class.invalid]="fieldError('phone')" />
-            <small>{{ fieldError('phone') }}</small>
-          </label>
-          <label>
-            <span>Business Email</span>
-            <input type="email" formControlName="email" placeholder="email@company.com" autocomplete="email" [class.invalid]="fieldError('email')" />
-            <small>{{ fieldError('email') }}</small>
-          </label>
-          <p class="ds-privacy">By submitting, you agree that XcellHost may contact you about this product. See our <a href="/privacy-cookie-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
-          @if (error()) { <p class="ds-error" role="alert">{{ error() }}</p> }
-          <button class="ds-submit" type="submit" [disabled]="busy()">
-            {{ busy() ? 'Preparing download...' : 'Download Now' }} <span aria-hidden="true">&rarr;</span>
-          </button>
-        </form>
-      } @else {
-        <div class="ds-success">
-          <span class="ds-success-icon" aria-hidden="true">&#10003;</span>
-          <span class="ds-kicker">Download ready</span>
-          <h2 id="ds-title">Your datasheet is downloading</h2>
-          <p>If the download did not start automatically, use the button below.</p>
-          <button class="ds-submit" type="button" (click)="startDownload()">Download Again <span aria-hidden="true">&darr;</span></button>
-        </div>
-      }
-      <iframe name="xhZohoDatasheetFrame" class="ds-zoho-frame" title="Datasheet request submission"></iframe>
+      <ng-container [ngTemplateOutlet]="downloadForm" />
     </section>
   </div>
 }
+
+<ng-template #downloadForm>
+  @if (!done()) {
+    <div class="ds-copy">
+      <span class="ds-kicker">Product datasheet</span>
+      <h2 [id]="titleId()">{{ sheet() ? 'Download your datasheet' : 'Get Your Datasheet' }}</h2>
+      <p>Complete the form to download {{ datasheet() ? 'the ' + datasheet()!.productName + ' datasheet' : 'your selected product datasheet' }}.</p>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      @if (requiresSelection()) {
+        <label>
+          <span>Which product datasheet do you need?</span>
+          <select formControlName="product" [class.invalid]="fieldError('product')">
+            <option value="" disabled>Select a product</option>
+            @for (option of productOptions; track option.assetUrl) {
+              <option [value]="option.pageSlugs[0]">{{ option.productName }}</option>
+            }
+          </select>
+          <small>{{ fieldError('product') }}</small>
+        </label>
+      }
+      <div class="ds-name-row">
+        <label>
+          <span>First Name</span>
+          <input type="text" formControlName="firstName" placeholder="Enter First Name" autocomplete="given-name" [class.invalid]="fieldError('firstName')" />
+          <small>{{ fieldError('firstName') }}</small>
+        </label>
+        <label>
+          <span>Last Name</span>
+          <input type="text" formControlName="lastName" placeholder="Enter Last Name" autocomplete="family-name" [class.invalid]="fieldError('lastName')" />
+          <small>{{ fieldError('lastName') }}</small>
+        </label>
+      </div>
+      <label>
+        <span>Phone Number</span>
+        <input type="tel" formControlName="phone" placeholder="+91 98765 43210" autocomplete="tel" [class.invalid]="fieldError('phone')" />
+        <small>{{ fieldError('phone') }}</small>
+      </label>
+      <label>
+        <span>Business Email</span>
+        <input type="email" formControlName="email" placeholder="email@company.com" autocomplete="email" [class.invalid]="fieldError('email')" />
+        <small>{{ fieldError('email') }}</small>
+      </label>
+      <p class="ds-privacy">By submitting, you agree that XcellHost may contact you about this product. See our <a href="/privacy-cookie-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
+      @if (error()) { <p class="ds-error" role="alert">{{ error() }}</p> }
+      <button class="ds-submit" type="submit" [disabled]="busy()">
+        {{ busy() ? 'Preparing download...' : (sheet() ? 'Download datasheet' : 'Download Now') }} <span aria-hidden="true">{{ sheet() ? "?" : "?" }}</span>
+      </button>
+    </form>
+  } @else {
+    <div class="ds-success">
+      <span class="ds-success-icon" aria-hidden="true">&#10003;</span>
+      <span class="ds-kicker">Download ready</span>
+      <h2 [id]="titleId()">Your datasheet is downloading</h2>
+      <p>If the download did not start automatically, use the button below.</p>
+      <button class="ds-submit" type="button" (click)="startDownload()">Download Again <span aria-hidden="true">&darr;</span></button>
+    </div>
+  }
+  <iframe #zohoFrame [attr.name]="frameName()" class="ds-zoho-frame" title="Datasheet request submission"></iframe>
+</ng-template>
