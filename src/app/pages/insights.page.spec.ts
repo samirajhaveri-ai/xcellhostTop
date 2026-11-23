@@ -105,6 +105,13 @@ describe('Insights pagination', () => {
     expect(component.tabCount('Data Sheets')).toBe(7);
     expect(links.map(link => link.pathname)).toEqual(PRODUCT_DATASHEETS.map(sheet => `/datasheets/${sheet.slug}`));
     expect(links.every(link => link.target === '')).toBeTrue();
+    const leadColumns = getComputedStyle(links[0]).gridTemplateColumns.split(' ').map(parseFloat);
+    if (matchMedia('(min-width: 641px)').matches) {
+      expect(leadColumns.length).toBe(2);
+      expect(leadColumns[0]).toBeLessThanOrEqual(360);
+    } else {
+      expect(leadColumns.length).toBe(1);
+    }
     for (const link of links) {
       const style = getComputedStyle(link.querySelector('img')!);
       expect(style.objectFit).toBe('contain');

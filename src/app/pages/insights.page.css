@@ -711,4 +711,10 @@
   object-fit: contain;
   background: #eaf3ff;
 }
-.insights-lead-media:has(> .datasheet-cover) { display: grid; align-content: center; }
+.insights-lead.datasheet-lead { grid-template-columns: minmax(0, 1fr); }
+.datasheet-lead .insights-lead-media { min-height: 0; align-self: center; }
+.datasheet-lead .insights-lead-copy { align-self: center; padding: 20px 24px; }
+
+@media (min-width: 641px) {
+  .insights-lead.datasheet-lead { grid-template-columns: min(42%, 360px) minmax(0, 1fr); }
+}

@@ -269,6 +269,7 @@ interface InsightCategoryBranch {
                 @if (featuredVisible(); as lead) {
                   <a
                     class="insights-lead"
+                    [class.datasheet-lead]="lead.kind === 'data-sheet'"
                     (click)="openInsight($event, lead)"
                     [attr.href]="insightHref(lead)"
                     [attr.target]="isExternal(lead) ? '_blank' : null"
