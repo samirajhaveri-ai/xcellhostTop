@@ -3037,6 +3037,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "IP Address Mgmt (IPAM)",
+                "href": "/ip-address-mgmt-ipam",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3163,6 +3164,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Data Security Posture Mgmt",
+                "href": "/data-security-posture-mgmt",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3932,7 +3934,7 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               
               {
-                "title": "Integrated AI Training Program",
+                "title": "Integrated AI Training Programs",
                 "pill": null,
                 "desc": "Hands-on AI foundations, tools and workflows",
                 "href": "/ai-training-integrated-program"
@@ -3973,7 +3975,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
               {
-                "title": "AI Training for Financial Professional",
+                "title": "AI Training for Financial Professionals",
                 "pill": null,
                 "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
@@ -5672,6 +5674,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/france-go-to-market-strategy",
                 "pill": null,
                 "desc": "Cloud, security, AI and training strategy for France, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Russia Go-to-Market Strategy",
+                "href": "/russia-go-to-market-strategy",
+                "pill": null,
+                "desc": "Russia strategy briefing with screening considerations, sector insights and revenue modelling."
               },
               {
                 "title": "Japan Go-to-Market Strategy",
