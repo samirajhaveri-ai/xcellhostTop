@@ -3979,6 +3979,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
+              {
+                "title": "AI Training for Government & PSUs",
+                "pill": null,
+                "desc": "Practical AI skills for government offices and PSU teams, with responsible data handling",
+                "href": "/ai-training-government-psu"
+              },
+              {
+                "title": "AI Training for Bankers",
+                "pill": null,
+                "desc": "Hands-on AI training for banking teams, credit workflows and human review",
+                "href": "/ai-training-bankers"
+              },
             ]
           }
         ]

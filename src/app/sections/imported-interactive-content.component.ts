@@ -186,6 +186,8 @@ type InteractiveContentSource =
   | 'ai-training-integrated-program' | 'ai-training-medical-doctors' | 'ai-training-insurance-professionals'
   | 'smart-manufacturing'
   | 'ai-training-chartered-accountants'
+  | 'ai-training-bankers'
+  | 'ai-training-government-psu'
 
   | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
   | 'azure-services' | 'aws-services'
@@ -511,6 +513,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'dpo-genie365-services': '/imported-dpo-genie365-services.html',
     'ai-training-integrated-program': '/imported-ai-training-integrated-program.html',
     'ai-training-chartered-accountants': '/imported-ai-training-chartered-accountants.html',
+    'ai-training-bankers': '/imported-ai-training-bankers.html',
+    'ai-training-government-psu': '/imported-ai-training-government-psu.html',
     'ai-training-medical-doctors': '/imported-ai-training-medical-doctors.html',
     'ai-training-insurance-professionals': '/imported-ai-training-insurance-professionals.html',
     'multi-factor-authentication': '/imported-multi-factor-authentication.html',
@@ -853,6 +857,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'dpo-genie365-services': 'DPO Genie365 Products and Services',
     'ai-training-integrated-program': 'Integrated AI Training Program',
     'ai-training-chartered-accountants': 'AI Training For Chartered Accountants',
+    'ai-training-bankers': 'AI Training for Bankers',
+    'ai-training-government-psu': 'AI Training for Government & PSUs',
     'ai-training-medical-doctors': 'AI Training For Medical Doctors',
     'ai-training-insurance-professionals': 'AI Training For Insurance Professionals',
     'multi-factor-authentication': 'Multi-Factor Authentication',
