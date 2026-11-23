@@ -14,6 +14,7 @@ export interface ProductDatasheet {
   readonly description: string;
   readonly sections: readonly DatasheetSection[];
   readonly coverUrl: string;
+  readonly heroImageUrl: string;
   readonly assetUrl: string;
   readonly downloadName: string;
   readonly pageSlugs: readonly string[];
@@ -50,6 +51,7 @@ export const PRODUCT_DATASHEETS: readonly ProductDatasheet[] = [
       },
     ],
     coverUrl: '/assets/datasheets/cloud-desktop-as-a-service.jpg',
+    heroImageUrl: '/assets/images/menu-productivity-smb-cloud-desktop-v2.png',
     assetUrl: '/assets/datasheets/cloud-desktop-as-a-service.pdf',
     downloadName: 'XcellHost Cloud Desktop-as-a-Service.pdf',
     pageSlugs: ['smb-cloud-desktop', 'cloud-desktop-as-a-service'],
@@ -90,6 +92,7 @@ export const PRODUCT_DATASHEETS: readonly ProductDatasheet[] = [
       },
     ],
     coverUrl: '/assets/datasheets/cybird-cyber-security-platform.jpg',
+    heroImageUrl: '/assets/images/case-studies/generated/smb-security-appliance.png',
     assetUrl: '/assets/datasheets/cybird-cyber-security-platform.pdf',
     downloadName: 'XcellHost Cybird Cyber Security Platform.pdf',
     pageSlugs: ['cybird', 'vendor-partners/cybird', 'smb-cyber-security-appliance'],
@@ -132,6 +135,7 @@ export const PRODUCT_DATASHEETS: readonly ProductDatasheet[] = [
       },
     ],
     coverUrl: '/assets/datasheets/acronis-advanced-rmm.jpg',
+    heroImageUrl: '/assets/images/case-studies/generated/rmm-device-operations.png',
     assetUrl: '/assets/datasheets/acronis-advanced-rmm.pdf',
     downloadName: 'XcellHost Acronis Advanced RMM.pdf',
     pageSlugs: ['remote-monitoring-and-mgmt-rmm', 'acronis-advanced-rmm', 'endpoint-security-rmm'],
@@ -167,6 +171,7 @@ export const PRODUCT_DATASHEETS: readonly ProductDatasheet[] = [
       },
     ],
     coverUrl: '/assets/datasheets/acronis-advanced-security-edr.jpg',
+    heroImageUrl: '/assets/images/case-studies/generated/endpoint-security-response.png',
     assetUrl: '/assets/datasheets/acronis-advanced-security-edr.pdf',
     downloadName: 'XcellHost Acronis Advanced Security EDR.pdf',
     pageSlugs: ['advanced-endpoint-security-edr', 'acronis-advanced-security-edr'],
@@ -198,6 +203,7 @@ export const PRODUCT_DATASHEETS: readonly ProductDatasheet[] = [
       },
     ],
     coverUrl: '/assets/datasheets/secure-file-cloud.jpg',
+    heroImageUrl: '/assets/images/case-studies/generated/cloud-drive-collaboration.png',
     assetUrl: '/assets/datasheets/secure-file-cloud.pdf',
     downloadName: 'XcellHost Secure File Cloud.pdf',
     pageSlugs: ['cloud-drive', 'secure-file-cloud'],
@@ -230,6 +236,7 @@ export const PRODUCT_DATASHEETS: readonly ProductDatasheet[] = [
       },
     ],
     coverUrl: '/assets/datasheets/secure-backup-cloud.jpg',
+    heroImageUrl: '/assets/images/case-studies/generated/cloud-disaster-recovery-smb.png',
     assetUrl: '/assets/datasheets/secure-backup-cloud.pdf',
     downloadName: 'XcellHost Secure Backup Cloud.pdf',
     pageSlugs: ['cloud-backup', 'secure-backup-cloud'],
@@ -271,6 +278,7 @@ export const PRODUCT_DATASHEETS: readonly ProductDatasheet[] = [
       },
     ],
     coverUrl: '/assets/datasheets/tally-on-cloud.jpg',
+    heroImageUrl: '/assets/images/case-studies/generated/tally-cloud.png',
     assetUrl: '/assets/datasheets/tally-on-cloud.pdf',
     downloadName: 'XcellHost Tally On Cloud.pdf',
     pageSlugs: ['tally-on-cloud'],

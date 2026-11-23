@@ -6,13 +6,15 @@
       <span aria-current="page">Datasheet</span>
     </nav>
 
-    <header class="datasheet-heading">
-      <span class="datasheet-eyebrow">PDF datasheet</span>
-      <h1>{{ product.productName }}</h1>
-      <p>{{ product.description }}</p>
-    </header>
-
     <div class="datasheet-layout">
+      <header class="datasheet-heading">
+        <img class="datasheet-hero-image" [src]="product.heroImageUrl" width="1280" height="720"
+          alt="" decoding="async" fetchpriority="high" />
+        <span class="datasheet-eyebrow">PDF datasheet</span>
+        <h1>{{ product.productName }}</h1>
+        <p>{{ product.description }}</p>
+      </header>
+
       <article class="datasheet-content" aria-label="Datasheet contents">
         @for (section of product.sections; track section.title) {
           <section class="datasheet-section">
