@@ -702,3 +702,13 @@
 .insights-lead-media .case-study-cover,
 .insights-card-media .case-study-cover { object-fit: cover; object-position: center; background: #eaf3ff; }
 .insights-card .insights-card-media .blog-cover.case-study-cover { width:100%; height:auto; aspect-ratio:3 / 2; margin:0; }
+
+.insights-lead-media .datasheet-cover,
+.insights-card .insights-card-media .blog-cover.datasheet-cover {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+  background: #eaf3ff;
+}
+.insights-lead-media:has(> .datasheet-cover) { display: grid; align-content: center; }

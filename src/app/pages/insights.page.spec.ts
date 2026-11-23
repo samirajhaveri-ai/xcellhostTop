@@ -6,6 +6,7 @@ import { BlogApiService, CmsBlogPost, CmsInsightResource, INSIGHT_DOCUMENT_TYPES
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
 import { CASE_STUDIES } from '../data/case-studies.data';
+import { PRODUCT_DATASHEETS } from '../data/product-datasheets.data';
 import { InsightsPage } from './insights.page';
 
 describe('Insights pagination', () => {
@@ -51,7 +52,7 @@ describe('Insights pagination', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('.insights-tabs button').length).toBe(10);
     expect(fixture.nativeElement.querySelectorAll('.insights-hero-resources a').length).toBe(10);
-    for (const type of INSIGHT_DOCUMENT_TYPES.filter(type => type.kind !== 'checklist')) {
+    for (const type of INSIGHT_DOCUMENT_TYPES.filter(type => type.kind !== 'checklist' && type.kind !== 'data-sheet')) {
       const component = fixture.componentInstance;
       component.selectTab(type.label);
       expect(component.tabCount(type.label)).toBe(1);
@@ -89,17 +90,32 @@ describe('Insights pagination', () => {
     expect(page.tabCount('Checklists')).toBe(3);
   });
 
-  it('opens resource-category Blog entries on their normal Insights detail route', () => {
+  it('shows the seven product datasheets with internal links even when the CMS returns sample datasheets', () => {
     documents.next([{
-      documentId: 'datasheet-blog', kind: 'data-sheet', title: 'Tally data sheet', slug: 'tally-data-sheet',
-      description: 'Cloud accounting resource', content: 'Resource content', category: 'Datasheet',
+      documentId: 'datasheet-blog', kind: 'data-sheet', title: 'Sample Data Sheet', slug: 'sample-data-sheet',
+      description: 'Sample content', content: 'Resource content', category: 'Datasheet',
       date: '2026-11-04', time: '09:00', author: 'XcellHost Team',
-      downloadUrl: '/insights/tally-data-sheet',
+      downloadUrl: '/insights/sample-data-sheet',
     } as CmsInsightResource]);
-    page.selectTab('Data Sheets');
-    const item = page.sourceItems()[0];
-    expect(page.isExternal(item)).toBeFalse();
-    expect(page.insightHref(item)).toBe('/insights/tally-data-sheet');
+    const fixture = TestBed.createComponent(InsightsPage);
+    const component = fixture.componentInstance;
+    component.selectTab('Data Sheets');
+    fixture.detectChanges();
+    const links = Array.from(fixture.nativeElement.querySelectorAll('.insights-lead, .insights-card') as NodeListOf<HTMLAnchorElement>);
+    expect(component.tabCount('Data Sheets')).toBe(7);
+    expect(links.map(link => link.pathname)).toEqual(PRODUCT_DATASHEETS.map(sheet => `/datasheets/${sheet.slug}`));
+    expect(links.every(link => link.target === '')).toBeTrue();
+    for (const link of links) {
+      const style = getComputedStyle(link.querySelector('img')!);
+      expect(style.objectFit).toBe('contain');
+      expect(style.aspectRatio).toBe('auto');
+    }
+
+    component.selectProduct('Web Presence', 'SMB Cloud', 'Tally on Cloud');
+    expect(component.visible().map(item => item.slug)).toEqual(['tally-on-cloud']);
+    component.selectAllCategories();
+    component.query.set('secure backup');
+    expect(component.visible().map(item => item.slug)).toEqual(['secure-backup-cloud']);
   });
 
   it('renders clickable video cards and filters even when blogs fail', () => {

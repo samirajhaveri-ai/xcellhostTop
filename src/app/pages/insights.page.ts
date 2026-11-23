@@ -7,6 +7,7 @@ import { BlogApiService, CmsBlogPost, CmsInsightResource, CmsResourceKind, INSIG
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
 import { CASE_STUDIES, CaseStudy } from '../data/case-studies.data';
+import { PRODUCT_DATASHEETS, ProductDatasheet } from '../data/product-datasheets.data';
 import {
   INSIGHTS_MENU_TAXONOMY,
   InsightPlacement,
@@ -278,6 +279,7 @@ interface InsightCategoryBranch {
                         <img
                           class="insights-lead-cover"
                           [class.case-study-cover]="lead.kind === 'case-study'"
+                          [class.datasheet-cover]="lead.kind === 'data-sheet'"
                           [src]="lead.coverImageUrl"
                           (error)="onCoverError($event, lead)"
                           [alt]="lead.coverImage?.alternativeText || lead.title"
@@ -298,6 +300,8 @@ interface InsightCategoryBranch {
                           <span>{{ lead.metric }}</span>
                           <span>{{ lead.profile }}</span>
                           <span>Read customer story</span>
+                        } @else if (lead.kind === 'data-sheet') {
+                          <span>Read more</span>
                         } @else {
                           <span>{{ formatDate(lead.date) }}</span>
                           <span>{{ lead.author }}</span>
@@ -321,6 +325,7 @@ interface InsightCategoryBranch {
                         <img
                           class="blog-cover"
                           [class.case-study-cover]="post.kind === 'case-study'"
+                          [class.datasheet-cover]="post.kind === 'data-sheet'"
                           [src]="post.coverImageUrl"
                           (error)="onCoverError($event, post)"
                           [alt]="post.coverImage?.alternativeText || post.title"
@@ -334,13 +339,17 @@ interface InsightCategoryBranch {
                       </div>
                       <div class="insights-card-meta">
                         <span class="bl-k">{{ post.category }}</span>
-                        <span class="insights-card-date">{{ post.kind === 'case-study' ? post.metric : formatDate(post.date) }}</span>
+                        @if (post.kind !== 'data-sheet') {
+                          <span class="insights-card-date">{{ post.kind === 'case-study' ? post.metric : formatDate(post.date) }}</span>
+                        }
                       </div>
                       <h3>{{ post.title }}</h3>
                       <p>{{ post.description }}</p>
                       <span class="bl-m">
                         @if (post.kind === 'case-study') {
                           {{ post.services?.join(' · ') || post.profile }} · Read case study
+                        } @else if (post.kind === 'data-sheet') {
+                          Read more
                         } @else {
                           {{ post.author }} · {{ isExternal(post) ? resourceAction(post) : readTime(post) + ' read' }}
                         }
@@ -448,12 +457,14 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   readonly caseStudyItems = computed<readonly InsightItem[]>(() =>
     this.caseStudies().map((study) => this.toCaseStudyItem(study))
   );
+  private readonly datasheetItems = PRODUCT_DATASHEETS.map(sheet => this.toDatasheetItem(sheet));
   readonly sourceItems = computed<readonly InsightItem[]>(() => {
     switch (this.activeTab()) {
       case 'Videos': return this.videoItems();
       case 'Use Cases': return this.useCaseItems();
       case 'Case Studies': return this.caseStudyItems();
       case 'Blogs': return this.blogItems();
+      case 'Data Sheets': return this.datasheetItems;
       default: return this.documents().filter(item => item.kind === this.documentType()?.kind).map(item => this.toResourceItem(item));
     }
   });
@@ -702,6 +713,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
 
   insightHref(item: InsightItem): string {
     if (item.kind === 'checklist') return `/checklists/${encodeURIComponent(item.slug)}`;
+    if (item.kind === 'data-sheet') return `/datasheets/${encodeURIComponent(item.slug)}`;
     if (this.isExternal(item)) return item.actionUrl ?? '#';
     return item.kind === 'use-case'
       ? `/use-cases/${encodeURIComponent(item.slug)}`
@@ -744,6 +756,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
 
   tabCount(tab: InsightTab): number {
     if (tab === 'Checklists') return mergeChecklistResources(this.documents()).length;
+    if (tab === 'Data Sheets') return this.datasheetItems.length;
     if (tab === 'Videos') return this.videos().length;
     if (tab === 'Use Cases') return this.useCaseItems().length;
     if (tab === 'Case Studies') return this.caseStudyItems().length;
@@ -761,7 +774,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   isExternal(item: InsightItem): boolean {
-    if (item.kind === 'checklist') return false;
+    if (item.kind === 'checklist' || item.kind === 'data-sheet') return false;
     if (item.kind === 'blog' || item.kind === 'use-case' || item.kind === 'case-study') return false;
     return !item.actionUrl?.startsWith('/');
   }
@@ -782,6 +795,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   emptyHelp(): string {
+    if (this.activeTab() === 'Data Sheets') return 'Try another topic or search term.';
     if (this.activeTab() === 'Blogs' && this.loading()) return 'Fetching the latest published articles.';
     if (this.activeTab() === 'Blogs' && this.error()) return 'The content service could not be reached. We will retry automatically shortly.';
     if (this.documentType() && !this.sourceItems().length) return 'Published ' + this.activeTab().toLowerCase() + ' will appear here. Browse another resource type in the meantime.';
@@ -814,6 +828,27 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
       ...item,
       ...placement,
       actionUrl: item.kind === 'video' ? item.videoUrl : item.downloadUrl ?? null,
+    };
+  }
+
+  private toDatasheetItem(sheet: ProductDatasheet): InsightItem {
+    const placement = resolveInsightPlacement({ product: sheet.productName, relatedPages: sheet.pageSlugs.join(',') });
+    return {
+      ...placement,
+      id: 0,
+      documentId: `data-sheet-${sheet.slug}`,
+      kind: 'data-sheet',
+      title: sheet.productName,
+      slug: sheet.slug,
+      description: sheet.description,
+      content: '',
+      author: '',
+      date: '',
+      time: '',
+      category: 'Data Sheet',
+      coverImage: null,
+      coverImageUrl: sheet.heroImageUrl,
+      actionUrl: null,
     };
   }
 
