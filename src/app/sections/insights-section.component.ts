@@ -3,6 +3,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ResourceVideoComponent } from '../shared/resource-video.component';
+import { DatasheetCardComponent } from '../shared/datasheet-card.component';
 
 import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { RevealDirective } from '../shared/reveal.directive';
@@ -34,7 +35,7 @@ export interface InsightArticle {
 @Component({
   selector: 'xh-insights-section',
   standalone: true,
-  imports: [RouterLink, RevealDirective, ResourceVideoComponent],
+  imports: [RouterLink, RevealDirective, ResourceVideoComponent, DatasheetCardComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -122,14 +123,18 @@ export interface InsightArticle {
           <div class="cases-cta"><a class="btn btn-ghost" routerLink="/case-studies">View all Case Studies →</a></div>
         } @else {
           @if (activeView() === 'datasheets') {
-            <div class="insights-empty">
-              <p>Contact our team for the latest product datasheets and technical specifications.</p>
-              @if (canRequestDatasheet()) {
-                <button class="btn btn-ghost" type="button" (click)="requestDatasheet()">Request a datasheet</button>
-              } @else {
-                <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ resource: 'datasheet', service: pageSlug() || undefined }">Request a datasheet</a>
-              }
-            </div>
+            @if (datasheet(); as sheet) {
+              <xh-datasheet-card class="insights-datasheet" [sheet]="sheet" />
+            } @else {
+              <div class="insights-empty">
+                <p>Contact our team for the latest product datasheets and technical specifications.</p>
+                @if (!pageSlug().trim()) {
+                  <button class="btn btn-ghost" type="button" (click)="requestDatasheet()">Request a datasheet</button>
+                } @else {
+                  <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ resource: 'datasheet', service: pageSlug() }">Request a datasheet</a>
+                }
+              </div>
+            }
           } @else {
           <div class="insights-video-grid">
             @if (resolvedVideos(); as resources) {
@@ -183,6 +188,7 @@ export interface InsightArticle {
     .resource-articles .bl { min-width: 0; color: inherit; text-decoration: none; }
     @media (max-width: 640px) { .resource-articles { grid-template-columns: 1fr; } }
     .insights-empty { text-align: center; color: var(--slate); padding: 24px 16px; }
+    .insights-datasheet { max-width: 380px; margin-inline: auto; }
     .blog-grid .bl { color: inherit; text-decoration: none; }
     .insights-heading { max-width: none; text-align: center; }
     .insights-heading .eyebrow::after { margin-left: auto; margin-right: auto; }
@@ -218,7 +224,6 @@ export class InsightsSectionComponent {
   private readonly allStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly pageSlug = input('');
   readonly datasheet = computed(() => datasheetForSlug(this.pageSlug()));
-  readonly canRequestDatasheet = computed(() => !this.pageSlug().trim() || this.datasheet() !== null);
   readonly showVideos = input(true);
   readonly videos = input<readonly InsightVideo[] | null>(null);
   readonly articles = input<readonly InsightArticle[]>([]);

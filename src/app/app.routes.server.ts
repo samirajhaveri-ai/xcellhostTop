@@ -1,6 +1,7 @@
 import { PrerenderFallback, RenderMode, ServerRoute } from '@angular/ssr';
 import sitemapPages from '../../public/sitemap-pages.json';
 import { CHECKLISTS } from './data/checklists.data';
+import { PRODUCT_DATASHEETS } from './data/product-datasheets.data';
 
 const sitemapPaths = Object.keys(sitemapPages).map((path) => path.replace(/^\/+|\/+$/g, ''));
 
@@ -25,6 +26,7 @@ function prerenderParameterizedRoute(
 
 export const serverRoutes: ServerRoute[] = [
   { path: 'checklists/:slug', renderMode: RenderMode.Prerender, fallback: PrerenderFallback.None, getPrerenderParams: async () => CHECKLISTS.map(item => ({ slug: item.slug })) },
+  { path: 'datasheets/:slug', renderMode: RenderMode.Prerender, fallback: PrerenderFallback.None, getPrerenderParams: async () => PRODUCT_DATASHEETS.map(item => ({ slug: item.slug })) },
   prerenderParameterizedRoute('tools/:tool', 'tools/', 'tool'),
   prerenderParameterizedRoute('compare-products/:comparison', 'compare-products/', 'comparison'),
   prerenderParameterizedRoute('under-construction/:slug', 'under-construction/', 'slug'),

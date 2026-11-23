@@ -1272,6 +1272,7 @@ export const routes: Routes = [
   { path: 'resources/checklists', title: 'Checklists - Technology Review Resources | XcellHost', loadComponent: () => import('./pages/checklists.page').then(m => m.ChecklistsPage) },
   { path: 'checklists', redirectTo: 'resources/checklists', pathMatch: 'full' },
   { path: 'checklists/:slug', loadComponent: () => import('./pages/checklist-detail.page').then(m => m.ChecklistDetailPage) },
+  { path: 'datasheets/:slug', loadComponent: () => import('./pages/datasheet-detail.page').then(m => m.DatasheetDetailPage) },
   {
     path: 'insights/:slug',
     data: { contentType: 'blog' },

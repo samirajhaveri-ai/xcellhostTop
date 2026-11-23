@@ -40,6 +40,10 @@ export class AssociationsPage {
     { name: 'Indo-African Chamber of Commerce & Industry', image: '/assets/images/associations/country/indo-african-chamber.jpg' },
     { name: 'Asian-African Chamber of Commerce & Industry', image: '/assets/images/associations/industry-asian-african-chamber.png' },
     { name: 'World Trade Center', image: '/assets/images/images.jpg' },
+    {
+      name: 'Global Organization of People of Indian Origin (GOPIO)',
+      image: '/assets/images/associations/country/gopio.jpg',
+    },
   ];
 
   readonly itTradeAssociations: readonly LinkedAssociation[] = [
