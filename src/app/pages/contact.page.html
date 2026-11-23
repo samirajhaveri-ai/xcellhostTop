@@ -319,7 +319,13 @@
                 </div>
                 <div class="office-contact-row">
                   <span class="material-symbols-outlined" aria-hidden="true">phone_in_talk</span>
-                  <div><small>Contact</small><a [href]="'tel:' + selectedOffice().phoneHref">{{ selectedOffice().phoneDisplay }}</a></div>
+                  <div>
+                    <small>Contact</small>
+                    @if (selectedOffice().contactPerson; as contactPerson) {
+                      <strong>{{ contactPerson }}</strong>
+                    }
+                    <a [href]="'tel:' + selectedOffice().phoneHref">{{ selectedOffice().phoneDisplay }}</a>
+                  </div>
                 </div>
                 <div class="office-contact-row">
                   <span class="material-symbols-outlined" aria-hidden="true">mail</span>
