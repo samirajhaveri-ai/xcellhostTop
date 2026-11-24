@@ -204,7 +204,7 @@ img{max-width:100%}
 .fld{margin-bottom:16px}
 .fld label{display:flex;justify-content:space-between;font-size:13.5px;font-weight:600;margin-bottom:6px}
 .fld output{font-family:var(--mono);color:var(--blue)}
-.fld select,.form input,.form select,.form textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);font:14.5px var(--body)}
+.fld select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);font:14.5px var(--body)}
 .fld input[type=range]{width:100%;accent-color:var(--blue)}
 .est-out{background:var(--navy);color:#fff;border-radius:12px;padding:22px;display:flex;flex-direction:column;justify-content:center;gap:12px}
 .est-out div{display:flex;justify-content:space-between;font-size:14px;color:#B9C9E2}
@@ -356,11 +356,6 @@ img{max-width:100%}
 .cta-band .hero-ctas{margin-top:20px}
 .cta-band ul{list-style:none;display:grid;gap:8px;margin-top:18px;font-size:14px;color:#E3EDFD}
 .cta-band li{display:flex;gap:8px}.cta-band li .xg-ico{color:#FFD9AC}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:18px}
-.form .full{grid-column:1/-1}
-.form input,.form select,.form textarea{background:#fff;color:var(--navy);border-color:#fff}
-.form small{color:#CFE0FA;font-size:11.5px}
-.ok-msg{display:none;grid-column:1/-1;background:#16A34A;border-radius:9px;padding:12px;font-weight:600;font-size:14px}
 .pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
 .pills span{border:1px solid var(--line);border-radius:99px;padding:6px 13px;font-size:12px;font-weight:600;color:var(--navy);background:var(--card)}
 [data-theme="dark"] .pills span{color:#fff}
@@ -412,7 +407,7 @@ img{max-width:100%}
 @media (max-width:700px){.wrap{padding:0 16px}.pp-hero h1{font-size:25px}.promo{font-size:12px}.logo-txt{font-size:24px}.pp-hero{padding:36px 0 30px}.pp-hpoints{grid-template-columns:1fr}.hero-ctas{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}
  .pp-feats,.pp-bens,.outs,.steps,.gsw,.faqs,.vs,.incl,.revs{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.plan-specs,.specs{grid-template-columns:repeat(2,minmax(0,1fr))}
  .tabs button{font-size:13px;padding-top:28px}.bar{grid-template-columns:100px 1fr 76px;font-size:12.5px}.foot-row{grid-template-columns:1fr}.foot-banner{flex-direction:column;align-items:flex-start}.foot-banner .t{border:0;padding:0}
- .cta-band{padding:26px 18px}.form{grid-template-columns:1fr}.partner{flex-direction:column;align-items:flex-start}.cb-tab{display:none}.pp-trust .wrap{justify-content:flex-start}.logo img{height:46px}.nav .wrap{height:66px}.foot-cols{grid-template-columns:1fr}}
+ .cta-band{padding:26px 18px}.partner{flex-direction:column;align-items:flex-start}.cb-tab{display:none}.pp-trust .wrap{justify-content:flex-start}.logo img{height:46px}.nav .wrap{height:66px}.foot-cols{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 
 .h200-assurance section{margin-top:42px}
@@ -468,9 +463,6 @@ img{max-width:100%}
 .h200-support-link{position:absolute;top:50%;right:26px;width:104px;height:104px;transform:translateY(-50%);border-radius:50%}
 .h200-support-link img{display:block;width:100%;height:100%;object-fit:contain}
 .h200-support-link:focus-visible{outline:3px solid #fff;outline-offset:4px}
-.h200-lead-form{max-width:760px;margin:20px auto 0;background:#0c3e8f}
-.h200-lead-form[hidden]{display:none}
-.h200-lead-form .form{width:100%}
 @media(max-width:800px){.h200-why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.h200-why-card:nth-child(3n){border-right:1px solid rgba(194,216,247,.18)}.h200-why-card:nth-child(2n){border-right:0}.h200-why-card:nth-last-child(-n+3){border-bottom:1px solid rgba(194,216,247,.18)}.h200-why-card:nth-last-child(-n+2){border-bottom:0}.h200-ref-grid{grid-template-columns:1fr}}
 @media(max-width:700px){.h200-security{padding:20px}.h200-secrows,.h200-why-grid,.h200-preview-grid{grid-template-columns:1fr}.h200-why-card,.h200-why-card:nth-child(3n),.h200-why-card:nth-child(2n){border-right:0;border-bottom:1px solid rgba(194,216,247,.18)}.h200-why-card:last-child{border-bottom:0}.h200-secrows div{flex-direction:column;gap:3px}.h200-secrows span{text-align:left}.h200-assurance section{margin-top:34px}.h200-bottom-cta{padding:28px 22px}.h200-support-link{position:static;width:72px;height:72px;transform:none;align-self:flex-end}.h200-bottom-actions .btn{flex:1 1 145px}.h200-insights-tabs{margin-bottom:30px}.h200-insights h2{font-size:27px}}
 </style><link rel="stylesheet" href="/mobile-layout.css">
@@ -542,7 +534,7 @@ img{max-width:100%}
 
  <section id="pricing">
   <div class="center-head rv"><span>Flexible plans for every workload</span><h2>H200 Cloud GPU Plans</h2><p>Select your billing period and choose the GPU configuration that fits your team.</p></div>
-  <div class="tabs" id="xgTerm" role="tablist"><button type="button" data-t="monthly" data-d="0" class="is-on"><span class="sv">No Savings</span>Monthly</button><button type="button" data-t="3m" data-d="5"><span class="sv">Save 5%</span>3 Months</button><button type="button" data-t="6m" data-d="7.5"><span class="sv">Save 7.5%</span>6 Months</button><button type="button" data-t="12m" data-d="10"><span class="sv">Save 10%</span>1 Year</button></div>
+  <div class="tabs" id="xgTerm" role="tablist"><button type="button" data-checkout-term="M" data-d="0" class="is-on"><span class="sv">No Savings</span>Monthly</button><button type="button" data-checkout-term="C3" data-d="5"><span class="sv">Save 5%</span>3 Months</button><button type="button" data-checkout-term="C6" data-d="7.5"><span class="sv">Save 7.5%</span>6 Months</button><button type="button" data-checkout-term="C12" data-d="10"><span class="sv">Save 10%</span>1 Year</button></div>
   <div class="plan-grid">
    <article class="plan rv">
     <div class="plan-l"><div class="plan-band">For single users &amp; PoC · 1 GPU</div><div class="plan-name"><span>1×</span><div><b>H200</b><small>GPU Cloud Lite</small></div></div></div>
@@ -551,7 +543,7 @@ img{max-width:100%}
      <div><dt>NVMe Storage</dt><dd>2000 GB</dd></div><div><dt>Network Port</dt><dd>1 Gbps</dd></div><div><dt>Dedicated IP</dt><dd>1</dd></div><div><dt>Operating System</dt><dd>Ubuntu 22.04 / Win Server 2025</dd></div>
      <div><dt>Drivers</dt><dd>CUDA pre-installed</dd></div><div><dt>Protection</dt><dd>Virtual Firewall + Anti-DDoS</dd></div><div><dt>Endpoint Security</dt><dd>Acronis Cyber Protect Cloud</dd></div><div><dt>Support</dt><dd>24×7</dd></div>
     </dl>
-    <div class="plan-act"><span class="was" data-m="211000"></span><strong class="amt" data-m="211000">₹2,11,000</strong><a class="btn btn-blue" href="#lead" data-plan="XG.H200.1-16">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹361/hr on demand</span></div>
+    <div class="plan-act"><span class="was" data-m="211000"></span><strong class="amt" data-m="211000">₹2,11,000</strong><a class="btn btn-blue" href="/nvidia-h200/checkout?plan=XG-H200-1G-16C-128R-M" target="_top" data-checkout-plan="XG-H200-1G-16C-128R">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹361/hr on demand</span></div>
    </article>
    <article class="plan rv">
     <div class="plan-l"><div class="plan-band">For single users &amp; PoC · 1 GPU</div><div class="plan-name"><span>1×</span><div><b>H200</b><small>GPU Cloud Standard</small></div></div></div>
@@ -560,7 +552,7 @@ img{max-width:100%}
      <div><dt>NVMe Storage</dt><dd>2000 GB</dd></div><div><dt>Network Port</dt><dd>1 Gbps</dd></div><div><dt>Dedicated IP</dt><dd>1</dd></div><div><dt>Operating System</dt><dd>Ubuntu 22.04 / Win Server 2025</dd></div>
      <div><dt>Drivers</dt><dd>CUDA pre-installed</dd></div><div><dt>Protection</dt><dd>Virtual Firewall + Anti-DDoS</dd></div><div><dt>Endpoint Security</dt><dd>Acronis Cyber Protect Cloud</dd></div><div><dt>Support</dt><dd>24×7</dd></div>
     </dl>
-    <div class="plan-act"><span class="was" data-m="228000"></span><strong class="amt" data-m="228000">₹2,28,000</strong><a class="btn btn-blue" href="#lead" data-plan="XG.H200.1-24">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹390/hr on demand</span></div>
+    <div class="plan-act"><span class="was" data-m="228000"></span><strong class="amt" data-m="228000">₹2,28,000</strong><a class="btn btn-blue" href="/nvidia-h200/checkout?plan=XG-H200-1G-24C-192R-M" target="_top" data-checkout-plan="XG-H200-1G-24C-192R">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹390/hr on demand</span></div>
    </article>
    <article class="plan rv">
     <div class="plan-l"><div class="plan-band">For teams &amp; multi-GPU · 2 GPUs</div><div class="plan-name"><span>2×</span><div><b>H200</b><small>GPU Cloud Duo</small></div></div></div>
@@ -569,7 +561,7 @@ img{max-width:100%}
      <div><dt>NVMe Storage</dt><dd>4000 GB</dd></div><div><dt>Network Port</dt><dd>1 Gbps</dd></div><div><dt>Dedicated IP</dt><dd>1</dd></div><div><dt>Operating System</dt><dd>Ubuntu 22.04 / Win Server 2025</dd></div>
      <div><dt>Drivers</dt><dd>CUDA pre-installed</dd></div><div><dt>Protection</dt><dd>Virtual Firewall + Anti-DDoS</dd></div><div><dt>Endpoint Security</dt><dd>Acronis Cyber Protect Cloud</dd></div><div><dt>Support</dt><dd>24×7</dd></div>
     </dl>
-    <div class="plan-act"><span class="was" data-m="456000"></span><strong class="amt" data-m="456000">₹4,56,000</strong><a class="btn btn-blue" href="#lead" data-plan="XG.H200.2-48">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹781/hr on demand</span></div>
+    <div class="plan-act"><span class="was" data-m="456000"></span><strong class="amt" data-m="456000">₹4,56,000</strong><a class="btn btn-blue" href="/nvidia-h200/checkout?plan=XG-H200-2G-48C-384R-M" target="_top" data-checkout-plan="XG-H200-2G-48C-384R">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹781/hr on demand</span></div>
    </article>
    <article class="plan rv">
     <div class="plan-l"><div class="plan-band">For training &amp; render farms · 4 GPUs</div><div class="plan-name"><span>4×</span><div><b>H200</b><small>GPU Cloud Quad</small></div></div></div>
@@ -578,7 +570,7 @@ img{max-width:100%}
      <div><dt>NVMe Storage</dt><dd>8000 GB</dd></div><div><dt>Network Port</dt><dd>1 Gbps</dd></div><div><dt>Dedicated IP</dt><dd>1</dd></div><div><dt>Operating System</dt><dd>Ubuntu 22.04 / Win Server 2025</dd></div>
      <div><dt>Drivers</dt><dd>CUDA pre-installed</dd></div><div><dt>Protection</dt><dd>Virtual Firewall + Anti-DDoS</dd></div><div><dt>Endpoint Security</dt><dd>Acronis Cyber Protect Cloud</dd></div><div><dt>Support</dt><dd>24×7</dd></div>
     </dl>
-    <div class="plan-act"><span class="was" data-m="912000"></span><strong class="amt" data-m="912000">₹9,12,000</strong><a class="btn btn-blue" href="#lead" data-plan="XG.H200.4-96">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹1562/hr on demand</span></div>
+    <div class="plan-act"><span class="was" data-m="912000"></span><strong class="amt" data-m="912000">₹9,12,000</strong><a class="btn btn-blue" href="/nvidia-h200/checkout?plan=XG-H200-4G-96C-768R-M" target="_top" data-checkout-plan="XG-H200-4G-96C-768R">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹1562/hr on demand</span></div>
    </article>
    <article class="plan rv">
     <div class="plan-l"><div class="plan-band">For large-scale training · 8 GPUs</div><div class="plan-name"><span>8×</span><div><b>H200</b><small>GPU Cloud HGX Node</small></div></div></div>
@@ -587,7 +579,7 @@ img{max-width:100%}
      <div><dt>NVMe Storage</dt><dd>16000 GB</dd></div><div><dt>Network Port</dt><dd>1 Gbps</dd></div><div><dt>Dedicated IP</dt><dd>1</dd></div><div><dt>Operating System</dt><dd>Ubuntu 22.04 / Win Server 2025</dd></div>
      <div><dt>Drivers</dt><dd>CUDA pre-installed</dd></div><div><dt>Protection</dt><dd>Virtual Firewall + Anti-DDoS</dd></div><div><dt>Endpoint Security</dt><dd>Acronis Cyber Protect Cloud</dd></div><div><dt>Support</dt><dd>24×7</dd></div>
     </dl>
-    <div class="plan-act"><span class="was" data-m="1800000"></span><strong class="amt" data-m="1800000">₹18,00,000</strong><a class="btn btn-blue" href="#lead" data-plan="XG.H200.8-192">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹3082/hr on demand</span></div>
+    <div class="plan-act"><span class="was" data-m="1800000"></span><strong class="amt" data-m="1800000">₹18,00,000</strong><a class="btn btn-blue" href="/nvidia-h200/checkout?plan=XG-H200-8G-192C-1536R-M" target="_top" data-checkout-plan="XG-H200-8G-192C-1536R">Buy Now →</a><small class="bill">+GST · Monthly billing</small><span class="hr">≈ ₹3082/hr on demand</span></div>
    </article></div>
   <p class="note">Indicative pricing in INR, exclusive of 18% GST. Plan codes: XG.H200.1-16, XG.H200.1-24, XG.H200.2-48, XG.H200.4-96, XG.H200.8-192.</p>
   <div class="est rv">
@@ -959,7 +951,7 @@ img{max-width:100%}
    <div><h2 id="h200CtaTitle">Ready to start with NVIDIA H200?</h2><p>FREE Consultation · FREE Sizing · Hourly PoC · 24×7 support in English &amp; Hindi</p></div>
    <div class="h200-bottom-actions">
     <a class="btn btn-primary" href="tel:+912267111555">Request a callback</a>
-    <a class="btn btn-ghost" href="#h200LeadForm" data-open-lead>⚡ Buy Now</a>
+    <a class="btn btn-ghost" href="/nvidia-h200/checkout" target="_top">⚡ Buy Now</a>
     <a class="btn btn-ghost" href="#specs">⬇ Infosheet</a>
     <a class="btn btn-ghost" href="/contact?resource=presentation&amp;service=nvidia-h200">▣ Presentation</a>
     <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener">Talk on WhatsApp</a>
@@ -967,19 +959,6 @@ img{max-width:100%}
    </div>
    <a class="h200-support-link" href="/company/support-overview" aria-label="Visit XcellHost customer support"><img src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost support"></a>
   </section>
-  <div class="h200-lead-form" id="h200LeadForm" hidden>
-   <form class="form" id="xgForm" novalidate>
-   <input name="name" placeholder="Full name *" required aria-label="Full name"><input name="company" placeholder="Company" aria-label="Company">
-   <input name="email" type="email" placeholder="Work email *" required aria-label="Work email"><input name="phone" type="tel" placeholder="Mobile *" required aria-label="Mobile">
-   <select name="plan" id="xgFPlan" aria-label="Plan"><option value="XG.H200.1-16">GPU Cloud Lite (XG.H200.1-16)</option><option value="XG.H200.1-24">GPU Cloud Standard (XG.H200.1-24)</option><option value="XG.H200.2-48">GPU Cloud Duo (XG.H200.2-48)</option><option value="XG.H200.4-96">GPU Cloud Quad (XG.H200.4-96)</option><option value="XG.H200.8-192">GPU Cloud HGX Node (XG.H200.8-192)</option><option>Not sure — help me size it</option></select>
-   <select name="term" aria-label="Term"><option>Hourly / PoC</option><option selected>Monthly</option><option>3 Months</option><option>6 Months</option><option>1 Year</option></select>
-   <textarea class="full" name="msg" rows="3" placeholder="What will you run? (e.g. fine-tune Llama 3 70B, render arch-viz in V-Ray)" aria-label="Workload"></textarea>
-   <input type="hidden" name="product" value="NVIDIA H200 Tensor Core GPU">
-   <button class="btn btn-primary full" type="submit" style="justify-content:center">Request H200 access →</button>
-   <small class="full">By submitting you agree to be contacted by XcellHost about this enquiry.</small>
-   <div class="ok-msg" id="xgOk">Thanks — our GPU team will be in touch shortly.</div>
-   </form>
-  </div>
 </div></div>
 
 </main><script>
@@ -1012,16 +991,6 @@ document.querySelectorAll("[data-insight]").forEach(function(button){button.addE
  document.getElementById("h200InsightsMessage").textContent=copy.message;
  link.textContent=copy.link;link.href=copy.href;
 })});
-function openLeadForm(){document.getElementById("h200LeadForm").hidden=false}
-document.querySelectorAll("[data-open-lead]").forEach(function(link){link.addEventListener("click",openLeadForm)});
-// lead form — set FORM_ENDPOINT to your backend / Zoho webhook to capture leads
-var FORM_ENDPOINT="",form=document.getElementById("xgForm");
-if(form)form.addEventListener("submit",function(ev){ev.preventDefault();var f=ev.target,ok=true;
- f.querySelectorAll("[required]").forEach(function(i){var bad=!i.value.trim()||(i.type==="email"&&!/^\S+@\S+\.\S+$/.test(i.value));i.style.borderColor=bad?"#E60012":"";if(bad)ok=false});
- if(!ok)return;var data={};new FormData(f).forEach(function(v,k){data[k]=v});data.source=location.pathname;
- function done(){document.getElementById("xgOk").style.display="block";f.querySelector("button[type=submit]").disabled=true}
- if(FORM_ENDPOINT){fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)}).then(done,done)}
- else{done();location.href="mailto:sales@xcellhost.cloud?subject="+encodeURIComponent("Enquiry: "+(data.product||document.title))+"&body="+encodeURIComponent(Object.keys(data).map(function(k){return k+": "+data[k]}).join("\n"))}});
 // illustrated H200 previews
 var previewDetail=document.getElementById("h200PreviewDetail");
 document.querySelectorAll(".h200-preview").forEach(function(button){button.addEventListener("click",function(){
@@ -1065,9 +1034,14 @@ function loop(t){if(vis)xgDraw(t/1000);if(!RM)requestAnimationFrame(loop)}reques
 var G={"slug": "h200", "plans": [{"code": "XG.H200.1-16", "gpus": 1, "vcpu": 16, "ram": 128, "nvme": 2000, "monthly": 211000, "hourly": 361, "label": "For single users & PoC · 1 GPU", "tier": "GPU Cloud Lite"}, {"code": "XG.H200.1-24", "gpus": 1, "vcpu": 24, "ram": 192, "nvme": 2000, "monthly": 228000, "hourly": 390, "label": "For single users & PoC · 1 GPU", "tier": "GPU Cloud Standard"}, {"code": "XG.H200.2-48", "gpus": 2, "vcpu": 48, "ram": 384, "nvme": 4000, "monthly": 456000, "hourly": 781, "label": "For teams & multi-GPU · 2 GPUs", "tier": "GPU Cloud Duo"}, {"code": "XG.H200.4-96", "gpus": 4, "vcpu": 96, "ram": 768, "nvme": 8000, "monthly": 912000, "hourly": 1562, "label": "For training & render farms · 4 GPUs", "tier": "GPU Cloud Quad"}, {"code": "XG.H200.8-192", "gpus": 8, "vcpu": 192, "ram": 1536, "nvme": 16000, "monthly": 1800000, "hourly": 3082, "label": "For large-scale training · 8 GPUs", "tier": "GPU Cloud HGX Node"}], "compare": {"GPU memory (GB)": [["H200", 141], ["H100", 80], ["A100 80GB", 80], ["L40S", 48]], "Bandwidth (GB/s)": [["H200", 4800], ["H100", 3350], ["A100 80GB", 2039], ["L40S", 864]], "FP16 Tensor (TFLOPS)": [["H200", 1979], ["H100", 1979], ["L40S", 733], ["A100 80GB", 624]]}};
 function inr(n){return "₹"+Math.round(n).toLocaleString("en-IN")}
 function setTerm(b){document.querySelectorAll("#xgTerm button").forEach(function(x){x.classList.toggle("is-on",x===b)});var d=+b.dataset.d,lbl=b.textContent.replace(/^(No Savings|Save [\d.]+%)/,"").trim();
- document.querySelectorAll(".plan").forEach(function(pl){var m=+pl.querySelector(".amt").dataset.m,v=m*(1-d/100);pl.querySelector(".amt").textContent=inr(v);pl.querySelector(".was").textContent=d?inr(m):"";pl.querySelector(".bill").textContent="+GST · "+(d?lbl+" term, billed monthly":"Monthly billing")})}
+ document.querySelectorAll(".plan").forEach(function(pl){var m=+pl.querySelector(".amt").dataset.m,v=m*(1-d/100);pl.querySelector(".amt").textContent=inr(v);pl.querySelector(".was").textContent=d?inr(m):"";pl.querySelector(".bill").textContent="+GST · "+(d?lbl+" term, billed monthly":"Monthly billing")});
+ document.querySelectorAll("[data-checkout-plan]").forEach(function(link){
+  const url=new URL(link.href);
+  url.searchParams.set("plan",link.dataset.checkoutPlan+"-"+b.dataset.checkoutTerm);
+  link.setAttribute("href",url.pathname+url.search);
+ });
+}
 document.querySelectorAll("#xgTerm button").forEach(function(b){b.onclick=function(){setTerm(b)}});
-document.querySelectorAll("[data-plan]").forEach(function(a){a.setAttribute("href","#h200LeadForm");a.addEventListener("click",function(){document.getElementById("h200LeadForm").hidden=false;document.getElementById("xgFPlan").value=a.dataset.plan})});
 var eP=document.getElementById("xgEPlan"),eH=document.getElementById("xgEH"),eD=document.getElementById("xgED");
 function est(){var p=G.plans[+eP.value],h=+eH.value,d=+eD.value;document.getElementById("xgEHo").textContent=h;document.getElementById("xgEDo").textContent=d;
  var pay=p.hourly*h*d,mon=p.monthly,yr=p.monthly*.9;document.getElementById("xgEPay").textContent=inr(pay);document.getElementById("xgEMon").textContent=inr(mon);document.getElementById("xgEYr").textContent=inr(yr);

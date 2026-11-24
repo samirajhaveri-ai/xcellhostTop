@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface ProPlan {
   code: string;
@@ -17,6 +18,7 @@ interface BillingTerm {
   label: string;
   badge: string;
   discount: number;
+  checkoutSuffix: string;
 }
 
 @Component({
@@ -27,13 +29,13 @@ interface BillingTerm {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RtxPro6000PricingComponent {
-  readonly quoteRequested = output<string>();
+  private readonly router = inject(Router);
 
   readonly terms: BillingTerm[] = [
-    { label: 'Monthly', badge: 'No Savings', discount: 0 },
-    { label: '3 Months', badge: 'Save 5%', discount: 0.05 },
-    { label: '6 Months', badge: 'Save 7.5%', discount: 0.075 },
-    { label: '1 Year', badge: 'Save 10%', discount: 0.1 },
+    { label: 'Monthly', badge: 'No Savings', discount: 0, checkoutSuffix: 'M' },
+    { label: '3 Months', badge: 'Save 5%', discount: 0.05, checkoutSuffix: 'C3' },
+    { label: '6 Months', badge: 'Save 7.5%', discount: 0.075, checkoutSuffix: 'C6' },
+    { label: '1 Year', badge: 'Save 10%', discount: 0.1, checkoutSuffix: 'C12' },
   ];
 
   readonly plans: ProPlan[] = [
@@ -86,7 +88,8 @@ export class RtxPro6000PricingComponent {
     this.daysPerMonth.set(Number((event.target as HTMLInputElement).value));
   }
 
-  requestPlan(plan: ProPlan): void {
-    this.quoteRequested.emit(`${plan.name} (${plan.code}), ${this.selectedTerm().label} billing, ${this.inr(this.discountedMonthly(plan))}/month + GST`);
+  buyPlan(plan: ProPlan): void {
+    const planCode = `XG-PRO6K-${plan.gpus}G-${plan.vcpu}C-${plan.memory}R-${this.selectedTerm().checkoutSuffix}`;
+    void this.router.navigate(['/rtx-pro-6000/checkout'], { queryParams: { plan: planCode } });
   }
 }
