@@ -6032,11 +6032,6 @@ class ProductPageComponent {
     this.overlay.open('callback');
   }
 
-  requestRtxProPlan(request: string): void {
-    this.topics.ask(`RTX PRO 6000 - ${request}`);
-    this.overlay.open('callback');
-  }
-
   requestRtx6000AdaPlan(request: string): void {
     this.topics.ask(`RTX 6000 Ada - ${request}`);
     this.overlay.open('callback');

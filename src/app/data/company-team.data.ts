@@ -57,6 +57,7 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
   AITeams: [
     { initials: 'AT', name: 'Advet Tambe', role: 'AI Engineer', image: '/assets/images/TEAMS PHOTO/Advet.png' },
     { initials: 'VC', name: 'Vishal Chaubey', role: 'Automation Engineer', image: '/assets/images/TEAMS PHOTO/vishal.png' },
+    { initials: 'SM', name: 'Sadiq Mohammad', role: 'Consultant', image: '/assets/images/TEAMS PHOTO/Sadiq.jpeg' },
     { initials: 'VC', name: 'AI Market Research Specialist', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'VC', name: 'AI Content Strategy& Copilot Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'VC', name: 'AI Paid Media& Ad Performance Agent', role: '', image: '/assets/images/Robot-enhanced.png' },

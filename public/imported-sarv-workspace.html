@@ -1496,7 +1496,7 @@ html[data-theme="dark"] .swx .pill,html[data-theme="dark"] .swx .att,html[data-t
           <div><b><span id="kInv">5</span><em>→</em>1</b><span>Vendor invoices</span></div>
           <div><b><span id="kAdm">5</span><em>→</em>1</b><span>Admin consoles</span></div>
         </div>
-        <div class="cc-a"><button class="btn btn-orange btn-block" type="button" id="ccUse">Configure this plan <span class="ar">→</span></button><button class="btn btn-line btn-block" type="button" id="ccDl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg> Download summary</button></div>
+        <div class="cc-a"><a class="btn btn-orange btn-block" id="ccUse" href="/xcellworkspace/checkout" target="_blank" rel="noopener" aria-label="Configure this plan (opens in a new tab or window)">Configure this plan <span class="ar" aria-hidden="true">→</span></a><button class="btn btn-line btn-block" type="button" id="ccDl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg> Download summary</button></div>
         <div class="cc-fine">Indicative · excl. 18% GST. XcellWorkSpace prices are placeholders until confirmed on your quotation.</div>
       </div>
     </div>
@@ -1780,7 +1780,23 @@ html[data-theme="dark"] .swx .pill,html[data-theme="dark"] .swx .att,html[data-t
 })();
 
 
-(function(){var open=XH.open;XH.open=function(id,opts){if(id==='xhCallback'){document.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic}));return;}open(id,opts);};XH.cart={add:function(item){var name=String(item.name||'').toLowerCase(),tier=name.indexOf('enterprise')>=0?'ENTERPRISE':name.indexOf('business')>=0?'BUSINESS':'STARTER',term=name.indexOf('yearly')>=0?'A':'M',params=new URLSearchParams({plan:'XLCS-XWS-'+tier+'-'+term,quantity:String(item.qty||1)});window.open('/xcellworkspace/checkout?'+params.toString(),'_blank','noopener');}};})();</script><script>
+(function(){
+  var open=XH.open;
+  XH.open=function(id,opts){if(id==='xhCallback'){document.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic}));return;}open(id,opts);};
+  function checkoutUrl(tier,term,quantity){
+    var params=new URLSearchParams({plan:'XLCS-XWS-'+tier.toUpperCase()+'-'+term,quantity:String(quantity)});
+    return '/xcellworkspace/checkout?'+params.toString();
+  }
+  XH.cart={
+    checkoutUrl:checkoutUrl,
+    add:function(item){
+      var name=String(item.name||'').toLowerCase();
+      var tier=name.includes('enterprise')?'enterprise':name.includes('business')?'business':'starter';
+      var term=name.includes('yearly')?'A':'M';
+      window.open(checkoutUrl(tier,term,item.qty||1),'_blank','noopener');
+    }
+  };
+})();</script><script>
 (function(){
   var XH=window.XH,$=XH.$,$$=XH.$$,reduce=XH.reduce;
   var NS='http://www.w3.org/2000/svg';
@@ -1906,7 +1922,7 @@ html[data-theme="dark"] .swx .pill,html[data-theme="dark"] .swx .att,html[data-t
   ];
   var cc=$('#cc');
   if(cc){
-    var box=$('#ccTools'),ccU=$('#ccUsers'),ccN=$('#ccUsersN'),stack=$('#ccStack'),one=$('#ccOne'),last=null,shownY=0,twY=null;
+    var box=$('#ccTools'),ccU=$('#ccUsers'),ccN=$('#ccUsersN'),ccUse=$('#ccUse'),stack=$('#ccStack'),one=$('#ccOne'),last=null,shownY=0,twY=null;
     box.insertAdjacentHTML('beforeend',TOOLS.map(function(t,j){
       return '<div class="cc-t'+(t.on?'':' off')+'" data-j="'+j+'"><label class="tgl"><input type="checkbox" data-j="'+j+'"'+(t.on?' checked':'')+' aria-label="'+t.n+'"><span class="sw"></span><span class="tn2"><span class="sw2" style="--c:'+t.c+'"></span><i>'+t.i+'</i><span><b>'+t.n+'</b><small>'+t.s+'</small></span></span></label>'+
         '<div class="pin"><span>₹</span><input type="number" min="0" max="'+(t.flat?200000:5000)+'" value="'+t.p+'" data-j="'+j+'" aria-label="'+t.n+' price"><em>'+(t.flat?'/ mo':'/ user')+'</em></div></div>';
@@ -1928,6 +1944,7 @@ html[data-theme="dark"] .swx .pill,html[data-theme="dark"] .swx .att,html[data-t
       var tier=T[need],sarv=tier.m*n,max=Math.max(now,sarv,1),diff=now-sarv;
       setT('ccUsersL',n+(n===1?' user':' users'));
       setT('ccNow',XH.inr(now));setT('ccSarv',XH.inr(sarv));setT('ccPlanL','XcellWorkSpace '+tier.n);
+      ccUse.href=XH.cart.checkoutUrl(tier.n,'M',n);
       segs.forEach(function(s,j){s.style.width=(costs[j]/max*100).toFixed(2)+'%';});
       one.style.width=(sarv/max*100).toFixed(2)+'%';
       var big=$('.cc-big',cc),neg=diff<0;big.classList.toggle('neg',neg);
@@ -1945,12 +1962,6 @@ html[data-theme="dark"] .swx .pill,html[data-theme="dark"] .swx .att,html[data-t
     ccN.addEventListener('input',function(){if(ccN.value!==''&&+ccN.value>=1){ccU.value=Math.min(500,Math.round(+ccN.value));ccCalc();}});
     ccN.addEventListener('blur',function(){ccN.value=users();ccU.value=ccN.value;ccCalc();});
     ccCalc();
-    $('#ccUse').addEventListener('click',function(){
-      var r=ccCalc();setTier(r.need);
-      var sN=$('#sSeatsN'),sR=$('#sSeats');if(sN&&sR){sN.value=r.n;sR.value=r.n;XH.fillRange&&XH.fillRange(sR);}
-      calc();var cf=$('#configure');if(cf){window.scrollTo({top:cf.getBoundingClientRect().top+scrollY-90,behavior:reduce?'auto':'smooth'});}
-      XH.flash($('#oTot'));XH.toast('Configurator set to '+r.tier.n+' · '+r.n+' users');
-    });
     $('#ccDl').addEventListener('click',function(){
       var r=ccCalc(),L=['XcellWorkSpace consolidation estimate — XcellHost','Users: '+r.n,'','Tools you pay for today (per month):'];
       TOOLS.forEach(function(t,j){if(r.costs[j])L.push('  - '+t.n+': '+XH.inr(r.costs[j]));});

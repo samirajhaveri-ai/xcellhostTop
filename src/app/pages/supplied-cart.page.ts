@@ -18,8 +18,24 @@ import { ActivatedRoute } from '@angular/router';
   `,
   styles: [`
     :host { display: block; width: 100%; min-width: 0; background: #f4f7fc; }
-    .supplied-cart-shell { display: block; width: 100%; min-width: 0; overflow: hidden; }
+    .supplied-cart-shell {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      overflow: clip;
+      overflow-anchor: none;
+    }
     iframe { display: block; width: 100%; min-width: 0; height: 1100px; border: 0; }
+    iframe.external-checkout {
+      --checkout-gutter: clamp(12px, 2vw, 24px);
+      box-sizing: border-box;
+      width: min(90rem, calc(100% - 2 * var(--checkout-gutter)));
+      height: max(16rem, calc(100dvh - var(--checkout-top, 0px) - var(--checkout-gutter)));
+      margin: var(--checkout-gutter) auto;
+      border: 1px solid #dce5f3;
+      border-radius: 12px;
+      background: #fff;
+    }
   `],
 })
 export class SuppliedCartPage implements OnDestroy {
@@ -83,28 +99,15 @@ export class SuppliedCartPage implements OnDestroy {
       // Zoho Billing is cross-origin, so its document cannot be inspected.
     }
 
-    if (!cartDocument?.body) {
-      // Zoho's hosted checkout reserves a large blank area above its card when
-      // embedded. Shift the existing viewport rather than making it taller;
-      // increasing its height causes Zoho to move the payment panel down again.
-      const crop = 272;
-      const cartHeight = Number.parseFloat(frame.dataset['cartHeight'] || '')
-        || Number.parseFloat(frame.style.height)
-        || frame.offsetHeight
-        || 1100;
-      frame.dataset['cartHeight'] = String(cartHeight);
-      frame.classList.add('external-checkout');
-      frame.style.marginTop = `-${crop}px`;
-      frame.style.height = `${Math.ceil(cartHeight)}px`;
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    const body = cartDocument?.body;
+    if (!body) {
+      this.fitHostedCheckout(frame);
       return;
     }
 
     frame.classList.remove('external-checkout');
-    frame.style.marginTop = '0';
-    const body = cartDocument?.body;
     const content = cartDocument?.querySelector<HTMLElement>('main');
-    if (!body || !content) return;
+    if (!content) return;
 
     // A checkout opened from pricing must not inherit the product page's
     // scroll position or start part-way down inside the embedded document.
@@ -116,14 +119,34 @@ export class SuppliedCartPage implements OnDestroy {
       const bottomMargin = Number.parseFloat(contentStyle?.marginBottom || '0') || 0;
       const contentBottom = content.getBoundingClientRect().bottom + (frame.contentWindow?.scrollY || 0);
       const cartHeight = Math.ceil(contentBottom + bottomMargin + 16);
-      frame.dataset['cartHeight'] = String(cartHeight);
       frame.style.height = `${cartHeight}px`;
     };
     this.observer = new ResizeObserver(resize);
     this.observer.observe(body);
     this.observer.observe(content);
     resize();
-    requestAnimationFrame(resize);
+  }
+
+  private fitHostedCheckout(frame: HTMLIFrameElement): void {
+    frame.classList.add('external-checkout');
+    frame.style.removeProperty('height');
+
+    // A fixed payment dialog fills its iframe. Size that viewport from the
+    // actual site header so focusing the dialog cannot scroll the header away.
+    const fit = () => {
+      const checkoutTop = Math.ceil(frame.getBoundingClientRect().top + window.scrollY);
+      frame.style.setProperty('--checkout-top', `${checkoutTop}px`);
+    };
+    fit();
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    this.observer = new ResizeObserver(fit);
+    const headerSections = frame.ownerDocument.querySelectorAll(
+      'xh-utility-bar > .utility, xh-promo-bar > .promo, xh-header > header',
+    );
+    for (const section of headerSections) this.observer.observe(section);
+    // Changes to the frame width can also change its responsive gutter.
+    if (frame.parentElement) this.observer.observe(frame.parentElement);
   }
 
   ngOnDestroy(): void {

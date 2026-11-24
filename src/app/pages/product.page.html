@@ -4156,7 +4156,7 @@
                 } @else if (slug() === 'rtx-8000') {
                   <xh-rtx-8000-pricing (quoteRequested)="requestRtxPlan($event)" />
                 } @else if (slug() === 'rtx-pro-6000') {
-                  <xh-rtx-pro-6000-pricing (quoteRequested)="requestRtxProPlan($event)">
+                  <xh-rtx-pro-6000-pricing>
                     <xh-gpu-lead-hero gpuLeadBanner [slug]="slug()" [productName]="v.name" />
                   </xh-rtx-pro-6000-pricing>
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {

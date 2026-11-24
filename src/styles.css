@@ -6653,3 +6653,9 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   white-space: nowrap;
   border: 0;
 }
+
+/* Keep fixed site launchers clear of the hosted checkout and payment dialog. */
+app-root:has(> xh-supplied-cart-page iframe.external-checkout)
+  :is(.contact-actions, .back-to-top, #cartFab, #cbTab, #botFab) {
+  display: none;
+}

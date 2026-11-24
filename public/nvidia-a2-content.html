@@ -3344,13 +3344,13 @@
               </p>
             </div>
             <div class="tabs" id="xgTerm" role="tablist">
-              <button type="button" data-t="monthly" data-d="0" class="is-on">
+              <button type="button" data-checkout-term="M" data-d="0" class="is-on">
                 <span class="sv">No Savings</span>Monthly</button
-              ><button type="button" data-t="3m" data-d="5">
+              ><button type="button" data-checkout-term="C3" data-d="5">
                 <span class="sv">Save 5%</span>3 Months</button
-              ><button type="button" data-t="6m" data-d="7.5">
+              ><button type="button" data-checkout-term="C6" data-d="7.5">
                 <span class="sv">Save 7.5%</span>6 Months</button
-              ><button type="button" data-t="12m" data-d="10">
+              ><button type="button" data-checkout-term="C12" data-d="10">
                 <span class="sv">Save 10%</span>1 Year
               </button>
             </div>
@@ -3418,9 +3418,9 @@
                   ><strong class="amt" data-m="15700">₹15,700</strong
                   ><a
                     class="btn btn-blue"
-                    href="/contact?service=nvidia-a2"
+                    href="/nvidia-a2/checkout?plan=XG-A2-1G-8C-32R-M"
                     target="_top"
-                    data-plan="XG.A2.1-8"
+                    data-checkout-plan="XG-A2-1G-8C-32R"
                     >Buy Now →</a
                   ><small class="bill">+GST · Monthly billing</small
                   ><span class="hr">≈ ₹27/hr on demand</span>
@@ -3489,9 +3489,9 @@
                   ><strong class="amt" data-m="31300">₹31,300</strong
                   ><a
                     class="btn btn-blue"
-                    href="/contact?service=nvidia-a2"
+                    href="/nvidia-a2/checkout?plan=XG-A2-2G-16C-64R-M"
                     target="_top"
-                    data-plan="XG.A2.2-16"
+                    data-checkout-plan="XG-A2-2G-16C-64R"
                     >Buy Now →</a
                   ><small class="bill">+GST · Monthly billing</small
                   ><span class="hr">≈ ₹54/hr on demand</span>
@@ -8134,16 +8134,16 @@
             pl.querySelector('.bill').textContent =
               '+GST · ' + (d ? lbl + ' term, billed monthly' : 'Monthly billing');
           });
+          document.querySelectorAll('[data-checkout-plan]').forEach(function (link) {
+            const url = new URL(link.href);
+            url.searchParams.set('plan', link.dataset.checkoutPlan + '-' + b.dataset.checkoutTerm);
+            link.setAttribute('href', url.pathname + url.search);
+          });
         }
         document.querySelectorAll('#xgTerm button').forEach(function (b) {
           b.onclick = function () {
             setTerm(b);
           };
-        });
-        document.querySelectorAll('[data-plan]').forEach(function (a) {
-          a.addEventListener('click', function () {
-            document.getElementById('xgFPlan').value = a.dataset.plan;
-          });
         });
         var eP = document.getElementById('xgEPlan'),
           eH = document.getElementById('xgEH'),
