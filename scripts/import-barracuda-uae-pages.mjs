@@ -33,11 +33,15 @@ for (const [sourceName, destinationName] of mappings) {
   const sourcePath = path.resolve(sourceDirectory, sourceName);
   const source = fs.readFileSync(sourcePath, 'utf8');
   const documentOpen = source.match(/<!doctype[^>]*>\s*<html[^>]*>/i)?.[0];
-  const head = source.match(/<head\b[\s\S]*?<\/head>/i)?.[0];
+  let head = source.match(/<head\b[\s\S]*?<\/head>/i)?.[0];
   const mainMatch = source.match(/<main\b([^>]*)>([\s\S]*?)<\/main>/i);
 
   if (!documentOpen || !head || !mainMatch) {
     throw new Error(`Could not find the document shell and main content in ${sourcePath}.`);
+  }
+
+  if (['sama-compliance.html', 'nesa-compliance.html'].includes(destinationName)) {
+    head = head.replace('</head>', '<link rel="stylesheet" href="/assets/styles/international-compliance-headings.css"></head>');
   }
 
   // Keep the complete FAQ, then let Angular supply Insights and the shared
