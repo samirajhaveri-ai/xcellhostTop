@@ -644,6 +644,15 @@ export const routes: Routes = [
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
   { path: 'bare-metal-servers/checkout', title: 'Bare Metal Servers Cart | XcellHost', data: { cartAsset: 'cart-bare-metal-servers.html', cartLabel: 'Bare Metal Servers' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
   { path: 'gpu-servers/checkout', title: 'GPU Servers Cart | XcellHost', data: { cartAsset: 'cart-gpu-servers.html', cartLabel: 'GPU Servers' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'rtx-pro-6000/checkout', title: 'NVIDIA RTX PRO 6000 Cart | XcellHost', data: { cartAsset: 'cart-rtx-pro-6000.html', cartLabel: 'NVIDIA RTX PRO 6000' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'nvidia-a2/checkout', title: 'NVIDIA A2 Cart | XcellHost', data: { cartAsset: 'cart-nvidia-a2.html', cartLabel: 'NVIDIA A2' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  { path: 'nvidia-l4/checkout', title: 'NVIDIA L4 Cart | XcellHost', data: { cartAsset: 'cart-nvidia-l4.html', cartLabel: 'NVIDIA L4' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
+  {
+    path: 'nvidia-l40s/checkout',
+    title: 'NVIDIA L40S Cart | XcellHost',
+    data: { cartAsset: 'cart-nvidia-l40s.html', cartLabel: 'NVIDIA L40S' },
+    loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage),
+  },
   { path: 'zoho-workspace/checkout', title: 'Zoho Workspace Cart | XcellHost', data: { cartAsset: 'cart-zoho-workspace.html', cartLabel: 'Zoho Workspace' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
   { path: 'microsoft-365-smb/checkout', title: 'Microsoft 365 SMB Cart | XcellHost', data: { cartAsset: 'cart-microsoft-365-smb.html', cartLabel: 'Microsoft 365 SMB' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
   { path: 'google-workspace/checkout', title: 'Google Workspace Cart | XcellHost', data: { cartAsset: 'cart-google-workspace.html', cartLabel: 'Google Workspace' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
@@ -1553,6 +1562,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   { path: 'nvidia-b300-nodes', loadComponent: () => import('./pages/nvidia-b300.page').then((m) => m.NvidiaB300Page) },
+  { path: 'nvidia-h200/checkout', title: 'NVIDIA H200 Cart | XcellHost', data: { cartAsset: 'cart-nvidia-h200.html', cartLabel: 'NVIDIA H200' }, loadComponent: () => import('./pages/supplied-cart.page').then(m => m.SuppliedCartPage) },
   { path: 'nvidia-h200', loadComponent: () => import('./pages/nvidia-h200.page').then((m) => m.NvidiaH200Page) },
   {
     path: 'cloud-devops-services',

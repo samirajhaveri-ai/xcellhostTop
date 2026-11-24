@@ -58,7 +58,7 @@
         <div class="rtx-plan-action">
           @if (selectedTerm().discount > 0) { <del>{{ inr(plan.monthly) }}</del> }
           <strong>{{ inr(discountedMonthly(plan)) }}</strong>
-          <button type="button" (click)="requestPlan(plan)">Buy Now <span aria-hidden="true">→</span></button>
+          <button type="button" (click)="buyPlan(plan)">Buy Now <span aria-hidden="true">→</span></button>
           <small>+GST · {{ billingLabel() }}</small>
           <span class="rtx-hourly">≈ {{ inr(plan.hourly) }}/hr on demand</span>
         </div>
