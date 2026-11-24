@@ -3801,14 +3801,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "AI",
             "title": "AI Chat Bot",
             "body": "Answer customer questions with an AI chat assistant",
-            "image": "/assets/images/menu-ai-ai-chat-bot-v1.png",
+            "image": "/assets/images/menu-ai-ai-chat-bot-v2.jpeg",
             "link": "/ai-chat-bot"
           },
           {
             "label": "AI",
             "title": "AI Receptionist",
             "body": "Handle incoming calls and appointment bookings with AI",
-            "image": "/assets/images/menu-ai-ai-receptionist-v1.png",
+            "image": "/assets/images/menu-ai-ai-receptionist-v2.jpeg",
             "link": "/ai-receptionist"
           }
         ],
@@ -3868,14 +3868,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "AI",
             "title": "AI App Builder",
             "body": "Create AI-powered applications for your business",
-            "image": "/assets/images/menu-ai-ai-app-builder-v1.png",
+            "image": "/assets/images/menu-ai-ai-app-builder-v2.jpeg",
             "link": "/ai-app-builder"
           },
           {
             "label": "AI",
             "title": "AI IDE Lab",
             "body": "Develop and test AI projects in a dedicated workspace",
-            "image": "/assets/images/menu-ai-ai-ide-lab-v1.png",
+            "image": "/assets/images/menu-ai-ai-ide-lab-v2.jpeg",
             "link": "/ai-ide-lab"
           }
         ],
@@ -3917,14 +3917,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "AI",
             "title": "Synapsem-AI Training Integrated Program",
             "body": "Build practical AI skills through a structured training program",
-            "image": "/assets/images/menu-ai-ai-training-integrated-v1.png",
+            "image": "/assets/images/menu-ai-ai-training-integrated-v2.jpeg",
             "link": "/synapsem-ai-training-integrated-program"
           },
           {
             "label": "AI",
             "title": "Synapsem-AI Training Live Online",
             "body": "Learn AI through live, instructor-led online sessions",
-            "image": "/assets/images/menu-ai-ai-training-online-v1.png",
+            "image": "/assets/images/menu-ai-ai-training-online-v2.jpeg",
             "link": "/synapsem-ai-training-live-online"
           }
         ],
@@ -4004,14 +4004,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "AI",
             "title": "AI App Builder",
             "body": "Create AI-powered applications for your business",
-            "image": "/assets/images/menu-ai-ai-app-builder-v1.png",
+            "image": "/assets/images/menu-ai-ai-app-builder-v2.jpeg",
             "link": "/ai-app-builder"
           },
           {
             "label": "AI",
             "title": "AI Website Builder",
             "body": "Create business websites with AI-assisted design tools",
-            "image": "/assets/images/menu-ai-ai-website-builder-v1.png",
+            "image": "/assets/images/menu-ai-ai-website-builder-v2.jpeg",
             "link": "/ai-website-builder"
           }
         ],
@@ -4047,14 +4047,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "AI",
             "title": "AI Red Teaming Services",
             "body": "Test AI systems for prompt attacks and unsafe responses",
-            "image": "/assets/images/menu-ai-ai-red-teaming-v1.png",
+            "image": "/assets/images/menu-ai-ai-red-teaming-v2.jpeg",
             "link": "/ai-red-teaming-services"
           },
           {
             "label": "AI",
             "title": "AI Security Assessment",
             "body": "Identify vulnerabilities and risks in your AI systems",
-            "image": "/assets/images/menu-ai-ai-security-assessment-v1.png",
+            "image": "/assets/images/menu-ai-ai-security-assessment-v2.jpeg",
             "link": "/ai-security-assessment"
           }
         ],
@@ -4101,14 +4101,14 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "AI",
             "title": "AI App Builder",
             "body": "Create AI-powered applications for your business",
-            "image": "/assets/images/menu-ai-ai-app-builder-v1.png",
+            "image": "/assets/images/menu-ai-ai-app-builder-v2.jpeg",
             "link": "/ai-app-builder"
           },
           {
             "label": "AI",
             "title": "AI Website Builder",
             "body": "Create business websites with AI-assisted design tools",
-            "image": "/assets/images/menu-ai-ai-website-builder-v1.png",
+            "image": "/assets/images/menu-ai-ai-website-builder-v2.jpeg",
             "link": "/ai-website-builder"
           }
         ],
@@ -4143,7 +4143,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "AI",
             "title": "OpenAI Managed Services",
             "body": "Get help deploying and managing OpenAI solutions",
-            "image": "/assets/images/menu-ai-openai-managed-v1.png",
+            "image": "/assets/images/menu-ai-openai-managed-v2.jpeg",
             "link": "/openai-managed-services"
           }
         ],
@@ -5861,31 +5861,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Cloud infrastructure, data protection and security for government workloads and public services."
               }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "By UAE Govt",
-        "label": "By UAE Govt",
-        "on": false,
-        "groups": [
-          {
-            "heading": "By UAE GOVT",
-            "items": [
-              {
-                "title": "SAMA Compliance",
-                "href": "/sama-compliance",
-                "pill": null,
-                "desc": "SAMA expects every bank, insurer and finance company to run cyber security at maturity level 3 or higher."
-              },
-              {
-                "title": "NESA Compliance",
-                "href": "/nesa-compliance",
-                "pill": null,
-                "desc": "We map your controls, close P1 gaps first and keep evidence current for NESA audits."
-              },
-
             ]
           }
         ]
