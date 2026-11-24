@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
     </main>
   `,
   styles: [`
-    :host { display: block; width: 100%; min-width: 0; background: #f4f7fc; }
+    :host { display: block; width: 100%; min-width: 0; }
     .supplied-cart-shell {
       display: block;
       width: 100%;
@@ -32,9 +32,6 @@ import { ActivatedRoute } from '@angular/router';
       width: min(90rem, calc(100% - 2 * var(--checkout-gutter)));
       height: max(16rem, calc(100dvh - var(--checkout-top, 0px) - var(--checkout-gutter)));
       margin: var(--checkout-gutter) auto;
-      border: 1px solid #dce5f3;
-      border-radius: 12px;
-      background: #fff;
     }
   `],
 })
