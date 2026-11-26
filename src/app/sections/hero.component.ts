@@ -80,8 +80,12 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     title: 'AI-Powered',
     accent: 'Cloud Infrastructure',
     titleEnd: 'Without the Enterprise Price Tag',
+
     supportingLine: 'Sovereign-Ready Cloud Infrastructure Built in India',
     description: 'AceCloud is an Indian cloud provider for AI and production workloads, offering GPU servers, Kubernetes, compute, object storage and managed databases with INR billing, no lock-in and up to 60% lower costs than hyperscalers.',
+
+    description: 'XcellHost is an Indian cloud provider for AI and production workloads, offering GPU servers, Kubernetes, compute, object storage and managed databases with INR billing, no lock-in and up to 60% lower costs than hyperscalers.',
+
     spotlight: 'free migration · 15-day guarantee',
     primaryCta: 'Explore services',
     primaryHref: '#flagship',
