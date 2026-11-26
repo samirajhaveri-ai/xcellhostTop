@@ -2035,19 +2035,22 @@ interface ProductTourSlide {
       justify-content: center; align-items: center; gap: 24px; padding-inline: 24px;
     }
     #ppage.ai-receptionist-page > .pp-hero > .wrap {
-      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+      grid-column: 1; grid-row: 1; width: 100%; min-width: 0; margin: 0; padding: 0;
     }
     #ppage.ai-receptionist-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
-    #ppage.ppage.ai-receptionist-page > .pp-hero > .pph-scene.ai-receptionist-hero-art {
-      position: relative; inset: auto; grid-column: 2; grid-row: 1;
-      display: block; width: 100%; max-width: 550px; height: auto; max-height: none;
-      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4;
+    #ppage.ai-receptionist-page .pp-hero #ppTitle { white-space: normal; }
+    #ppage.ai-receptionist-page > .pp-hero > .ai-receptionist-hero-art {
+      position: relative; grid-column: 2; grid-row: 1;
+      width: 100%; min-width: 0; max-width: 550px; z-index: 4;
     }
     @media (max-width: 1000px) {
       #ppage.ai-receptionist-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
-      #ppage.ppage.ai-receptionist-page > .pp-hero > .pph-scene.ai-receptionist-hero-art {
+      #ppage.ai-receptionist-page > .pp-hero > .ai-receptionist-hero-art {
         grid-column: 1; grid-row: 2; justify-self: center;
       }
+    }
+    @media (max-width: 600px) {
+      #ppage.ai-receptionist-page > .pp-hero { padding-inline: 20px; }
     }
     #ppage.managed-mongodb-page > .pp-hero {
       display: grid;

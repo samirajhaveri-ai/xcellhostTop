@@ -154,9 +154,9 @@ export class CompanyPage {
 
   readonly salesTeam = COMPANY_TEAM.salesTeam;
   
-  readonly marketing = COMPANY_TEAM.marketing;
+  readonly marketing = COMPANY_TEAM.marketing.filter(member => member.name !== 'Aliza Ghori');
 
-  readonly AITeams = COMPANY_TEAM.AITeams;
+  readonly AITeams = COMPANY_TEAM.AITeams.filter(member => member.name !== 'Advet Tambe');
 
   readonly developers = COMPANY_TEAM.developers;
 

@@ -15,6 +15,7 @@ import { RichProduct, DeepContent } from './models';
  * Only the first part is used in the hero brand heading.
  */
 export const PRODUCT_BRAND_LINES: Record<string, string> = {
+  "AI Receptionist": "XcellAI | AI Receptionist",
   "Bio Link + Digital Visiting Card": "XcellMarket | Bio Link + Digital Visiting Card",
   "Smart QR & NFC Automation": "XcellMarket | Smart QR & NFC Automation",
   "AI Review MagicQR": "XcellMarket | AI Review MagicQR",

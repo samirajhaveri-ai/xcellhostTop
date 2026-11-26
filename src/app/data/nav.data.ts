@@ -6364,7 +6364,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/druva-certifications"
               },
               {
-                "title": "Veeam Certifications",
+                "title": "Veeam Certifications",  
                 "pill": null,
                 "desc": "Build your future with XcellHost",
                 "href": "/veeam-certifications"

@@ -72,7 +72,7 @@ export class ContactPage implements AfterViewInit, OnDestroy {
       city: 'Delhi',
       country: 'India',
       label: 'India office',
-      company: 'MONARCH INTERNATIONAL',
+      company: 'XcellHost Cloud Services Pvt. Ltd.',
       address: '13/16, First Floor, West Patel Nagar, New Delhi 110008, India',
       contactPerson: 'Dhiraj Ahuja',
       phoneDisplay: '+91 97171 12272',
