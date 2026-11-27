@@ -165,6 +165,7 @@ type InteractiveContentSource =
   | 'bandwidth'
   | 'network-security'
   | 'akamai-cloud'
+  | 'smime-certificates'
   | 'ip-address-mgmt-ipam'
   | 'data-security-posture-mgmt'
   | 'commvault-overview'
@@ -173,6 +174,10 @@ type InteractiveContentSource =
   | 'naam-ai-caller-id'
   | 'website-design-packages'
   | 'spain-go-to-market-strategy'
+  | 'senegal-go-to-market-strategy'
+  | 'angola-go-to-market-strategy'
+  | 'fiji-go-to-market-strategy'
+  | 'trinidad-and-tobago-go-to-market-strategy'
   | 'russia-go-to-market-strategy'
   | 'france-go-to-market-strategy'
   | 'japan-go-to-market-strategy'
@@ -492,6 +497,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'bandwidth': '/imported-bandwidth.html',
     'network-security': '/imported-network-security.html',
     'akamai-cloud': '/imported-akamai-cloud.html',
+    'smime-certificates': '/imported-smime-certificates.html',
     'ip-address-mgmt-ipam': '/imported-ip-address-mgmt-ipam.html',
     'data-security-posture-mgmt': '/imported-data-security-posture-mgmt.html',
     'commvault-overview': '/imported-commvault-overview.html',
@@ -500,6 +506,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'naam-ai-caller-id': '/imported-naam-ai-caller-id.html',
     'website-design-packages': '/imported-website-design-packages.html',
     'spain-go-to-market-strategy': '/imported-spain-go-to-market-strategy.html',
+    'senegal-go-to-market-strategy': '/imported-senegal-go-to-market-strategy.html',
+    'angola-go-to-market-strategy': '/imported-angola-go-to-market-strategy.html',
+    'fiji-go-to-market-strategy': '/imported-fiji-go-to-market-strategy.html',
+    'trinidad-and-tobago-go-to-market-strategy': '/imported-trinidad-and-tobago-go-to-market-strategy.html',
     'russia-go-to-market-strategy': '/imported-russia-go-to-market-strategy.html',
     'france-go-to-market-strategy': '/imported-france-go-to-market-strategy.html',
     'japan-go-to-market-strategy': '/imported-japan-go-to-market-strategy.html',
@@ -836,6 +846,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'bandwidth': 'Bandwidth',
     'network-security': 'Network & Security',
     'akamai-cloud': 'Akamai Cloud',
+    'smime-certificates': 'S/MIME Certificates',
     'ip-address-mgmt-ipam': 'IP Address Management (IPAM)',
     'data-security-posture-mgmt': 'Data Security Posture Management',
     'commvault-overview': 'Commvault',
@@ -844,6 +855,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'naam-ai-caller-id': 'Naam AI Caller ID',
     'website-design-packages': 'Website Design Packages',
     'spain-go-to-market-strategy': 'Spain Go-to-Market Strategy',
+    'senegal-go-to-market-strategy': 'Senegal Go-to-Market Strategy',
+    'angola-go-to-market-strategy': 'Angola Go-to-Market Strategy',
+    'fiji-go-to-market-strategy': 'Fiji Go-to-Market Strategy',
+    'trinidad-and-tobago-go-to-market-strategy': 'Trinidad and Tobago Go-to-Market Strategy',
     'russia-go-to-market-strategy': 'Russia Go-to-Market Strategy',
     'france-go-to-market-strategy': 'France Go-to-Market Strategy',
     'japan-go-to-market-strategy': 'Japan Go-to-Market Strategy',
@@ -1213,13 +1228,14 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'register-a-domain-name' ? 'Register A Domain Name'
         : this.source === 'media-kit' ? 'Media Kit'
         : this.source.startsWith('faceoff-') ? this.sourceTitles[this.source]
-        : (this.source === 'ssl-tools' || this.source === 'endpoint-security' || this.source === 'web-application-firewall' || this.source === 'directconnect' || this.source === 'cloudconnect' || this.source === 'public-ip' || this.source === 'bandwidth' || this.source === 'network-security' || this.source === 'smb-digital-transformation' || this.source === 'commvault-overview' || this.source === 'akamai-cloud' || this.source === 'ip-address-mgmt-ipam' || this.source === 'data-security-posture-mgmt' || this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'spain-go-to-market-strategy' || this.source === 'france-go-to-market-strategy' || this.source === 'russia-go-to-market-strategy') ? this.sourceTitles[this.source]
+        : (this.source === 'ssl-tools' || this.source === 'endpoint-security' || this.source === 'web-application-firewall' || this.source === 'directconnect' || this.source === 'cloudconnect' || this.source === 'public-ip' || this.source === 'bandwidth' || this.source === 'network-security' || this.source === 'smb-digital-transformation' || this.source === 'commvault-overview' || this.source === 'akamai-cloud' || this.source === 'ip-address-mgmt-ipam' || this.source === 'data-security-posture-mgmt' || this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'spain-go-to-market-strategy' || this.source === 'france-go-to-market-strategy' || this.source === 'senegal-go-to-market-strategy' || this.source === 'angola-go-to-market-strategy' || this.source === 'fiji-go-to-market-strategy' || this.source === 'trinidad-and-tobago-go-to-market-strategy' || this.source === 'russia-go-to-market-strategy') ? this.sourceTitles[this.source]
         : this.source === 'career-handbook' ? 'Career Handbook'
         : this.source === 'secure-file-transfer' ? 'Secure File Transfer'
         : this.source === 'eccouncil-services' ? 'EC-Council Programs'
         : this.source === 'podcast-catalog' ? 'The XcellHost Podcast'
         : this.source === 'nigeria-ndpa' ? 'Nigeria Data Protection Act (NDPA)'
         : this.source === 'digicert-catalogue' ? 'DigiCert SSL Certificates'
+        : this.source === 'smime-certificates' ? 'S/MIME Certificates'
         : this.source.startsWith('ai-training-') ? this.sourceTitles[this.source]
         : this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
@@ -1398,7 +1414,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source === 'ssl-tools' || this.source === 'endpoint-security' || this.source === 'web-application-firewall' || this.source === 'directconnect' || this.source === 'cloudconnect' || this.source === 'public-ip' || this.source === 'bandwidth' || this.source === 'network-security' || this.source === 'smb-digital-transformation' || this.source === 'commvault-overview' || this.source === 'akamai-cloud' || this.source === 'ip-address-mgmt-ipam' || this.source === 'data-security-posture-mgmt' || this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source === 'trinidad-and-tobago-go-to-market-strategy' || this.source === 'senegal-go-to-market-strategy' || this.source === 'angola-go-to-market-strategy' || this.source === 'fiji-go-to-market-strategy' || this.source === 'ssl-tools' || this.source === 'endpoint-security' || this.source === 'web-application-firewall' || this.source === 'directconnect' || this.source === 'cloudconnect' || this.source === 'public-ip' || this.source === 'bandwidth' || this.source === 'network-security' || this.source === 'smb-digital-transformation' || this.source === 'commvault-overview' || this.source === 'akamai-cloud' || this.source === 'ip-address-mgmt-ipam' || this.source === 'data-security-posture-mgmt' || this.source === 'b2b-data-enrichment' || this.source === 'naam-ai-caller-id' || this.source === 'website-design-packages' || this.source === 'eccouncil-services' || this.source === 'podcast-catalog' || this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);

@@ -5688,6 +5688,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Cloud, security, AI and training strategy for France, with sector insights and revenue modelling."
               },
               {
+                "title": "Senegal Go-to-Market Strategy", "href": "/senegal-go-to-market-strategy", "pill": null, "desc": "Cloud, security, AI and training strategy for Senegal, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Angola Go-to-Market Strategy", "href": "/angola-go-to-market-strategy", "pill": null, "desc": "Cloud, security, AI and training strategy for Angola, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Fiji Go-to-Market Strategy", "href": "/fiji-go-to-market-strategy", "pill": null, "desc": "Cloud, security, AI and training strategy for Fiji, with sector insights and revenue modelling."
+              },
+              {
+                "title": "Trinidad and Tobago Go-to-Market Strategy", "href": "/trinidad-and-tobago-go-to-market-strategy", "pill": null, "desc": "Cloud, security, AI and training strategy for Trinidad and Tobago, with sector insights and revenue modelling."
+              },
+              {
                 "title": "Russia Go-to-Market Strategy",
                 "href": "/russia-go-to-market-strategy",
                 "pill": null,
