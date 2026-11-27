@@ -1,0 +1,28 @@
+html, body { height: auto; min-height: 0; }
+body { overflow-x: clip; }
+h1, h2, h3, h4, h5, h6 { text-transform: capitalize; }
+.rv, .benef .rv:not(.in) { opacity: 1; transform: none; }
+.hero .wrap > *, .stage, .cfg > *, .demo > * { min-width: 0; }
+.hero h1 { font-size: clamp(23px, 2.75vw, 38px); white-space: nowrap; }
+.lh-ctas { display: flex; flex-wrap: wrap; gap: 8px; }
+.lh-ctas .btn { white-space: nowrap; }
+.lh-ask { gap: 6px; padding: 10px 12px; border: 1px solid #ffffff30; border-radius: 12px; background: #ffffff10; }
+.lh-ask .ask-label { color: white; font: 600 11px var(--mono); }
+.lh-ask a { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; background: #fff; color: #092448; border: 0; border-radius: 6px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.lh-ask a::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #10a37f; }
+.lh-ask a:nth-of-type(2)::before { background: #d97757; }
+.lh-ask a:nth-of-type(3)::before { background: #20808d; }
+.lh-ask a:nth-of-type(4)::before { background: #4285f4; }
+.lh-ask a:nth-of-type(5)::before { background: #8265ff; }
+.smime-powered { display: flex; align-items: center; gap: 12px; margin-top: 16px; color: #c4d2eb; font: 600 10px var(--mono); letter-spacing: .08em; }
+.smime-powered img { object-fit: contain; background: white; border-radius: 4px; padding: 4px 8px; width: 104px; height: 32px; }
+.sub { position: static; }
+#faq .faq { max-width: none; }
+#faq .q { margin: 0; border: 1px solid #d8e3f4; border-radius: 12px; background: #fff; }
+#faq .q button { font-size: 15px; }
+#faq .q button:focus-visible { outline: 2px solid #06f; outline-offset: 2px; border-radius: 12px; }
+#faq .q.open { border-color: #06f; }
+#faq .q.open button { color: #06f; }
+#faq .a p { font-size: 14px; line-height: 1.7; }
+@media (min-width: 1200px) { .lh-ask { flex-wrap: nowrap; gap: 5px; padding: 10px 8px; } .lh-ask a { padding: 6px; font-size: 10px; } .lh-ask .ask-label { font-size: 10px; } }
+@media (max-width: 480px) { .hero h1 { font-size: clamp(19px, 5.7vw, 27px); letter-spacing: -.04em; } .lh-ask .ask-label { flex-basis: 100%; } }

@@ -1,0 +1,754 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S/MIME Certificates | XcellHost</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"><style>
+/* ===== XcellHost v2 tokens ===== */
+:root{--blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--red:#c0392b;--green:#12a150;
+--bg:#fff;--soft:#F4F6FA;--card:#fff;--ink:#0B132B;--mut:#56607a;--line:#E2E7F0;
+--hd:'Sora',system-ui,sans-serif;--bd:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--r:16px}
+html[data-theme="dark"]{--bg:#0B132B;--soft:#111C3A;--card:#131F40;--ink:#F2F5FB;--mut:#A9B4CC;--line:#26345C}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;font-family:var(--bd);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img,svg{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.ic{width:1.15em;height:1.15em;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3,h4{font-family:var(--hd);line-height:1.15;margin:0;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:12px;border:2px solid transparent;font-family:var(--hd);font-weight:600;font-size:15px;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-o{background:var(--orange);color:#0B132B}.btn-o:hover{box-shadow:0 10px 24px rgba(255,138,0,.35)}
+.btn-b{background:var(--blue);color:#fff}.btn-b:hover{box-shadow:0 10px 24px rgba(0,102,255,.3)}
+.btn-g{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:#fff}
+.btn-l{border-color:var(--line);color:var(--ink);background:var(--card)}
+.btn-w{background:#25D366;color:#06301a}
+/* progress */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--orange);width:0;z-index:200}
+/* utility + promo + header */
+.util{background:var(--navy);color:#C9D2E6;font-size:12.5px}
+.util .wrap{display:flex;gap:18px;align-items:center;justify-content:space-between;min-height:36px}
+.util nav{display:flex;gap:16px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}.util nav::-webkit-scrollbar{display:none}
+.util a:hover{color:#fff}.util .r{display:flex;gap:14px;align-items:center;white-space:nowrap}
+#themeBtn{background:none;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:8px;padding:4px 8px;display:inline-flex}
+.promo{background:var(--blue);color:#fff;font-size:13.5px;text-align:center;padding:8px 16px}
+.promo b{background:var(--orange);color:#0B132B;border-radius:6px;padding:2px 8px;font-family:var(--mono);font-size:11px;margin:0 8px}
+.promo a{text-decoration:underline;font-weight:600}
+header.hd{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:22px;min-height:68px}
+.logo{font-family:var(--hd);font-weight:800;font-size:25px;letter-spacing:-.03em;line-height:1;display:flex;flex-direction:column}
+.logo .x{color:var(--blue)}.logo .h{color:var(--red)}.logo sup{font-size:10px}
+.logo small{font-family:var(--mono);font-weight:500;font-size:9.5px;letter-spacing:.14em;color:var(--mut);margin-top:3px}
+.nav{display:flex;gap:4px;margin-left:8px;flex:1}
+.nav .mi{position:relative}
+.nav .mi>a{display:block;padding:22px 8px;font-weight:500;font-size:14px;white-space:nowrap}
+.nav .mi>a:hover,.nav .mi.on>a{color:var(--blue)}
+.mega{position:absolute;top:100%;left:0;min-width:270px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 22px 50px rgba(11,19,43,.16);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}
+.mi:hover .mega,.mi:focus-within .mega{opacity:1;visibility:visible;transform:none}
+.mega a{display:block;padding:9px 12px;border-radius:9px;font-size:14px}.mega a:hover{background:var(--soft);color:var(--blue)}
+.hd .act{display:flex;gap:10px;align-items:center;margin-left:auto}
+.icbtn{background:none;border:1px solid var(--line);border-radius:10px;width:40px;height:40px;display:grid;place-items:center;color:var(--ink);position:relative}
+.icbtn i{position:absolute;top:-6px;right:-6px;background:var(--orange);color:#0B132B;font:600 11px var(--mono);border-radius:99px;min-width:18px;height:18px;display:grid;place-items:center;font-style:normal}
+#burger{display:none}
+@media(max-width:1200px){.nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;padding:8px 20px 16px;margin:0}
+.nav.open{display:flex}.nav .mi>a{padding:12px 4px}.mega{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;padding:0 0 6px 10px;display:none}.mi.on .mega{display:block}
+#burger{display:grid}.hd .act .btn{display:none}.util nav{display:none}}
+/* hero */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:44px 0 64px}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.crumb{font:500 12px var(--mono);letter-spacing:.06em;color:#9FB0D0;margin-bottom:20px}.crumb a:hover{color:#fff}
+.hero h1{font-size:clamp(30px,4.2vw,50px);font-weight:800}
+.hero h1 .x{color:#fff}.hero h1 .brd{color:#ff5a47}.hero h1 .dv{color:var(--orange);margin:0 .22em;font-weight:500}.hero h1 .nm{display:inline}
+.lh-tag{font-family:var(--hd);font-weight:700;font-size:clamp(18px,2vw,23px);margin:18px 0 8px}
+.lh-tag2{color:#C3CDE3;margin:0 0 14px;max-width:56ch}
+.lh-type{font:500 14px var(--mono);color:var(--orange);min-height:22px;margin-bottom:18px}
+.lh-type::after{content:"▍";animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.lh-points{list-style:none;padding:0;margin:0 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+.lh-points li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:#E6ECF8}
+.lh-points .ic{color:var(--orange);margin-top:3px}
+.lh-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.lh-ask{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:#9FB0D0}
+.lh-ask a{border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:5px 12px;color:#fff;font-size:12.5px;transition:.2s}
+.lh-ask a:hover{background:#fff;color:var(--navy)}
+/* hero stage */
+.stage{position:relative;perspective:1200px;min-height:440px}
+.lh-tilt{transform-style:preserve-3d;transition:transform .25s ease-out}
+.mailwin{background:#fff;color:#0B132B;border-radius:18px;box-shadow:0 40px 90px rgba(0,0,0,.45);overflow:hidden;max-width:470px;margin:20px auto 0}
+.mw-bar{background:#EEF1F7;padding:10px 14px;display:flex;gap:7px;align-items:center;font:500 12px var(--mono);color:#56607a}
+.mw-bar i{width:10px;height:10px;border-radius:50%;background:#c0392b}.mw-bar i+i{background:#FF8A00}.mw-bar i+i+i{background:#12a150}
+.mw-bar span{margin-left:8px}
+.mw-b{padding:16px 18px 18px}
+.mw-row{display:flex;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px solid #E2E7F0}
+.mw-row b{font:500 11px var(--mono);color:#56607a;width:56px;padding-top:2px;text-transform:uppercase}
+.mw-txt{margin:14px 0;display:grid;gap:8px}
+.mw-txt i{height:9px;border-radius:5px;background:#E2E7F0;transform-origin:left;animation:grow 7s ease infinite}
+.mw-txt i:nth-child(2){width:86%;animation-delay:.25s}.mw-txt i:nth-child(3){width:64%;animation-delay:.5s}
+@keyframes grow{0%{transform:scaleX(0)}12%,100%{transform:scaleX(1)}}
+.mw-badges{display:flex;gap:10px;flex-wrap:wrap}
+.bdg{display:inline-flex;align-items:center;gap:7px;border-radius:10px;padding:8px 12px;font:600 12.5px var(--hd);opacity:0;transform:translateY(10px) scale(.9);animation:pop 7s ease infinite}
+.bdg.s{background:#0066FF;color:#fff;animation-delay:1.2s}.bdg.e{background:#0B132B;color:#fff;animation-delay:2.1s}
+@keyframes pop{0%,2%{opacity:0;transform:translateY(10px) scale(.9)}8%,92%{opacity:1;transform:none}100%{opacity:0;transform:translateY(10px) scale(.9)}}
+.seal path{stroke-dasharray:24;stroke-dashoffset:24;animation:draw 7s ease infinite 1.5s}
+@keyframes draw{0%{stroke-dashoffset:24}8%,100%{stroke-dashoffset:0}}
+.wire{margin-top:16px;background:#0B132B;border-radius:12px;padding:12px 14px;color:#8FB6FF;font:500 11.5px/1.5 var(--mono);position:relative;overflow:hidden}
+.wire small{display:flex;justify-content:space-between;color:#9FB0D0;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+#cipher{word-break:break-all;height:34px;overflow:hidden}
+.path{position:relative;height:26px;margin-top:10px}
+.path::before{content:"";position:absolute;left:0;right:0;top:12px;border-top:2px dashed #26345C}
+.pkt{position:absolute;top:1px;left:0;width:24px;height:24px;border-radius:8px;background:var(--orange);color:#0B132B;display:grid;place-items:center;animation:travel 3.5s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes travel{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% - 24px);opacity:0}}
+.lh-chip{position:absolute;background:#fff;color:#0B132B;border-radius:12px;padding:9px 13px;font:600 12.5px var(--hd);display:flex;gap:8px;align-items:center;box-shadow:0 14px 34px rgba(0,0,0,.35);animation:float 5s ease-in-out infinite;z-index:2}
+.lh-chip .ic{color:var(--blue)}.lh-chip.c1{top:0;left:-6px}.lh-chip.c2{top:150px;right:-10px;animation-delay:-2.5s}.lh-chip.c2 .ic{color:var(--green)}
+@keyframes float{50%{transform:translateY(-12px)}}
+.pw{position:absolute;bottom:-18px;right:6px;background:#fff;color:#0B132B;border-radius:14px;padding:10px 16px;box-shadow:0 14px 34px rgba(0,0,0,.35);z-index:2}
+.pw small{display:block;font:600 9.5px var(--mono);letter-spacing:.16em;color:#56607a}
+.pw b{font-family:var(--hd);font-weight:800;font-size:20px;letter-spacing:-.03em;color:#0B132B}.pw b span{color:var(--blue)}
+/* proof */
+.proof{background:var(--soft);border-bottom:1px solid var(--line);font:500 13px var(--mono);color:var(--mut)}
+.proof .wrap{display:flex;gap:10px 26px;flex-wrap:wrap;justify-content:center;padding-top:14px;padding-bottom:14px}
+.proof span{display:inline-flex;gap:7px;align-items:center}.proof .ic{color:var(--blue)}.proof b{color:var(--ink)}
+/* subnav */
+.sub{position:sticky;top:68px;z-index:90;background:var(--bg);border-bottom:1px solid var(--line)}
+.sub .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.sub .wrap::-webkit-scrollbar{display:none}
+.sub a{white-space:nowrap;padding:13px 14px;font-size:13.5px;font-weight:500;color:var(--mut);border-bottom:2px solid transparent}
+.sub a.on,.sub a:hover{color:var(--blue);border-color:var(--blue)}
+/* sections */
+.sec{padding:76px 0}.sec.alt{background:var(--soft)}
+.sh{max-width:760px;margin-bottom:38px}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--orange)}
+.sh h2{font-size:clamp(26px,3.2vw,38px);font-weight:700}.acc{color:var(--blue)}
+.lead{color:var(--mut);font-size:17px;margin:14px 0 0}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(11,19,43,.1);border-color:var(--blue)}
+.ib{width:46px;height:46px;border-radius:12px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:20px;margin-bottom:14px}
+.ib.o{background:var(--orange);color:#0B132B}.ib.n{background:var(--navy)}
+.card h3{font-size:18px;margin-bottom:8px}.card p{margin:0;color:var(--mut);font-size:15px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:32px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.prose p{color:var(--mut);margin:0 0 14px}.prose p b{color:var(--ink)}
+.works{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.works small{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-right:6px}
+.pill{display:inline-flex;gap:7px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 14px;font-size:13.5px;font-weight:500}
+.pill .ic{color:var(--blue)}
+.benef{display:grid;gap:14px}
+.benef .card{display:flex;gap:16px;align-items:flex-start;padding:18px 20px}.benef .ib{margin:0;flex:none}
+/* steps */
+.steps{counter-reset:s}
+.step{position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);font:600 13px var(--mono);color:var(--orange);display:block;margin-bottom:12px}
+.mini{height:74px;border-radius:12px;background:var(--soft);margin-bottom:16px;display:grid;place-items:center;color:var(--blue);font-size:30px;position:relative;overflow:hidden}
+.sec.alt .mini{background:var(--bg)}
+.mini .pulse{position:absolute;width:44px;height:44px;border-radius:50%;border:2px solid var(--blue);animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+.mini .slide{animation:slide 2.6s ease-in-out infinite}@keyframes slide{0%,100%{transform:translateX(-28px)}50%{transform:translateX(28px)}}
+.mini .spin{animation:spin 6s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.mini .bob{animation:float 2.4s ease-in-out infinite}
+/* demo */
+.demo{display:grid;grid-template-columns:300px 1fr;gap:22px}
+.ctl{display:grid;gap:14px;align-content:start}
+.tog{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:500}
+.sw{width:50px;height:28px;border-radius:99px;background:var(--line);border:0;position:relative;transition:.2s;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 5px rgba(0,0,0,.25)}
+.sw[aria-checked="true"]{background:var(--blue)}.sw[aria-checked="true"]::after{left:25px}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pane{border:1px solid var(--line);border-radius:var(--r);background:var(--card);overflow:hidden}
+.pane h4{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:12px 16px;border-bottom:1px solid var(--line);color:var(--mut);display:flex;gap:8px;align-items:center}
+.pane .bd{padding:16px;font-size:14px;min-height:170px}
+.pane.dk{background:#0B132B;border-color:#26345C;color:#C9D2E6}.pane.dk h4{color:#9FB0D0;border-color:#26345C}
+.pane.dk .bd{font:500 12.5px/1.6 var(--mono);word-break:break-all}
+.st{display:inline-flex;gap:7px;align-items:center;border-radius:9px;padding:6px 11px;font:600 12.5px var(--hd);margin:0 6px 10px 0}
+.st.ok{background:var(--green);color:#fff}.st.bad{background:var(--red);color:#fff}.st.na{background:var(--soft);color:var(--mut);border:1px solid var(--line)}.st.warn{background:var(--orange);color:#0B132B}
+.flash{animation:flash .5s}@keyframes flash{0%{box-shadow:0 0 0 0 rgba(0,102,255,.6)}100%{box-shadow:0 0 0 14px rgba(0,102,255,0)}}
+/* plans */
+.plan{position:relative;padding:28px;display:flex;flex-direction:column}
+.plan.best{border:2px solid var(--blue)}
+.tag{position:absolute;top:-13px;left:24px;background:var(--orange);color:#0B132B;font:600 11px var(--mono);letter-spacing:.1em;border-radius:7px;padding:4px 10px;text-transform:uppercase}
+.plan .who{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.plan h3{font-size:22px;margin:6px 0 10px}
+.price{font-family:var(--hd);font-weight:800;font-size:38px;letter-spacing:-.03em;margin:14px 0 2px}.price small{font:500 14px var(--bd);color:var(--mut);letter-spacing:0}
+.note{font-size:12.5px;color:var(--mut)}
+.fl{list-style:none;margin:18px 0 22px;padding:0;display:grid;gap:10px;font-size:14.5px}
+.fl li{display:flex;gap:10px;align-items:flex-start}.fl .ic{color:var(--blue);margin-top:4px}.fl li.no{color:var(--mut)}.fl li.no .ic{color:var(--mut)}
+.plan .btn{margin-top:auto;justify-content:center}
+/* tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:9px 18px;font-weight:500;font-size:14.5px;display:inline-flex;gap:8px;align-items:center;transition:.2s}
+.tab[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.tp{display:none}.tp.on{display:grid;animation:fadeUp .45s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+.uc{grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.uc h3{font-size:22px;margin-bottom:10px}.uc p{color:var(--mut);margin:0 0 14px}
+.ucbox{background:var(--navy);color:#fff;border-radius:var(--r);padding:24px}
+.ucbox small{font:600 11px var(--mono);letter-spacing:.14em;color:var(--orange);text-transform:uppercase}
+.ucbox p{color:#C9D2E6;margin:10px 0 0;font-size:15px}
+/* table */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14.5px}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-family:var(--hd);font-size:14px}tr:last-child td{border-bottom:0}
+td:first-child{font-weight:500}
+.hl{background:var(--blue);color:#fff}td.hlc{box-shadow:inset 3px 0 0 var(--blue),inset -3px 0 0 var(--blue);font-weight:600}
+.y{color:var(--green)}.n{color:var(--mut)}td .ic{vertical-align:-3px;margin-right:6px}
+/* india */
+.dark{background:var(--navy);color:#fff;border-radius:var(--r);padding:28px;border:0}
+.dark .big{font-family:var(--hd);font-weight:800;font-size:52px;color:var(--orange);letter-spacing:-.03em;line-height:1}
+.dark p{color:#C9D2E6;margin:10px 0 0}
+/* configurator */
+.cfg{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start}
+.fld{margin-bottom:22px}.fld>label,.fld>span.lb{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:10px}
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt button{text-align:left;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:14px 16px;transition:.2s}
+.opt button b{display:block;font-family:var(--hd);font-size:15.5px}.opt button small{color:var(--mut);font-size:13px}
+.opt button[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.stp{display:inline-flex;align-items:center;border:2px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+.stp button{width:46px;height:46px;border:0;background:none;font-size:20px;color:var(--ink)}.stp button:hover{background:var(--soft)}
+.stp input{width:74px;text-align:center;border:0;background:none;font:700 18px var(--hd);color:var(--ink);-moz-appearance:textfield}
+.stp input::-webkit-outer-spin-button,.stp input::-webkit-inner-spin-button{-webkit-appearance:none}
+.est{background:var(--navy);color:#fff;border-radius:20px;padding:28px;position:sticky;top:130px}
+.est h3{font-size:18px;margin-bottom:16px}
+.ln{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed #26345C;font-size:14.5px;color:#C9D2E6}
+.ln b{color:#fff;font-family:var(--mono);font-weight:500}.ln.sv b{color:#4ADE80}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 4px}
+.tot span{font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#9FB0D0}
+.tot b{font-family:var(--hd);font-weight:800;font-size:34px;color:var(--orange)}
+.est .btn{width:100%;justify-content:center;margin-top:12px}
+.est .note{color:#9FB0D0;margin-top:14px}
+/* setup */
+.setup{grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.ol{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;gap:14px}
+.ol li{counter-increment:o;display:flex;gap:14px;align-items:flex-start}
+.ol li::before{content:counter(o);flex:none;width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;display:grid;place-items:center;font:600 13px var(--mono)}
+.scr{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 18px 44px rgba(11,19,43,.1)}
+.scr .mw-bar{background:var(--soft);color:var(--mut)}
+.scr .in{padding:20px;display:grid;gap:12px}
+.rowi{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:11px;padding:11px 14px;font-size:14px}
+.rowi.act{border-color:var(--blue);animation:glow 2s ease-in-out infinite}@keyframes glow{50%{box-shadow:0 0 0 5px rgba(0,102,255,.14)}}
+/* powered band */
+.band{background:var(--navy);color:#fff}.band .eyebrow{color:var(--orange)}.band .sh h2 .acc{color:var(--orange)}.band .lead{color:#C9D2E6}
+.tile{border:1px solid #26345C;border-radius:var(--r);padding:22px;transition:.25s}.tile:hover{border-color:var(--orange);transform:translateY(-4px)}
+.tile i{font:600 13px var(--mono);color:var(--orange);font-style:normal}.tile h3{font-size:17px;margin:10px 0 6px}.tile p{margin:0;color:#C9D2E6;font-size:14.5px}
+.mq{overflow:hidden;margin-top:40px;border-top:1px solid #26345C;padding-top:22px}
+.mq div{display:flex;gap:14px;width:max-content;animation:mq 30s linear infinite}
+.mq span{border:1px solid #26345C;border-radius:99px;padding:8px 16px;font:500 13px var(--mono);color:#C9D2E6;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* faq */
+.faq{max-width:860px}
+.q{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:10px;overflow:hidden}
+.q button{width:100%;display:flex;justify-content:space-between;gap:16px;align-items:center;background:none;border:0;padding:18px 20px;text-align:left;font:600 16px var(--hd);color:var(--ink)}
+.q button .ic{transition:.25s;color:var(--blue)}.q.open button .ic{transform:rotate(45deg)}
+.q .a{max-height:0;overflow:hidden;transition:max-height .35s ease}.q .a p{margin:0;padding:0 20px 18px;color:var(--mut)}
+/* cta */
+.cta{background:var(--blue);color:#fff;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.cta h2{font-size:clamp(24px,3vw,34px)}.cta p{margin:12px 0 0;color:#E6EEFF}
+.cta .lk{display:grid;gap:10px}.cta .lk a{display:flex;gap:10px;align-items:center;background:#fff;color:#0B132B;border-radius:12px;padding:13px 16px;font-weight:600;transition:.2s}
+.cta .lk a:hover{transform:translateX(6px)}.cta .lk a:first-child{background:var(--orange)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:30px 0}
+.xl h3{display:flex;justify-content:space-between;align-items:center}.xl small{font:600 11px var(--mono);letter-spacing:.12em;color:var(--blue);text-transform:uppercase;display:block;margin-bottom:8px}
+/* footer */
+.news{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 30px;display:flex;gap:20px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:-46px;position:relative;z-index:2;box-shadow:0 18px 44px rgba(11,19,43,.12)}
+.news h3{font-size:20px}.news p{margin:4px 0 0;color:var(--mut);font-size:14.5px}
+footer{background:var(--blue);color:#fff;padding:92px 0 30px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:28px}
+footer h4{font-size:14.5px;margin-bottom:12px}footer ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+footer a{color:#E6EEFF}footer a:hover{color:#fff;text-decoration:underline}
+footer .lg{background:#fff;border-radius:14px;padding:14px 18px;display:inline-block;margin-bottom:14px}
+footer .ct{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+footer .ct span{background:#fff;color:#0B132B;border-radius:8px;padding:5px 10px;font:600 11px var(--mono)}
+footer .legal{border-top:1px solid rgba(255,255,255,.3);padding-top:18px;font-size:12.5px;color:#E6EEFF;display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-between}
+/* floating */
+.wa{position:fixed;right:18px;bottom:18px;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-size:26px;z-index:120;box-shadow:0 10px 26px rgba(0,0,0,.3);animation:float 4s ease-in-out infinite}
+.cb{position:fixed;right:0;top:50%;transform:rotate(-90deg) translateY(-100%);transform-origin:right top;background:var(--orange);color:#0B132B;font:600 13px var(--hd);padding:9px 16px;border-radius:10px 10px 0 0;z-index:110;border:0}
+/* drawer + modal + toast */
+.ov{position:fixed;inset:0;background:rgba(11,19,43,.6);z-index:300;opacity:0;visibility:hidden;transition:.25s}
+.ov.on{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--bg);z-index:310;transform:translateX(100%);transition:.3s;display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.drawer.on{transform:none}
+.drawer header,.modal header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.drawer .items{flex:1;overflow:auto;padding:16px 20px;display:grid;gap:12px;align-content:start}
+.ci{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.ci button{background:none;border:0;color:var(--red);font-size:13px}
+.drawer footer{background:none;color:var(--ink);padding:16px 20px;border-top:1px solid var(--line)}
+.xb{background:none;border:0;font-size:22px;color:var(--ink);line-height:1}
+.modal{position:fixed;left:50%;top:50%;width:min(460px,92%);background:var(--bg);border-radius:20px;z-index:310;transform:translate(-50%,-46%);opacity:0;visibility:hidden;transition:.25s;border:1px solid var(--line)}
+.modal.on{opacity:1;visibility:visible;transform:translate(-50%,-50%)}
+.modal .bd{padding:20px;display:grid;gap:12px}
+.modal input,.modal select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:11px;font:inherit;background:var(--card);color:var(--ink)}
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);background:var(--navy);color:#fff;padding:12px 20px;border-radius:12px;z-index:400;opacity:0;transition:.3s;font-weight:500;border:1px solid #26345C;max-width:90%}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ===== v2 polish: icons + motion ===== */
+.ib{width:54px;height:54px;border-radius:15px;position:relative;transition:transform .3s}
+.ib .ic{width:25px;height:25px}
+.ib::after{content:"";position:absolute;inset:-5px;border-radius:19px;border:2px solid var(--blue);animation:ibr 2.6s ease-out infinite;pointer-events:none}
+.ib.o::after{border-color:var(--orange)}.ib.n::after{border-color:var(--mut)}
+@keyframes ibr{0%{opacity:.7;transform:scale(.9)}100%{opacity:0;transform:scale(1.22)}}
+.benef .card{gap:22px}.logo{flex:none;white-space:nowrap}.btn{white-space:nowrap}.nav{gap:0}
+.card:hover .ib{animation:ibp .6s}
+@keyframes ibp{40%{transform:scale(1.16) rotate(-10deg)}70%{transform:scale(.96) rotate(4deg)}}
+.benef .card{position:relative;overflow:hidden}
+.benef .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--blue);transform:scaleY(0);transform-origin:top;transition:transform .35s}
+.benef .card:hover::before{transform:scaleY(1)}
+.benef .card:hover{transform:translateX(8px)}
+.benef .rv:not(.in){transform:translateX(46px)}
+.benef .card:nth-child(2) .ib::after{animation-delay:.6s}.benef .card:nth-child(3) .ib::after{animation-delay:1.2s}.benef .card:nth-child(4) .ib::after{animation-delay:1.8s}
+.pr{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+.pr p{margin:0;color:var(--mut)}.pr p b{color:var(--ink)}
+.pi{flex:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--blue);color:var(--blue);display:grid;place-items:center;font-size:20px;transition:.3s}
+.pr:hover .pi{background:var(--blue);color:#fff;transform:rotate(-8deg) scale(1.08)}
+.pill{transition:transform .2s,border-color .2s,box-shadow .2s}
+.pill:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 8px 18px rgba(11,19,43,.1)}
+.works .pill:hover .ic{animation:ibp .6s}
+/* steps */
+.steps{position:relative;margin-top:22px}
+.steps::before{content:"";position:absolute;top:0;left:5%;right:5%;border-top:2px dashed var(--line)}
+.steps::after{content:"";position:absolute;top:-6px;left:5%;width:14px;height:14px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(0,102,255,.2);animation:run 8s linear infinite}
+@keyframes run{to{left:95%}}
+.step{padding-top:34px}.step::before{display:none}
+.num{position:absolute;top:-18px;left:22px;width:38px;height:38px;border-radius:11px;background:var(--orange);color:#0B132B;font:600 14px var(--mono);display:grid;place-items:center;z-index:1;transition:.3s;box-shadow:0 6px 14px rgba(11,19,43,.18)}
+.step.act{border-color:var(--blue);transform:translateY(-8px);box-shadow:0 20px 44px rgba(11,19,43,.14)}
+.step.act .num{background:var(--blue);color:#fff;transform:scale(1.14) rotate(-6deg)}
+.sec .steps .mini{height:124px;display:block;background:#0B132B;border:1px solid #26345C;border-radius:14px;margin-bottom:18px}
+.sc{width:100%;height:100%;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sc .rg{stroke:#0066FF;transform-origin:100px 55px;animation:ring 2.4s ease-out infinite}.sc .r2{animation-delay:1.2s}
+@keyframes ring{0%{transform:scale(.7);opacity:1}100%{transform:scale(2.2);opacity:0}}
+.sc .env{animation:bobs 3s ease-in-out infinite}@keyframes bobs{50%{transform:translateY(-5px)}}
+.sc .fo{fill:#FF8A00;stroke:none}.sc .fb{fill:#0066FF;stroke:none}.sc .so{stroke:#FF8A00}.sc .sb{stroke:#0066FF}.sc .sn{stroke:#0B132B}.sc .dim{opacity:.35}
+.sc .chk{transform-origin:134px 36px;animation:chk 3s ease infinite}
+@keyframes chk{0%,30%{transform:scale(0)}45%{transform:scale(1.3)}55%,100%{transform:scale(1)}}
+.sc .ln1{stroke-dasharray:60;animation:dl 3.5s ease infinite}.sc .l2{animation-delay:.3s}.sc .l3{animation-delay:.6s}
+@keyframes dl{0%{stroke-dashoffset:60}35%,100%{stroke-dashoffset:0}}
+.sc .seal2{transform-origin:126px 70px;animation:chk 3.5s ease infinite}
+.sc .keyr{transform-origin:40px 42px;animation:wig 2.4s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:rotate(-22deg)}50%{transform:rotate(22deg)}}
+.sc .sig{stroke-dasharray:170;animation:sg 3.2s ease infinite}
+@keyframes sg{0%{stroke-dashoffset:170}60%,100%{stroke-dashoffset:0}}
+.sc .pen2{animation:penm 3.2s ease infinite}
+@keyframes penm{0%{transform:translate(58px,62px)}15%{transform:translate(74px,48px)}30%{transform:translate(90px,64px)}45%{transform:translate(108px,54px)}60%,100%{transform:translate(138px,44px)}}
+.sc .shk{animation:shk 3s ease infinite}@keyframes shk{0%,25%{transform:translateY(-10px)}40%,100%{transform:none}}
+.sc .bit{animation:bit 3s linear infinite}.sc .b2{animation-delay:.25s}.sc .b3{animation-delay:.5s}
+@keyframes bit{0%{transform:translateX(-12px);opacity:0}15%{opacity:1}45%,100%{transform:translateX(30px);opacity:0}}
+.sc .lk{transform-origin:100px 70px;animation:lkp 3s ease infinite}@keyframes lkp{0%,38%{transform:scale(1)}46%{transform:scale(1.12)}54%,100%{transform:scale(1)}}
+/* demo route */
+.route{position:relative;display:flex;justify-content:space-between;margin:0 0 28px;padding:0 4%}
+.route::before{content:"";position:absolute;left:10%;right:10%;top:29px;border-top:2px dashed var(--line)}
+.rn{position:relative;z-index:1;display:grid;justify-items:center;gap:8px;width:12%;min-width:90px;text-align:center}
+.rn span{width:60px;height:60px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:25px;box-shadow:0 0 0 6px var(--bg);transition:background .3s}
+.rn.atk span{background:#0B132B;border:2px solid var(--mut)}
+.rn small{font:500 11.5px var(--mono);color:var(--mut);line-height:1.3}
+.rn.atk.hit span{background:var(--red);border-color:var(--red);animation:shake .6s}
+@keyframes shake{20%{transform:translateX(-7px) rotate(-10deg)}40%{transform:translateX(7px) rotate(10deg)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.rpkt{position:absolute;top:12px;left:10%;width:36px;height:36px;margin-left:-18px;border-radius:11px;background:var(--orange);color:#0B132B;display:grid;place-items:center;z-index:2;opacity:0;font-style:normal;box-shadow:0 8px 18px rgba(11,19,43,.25)}
+.rpkt.plain{background:#fff;border:2px solid var(--red);color:var(--red)}
+.route.go .rpkt{animation:rgo 1.6s cubic-bezier(.6,0,.4,1) both}
+@keyframes rgo{0%{left:10%;opacity:0;transform:scale(.6)}12%{opacity:1;transform:scale(1)}50%{left:50%;transform:scale(1.15)}100%{left:90%;opacity:1;transform:scale(1)}}
+.st{animation:stpop .45s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes stpop{from{transform:scale(.5);opacity:0}}
+.pane h4 .ic{width:20px;height:20px;padding:3px;border-radius:6px;background:var(--blue);color:#fff}
+.pane.dk h4 .ic{background:var(--orange);color:#0B132B}
+.sw:hover{box-shadow:0 0 0 4px rgba(0,102,255,.18)}
+/* table */
+tbody tr td{transition:background .2s}
+td.hlc{background:rgba(0,102,255,.05)}
+tbody tr:hover td{background:var(--soft)}tbody tr:hover td.hlc{background:rgba(0,102,255,.12)}
+td.y .ic,td.n .ic{width:24px;height:24px;padding:5px;border-radius:50%;vertical-align:-7px;stroke-width:2.8;margin-right:8px}
+td.y .ic{background:var(--green);color:#fff}td.n .ic{background:var(--line);color:var(--mut)}
+td:first-child .ic{color:var(--blue);width:19px;height:19px;margin-right:10px;vertical-align:-4px;transition:transform .25s}
+tbody tr:hover td:first-child .ic{transform:scale(1.25) rotate(-8deg)}
+th.hl span{display:block;width:max-content;font:600 10px var(--mono);letter-spacing:.12em;color:#0B132B;background:var(--orange);border-radius:5px;padding:2px 7px;margin-bottom:5px;text-transform:uppercase}
+.tw.in tbody tr{animation:fadeUp .5s both}
+.tw.in tbody tr:nth-child(1){animation-delay:80ms}.tw.in tbody tr:nth-child(2){animation-delay:160ms}.tw.in tbody tr:nth-child(3){animation-delay:240ms}.tw.in tbody tr:nth-child(4){animation-delay:320ms}.tw.in tbody tr:nth-child(5){animation-delay:400ms}.tw.in tbody tr:nth-child(6){animation-delay:480ms}.tw.in tbody tr:nth-child(7){animation-delay:560ms}.tw.in tbody tr:nth-child(8){animation-delay:640ms}
+.tw.in td.y .ic,.tw.in td.n .ic{animation:stpop .5s cubic-bezier(.3,1.6,.5,1) .7s both}
+@media(max-width:980px){.steps::before,.steps::after{display:none}.steps{row-gap:34px}}
+@media(max-width:620px){.rn small{font-size:10px}.rn span{width:50px;height:50px;font-size:21px}.route::before{top:24px}.rpkt{top:7px}}
+/* responsive */
+@media(max-width:980px){.hero .wrap,.g2,.cfg,.demo,.uc,.setup,.cta{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}.est{position:static}footer .cols{grid-template-columns:1fr 1fr}.stage{min-height:0;padding-bottom:30px}.lh-chip.c1{left:0}.lh-chip.c2{right:0}}
+@media(max-width:620px){.wrap{padding:0 18px}.sec{padding:54px 0}.g3,.g4,.panes,.opt,.lh-points{grid-template-columns:1fr}.cta{padding:28px 22px}.util .r .hide{display:none}.lh-chip{font-size:11.5px;padding:7px 10px}.lh-chip.c2{top:130px}.cb{display:none}.hero{padding-top:30px}.pw{right:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.bdg{opacity:1;transform:none}.rpkt{opacity:1;left:90%}.seal path{stroke-dashoffset:0}html{scroll-behavior:auto}}
+</style><link rel="stylesheet" href="/assets/styles/faq-layout.css"><link rel="stylesheet" href="/assets/styles/smime-certificates.css"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11A8 8 0 0 0 6 6L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+<symbol id="i-bld" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M10 21v-4h4v4"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-12 7l-5 1 1-4.5A8 8 0 1 1 21 12z"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/></symbol>
+<symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 6.2A9.8 9.8 0 0 1 12 6c6 0 9.5 6 9.5 6a16 16 0 0 1-3 3.6M6.5 7.6A16 16 0 0 0 2.5 12S6 18 12 18a9 9 0 0 0 3.4-.7"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></symbol>
+<symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 10 12 4l9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></symbol>
+<symbol id="i-law" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h10L20 8H7"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-dev" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-rupee" viewBox="0 0 24 24"><path d="M7 4h10M7 9h10M7 4c7 0 7 9 0 9l8 7"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></symbol>
+<symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.5-1.5 5.5-1.5 6 0M15 10h3M15 14h3"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+</defs></svg><main data-banner-actions="off" data-customer-testimonials="off">
+<section class="hero lh">
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="wrap">
+<div>
+
+<h1><span class="x">Xcell</span><span class="brd">Sign</span><span class="dv">|</span><span class="nm">S/MIME Certificates</span></h1>
+<p class="lh-tag">Every email proven to be yours. Every word kept private.</p>
+<p class="lh-tag2">DigiCert S/MIME certificates that digitally sign and end-to-end encrypt your business email — issued in minutes, billed in INR and set up by XcellHost's Mumbai team.</p>
+<div class="lh-type" data-words='["Stop invoice and CEO-fraud phishing","Encrypt mail in transit and on the server","Show a verified-sender badge in Outlook","Issued in minutes after mailbox check"]' aria-hidden="true"></div>
+<ul class="lh-points">
+<li><svg class="ic"><use href="#i-pen"/></svg>Digital signature on every email you send</li>
+<li><svg class="ic"><use href="#i-lock"/></svg>End-to-end encryption of message and attachments</li>
+<li><svg class="ic"><use href="#i-clock"/></svg>Issued in minutes — mailbox validation only</li>
+<li><svg class="ic"><use href="#i-refresh"/></svg>Unlimited reissues during the term</li>
+<li><svg class="ic"><use href="#i-dev"/></svg>Works on desktop and mobile mail apps</li>
+<li><svg class="ic"><use href="#i-rupee"/></svg>INR billing with GST tax invoice</li>
+</ul>
+<div class="lh-ctas">
+<a class="btn btn-o" href="#pricing">View plans <svg class="ic"><use href="#i-arrow"/></svg></a>
+<a class="btn btn-g" href="#demo"><svg class="ic"><use href="#i-shield"/></svg>Try the live demo</a>
+<a class="btn btn-w" href="https://wa.me/918657032540?text=Hi%20XcellHost%2C%20I%20need%20S%2FMIME%20certificates"><svg class="ic"><use href="#i-chat"/></svg>WhatsApp</a>
+</div>
+<div class="lh-ask" data-q="What is an S/MIME certificate, and how does XcellHost (xcellhost.cloud) supply and set up DigiCert S/MIME email signing certificates in India?"><span class="ask-label">✦ Ask AI About S/MIME</span>
+<a data-ai="https://chatgpt.com/?q=" href="#">ChatGPT</a><a data-ai="https://claude.ai/new?q=" href="#">Claude</a><a data-ai="https://www.perplexity.ai/search?q=" href="#">Perplexity</a><a data-ai="https://www.google.com/search?udm=50&q=" href="#">Google AI</a><a data-ai="https://copilot.microsoft.com/?q=" href="#">Copilot</a></div><div class="smime-powered"><span>POWERED BY</span><span aria-hidden="true">|</span><img src="/assets/images/digicert.png" alt="DigiCert" width="104" height="32"></div>
+</div>
+
+<div class="stage">
+<div class="lh-chip c1"><svg class="ic"><use href="#i-shield"/></svg>Verified sender</div>
+<div class="lh-chip c2"><svg class="ic"><use href="#i-lock"/></svg>End-to-end encrypted</div>
+<div class="lh-tilt" id="tilt">
+<div class="mailwin" role="img" aria-label="Animated email being digitally signed and encrypted">
+<div class="mw-bar"><i></i><i></i><i></i><span>New message</span></div>
+<div class="mw-b">
+<div class="mw-row"><b>From</b>priya@yourcompany.in</div>
+<div class="mw-row"><b>To</b>accounts@client.co.in</div>
+<div class="mw-row"><b>Subject</b>Invoice INV-2041 — payment details</div>
+<div class="mw-txt"><i></i><i></i><i></i></div>
+<div class="mw-badges">
+<span class="bdg s"><svg class="ic seal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Signed · DigiCert</span>
+<span class="bdg e"><svg class="ic"><use href="#i-lock"/></svg>Encrypted</span>
+</div>
+<div class="wire"><small><span>On the wire</span><span>S/MIME</span></small><div id="cipher"></div>
+<div class="path"><span class="pkt"><svg class="ic"><use href="#i-lock"/></svg></span></div></div>
+</div></div>
+</div>
+
+</div>
+</div>
+</section>
+
+<div class="proof"><div class="wrap">
+<span><svg class="ic"><use href="#i-rupee"/></svg>From <b>₹1,330</b>/yr + GST</span>
+<span><svg class="ic"><use href="#i-clock"/></svg>Issued in minutes</span>
+<span><svg class="ic"><use href="#i-refresh"/></svg>Unlimited reissue</span>
+<span><svg class="ic"><use href="#i-file"/></svg>GST invoice in INR</span>
+<span><svg class="ic"><use href="#i-heart"/></svg>Since 1999</span>
+<span><svg class="ic"><use href="#i-pin"/></svg>Mumbai</span>
+</div></div>
+
+<nav class="sub" aria-label="On this page"><div class="wrap">
+<a href="#overview">Overview</a><a href="#how">How it works</a><a href="#demo">Live demo</a><a href="#plans">Certificates</a><a href="#uses">Use cases</a><a href="#compare">Compare</a><a href="#india">India</a><a href="#pricing">Pricing</a><a href="#setup">Setup</a><a href="#faq">FAQ</a>
+</div></nav>
+
+<section class="sec" id="overview"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Overview</div><h2>Email was never built to prove who sent it. <span class="acc">S/MIME fixes that.</span></h2>
+<p class="lead">An S/MIME certificate binds your email address to a cryptographic key issued by DigiCert. Mail apps use it to stamp each message with your signature and to lock its contents so only the intended recipient can open them.</p></div>
+<div class="g2">
+<div class="prose">
+<div class="pr rv"><span class="pi"><svg class="ic"><use href="#i-pen"/></svg></span><p><b>Signing</b> tells the recipient two things at a glance: the message really came from your mailbox, and nothing in it was changed on the way. A spoofed "please update our bank details" mail cannot carry your signature.</p></div>
+<div class="pr rv"><span class="pi"><svg class="ic"><use href="#i-lock"/></svg></span><p><b>Encryption</b> keeps the body and attachments unreadable from the moment you press send until the recipient opens them — on the wire and while the message sits on mail servers.</p></div>
+<div class="pr rv"><span class="pi"><svg class="ic"><use href="#i-clock"/></svg></span><p><b>Ready in minutes.</b> The individual certificate checks only that you control the mailbox. Organisations that need the company name in the certificate, plus client authentication and Office document signing, choose the business certificate.</p></div>
+</div>
+<div class="benef">
+<div class="card rv"><div class="ib"><svg class="ic"><use href="#i-alert"/></svg></div><div><h3>Phishing protection</h3><p>Recipients can confirm a message is from you before they act on it.</p></div></div>
+<div class="card rv"><div class="ib o"><svg class="ic"><use href="#i-eyeoff"/></svg></div><div><h3>Content protection</h3><p>End-to-end encryption defends against interception and man-in-the-middle attacks.</p></div></div>
+<div class="card rv"><div class="ib n"><svg class="ic"><use href="#i-law"/></svg></div><div><h3>Compliance support</h3><p>Encrypted email helps meet data-protection duties under DPDP, GDPR and HIPAA.</p></div></div>
+<div class="card rv"><div class="ib"><svg class="ic"><use href="#i-heart"/></svg></div><div><h3>Customer trust</h3><p>Signed mail protects your brand, customers and partners from impersonation.</p></div></div>
+</div></div>
+<div class="works rv"><small>Works in</small>
+<span class="pill"><svg class="ic"><use href="#i-desk"/></svg>Microsoft Outlook</span><span class="pill"><svg class="ic"><use href="#i-mail"/></svg>Microsoft 365</span><span class="pill"><svg class="ic"><use href="#i-desk"/></svg>Apple Mail</span><span class="pill"><svg class="ic"><use href="#i-dev"/></svg>iPhone &amp; iPad Mail</span><span class="pill"><svg class="ic"><use href="#i-mail"/></svg>Mozilla Thunderbird</span><span class="pill"><svg class="ic"><use href="#i-mail"/></svg>Google Workspace (eligible editions)</span>
+</div>
+</div></section>
+
+<section class="sec alt" id="how"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">How it works</div><h2>From order to signed email <span class="acc">in four steps.</span></h2></div>
+<div class="g4 steps" id="steps">
+<div class="card step rv"><b class="num">01</b><div class="mini"><svg class="sc" viewBox="0 0 200 110" aria-hidden="true"><circle class="rg" cx="100" cy="55" r="26"/><circle class="rg r2" cx="100" cy="55" r="26"/><g class="env"><rect x="68" y="34" width="64" height="44" rx="7" fill="#0B132B"/><path d="m68 39 32 22 32-22"/></g><g class="chk"><circle class="fo" cx="134" cy="36" r="12"/><path class="sn" d="m128 36 4 4 8-9"/></g></svg></div><h3>Verify your mailbox</h3><p>DigiCert sends a confirmation link to the address being certified. Click it to prove control.</p></div>
+<div class="card step rv"><b class="num">02</b><div class="mini"><svg class="sc" viewBox="0 0 200 110" aria-hidden="true"><rect x="58" y="22" width="86" height="64" rx="7"/><path class="ln1" d="M70 38h46"/><path class="ln1 l2" d="M70 50h60"/><path class="ln1 l3" d="M70 62h30"/><g class="seal2"><path class="so" d="m120 80-3 15 9-5 9 5-3-15"/><circle class="fo" cx="126" cy="70" r="12"/><path class="sn" d="m121 70 4 4 6-7"/></g><g class="keyr sb"><circle cx="40" cy="42" r="8"/><path d="m46 48 13 13m-6-6 5-5"/></g></svg></div><h3>Certificate is issued</h3><p>Your key pair is generated and the certificate is ready to download, usually within minutes.</p></div>
+<div class="card step rv"><b class="num">03</b><div class="mini"><svg class="sc" viewBox="0 0 200 110" aria-hidden="true"><rect x="48" y="20" width="104" height="70" rx="7"/><path class="dim" d="M60 76h80"/><path class="sig so" d="M62 68c6-20 12-24 15-11s7 13 13 0 9-11 13 2 11 7 33-9"/><g class="pen2"><path class="fb" d="M0 0 12-12l6 6L6 6l-7 1z"/><path d="M0 0 12-12l6 6L6 6l-7 1z"/></g></svg></div><h3>Sign what you send</h3><p>Your mail app attaches a signature. Recipients see a verified-sender ribbon.</p></div>
+<div class="card step rv"><b class="num">04</b><div class="mini"><svg class="sc" viewBox="0 0 200 110" aria-hidden="true"><path class="bit so" d="M34 58h16"/><path class="bit b2 so" d="M30 68h20"/><path class="bit b3 so" d="M36 78h14"/><g class="lk"><path class="shk" d="M85 52V41a15 15 0 0 1 30 0v11"/><rect class="fb" x="74" y="52" width="52" height="38" rx="8"/><circle class="fo" cx="100" cy="68" r="5"/><path class="so" d="M100 72v8"/></g><path class="dim" d="M140 60h8m4 0h8M140 70h14m4 0h4M140 80h6m4 0h10"/></svg></div><h3>Encrypt when it matters</h3><p>Once you have exchanged signed mail with a contact, you can encrypt messages to them.</p></div>
+</div></div></section>
+
+<section class="sec" id="demo"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Live demo</div><h2>Switch S/MIME on and off. <span class="acc">Then try to tamper with it.</span></h2>
+<p class="lead">This simulation shows what an attacker on the network and your recipient each see. Nothing is actually sent.</p></div>
+<div class="route rv" id="route" aria-hidden="true">
+<div class="rn"><span><svg class="ic"><use href="#i-user"/></svg></span><small>You</small></div>
+<div class="rn atk"><span><svg class="ic"><use href="#i-eyeoff"/></svg></span><small>Attacker on the network</small></div>
+<div class="rn"><span><svg class="ic"><use href="#i-mail"/></svg></span><small>Recipient</small></div>
+<i class="rpkt"><svg class="ic"><use id="rpu" href="#i-lock"/></svg></i></div>
+<div class="demo rv">
+<div class="card ctl">
+<div class="tog"><span><svg class="ic" style="vertical-align:-3px;color:var(--blue)"><use href="#i-pen"/></svg> Digitally sign</span><button class="sw" id="dSign" role="switch" aria-checked="true" aria-label="Digitally sign"></button></div>
+<div class="tog"><span><svg class="ic" style="vertical-align:-3px;color:var(--blue)"><use href="#i-lock"/></svg> Encrypt</span><button class="sw" id="dEnc" role="switch" aria-checked="true" aria-label="Encrypt"></button></div>
+<button class="btn btn-b" id="dSend" style="justify-content:center"><svg class="ic"><use href="#i-mail"/></svg>Send email</button>
+<button class="btn btn-l" id="dTamper" style="justify-content:center"><svg class="ic"><use href="#i-alert"/></svg>Tamper in transit</button>
+<p class="note" style="margin:0">The message: "Please pay INV-2041 to account ending <b>4417</b>."</p>
+</div>
+<div class="panes">
+<div class="pane dk"><h4><svg class="ic"><use href="#i-eyeoff"/></svg>What an attacker sees in transit</h4><div class="bd" id="dWire"></div></div>
+<div class="pane"><h4><svg class="ic"><use href="#i-user"/></svg>What your recipient sees</h4><div class="bd" id="dInbox"></div></div>
+</div></div>
+</div></section>
+
+<section class="sec alt" id="plans"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Certificates</div><h2>Two DigiCert S/MIME certificates. <span class="acc">Pick by who is sending.</span></h2></div>
+<div class="g2">
+<div class="card plan best rv"><span class="tag">Fastest to issue</span>
+<span class="who">Individuals · professionals · small teams</span>
+<h3>Secure Email for Individuals <small style="font:500 14px var(--bd);color:var(--mut)">(S/MIME Class 1)</small></h3>
+<p>Mailbox-validated. Signs and encrypts email for one address.</p>
+<div class="price">₹1,330 <small>/ year on a 2-year term</small></div><div class="note">₹1,400 for 1 year · indicative, excl. 18% GST</div>
+<ul class="fl">
+<li><svg class="ic"><use href="#i-pen"/></svg>Email signing</li>
+<li><svg class="ic"><use href="#i-lock"/></svg>Email encryption</li>
+<li><svg class="ic"><use href="#i-clock"/></svg>Issued in minutes after mailbox check</li>
+<li><svg class="ic"><use href="#i-refresh"/></svg>Unlimited reissue</li>
+<li class="no"><svg class="ic"><use href="#i-x"/></svg>No client authentication or document signing</li>
+</ul>
+<a class="btn btn-b" href="#pricing" data-pick="ind">Configure &amp; buy</a></div>
+<div class="card plan rv">
+<span class="who">Companies · regulated teams</span>
+<h3>Secure Email for Business <small style="font:500 14px var(--bd);color:var(--mut)">(S/MIME OV)</small></h3>
+<p>Organisation-validated. Your company name is verified and shown in the certificate.</p>
+<div class="price">₹3,024 <small>/ year on a 2-year term</small></div><div class="note">₹3,192 for 1 year · indicative, excl. 18% GST</div>
+<ul class="fl">
+<li><svg class="ic"><use href="#i-pen"/></svg>Email signing</li>
+<li><svg class="ic"><use href="#i-lock"/></svg>Email encryption</li>
+<li><svg class="ic"><use href="#i-id"/></svg>Client authentication</li>
+<li><svg class="ic"><use href="#i-file"/></svg>Microsoft Office &amp; OpenOffice document signing</li>
+<li><svg class="ic"><use href="#i-bld"/></svg>Organisation identity validated by DigiCert</li>
+</ul>
+<a class="btn btn-l" href="#pricing" data-pick="biz">Configure &amp; buy</a></div>
+</div></div></section>
+
+<section class="sec" id="uses"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Use cases</div><h2>Where signed and encrypted email <span class="acc">earns its keep.</span></h2></div>
+<div class="tabs rv" role="tablist" data-tabs="uc">
+<button class="tab" role="tab" aria-selected="true"><svg class="ic"><use href="#i-bank"/></svg>Finance &amp; accounts</button>
+<button class="tab" role="tab" aria-selected="false"><svg class="ic"><use href="#i-user"/></svg>Leadership</button>
+<button class="tab" role="tab" aria-selected="false"><svg class="ic"><use href="#i-law"/></svg>Legal &amp; HR</button>
+<button class="tab" role="tab" aria-selected="false"><svg class="ic"><use href="#i-heart"/></svg>Healthcare</button>
+</div>
+<div data-panels="uc">
+<div class="tp uc on"><div><h3>Invoices and bank-detail changes</h3><p>Payment-diversion fraud depends on a believable fake email. When your accounts team signs every invoice mail, customers have a simple rule: no signature, no payment change.</p><ul class="fl"><li><svg class="ic"><use href="#i-pen"/></svg>Sign invoices, statements and remittance advice</li><li><svg class="ic"><use href="#i-lock"/></svg>Encrypt account numbers and GST documents</li></ul></div><div class="ucbox"><small>Recommended</small><h3 style="margin-top:8px">Individual certificate per finance mailbox</h3><p>Fast to roll out; move to Business if your customers ask to see the company name in the certificate.</p></div></div>
+<div class="tp uc"><div><h3>Directors and senior management</h3><p>"Urgent request from the MD" mails work because staff cannot verify the sender. A signed message from the real mailbox removes the doubt.</p><ul class="fl"><li><svg class="ic"><use href="#i-shield"/></svg>Verified-sender ribbon on internal approvals</li><li><svg class="ic"><use href="#i-eyeoff"/></svg>Encrypt board papers and deal discussions</li></ul></div><div class="ucbox"><small>Recommended</small><h3 style="margin-top:8px">Business certificate</h3><p>Shows the organisation identity and adds document signing for approvals in Office.</p></div></div>
+<div class="tp uc"><div><h3>Contracts, offers and employee records</h3><p>Legal and HR teams send some of the most sensitive attachments in the company. Encryption keeps them private and the signature shows they were not altered after sending.</p><ul class="fl"><li><svg class="ic"><use href="#i-file"/></svg>Sign Office documents with the Business certificate</li><li><svg class="ic"><use href="#i-lock"/></svg>Encrypt offer letters, payroll and personal data</li></ul></div><div class="ucbox"><small>Recommended</small><h3 style="margin-top:8px">Business certificate</h3><p>One credential for email signing, encryption and Office document signing.</p></div></div>
+<div class="tp uc"><div><h3>Patient and insurance correspondence</h3><p>Clinics, labs and TPAs exchange reports by email every day. Encrypting them end to end supports patient-privacy obligations and HIPAA expectations from overseas partners.</p><ul class="fl"><li><svg class="ic"><use href="#i-lock"/></svg>Encrypt reports and claim documents</li><li><svg class="ic"><use href="#i-shield"/></svg>Recipients confirm the report is from your clinic</li></ul></div><div class="ucbox"><small>Recommended</small><h3 style="margin-top:8px">Start with Individual, standardise on Business</h3><p>We help you plan issuance for doctors, front desk and billing mailboxes.</p></div></div>
+</div></div></section>
+
+<section class="sec alt" id="compare"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Compare</div><h2>Plain email, Individual and Business — <span class="acc">side by side.</span></h2></div>
+<div class="tw rv"><table>
+<thead><tr><th>Capability</th><th>Plain email</th><th class="hl"><span>Fastest to issue</span>S/MIME Individual (Class 1)</th><th>S/MIME Business (OV)</th></tr></thead>
+<tbody>
+<tr><td><svg class="ic"><use href="#i-pen"/></svg>Email signing</td><td class="n"><svg class="ic"><use href="#i-x"/></svg>No</td><td class="hlc y"><svg class="ic"><use href="#i-check"/></svg>Yes</td><td class="y"><svg class="ic"><use href="#i-check"/></svg>Yes</td></tr>
+<tr><td><svg class="ic"><use href="#i-lock"/></svg>Email encryption</td><td class="n"><svg class="ic"><use href="#i-x"/></svg>No</td><td class="hlc y"><svg class="ic"><use href="#i-check"/></svg>Yes</td><td class="y"><svg class="ic"><use href="#i-check"/></svg>Yes</td></tr>
+<tr><td><svg class="ic"><use href="#i-shield"/></svg>Validation</td><td class="n">None</td><td class="hlc">Mailbox control</td><td>Mailbox + organisation</td></tr>
+<tr><td><svg class="ic"><use href="#i-clock"/></svg>Issuance</td><td class="n">—</td><td class="hlc">Minutes</td><td>After organisation checks</td></tr>
+<tr><td><svg class="ic"><use href="#i-id"/></svg>Client authentication</td><td class="n"><svg class="ic"><use href="#i-x"/></svg>No</td><td class="hlc n"><svg class="ic"><use href="#i-x"/></svg>No</td><td class="y"><svg class="ic"><use href="#i-check"/></svg>Yes</td></tr>
+<tr><td><svg class="ic"><use href="#i-file"/></svg>Office / OpenOffice document signing</td><td class="n"><svg class="ic"><use href="#i-x"/></svg>No</td><td class="hlc n"><svg class="ic"><use href="#i-x"/></svg>No</td><td class="y"><svg class="ic"><use href="#i-check"/></svg>Yes</td></tr>
+<tr><td><svg class="ic"><use href="#i-refresh"/></svg>Reissue</td><td class="n">—</td><td class="hlc">Unlimited</td><td>Unlimited</td></tr>
+<tr><td><svg class="ic"><use href="#i-rupee"/></svg>Terms available</td><td class="n">—</td><td class="hlc">1 or 2 years</td><td>1 or 2 years</td></tr>
+</tbody></table></div>
+</div></section>
+
+<section class="sec" id="india"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Why it matters in India</div><h2>Email carries personal and financial data. <span class="acc">Regulators expect it to be protected.</span></h2></div>
+<div class="g2">
+<div class="g2" style="gap:18px">
+<div class="card rv"><div class="ib"><svg class="ic"><use href="#i-law"/></svg></div><h3>DPDP Act, 2023</h3><p>Data fiduciaries must take reasonable security safeguards for personal data. Encrypting it in email is a direct, demonstrable control.</p></div>
+<div class="card rv"><div class="ib o"><svg class="ic"><use href="#i-alert"/></svg></div><h3>CERT-In directions</h3><p>Phishing and impersonation are reportable incidents. Signed mail reduces the chance a spoofed message succeeds.</p></div>
+<div class="card rv"><div class="ib n"><svg class="ic"><use href="#i-bank"/></svg></div><h3>RBI &amp; SEBI entities</h3><p>Regulated firms are expected to secure customer communication. S/MIME adds sender assurance and confidentiality.</p></div>
+<div class="card rv"><div class="ib"><svg class="ic"><use href="#i-file"/></svg></div><h3>Global customers</h3><p>Exporters and IT/ITeS firms are often asked for encrypted email to satisfy GDPR and HIPAA clauses.</p></div>
+</div>
+<div class="card dark rv"><div class="big"><span data-count="2">2</span> clicks</div><p>is all it takes in most mail apps to sign and encrypt once the certificate is installed. The control is simple enough that staff actually use it.</p>
+<p style="margin-top:18px;font-size:13.5px">This page is general information, not legal advice. Ask us to map S/MIME to your specific compliance requirement.</p>
+<button class="btn btn-o" style="margin-top:20px" type="button" data-callback>Talk to a specialist <svg class="ic"><use href="#i-arrow"/></svg></button></div>
+</div></div></section>
+
+<section class="sec alt" id="pricing"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Pricing</div><h2>Build your order. <span class="acc">See the GST-inclusive total.</span></h2>
+<p class="lead">Prices shown are indicative and exclude 18% GST. Your final quotation confirms the rate, including volume pricing.</p></div>
+<div class="cfg rv">
+<div class="card">
+<div class="fld"><span class="lb">1 · Certificate</span><div class="opt" id="cProd">
+<button aria-pressed="true" data-p="ind"><b>Individual (Class 1)</b><small>Mailbox-validated · sign + encrypt</small></button>
+<button aria-pressed="false" data-p="biz"><b>Business (OV)</b><small>Adds client auth + document signing</small></button></div></div>
+<div class="fld"><label for="cQty">2 · Number of mailboxes</label>
+<div class="stp"><button id="qM" aria-label="Decrease">−</button><input id="cQty" type="number" min="1" max="999" value="5" inputmode="numeric"><button id="qP" aria-label="Increase">+</button></div>
+<div class="note" style="margin-top:8px">One certificate covers one email address. 1 to 999 per order.</div></div>
+<div class="fld" style="margin:0"><span class="lb">3 · Term</span><div class="opt" id="cTerm">
+<button aria-pressed="false" data-t="1"><b>1 year</b><small id="t1s"></small></button>
+<button aria-pressed="true" data-t="2"><b>2 years</b><small id="t2s"></small></button></div></div>
+</div>
+<div class="est" aria-live="polite">
+<h3>Your estimate</h3>
+<div class="ln"><span id="eName"></span><b id="eUnit"></b></div>
+<div class="ln"><span id="eQtyL"></span><b id="eSub"></b></div>
+<div class="ln sv" id="eSaveRow"><span>2-year saving</span><b id="eSave"></b></div>
+<div class="ln"><span>GST @ 18%</span><b id="eGst"></b></div>
+<div class="tot"><span>Payable incl. GST</span><b id="eTot"></b></div>
+<div class="note" id="ePer" style="margin-top:0"></div>
+<button class="btn btn-o" id="addCart"><svg class="ic"><use href="#i-cart"/></svg>Add to cart</button>
+<a class="btn btn-g" id="getQuote" href="#"><svg class="ic"><use href="#i-file"/></svg>Get quotation</a>
+<div class="note">Indicative pricing, excl. GST until shown above. GST tax invoice issued in INR.</div>
+</div></div>
+</div></section>
+
+<section class="sec" id="setup"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Setup</div><h2>Install once. <span class="acc">Sign from then on.</span></h2>
+<p class="lead">Our engineers can do this with you over a remote session at no extra charge.</p></div>
+<div class="tabs rv" role="tablist" data-tabs="st">
+<button class="tab" role="tab" aria-selected="true"><svg class="ic"><use href="#i-desk"/></svg>Outlook (Windows)</button>
+<button class="tab" role="tab" aria-selected="false"><svg class="ic"><use href="#i-desk"/></svg>Apple Mail</button>
+<button class="tab" role="tab" aria-selected="false"><svg class="ic"><use href="#i-dev"/></svg>iPhone / iPad</button>
+</div>
+<div data-panels="st">
+<div class="tp setup on"><ol class="ol"><li>Download the certificate file (.pfx) after validation and double-click to import it into Windows.</li><li>In Outlook open File › Options › Trust Center › Trust Center Settings › Email Security.</li><li>Under Encrypted email choose Settings and select your new certificate for signing and encryption.</li><li>Tick "Add digital signature to outgoing messages" to sign by default.</li></ol>
+<div class="scr"><div class="mw-bar"><i></i><i></i><i></i><span>Outlook · Email Security</span></div><div class="in"><div class="rowi"><span>Signing certificate</span><b>priya@yourcompany.in</b></div><div class="rowi"><span>Encryption certificate</span><b>priya@yourcompany.in</b></div><div class="rowi act"><span>Add digital signature to outgoing messages</span><span class="st ok" style="margin:0">On</span></div></div></div></div>
+<div class="tp setup"><ol class="ol"><li>Double-click the certificate file to add it to Keychain Access on your Mac.</li><li>Quit and reopen Mail so it detects the certificate for your address.</li><li>Start a new message — a signed tick and a lock icon appear beside the subject line.</li><li>Click the lock to encrypt once the recipient's certificate is known.</li></ol>
+<div class="scr"><div class="mw-bar"><i></i><i></i><i></i><span>Mail · New message</span></div><div class="in"><div class="rowi"><span>From</span><b>priya@yourcompany.in</b></div><div class="rowi act"><span>Signed</span><span class="st ok" style="margin:0">On</span></div><div class="rowi"><span>Encrypt</span><span class="st na" style="margin:0">Available</span></div></div></div></div>
+<div class="tp setup"><ol class="ol"><li>Send the certificate file to the device and install the profile from Settings.</li><li>Open Settings › Mail › Accounts, choose the account, then Advanced.</li><li>Turn on S/MIME, then enable Sign and Encrypt by Default as required.</li><li>Send a signed message to confirm the tick appears for the recipient.</li></ol>
+<div class="scr"><div class="mw-bar"><i></i><i></i><i></i><span>Settings · Advanced</span></div><div class="in"><div class="rowi act"><span>S/MIME</span><span class="st ok" style="margin:0">On</span></div><div class="rowi"><span>Sign</span><b>Yes</b></div><div class="rowi"><span>Encrypt by Default</span><b>Yes</b></div></div></div></div>
+</div>
+<p class="note rv" style="margin-top:18px">Menu names vary slightly between app versions. We confirm the exact steps for your setup during onboarding.</p>
+</div></section>
+
+<section class="sec band"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Why XcellHost</div><h2>Powered by DigiCert. <span class="acc">Delivered and supported by XcellHost.</span></h2>
+<p class="lead">You get DigiCert's globally trusted roots with a local team that handles the paperwork, setup and renewals.</p></div>
+<div class="g3">
+<div class="tile rv"><i>01</i><h3>INR billing with GST invoice</h3><p>Pay in rupees by UPI, card or bank transfer and claim input credit.</p></div>
+<div class="tile rv"><i>02</i><h3>Validation hand-holding</h3><p>We guide each user through the mailbox check and organisation documents.</p></div>
+<div class="tile rv"><i>03</i><h3>Assisted installation</h3><p>Remote setup on Outlook, Apple Mail and mobile devices.</p></div>
+<div class="tile rv"><i>04</i><h3>Team rollouts</h3><p>Order for 1 to 999 mailboxes and stage issuance by department.</p></div>
+<div class="tile rv"><i>05</i><h3>Renewal tracking</h3><p>We remind you before certificates expire so signing never lapses.</p></div>
+<div class="tile rv"><i>06</i><h3>24×7 support from Mumbai</h3><p>Engineers on phone, WhatsApp and ticket, around the clock.</p></div>
+</div>
+<div class="mq" aria-hidden="true"><div>
+<span>Email signing</span><span>Email encryption</span><span>Mailbox validation</span><span>Organisation validation</span><span>Client authentication</span><span>Document signing</span><span>Unlimited reissue</span><span>ISO 27001</span><span>ISO 20000-1</span><span>Since 1999</span>
+<span>Email signing</span><span>Email encryption</span><span>Mailbox validation</span><span>Organisation validation</span><span>Client authentication</span><span>Document signing</span><span>Unlimited reissue</span><span>ISO 27001</span><span>ISO 20000-1</span><span>Since 1999</span>
+</div></div>
+</div></section>
+
+<section class="sec alt" id="security-compliance"><div class="wrap"><div class="sh"><div class="eyebrow">Email Protection</div><h2>SECURITY &amp; COMPLIANCE</h2><p>Protect email content and verify senders with S/MIME. Plan certificate validation, installation and private-key handling alongside your existing email security controls.</p></div><div class="g3">
+<article class="card"><h3>Sender Verification</h3><p>Digital signatures link the sender’s email address to a certificate and help recipients check message integrity.</p></article>
+<article class="card"><h3>Message Encryption</h3><p>Use the recipient’s certificate to encrypt email content and attachments in compatible mail applications.</p></article>
+<article class="card"><h3>Validation Options</h3><p>Choose mailbox validation for Individual certificates or organisation validation for Business certificates.</p></article>
+<article class="card"><h3>Private-Key Protection</h3><p>Keep private keys secure when installing certificates or moving them between approved devices.</p></article>
+<article class="card"><h3>Certificate Lifecycle</h3><p>Track renewals and reissues, and retain older keys needed to read previously encrypted messages.</p></article>
+<article class="card"><h3>Layered Email Security</h3><p>Use S/MIME alongside SPF, DKIM and DMARC for sender verification and domain-level protection.</p></article>
+</div></div></section><section class="sec" id="faq"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">FAQ</div><h2>Questions buyers ask <span class="acc">before they order.</span></h2></div>
+<div class="faq"><div class="hosting-faq-column"><div class="q rv"><button aria-expanded="false">What is an S/MIME certificate?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>S/MIME (Secure/Multipurpose Internet Mail Extensions) is the standard mail apps use to digitally sign and encrypt email. The certificate links your email address to a key pair issued by a trusted certificate authority, here DigiCert.</p></div></div>
+<div class="q rv"><button aria-expanded="false">How quickly is the Individual certificate issued?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>Usually within minutes. Only control of the mailbox is verified, so once you click the confirmation link the certificate can be issued.</p></div></div>
+<div class="q rv"><button aria-expanded="false">What is the difference between Individual and Business?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>Individual (Class 1) is mailbox-validated and covers email signing and encryption. Business is organisation-validated and adds client authentication and Microsoft Office and OpenOffice document signing.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Does the recipient need a certificate too?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>Not to read a signed email. To send someone an encrypted email you need their certificate, which your mail app saves automatically when they send you a signed message.</p></div></div>
+<div class="q rv"><button aria-expanded="false">How many email addresses does one certificate cover?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>One. Order one certificate per mailbox; you can buy from 1 to 999 in a single order.</p></div></div></div><div class="hosting-faq-column"><div class="q rv"><button aria-expanded="false">Can I use it on my phone as well as my laptop?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>Yes. The same certificate can be installed on your desktop and mobile mail apps. We help you move it securely between devices.</p></div></div>
+<div class="q rv"><button aria-expanded="false">What if I lose the certificate or change device?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>Reissues are unlimited during the term. Keep a backup of older keys so you can still open mail that was encrypted to them.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Is there a warranty?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>The mailbox-validated Individual certificate does not carry a warranty. Ask us about the Business certificate if a warranty matters for your procurement.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Does S/MIME replace DMARC, SPF and DKIM?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>No, they work together. DMARC, SPF and DKIM protect your domain at the server level; S/MIME proves the individual sender and encrypts the content. XcellHost supplies both.</p></div></div>
+<div class="q rv"><button aria-expanded="false">How do I pay, and will I get a GST invoice?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>You pay in INR and receive a GST tax invoice from XcellHost Cloud Services Pvt. Ltd. Prices on this page exclude 18% GST.</p></div></div></div></div></div></section>
+
+
+</main><div id="toast" role="status"></div><script src="/assets/scripts/hosting-tools-viewport.js"></script><script>
+(function(){
+var $=function(s,c){return (c||document).querySelector(s)},$$=function(s,c){return [].slice.call((c||document).querySelectorAll(s))};
+var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var inr=function(n){return '₹'+Math.round(n).toLocaleString('en-IN')};
+var WA='https://wa.me/918657032540?text=';
+/* toast */
+var tt;function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2600)}
+/* reveal + counters */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;el.classList.add('in');io.unobserve(el);
+$$('[data-count]',el).forEach(function(c){var to=+c.dataset.count,s=performance.now();(function f(n){var k=Math.min(1,(n-s)/900);c.textContent=Math.round(to*k);if(k<1)requestAnimationFrame(f)})(s)})})},{threshold:.12});
+$$('.rv').forEach(function(el,i){el.style.transitionDelay=(i%4*70)+'ms';io.observe(el)});
+/* typewriter */
+(function(){var el=$('.lh-type'),w=JSON.parse(el.dataset.words),i=0,j=0,del=false;if(RM){el.textContent=w[0];return}
+(function tick(){var s=w[i];el.textContent=s.slice(0,j);if(!del&&j<s.length){j++;setTimeout(tick,45)}else if(!del){del=true;setTimeout(tick,1700)}else if(j>0){j--;setTimeout(tick,22)}else{del=false;i=(i+1)%w.length;setTimeout(tick,300)}})()})();
+/* cipher scramble */
+(function(){var el=$('#cipher'),ch='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';function g(){var s='';for(var i=0;i<96;i++)s+=ch[Math.random()*64|0];el.textContent=s}g();if(!RM)setInterval(g,140)})();
+/* hero network canvas */
+(function(){var c=$('#net'),x=c.getContext('2d'),P=[],W,H,run=true;
+function size(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;P=[];var n=Math.min(60,Math.round(W*H/22000));for(var i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35})}
+function draw(){x.clearRect(0,0,W,H);for(var i=0;i<P.length;i++){var p=P[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+x.fillStyle='#0066FF';x.beginPath();x.arc(p.x,p.y,2,0,6.3);x.fill();
+for(var j=i+1;j<P.length;j++){var q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle='rgba(0,102,255,'+(1-d/130)*.5+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}}
+if(run&&!RM)requestAnimationFrame(draw)}
+size();draw();addEventListener('resize',size);
+new IntersectionObserver(function(e){var v=e[0].isIntersecting;if(v&&!run){run=true;draw()}else run=v}).observe(c)})();
+/* tilt */
+(function(){var st=$('.stage'),t=$('#tilt');if(RM||!matchMedia('(hover:hover)').matches)return;
+st.addEventListener('pointermove',function(e){var r=st.getBoundingClientRect(),a=(e.clientX-r.left)/r.width-.5,b=(e.clientY-r.top)/r.height-.5;t.style.transform='rotateY('+a*10+'deg) rotateX('+(-b*8)+'deg)'});
+st.addEventListener('pointerleave',function(){t.style.transform=''})})();
+/* step cycle */
+(function(){var el=$$('#steps .step'),i=0;if(RM||!el.length)return;function go(){el.forEach(function(e,k){e.classList.toggle('act',k===i)});i=(i+1)%el.length}go();setInterval(go,2000)})();
+/* ask AI */
+(function(){var q=encodeURIComponent($('.lh-ask').dataset.q);$$('.lh-ask a').forEach(function(a){a.href=a.dataset.ai+q;a.target='_blank';a.rel='noopener'})})();
+/* tabs */
+$$('[data-tabs]').forEach(function(tl){var ps=$$('.tp',$('[data-panels="'+tl.dataset.tabs+'"]')),ts=$$('.tab',tl);
+ts.forEach(function(b,i){b.onclick=function(){ts.forEach(function(o,k){o.setAttribute('aria-selected',k===i);ps[k].classList.toggle('on',k===i)})}})});
+/* faq */
+$$('.q button').forEach(function(b){b.onclick=function(){var q=b.parentNode,a=$('.a',q),o=q.classList.toggle('open');b.setAttribute('aria-expanded',o);a.style.maxHeight=o?a.scrollHeight+'px':0}});
+(function(){var d={"@context":"https://schema.org","@type":"FAQPage",mainEntity:$$('.q').map(function(q){return{"@type":"Question",name:$('button',q).textContent.trim(),acceptedAnswer:{"@type":"Answer",text:$('.a p',q).textContent}}})},s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(d);document.head.appendChild(s)})();
+/* demo */
+(function(){var sign=$('#dSign'),enc=$('#dEnc'),tam=false,W=$('#dWire'),I=$('#dInbox');
+var ic=function(n){return '<svg class="ic"><use href="#i-'+n+'"/></svg>'};
+function rnd(n){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',s='';while(n--)s+=c[Math.random()*64|0];return s}
+function render(fl){var s=sign.getAttribute('aria-checked')==='true',e=enc.getAttribute('aria-checked')==='true',acct=tam&&!e?'9902':'4417';
+W.innerHTML=e?'<span style="color:#4ADE80">'+ic('lock')+' Encrypted — unreadable</span><br><br>'+rnd(150):'<span style="color:#FF8A00">'+ic('alert')+' Plain text — readable by anyone on the path</span><br><br>From: priya@yourcompany.in<br>Please pay INV-2041 to account ending '+(tam?'<span style="color:#ff5a47">9902 (changed)</span>':'4417')+'.';
+var h='';
+if(tam&&e){h='<span class="st bad">'+ic('alert')+'Message rejected</span><p style="margin:6px 0 0;color:var(--mut)">The altered message could not be decrypted, so the mail app refused it. The attacker learned nothing and changed nothing.</p>'}
+else{h+=s?(tam?'<span class="st bad">'+ic('alert')+'Signature invalid — content was altered</span>':'<span class="st ok">'+ic('shield')+'Verified sender: priya@yourcompany.in</span>'):'<span class="st na">'+ic('user')+'Sender not verified</span>';
+h+=e?'<span class="st ok">'+ic('lock')+'Encrypted</span>':'<span class="st na">'+ic('eyeoff')+'Not encrypted</span>';
+h+='<p style="margin:6px 0 0"><b>Invoice INV-2041</b><br>Please pay INV-2041 to account ending <b'+(acct==='9902'?' style="color:var(--red)"':'')+'>'+acct+'</b>.</p>';
+if(tam&&!s)h+='<p class="note" style="margin:10px 0 0;color:var(--red)">'+ic('alert')+' The account number was changed and the recipient got no warning.</p>'}
+I.innerHTML=h;var R=$('#route');$('#rpu').setAttribute('href',e?'#i-lock':'#i-mail');$('.rpkt').classList.toggle('plain',!e);$('.rn.atk').classList.toggle('hit',tam);R.classList.remove('go');void R.offsetWidth;R.classList.add('go');if(fl){[W,I].forEach(function(p){p.parentNode.classList.remove('flash');void p.offsetWidth;p.parentNode.classList.add('flash')})}}
+[sign,enc].forEach(function(b){b.onclick=function(){b.setAttribute('aria-checked',b.getAttribute('aria-checked')!=='true');tam=false;render(true)}});
+$('#dSend').onclick=function(){tam=false;render(true);toast('Email sent (simulation)')};
+$('#dTamper').onclick=function(){tam=true;render(true)};render()})();
+/* configurator */
+var PR={ind:{n:'DigiCert S/MIME Individual (Class 1)',1:1400,2:2660},biz:{n:'DigiCert S/MIME Business (OV)',1:3192,2:6048}},st={p:'ind',t:2,q:5},cur={};
+function calc(){var P=PR[st.p],unit=P[st.t],sub=unit*st.q,save=(P[1]*2-P[2])*st.q,gst=sub*.18,tot=sub+gst;
+$('#t1s').textContent=inr(P[1])+' per certificate';$('#t2s').textContent=inr(P[2])+' per certificate · '+inr(P[2]/2)+'/yr';
+$('#eName').textContent=P.n+' · '+st.t+' yr';$('#eUnit').textContent=inr(unit);
+$('#eQtyL').textContent='× '+st.q+' mailbox'+(st.q>1?'es':'');$('#eSub').textContent=inr(sub);
+$('#eSaveRow').style.display=st.t===2?'':'none';$('#eSave').textContent='− '+inr(save);
+$('#eGst').textContent=inr(gst);$('#eTot').textContent=inr(tot);
+$('#ePer').textContent='Works out to '+inr(unit/st.t)+' per mailbox per year before GST.';
+cur={name:P.n,term:st.t,qty:st.q,sub:sub,tot:tot};
+var msg='Quotation request — '+P.n+', '+st.q+' mailbox(es), '+st.t+'-year term. Indicative total '+inr(tot)+' incl. GST.';
+$('#getQuote').href=WA+encodeURIComponent(msg);$('#getQuote').target='_blank';$('#getQuote').rel='noopener'}
+function press(g,b){$$('button',g).forEach(function(o){o.setAttribute('aria-pressed',o===b)})}
+$$('#cProd button').forEach(function(b){b.onclick=function(){st.p=b.dataset.p;press($('#cProd'),b);calc()}});
+$$('#cTerm button').forEach(function(b){b.onclick=function(){st.t=+b.dataset.t;press($('#cTerm'),b);calc()}});
+var qi=$('#cQty');function setQ(v){st.q=Math.max(1,Math.min(999,parseInt(v,10)||1));qi.value=st.q;calc()}
+$('#qM').onclick=function(){setQ(st.q-1)};$('#qP').onclick=function(){setQ(st.q+1)};qi.onchange=function(){setQ(qi.value)};
+$$('[data-pick]').forEach(function(a){a.addEventListener('click',function(){$('#cProd [data-p="'+a.dataset.pick+'"]').click()})});
+calc();
+
+/* Connect to the shared website enquiry and cart. */
+$$('[data-callback]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();document.dispatchEvent(new CustomEvent('import-callback',{detail:'S/MIME Certificates: Certificate Enquiry'}))})});
+$('#addCart').onclick=function(){document.dispatchEvent(new CustomEvent('import-cart',{detail:{name:cur.name,sub:cur.term+'-year term',price:cur.sub/cur.qty,qty:cur.qty}}))};
+document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute('href').slice(1);if(id&&document.getElementById(id)){e.preventDefault();window.hostingJumpTo(id)}});
+})();</script></body></html>

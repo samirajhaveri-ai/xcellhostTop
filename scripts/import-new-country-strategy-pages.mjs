@@ -40,11 +40,15 @@ for (const [fileName, country] of countries) {
   const sourcePath = path.resolve(sourceDirectory, fileName);
   const source = fs.readFileSync(sourcePath, 'utf8');
   const documentOpen = source.match(/<!doctype[^>]*>\s*<html[^>]*>/i)?.[0];
-  const head = source.match(/<head\b[\s\S]*?<\/head>/i)?.[0];
+  let head = source.match(/<head\b[\s\S]*?<\/head>/i)?.[0];
   const mainMatch = source.match(/<main\b([^>]*)>([\s\S]*?)<\/main>/i);
 
   if (!documentOpen || !head || !mainMatch) {
     throw new Error(`Could not find the document shell and main content in ${sourcePath}.`);
+  }
+
+  if (country === 'Egypt' || country === 'Ireland') {
+    head = head.replace('</head>', '<link rel="stylesheet" href="/assets/styles/egypt-ireland-hero.css">\n</head>');
   }
 
   // Retain the strategy through its complete FAQ. Angular supplies Insights
