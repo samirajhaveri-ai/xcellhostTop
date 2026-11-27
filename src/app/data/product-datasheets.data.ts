@@ -22,6 +22,37 @@ export interface ProductDatasheet {
 
 export const PRODUCT_DATASHEETS: readonly ProductDatasheet[] = [
   {
+    slug: 'bare-metal-server',
+    productName: 'Bare Metal Servers',
+    description: 'Compare dedicated Intel and AMD server configurations, storage options, and bundled services.',
+    sections: [
+      {
+        title: 'Dedicated server features',
+        summary: 'Single-tenant servers are built to order with Linux or Windows, root access, and a choice of control panel. The datasheet describes Dell 1U, 2U, and 4U hardware and Tier IV data center hosting.',
+      },
+      {
+        title: 'Hardware configurations',
+        summary: 'The datasheet compares AMD Ryzen, Intel Xeon Gold, legacy Intel Xeon E5, and third- and fourth-generation AMD EPYC configurations. It lists cores and threads, memory, storage, and bandwidth by plan.',
+      },
+      {
+        title: 'Bundled services and control panels',
+        points: [
+          'The datasheet lists 24/7 support and monitoring, endpoint protection, basic website security, and global DNS.',
+          'Plesk Web Admin, Web Pro, and Web Host are available for server administration, web development, and hosting or reseller use.',
+        ],
+      },
+      {
+        title: 'Server provisioning',
+        summary: 'The provisioning process covers order booking, payment confirmation, identity verification, hardware setup, and network testing before delivery.',
+      },
+    ],
+    coverUrl: '/assets/datasheets/bare-metal-server.jpg',
+    heroImageUrl: '/assets/images/menu-bare-metal-servers.png',
+    assetUrl: '/assets/datasheets/bare-metal-server.pdf',
+    downloadName: 'XcellHost Bare Metal Server.pdf',
+    pageSlugs: ['bare-metal-servers'],
+  },
+  {
     slug: 'cloud-desktop-as-a-service',
     productName: 'Cloud Desktop as a Service',
     description: 'Compare hosted shared desktops, virtual desktop infrastructure, and GPU cloud desktops.',

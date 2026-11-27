@@ -90,7 +90,7 @@ describe('Insights pagination', () => {
     expect(page.tabCount('Checklists')).toBe(3);
   });
 
-  it('shows the seven product datasheets with internal links even when the CMS returns sample datasheets', () => {
+  it('shows the local product datasheets with internal links even when the CMS returns sample datasheets', () => {
     documents.next([{
       documentId: 'datasheet-blog', kind: 'data-sheet', title: 'Sample Data Sheet', slug: 'sample-data-sheet',
       description: 'Sample content', content: 'Resource content', category: 'Datasheet',
@@ -102,7 +102,7 @@ describe('Insights pagination', () => {
     component.selectTab('Data Sheets');
     fixture.detectChanges();
     const links = Array.from(fixture.nativeElement.querySelectorAll('.insights-lead, .insights-card') as NodeListOf<HTMLAnchorElement>);
-    expect(component.tabCount('Data Sheets')).toBe(7);
+    expect(component.tabCount('Data Sheets')).toBe(PRODUCT_DATASHEETS.length);
     expect(links.map(link => link.pathname)).toEqual(PRODUCT_DATASHEETS.map(sheet => `/datasheets/${sheet.slug}`));
     expect(links.every(link => link.target === '')).toBeTrue();
     const leadColumns = getComputedStyle(links[0]).gridTemplateColumns.split(' ').map(parseFloat);
