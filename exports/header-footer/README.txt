@@ -22,5 +22,6 @@ Fonts from Google and external services require an internet connection.
 
 REUSE
 Copy assets/ and the CSS/JS files alongside your page. Paste header.html and footer.html into the page and include the same stylesheet/script tags as index.html.
+Copy the WOWagent script from the head of index.html into your site-wide head, before </head>. Verify the website in WOWagent Integration Center and enable Public widget status.
 Keep the full files together so menu images and icons resolve correctly.
 This package contains the header/footer, not the linked service pages or Angular overlays.
