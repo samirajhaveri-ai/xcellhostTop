@@ -15,6 +15,16 @@ const blockchainInfrastructureRedirect: RedirectFunction = ({ queryParams, fragm
 };
 
 const suppliedPageRoutes: Routes = [
+  {
+    path: 'ai-voice-bot',
+    title: 'AI Voice Bot | XcellHost',
+    data: {
+      suppliedPageSlug: 'ai-voice-bot',
+      pageTitle: 'AI Voice Bot | XcellHost',
+      searchTitle: 'AI Voice Bot',
+      searchDescription: 'AI voice assistants for business calls and websites, with multilingual conversations, appointment booking, CRM integration and managed support.',
+    },
+  },
   ...[
     ['ireland', 'Ireland'],
     ['oman', 'Oman'],
@@ -26,6 +36,8 @@ const suppliedPageRoutes: Routes = [
     ['ivory-coast', 'Ivory Coast'],
     ['portugal', 'Portugal'],
     ['morocco', 'Morocco'],
+    ['sierra-leone', 'Sierra Leone'],
+    ['zimbabwe', 'Zimbabwe'],
   ].map(([slug, country]) => ({
     path: `${slug}-go-to-market-strategy`,
     title: `${country} Go-to-Market Strategy | XcellHost`,

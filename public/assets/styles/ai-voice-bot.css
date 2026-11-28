@@ -1,0 +1,14 @@
+/* Adapt the supplied document to the shared website shell. */
+.hero-grid > * { min-width: 0; }
+.hero-grid > div:first-child { container-type: inline-size; }
+.lh h1 { font-size: clamp(22px, 6.3cqi, 38px); white-space: nowrap; }
+.lh h1 .dv { margin-inline: 8px; }
+.rv { opacity: 1; transform: none; }
+h2, h3, h4, h5, h6 { text-transform: capitalize; }
+#india .eyebrow { text-transform: uppercase; }
+.hero-cta { flex-wrap: wrap; }
+.hero-cta > * { white-space: nowrap; }
+@media (max-width: 560px) {
+  .lh h1 { font-size: clamp(18px, 6.3cqi, 30px); }
+  .lh h1 .dv { margin-inline: 5px; }
+}

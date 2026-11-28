@@ -1,0 +1,970 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sierra Leone Go-to-Market Strategy | XcellHost</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"><style>
+/* ===== XcellHost v2 tokens ===== */
+:root{--blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--red:#c0392b;--green:#12a150;
+--bg:#fff;--soft:#F4F6FA;--card:#fff;--ink:#0B132B;--mut:#56607a;--line:#E2E7F0;
+--hd:'Sora',system-ui,sans-serif;--bd:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--r:16px}
+html[data-theme="dark"]{--bg:#0B132B;--soft:#111C3A;--card:#131F40;--ink:#F2F5FB;--mut:#A9B4CC;--line:#26345C}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;font-family:var(--bd);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img,svg{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.ic{width:1.15em;height:1.15em;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3,h4{font-family:var(--hd);line-height:1.15;margin:0;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:12px;border:2px solid transparent;font-family:var(--hd);font-weight:600;font-size:15px;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-o{background:var(--orange);color:#0B132B}.btn-o:hover{box-shadow:0 10px 24px rgba(255,138,0,.35)}
+.btn-b{background:var(--blue);color:#fff}.btn-b:hover{box-shadow:0 10px 24px rgba(0,102,255,.3)}
+.btn-g{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:#fff}
+.btn-l{border-color:var(--line);color:var(--ink);background:var(--card)}
+.btn-w{background:#25D366;color:#06301a}
+/* progress */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--orange);width:0;z-index:200}
+/* utility + promo + header */
+.util{background:var(--navy);color:#C9D2E6;font-size:12.5px}
+.util .wrap{display:flex;gap:18px;align-items:center;justify-content:space-between;min-height:36px}
+.util nav{display:flex;gap:16px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}.util nav::-webkit-scrollbar{display:none}
+.util a:hover{color:#fff}.util .r{display:flex;gap:14px;align-items:center;white-space:nowrap}
+#themeBtn{background:none;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:8px;padding:4px 8px;display:inline-flex}
+.promo{background:var(--blue);color:#fff;font-size:13.5px;text-align:center;padding:8px 16px}
+.promo b{background:var(--orange);color:#0B132B;border-radius:6px;padding:2px 8px;font-family:var(--mono);font-size:11px;margin:0 8px}
+.promo a{text-decoration:underline;font-weight:600}
+header.hd{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:22px;min-height:68px}
+.logo{font-family:var(--hd);font-weight:800;font-size:25px;letter-spacing:-.03em;line-height:1;display:flex;flex-direction:column}
+.logo .x{color:var(--blue)}.logo .h{color:var(--red)}.logo sup{font-size:10px}
+.logo small{font-family:var(--mono);font-weight:500;font-size:9.5px;letter-spacing:.14em;color:var(--mut);margin-top:3px}
+.nav{display:flex;gap:4px;margin-left:8px;flex:1}
+.nav .mi{position:relative}
+.nav .mi>a{display:block;padding:22px 8px;font-weight:500;font-size:14px;white-space:nowrap}
+.nav .mi>a:hover,.nav .mi.on>a{color:var(--blue)}
+.mega{position:absolute;top:100%;left:0;min-width:270px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 22px 50px rgba(11,19,43,.16);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}
+.mi:hover .mega,.mi:focus-within .mega{opacity:1;visibility:visible;transform:none}
+.mega a{display:block;padding:9px 12px;border-radius:9px;font-size:14px}.mega a:hover{background:var(--soft);color:var(--blue)}
+.hd .act{display:flex;gap:10px;align-items:center;margin-left:auto}
+.icbtn{background:none;border:1px solid var(--line);border-radius:10px;width:40px;height:40px;display:grid;place-items:center;color:var(--ink);position:relative}
+.icbtn i{position:absolute;top:-6px;right:-6px;background:var(--orange);color:#0B132B;font:600 11px var(--mono);border-radius:99px;min-width:18px;height:18px;display:grid;place-items:center;font-style:normal}
+#burger{display:none}
+@media(max-width:1200px){.nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;padding:8px 20px 16px;margin:0}
+.nav.open{display:flex}.nav .mi>a{padding:12px 4px}.mega{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;padding:0 0 6px 10px;display:none}.mi.on .mega{display:block}
+#burger{display:grid}.hd .act .btn{display:none}.util nav{display:none}}
+/* hero */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:44px 0 64px}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.crumb{font:500 12px var(--mono);letter-spacing:.06em;color:#9FB0D0;margin-bottom:20px}.crumb a:hover{color:#fff}
+.hero h1{font-size:clamp(30px,4.2vw,50px);font-weight:800}
+.hero h1 .x{color:#fff}.hero h1 .brd{color:#ff5a47}.hero h1 .dv{color:var(--orange);margin:0 .22em;font-weight:500}.hero h1 .nm{display:inline}
+.lh-tag{font-family:var(--hd);font-weight:700;font-size:clamp(18px,2vw,23px);margin:18px 0 8px}
+.lh-tag2{color:#C3CDE3;margin:0 0 14px;max-width:56ch}
+.lh-type{font:500 14px var(--mono);color:var(--orange);min-height:22px;margin-bottom:18px}
+.lh-type::after{content:"▍";animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.lh-points{list-style:none;padding:0;margin:0 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+.lh-points li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:#E6ECF8}
+.lh-points .ic{color:var(--orange);margin-top:3px}
+.lh-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.lh-ask{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:#9FB0D0}
+.lh-ask a{border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:5px 12px;color:#fff;font-size:12.5px;transition:.2s}
+.lh-ask a:hover{background:#fff;color:var(--navy)}
+/* hero stage */
+.stage{position:relative;perspective:1200px;min-height:440px}
+.lh-tilt{transform-style:preserve-3d;transition:transform .25s ease-out}
+.mailwin{background:#fff;color:#0B132B;border-radius:18px;box-shadow:0 40px 90px rgba(0,0,0,.45);overflow:hidden;max-width:470px;margin:20px auto 0}
+.mw-bar{background:#EEF1F7;padding:10px 14px;display:flex;gap:7px;align-items:center;font:500 12px var(--mono);color:#56607a}
+.mw-bar i{width:10px;height:10px;border-radius:50%;background:#c0392b}.mw-bar i+i{background:#FF8A00}.mw-bar i+i+i{background:#12a150}
+.mw-bar span{margin-left:8px}
+.mw-b{padding:16px 18px 18px}
+.mw-row{display:flex;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px solid #E2E7F0}
+.mw-row b{font:500 11px var(--mono);color:#56607a;width:56px;padding-top:2px;text-transform:uppercase}
+.mw-txt{margin:14px 0;display:grid;gap:8px}
+.mw-txt i{height:9px;border-radius:5px;background:#E2E7F0;transform-origin:left;animation:grow 7s ease infinite}
+.mw-txt i:nth-child(2){width:86%;animation-delay:.25s}.mw-txt i:nth-child(3){width:64%;animation-delay:.5s}
+@keyframes grow{0%{transform:scaleX(0)}12%,100%{transform:scaleX(1)}}
+.mw-badges{display:flex;gap:10px;flex-wrap:wrap}
+.bdg{display:inline-flex;align-items:center;gap:7px;border-radius:10px;padding:8px 12px;font:600 12.5px var(--hd);opacity:0;transform:translateY(10px) scale(.9);animation:pop 7s ease infinite}
+.bdg.s{background:#0066FF;color:#fff;animation-delay:1.2s}.bdg.e{background:#0B132B;color:#fff;animation-delay:2.1s}
+@keyframes pop{0%,2%{opacity:0;transform:translateY(10px) scale(.9)}8%,92%{opacity:1;transform:none}100%{opacity:0;transform:translateY(10px) scale(.9)}}
+.seal path{stroke-dasharray:24;stroke-dashoffset:24;animation:draw 7s ease infinite 1.5s}
+@keyframes draw{0%{stroke-dashoffset:24}8%,100%{stroke-dashoffset:0}}
+.wire{margin-top:16px;background:#0B132B;border-radius:12px;padding:12px 14px;color:#8FB6FF;font:500 11.5px/1.5 var(--mono);position:relative;overflow:hidden}
+.wire small{display:flex;justify-content:space-between;color:#9FB0D0;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+#cipher{word-break:break-all;height:34px;overflow:hidden}
+.path{position:relative;height:26px;margin-top:10px}
+.path::before{content:"";position:absolute;left:0;right:0;top:12px;border-top:2px dashed #26345C}
+.pkt{position:absolute;top:1px;left:0;width:24px;height:24px;border-radius:8px;background:var(--orange);color:#0B132B;display:grid;place-items:center;animation:travel 3.5s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes travel{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% - 24px);opacity:0}}
+.lh-chip{position:absolute;background:#fff;color:#0B132B;border-radius:12px;padding:9px 13px;font:600 12.5px var(--hd);display:flex;gap:8px;align-items:center;box-shadow:0 14px 34px rgba(0,0,0,.35);animation:float 5s ease-in-out infinite;z-index:2}
+.lh-chip .ic{color:var(--blue)}.lh-chip.c1{top:0;left:-6px}.lh-chip.c2{top:150px;right:-10px;animation-delay:-2.5s}.lh-chip.c2 .ic{color:var(--green)}
+@keyframes float{50%{transform:translateY(-12px)}}
+.pw{position:absolute;bottom:-18px;right:6px;background:#fff;color:#0B132B;border-radius:14px;padding:10px 16px;box-shadow:0 14px 34px rgba(0,0,0,.35);z-index:2}
+.pw small{display:block;font:600 9.5px var(--mono);letter-spacing:.16em;color:#56607a}
+.pw b{font-family:var(--hd);font-weight:800;font-size:20px;letter-spacing:-.03em;color:#0B132B}.pw b span{color:var(--blue)}
+/* proof */
+.proof{background:var(--soft);border-bottom:1px solid var(--line);font:500 13px var(--mono);color:var(--mut)}
+.proof .wrap{display:flex;gap:10px 26px;flex-wrap:wrap;justify-content:center;padding-top:14px;padding-bottom:14px}
+.proof span{display:inline-flex;gap:7px;align-items:center}.proof .ic{color:var(--blue)}.proof b{color:var(--ink)}
+/* subnav */
+.sub{position:sticky;top:68px;z-index:90;background:var(--bg);border-bottom:1px solid var(--line)}
+.sub .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.sub .wrap::-webkit-scrollbar{display:none}
+.sub a{white-space:nowrap;padding:13px 14px;font-size:13.5px;font-weight:500;color:var(--mut);border-bottom:2px solid transparent}
+.sub a.on,.sub a:hover{color:var(--blue);border-color:var(--blue)}
+/* sections */
+.sec{padding:76px 0}.sec.alt{background:var(--soft)}
+.sh{max-width:760px;margin-bottom:38px}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--orange)}
+.sh h2{font-size:clamp(26px,3.2vw,38px);font-weight:700}.acc{color:var(--blue)}
+.lead{color:var(--mut);font-size:17px;margin:14px 0 0}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(11,19,43,.1);border-color:var(--blue)}
+.ib{width:46px;height:46px;border-radius:12px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:20px;margin-bottom:14px}
+.ib.o{background:var(--orange);color:#0B132B}.ib.n{background:var(--navy)}
+.card h3{font-size:18px;margin-bottom:8px}.card p{margin:0;color:var(--mut);font-size:15px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:32px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.prose p{color:var(--mut);margin:0 0 14px}.prose p b{color:var(--ink)}
+.works{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.works small{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-right:6px}
+.pill{display:inline-flex;gap:7px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 14px;font-size:13.5px;font-weight:500}
+.pill .ic{color:var(--blue)}
+.benef{display:grid;gap:14px}
+.benef .card{display:flex;gap:16px;align-items:flex-start;padding:18px 20px}.benef .ib{margin:0;flex:none}
+/* steps */
+.steps{counter-reset:s}
+.step{position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);font:600 13px var(--mono);color:var(--orange);display:block;margin-bottom:12px}
+.mini{height:74px;border-radius:12px;background:var(--soft);margin-bottom:16px;display:grid;place-items:center;color:var(--blue);font-size:30px;position:relative;overflow:hidden}
+.sec.alt .mini{background:var(--bg)}
+.mini .pulse{position:absolute;width:44px;height:44px;border-radius:50%;border:2px solid var(--blue);animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+.mini .slide{animation:slide 2.6s ease-in-out infinite}@keyframes slide{0%,100%{transform:translateX(-28px)}50%{transform:translateX(28px)}}
+.mini .spin{animation:spin 6s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.mini .bob{animation:float 2.4s ease-in-out infinite}
+/* demo */
+.demo{display:grid;grid-template-columns:300px 1fr;gap:22px}
+.ctl{display:grid;gap:14px;align-content:start}
+.tog{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:500}
+.sw{width:50px;height:28px;border-radius:99px;background:var(--line);border:0;position:relative;transition:.2s;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 5px rgba(0,0,0,.25)}
+.sw[aria-checked="true"]{background:var(--blue)}.sw[aria-checked="true"]::after{left:25px}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pane{border:1px solid var(--line);border-radius:var(--r);background:var(--card);overflow:hidden}
+.pane h4{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:12px 16px;border-bottom:1px solid var(--line);color:var(--mut);display:flex;gap:8px;align-items:center}
+.pane .bd{padding:16px;font-size:14px;min-height:170px}
+.pane.dk{background:#0B132B;border-color:#26345C;color:#C9D2E6}.pane.dk h4{color:#9FB0D0;border-color:#26345C}
+.pane.dk .bd{font:500 12.5px/1.6 var(--mono);word-break:break-all}
+.st{display:inline-flex;gap:7px;align-items:center;border-radius:9px;padding:6px 11px;font:600 12.5px var(--hd);margin:0 6px 10px 0}
+.st.ok{background:var(--green);color:#fff}.st.bad{background:var(--red);color:#fff}.st.na{background:var(--soft);color:var(--mut);border:1px solid var(--line)}.st.warn{background:var(--orange);color:#0B132B}
+.flash{animation:flash .5s}@keyframes flash{0%{box-shadow:0 0 0 0 rgba(0,102,255,.6)}100%{box-shadow:0 0 0 14px rgba(0,102,255,0)}}
+/* plans */
+.plan{position:relative;padding:28px;display:flex;flex-direction:column}
+.plan.best{border:2px solid var(--blue)}
+.tag{position:absolute;top:-13px;left:24px;background:var(--orange);color:#0B132B;font:600 11px var(--mono);letter-spacing:.1em;border-radius:7px;padding:4px 10px;text-transform:uppercase}
+.plan .who{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.plan h3{font-size:22px;margin:6px 0 10px}
+.price{font-family:var(--hd);font-weight:800;font-size:38px;letter-spacing:-.03em;margin:14px 0 2px}.price small{font:500 14px var(--bd);color:var(--mut);letter-spacing:0}
+.note{font-size:12.5px;color:var(--mut)}
+.fl{list-style:none;margin:18px 0 22px;padding:0;display:grid;gap:10px;font-size:14.5px}
+.fl li{display:flex;gap:10px;align-items:flex-start}.fl .ic{color:var(--blue);margin-top:4px}.fl li.no{color:var(--mut)}.fl li.no .ic{color:var(--mut)}
+.plan .btn{margin-top:auto;justify-content:center}
+/* tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:9px 18px;font-weight:500;font-size:14.5px;display:inline-flex;gap:8px;align-items:center;transition:.2s}
+.tab[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.tp{display:none}.tp.on{display:grid;animation:fadeUp .45s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+.uc{grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.uc h3{font-size:22px;margin-bottom:10px}.uc p{color:var(--mut);margin:0 0 14px}
+.ucbox{background:var(--navy);color:#fff;border-radius:var(--r);padding:24px}
+.ucbox small{font:600 11px var(--mono);letter-spacing:.14em;color:var(--orange);text-transform:uppercase}
+.ucbox p{color:#C9D2E6;margin:10px 0 0;font-size:15px}
+/* table */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14.5px}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-family:var(--hd);font-size:14px}tr:last-child td{border-bottom:0}
+td:first-child{font-weight:500}
+.hl{background:var(--blue);color:#fff}td.hlc{box-shadow:inset 3px 0 0 var(--blue),inset -3px 0 0 var(--blue);font-weight:600}
+.y{color:var(--green)}.n{color:var(--mut)}td .ic{vertical-align:-3px;margin-right:6px}
+/* india */
+.dark{background:var(--navy);color:#fff;border-radius:var(--r);padding:28px;border:0}
+.dark .big{font-family:var(--hd);font-weight:800;font-size:52px;color:var(--orange);letter-spacing:-.03em;line-height:1}
+.dark p{color:#C9D2E6;margin:10px 0 0}
+/* configurator */
+.cfg{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start}
+.fld{margin-bottom:22px}.fld>label,.fld>span.lb{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:10px}
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt button{text-align:left;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:14px 16px;transition:.2s}
+.opt button b{display:block;font-family:var(--hd);font-size:15.5px}.opt button small{color:var(--mut);font-size:13px}
+.opt button[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.stp{display:inline-flex;align-items:center;border:2px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+.stp button{width:46px;height:46px;border:0;background:none;font-size:20px;color:var(--ink)}.stp button:hover{background:var(--soft)}
+.stp input{width:74px;text-align:center;border:0;background:none;font:700 18px var(--hd);color:var(--ink);-moz-appearance:textfield}
+.stp input::-webkit-outer-spin-button,.stp input::-webkit-inner-spin-button{-webkit-appearance:none}
+.est{background:var(--navy);color:#fff;border-radius:20px;padding:28px;position:sticky;top:130px}
+.est h3{font-size:18px;margin-bottom:16px}
+.ln{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed #26345C;font-size:14.5px;color:#C9D2E6}
+.ln b{color:#fff;font-family:var(--mono);font-weight:500}.ln.sv b{color:#4ADE80}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 4px}
+.tot span{font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#9FB0D0}
+.tot b{font-family:var(--hd);font-weight:800;font-size:34px;color:var(--orange)}
+.est .btn{width:100%;justify-content:center;margin-top:12px}
+.est .note{color:#9FB0D0;margin-top:14px}
+/* setup */
+.setup{grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.ol{list-style:none;margin:0;padding:0;counter-reset:o;display:grid;gap:14px}
+.ol li{counter-increment:o;display:flex;gap:14px;align-items:flex-start}
+.ol li::before{content:counter(o);flex:none;width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;display:grid;place-items:center;font:600 13px var(--mono)}
+.scr{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 18px 44px rgba(11,19,43,.1)}
+.scr .mw-bar{background:var(--soft);color:var(--mut)}
+.scr .in{padding:20px;display:grid;gap:12px}
+.rowi{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:11px;padding:11px 14px;font-size:14px}
+.rowi.act{border-color:var(--blue);animation:glow 2s ease-in-out infinite}@keyframes glow{50%{box-shadow:0 0 0 5px rgba(0,102,255,.14)}}
+/* powered band */
+.band{background:var(--navy);color:#fff}.band .eyebrow{color:var(--orange)}.band .sh h2 .acc{color:var(--orange)}.band .lead{color:#C9D2E6}
+.tile{border:1px solid #26345C;border-radius:var(--r);padding:22px;transition:.25s}.tile:hover{border-color:var(--orange);transform:translateY(-4px)}
+.tile i{font:600 13px var(--mono);color:var(--orange);font-style:normal}.tile h3{font-size:17px;margin:10px 0 6px}.tile p{margin:0;color:#C9D2E6;font-size:14.5px}
+.mq{overflow:hidden;margin-top:40px;border-top:1px solid #26345C;padding-top:22px}
+.mq div{display:flex;gap:14px;width:max-content;animation:mq 30s linear infinite}
+.mq span{border:1px solid #26345C;border-radius:99px;padding:8px 16px;font:500 13px var(--mono);color:#C9D2E6;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* faq */
+.faq{max-width:860px}
+.q{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:10px;overflow:hidden}
+.q button{width:100%;display:flex;justify-content:space-between;gap:16px;align-items:center;background:none;border:0;padding:18px 20px;text-align:left;font:600 16px var(--hd);color:var(--ink)}
+.q button .ic{transition:.25s;color:var(--blue)}.q.open button .ic{transform:rotate(45deg)}
+.q .a{max-height:0;overflow:hidden;transition:max-height .35s ease}.q .a p{margin:0;padding:0 20px 18px;color:var(--mut)}
+/* cta */
+.cta{background:var(--blue);color:#fff;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.cta h2{font-size:clamp(24px,3vw,34px)}.cta p{margin:12px 0 0;color:#E6EEFF}
+.cta .lk{display:grid;gap:10px}.cta .lk a{display:flex;gap:10px;align-items:center;background:#fff;color:#0B132B;border-radius:12px;padding:13px 16px;font-weight:600;transition:.2s}
+.cta .lk a:hover{transform:translateX(6px)}.cta .lk a:first-child{background:var(--orange)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:30px 0}
+.xl h3{display:flex;justify-content:space-between;align-items:center}.xl small{font:600 11px var(--mono);letter-spacing:.12em;color:var(--blue);text-transform:uppercase;display:block;margin-bottom:8px}
+/* footer */
+.news{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 30px;display:flex;gap:20px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:-46px;position:relative;z-index:2;box-shadow:0 18px 44px rgba(11,19,43,.12)}
+.news h3{font-size:20px}.news p{margin:4px 0 0;color:var(--mut);font-size:14.5px}
+footer{background:var(--blue);color:#fff;padding:92px 0 30px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:28px}
+footer h4{font-size:14.5px;margin-bottom:12px}footer ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+footer a{color:#E6EEFF}footer a:hover{color:#fff;text-decoration:underline}
+footer .lg{background:#fff;border-radius:14px;padding:14px 18px;display:inline-block;margin-bottom:14px}
+footer .ct{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+footer .ct span{background:#fff;color:#0B132B;border-radius:8px;padding:5px 10px;font:600 11px var(--mono)}
+footer .legal{border-top:1px solid rgba(255,255,255,.3);padding-top:18px;font-size:12.5px;color:#E6EEFF;display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-between}
+/* floating */
+.wa{position:fixed;right:18px;bottom:18px;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-size:26px;z-index:120;box-shadow:0 10px 26px rgba(0,0,0,.3);animation:float 4s ease-in-out infinite}
+.cb{position:fixed;right:0;top:50%;transform:rotate(-90deg) translateY(-100%);transform-origin:right top;background:var(--orange);color:#0B132B;font:600 13px var(--hd);padding:9px 16px;border-radius:10px 10px 0 0;z-index:110;border:0}
+/* drawer + modal + toast */
+.ov{position:fixed;inset:0;background:rgba(11,19,43,.6);z-index:300;opacity:0;visibility:hidden;transition:.25s}
+.ov.on{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--bg);z-index:310;transform:translateX(100%);transition:.3s;display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.drawer.on{transform:none}
+.drawer header,.modal header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.drawer .items{flex:1;overflow:auto;padding:16px 20px;display:grid;gap:12px;align-content:start}
+.ci{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.ci button{background:none;border:0;color:var(--red);font-size:13px}
+.drawer footer{background:none;color:var(--ink);padding:16px 20px;border-top:1px solid var(--line)}
+.xb{background:none;border:0;font-size:22px;color:var(--ink);line-height:1}
+.modal{position:fixed;left:50%;top:50%;width:min(460px,92%);background:var(--bg);border-radius:20px;z-index:310;transform:translate(-50%,-46%);opacity:0;visibility:hidden;transition:.25s;border:1px solid var(--line)}
+.modal.on{opacity:1;visibility:visible;transform:translate(-50%,-50%)}
+.modal .bd{padding:20px;display:grid;gap:12px}
+.modal input,.modal select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:11px;font:inherit;background:var(--card);color:var(--ink)}
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);background:var(--navy);color:#fff;padding:12px 20px;border-radius:12px;z-index:400;opacity:0;transition:.3s;font-weight:500;border:1px solid #26345C;max-width:90%}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ===== v2 polish: icons + motion ===== */
+.ib{width:54px;height:54px;border-radius:15px;position:relative;transition:transform .3s}
+.ib .ic{width:25px;height:25px}
+.ib::after{content:"";position:absolute;inset:-5px;border-radius:19px;border:2px solid var(--blue);animation:ibr 2.6s ease-out infinite;pointer-events:none}
+.ib.o::after{border-color:var(--orange)}.ib.n::after{border-color:var(--mut)}
+@keyframes ibr{0%{opacity:.7;transform:scale(.9)}100%{opacity:0;transform:scale(1.22)}}
+.benef .card{gap:22px}.logo{flex:none;white-space:nowrap}.btn{white-space:nowrap}.nav{gap:0}
+.card:hover .ib{animation:ibp .6s}
+@keyframes ibp{40%{transform:scale(1.16) rotate(-10deg)}70%{transform:scale(.96) rotate(4deg)}}
+.benef .card{position:relative;overflow:hidden}
+.benef .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--blue);transform:scaleY(0);transform-origin:top;transition:transform .35s}
+.benef .card:hover::before{transform:scaleY(1)}
+.benef .card:hover{transform:translateX(8px)}
+.benef .rv:not(.in){transform:translateX(46px)}
+.benef .card:nth-child(2) .ib::after{animation-delay:.6s}.benef .card:nth-child(3) .ib::after{animation-delay:1.2s}.benef .card:nth-child(4) .ib::after{animation-delay:1.8s}
+.pr{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+.pr p{margin:0;color:var(--mut)}.pr p b{color:var(--ink)}
+.pi{flex:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--blue);color:var(--blue);display:grid;place-items:center;font-size:20px;transition:.3s}
+.pr:hover .pi{background:var(--blue);color:#fff;transform:rotate(-8deg) scale(1.08)}
+.pill{transition:transform .2s,border-color .2s,box-shadow .2s}
+.pill:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 8px 18px rgba(11,19,43,.1)}
+.works .pill:hover .ic{animation:ibp .6s}
+/* steps */
+.steps{position:relative;margin-top:22px}
+.steps::before{content:"";position:absolute;top:0;left:5%;right:5%;border-top:2px dashed var(--line)}
+.steps::after{content:"";position:absolute;top:-6px;left:5%;width:14px;height:14px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(0,102,255,.2);animation:run 8s linear infinite}
+@keyframes run{to{left:95%}}
+.step{padding-top:34px}.step::before{display:none}
+.num{position:absolute;top:-18px;left:22px;width:38px;height:38px;border-radius:11px;background:var(--orange);color:#0B132B;font:600 14px var(--mono);display:grid;place-items:center;z-index:1;transition:.3s;box-shadow:0 6px 14px rgba(11,19,43,.18)}
+.step.act{border-color:var(--blue);transform:translateY(-8px);box-shadow:0 20px 44px rgba(11,19,43,.14)}
+.step.act .num{background:var(--blue);color:#fff;transform:scale(1.14) rotate(-6deg)}
+.sec .steps .mini{height:124px;display:block;background:#0B132B;border:1px solid #26345C;border-radius:14px;margin-bottom:18px}
+.sc{width:100%;height:100%;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sc .rg{stroke:#0066FF;transform-origin:100px 55px;animation:ring 2.4s ease-out infinite}.sc .r2{animation-delay:1.2s}
+@keyframes ring{0%{transform:scale(.7);opacity:1}100%{transform:scale(2.2);opacity:0}}
+.sc .env{animation:bobs 3s ease-in-out infinite}@keyframes bobs{50%{transform:translateY(-5px)}}
+.sc .fo{fill:#FF8A00;stroke:none}.sc .fb{fill:#0066FF;stroke:none}.sc .so{stroke:#FF8A00}.sc .sb{stroke:#0066FF}.sc .sn{stroke:#0B132B}.sc .dim{opacity:.35}
+.sc .chk{transform-origin:134px 36px;animation:chk 3s ease infinite}
+@keyframes chk{0%,30%{transform:scale(0)}45%{transform:scale(1.3)}55%,100%{transform:scale(1)}}
+.sc .ln1{stroke-dasharray:60;animation:dl 3.5s ease infinite}.sc .l2{animation-delay:.3s}.sc .l3{animation-delay:.6s}
+@keyframes dl{0%{stroke-dashoffset:60}35%,100%{stroke-dashoffset:0}}
+.sc .seal2{transform-origin:126px 70px;animation:chk 3.5s ease infinite}
+.sc .keyr{transform-origin:40px 42px;animation:wig 2.4s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:rotate(-22deg)}50%{transform:rotate(22deg)}}
+.sc .sig{stroke-dasharray:170;animation:sg 3.2s ease infinite}
+@keyframes sg{0%{stroke-dashoffset:170}60%,100%{stroke-dashoffset:0}}
+.sc .pen2{animation:penm 3.2s ease infinite}
+@keyframes penm{0%{transform:translate(58px,62px)}15%{transform:translate(74px,48px)}30%{transform:translate(90px,64px)}45%{transform:translate(108px,54px)}60%,100%{transform:translate(138px,44px)}}
+.sc .shk{animation:shk 3s ease infinite}@keyframes shk{0%,25%{transform:translateY(-10px)}40%,100%{transform:none}}
+.sc .bit{animation:bit 3s linear infinite}.sc .b2{animation-delay:.25s}.sc .b3{animation-delay:.5s}
+@keyframes bit{0%{transform:translateX(-12px);opacity:0}15%{opacity:1}45%,100%{transform:translateX(30px);opacity:0}}
+.sc .lk{transform-origin:100px 70px;animation:lkp 3s ease infinite}@keyframes lkp{0%,38%{transform:scale(1)}46%{transform:scale(1.12)}54%,100%{transform:scale(1)}}
+/* demo route */
+.route{position:relative;display:flex;justify-content:space-between;margin:0 0 28px;padding:0 4%}
+.route::before{content:"";position:absolute;left:10%;right:10%;top:29px;border-top:2px dashed var(--line)}
+.rn{position:relative;z-index:1;display:grid;justify-items:center;gap:8px;width:12%;min-width:90px;text-align:center}
+.rn span{width:60px;height:60px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:25px;box-shadow:0 0 0 6px var(--bg);transition:background .3s}
+.rn.atk span{background:#0B132B;border:2px solid var(--mut)}
+.rn small{font:500 11.5px var(--mono);color:var(--mut);line-height:1.3}
+.rn.atk.hit span{background:var(--red);border-color:var(--red);animation:shake .6s}
+@keyframes shake{20%{transform:translateX(-7px) rotate(-10deg)}40%{transform:translateX(7px) rotate(10deg)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.rpkt{position:absolute;top:12px;left:10%;width:36px;height:36px;margin-left:-18px;border-radius:11px;background:var(--orange);color:#0B132B;display:grid;place-items:center;z-index:2;opacity:0;font-style:normal;box-shadow:0 8px 18px rgba(11,19,43,.25)}
+.rpkt.plain{background:#fff;border:2px solid var(--red);color:var(--red)}
+.route.go .rpkt{animation:rgo 1.6s cubic-bezier(.6,0,.4,1) both}
+@keyframes rgo{0%{left:10%;opacity:0;transform:scale(.6)}12%{opacity:1;transform:scale(1)}50%{left:50%;transform:scale(1.15)}100%{left:90%;opacity:1;transform:scale(1)}}
+.st{animation:stpop .45s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes stpop{from{transform:scale(.5);opacity:0}}
+.pane h4 .ic{width:20px;height:20px;padding:3px;border-radius:6px;background:var(--blue);color:#fff}
+.pane.dk h4 .ic{background:var(--orange);color:#0B132B}
+.sw:hover{box-shadow:0 0 0 4px rgba(0,102,255,.18)}
+/* table */
+tbody tr td{transition:background .2s}
+td.hlc{background:rgba(0,102,255,.05)}
+tbody tr:hover td{background:var(--soft)}tbody tr:hover td.hlc{background:rgba(0,102,255,.12)}
+td.y .ic,td.n .ic{width:24px;height:24px;padding:5px;border-radius:50%;vertical-align:-7px;stroke-width:2.8;margin-right:8px}
+td.y .ic{background:var(--green);color:#fff}td.n .ic{background:var(--line);color:var(--mut)}
+td:first-child .ic{color:var(--blue);width:19px;height:19px;margin-right:10px;vertical-align:-4px;transition:transform .25s}
+tbody tr:hover td:first-child .ic{transform:scale(1.25) rotate(-8deg)}
+th.hl span{display:block;width:max-content;font:600 10px var(--mono);letter-spacing:.12em;color:#0B132B;background:var(--orange);border-radius:5px;padding:2px 7px;margin-bottom:5px;text-transform:uppercase}
+.tw.in tbody tr{animation:fadeUp .5s both}
+.tw.in tbody tr:nth-child(1){animation-delay:80ms}.tw.in tbody tr:nth-child(2){animation-delay:160ms}.tw.in tbody tr:nth-child(3){animation-delay:240ms}.tw.in tbody tr:nth-child(4){animation-delay:320ms}.tw.in tbody tr:nth-child(5){animation-delay:400ms}.tw.in tbody tr:nth-child(6){animation-delay:480ms}.tw.in tbody tr:nth-child(7){animation-delay:560ms}.tw.in tbody tr:nth-child(8){animation-delay:640ms}
+.tw.in td.y .ic,.tw.in td.n .ic{animation:stpop .5s cubic-bezier(.3,1.6,.5,1) .7s both}
+@media(max-width:980px){.steps::before,.steps::after{display:none}.steps{row-gap:34px}}
+@media(max-width:620px){.rn small{font-size:10px}.rn span{width:50px;height:50px;font-size:21px}.route::before{top:24px}.rpkt{top:7px}}
+/* ===== GTM briefing page ===== */
+.sn-hero{padding:40px 0 70px}
+.sn-hero .wrap{grid-template-columns:1.1fr .9fr}
+.docbadge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--orange);color:var(--orange);border-radius:99px;padding:5px 14px;font:600 11px var(--mono);letter-spacing:.12em;margin-bottom:18px}
+.sn-hero h1{font-size:clamp(28px,3.6vw,44px)}
+.sn-hero h1 .x{color:#ff5a47}.sn-hero h1 .brd{color:#fff}
+.sn-hero h1 .nm{display:block;margin-top:4px}
+.sn-hero .lh-tag{font-size:clamp(16px,1.5vw,19px);line-height:1.45}
+.sn-hero .lh-points li .ic{background:var(--blue);color:#fff;border-radius:6px;padding:3px;width:22px;height:22px;margin-top:0}
+.brief{position:relative;right:auto;bottom:auto;background:#131F40;border:1px solid #26345C;border-radius:20px;padding:20px;color:#fff;box-shadow:0 40px 90px rgba(0,0,0,.45);max-width:470px;margin:0 auto;animation:float 7s ease-in-out infinite}
+.bf-top{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.bf-top>span{width:40px;height:40px;border-radius:11px;background:var(--orange);color:#0B132B;font:600 15px var(--mono);display:grid;place-items:center;flex:none}
+.bf-top b{display:block;font-family:var(--hd);font-size:15.5px}.bf-top small{color:#9FB0D0;font-size:12.5px}
+.bf-top em{margin-left:auto;font:600 10px var(--mono);letter-spacing:.16em;color:#9FB0D0;font-style:normal}
+.bf-body{min-height:232px;position:relative}
+.bf-p{display:none}.bf-p.on{display:block;animation:fadeUp .5s}
+.bf-row{display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px dashed #26345C}
+.bf-row b{font-family:var(--hd);font-weight:800;font-size:20px;color:var(--orange);min-width:112px}.bf-row span{font-size:13px;color:#C9D2E6}
+.bf-bars{display:flex;gap:8px;align-items:flex-end;height:96px;margin-top:14px;position:relative;padding-bottom:20px}
+.bf-bars i{flex:1;background:var(--blue);border-radius:5px 5px 0 0;height:0;animation:bfb 1s ease forwards}
+.bf-bars i:nth-child(2){background:var(--orange);animation-delay:.1s}.bf-bars i:nth-child(3){background:#fff;animation-delay:.2s}.bf-bars i:nth-child(4){background:#56607a;animation-delay:.3s}
+@keyframes bfb{to{height:var(--h)}}
+.bf-bars small{position:absolute;left:0;bottom:0;font:500 10px var(--mono);color:#9FB0D0}
+.bf-l{display:block;font:600 10.5px var(--mono);letter-spacing:.12em;color:var(--orange);margin:6px 0 8px}
+.bf-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.bf-chips span{background:var(--blue);border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600}
+.bf-chips.g span{background:none;border:1px solid #26345C;color:#C9D2E6;font-weight:500}
+.bf-law{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px dashed #26345C;font-size:13px;color:#E6ECF8}
+.bf-law em{font:600 10px var(--mono);font-style:normal;border-radius:6px;padding:3px 7px;min-width:68px;text-align:center}
+.bf-law em.ok{background:var(--green);color:#fff}.bf-law em.pr{background:var(--orange);color:#0B132B}
+.bf-ph{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed #26345C;font-size:13.5px;color:#C9D2E6}
+.bf-ph b{font:600 13px var(--mono);background:#0B132B;border:1px solid #26345C;border-radius:8px;padding:6px 8px;min-width:58px;text-align:center;color:var(--orange)}
+.bf-ph strong{color:#fff}
+.bf-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:14px}
+.bf-tabs button{background:#0B132B;border:1px solid #26345C;color:#C9D2E6;border-radius:9px;padding:8px 4px;font:500 12px var(--bd);display:flex;gap:5px;align-items:center;justify-content:center;transition:.2s}
+.bf-tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+sup.fn{font:600 10px var(--mono);margin-left:2px}sup.fn a{color:var(--blue);padding:0 1px}sup.fn a:hover{text-decoration:underline}
+.sn-proof{background:#EEF3FF;border-bottom:1px solid var(--line)}
+.sn-proof .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 26px;padding-top:14px;padding-bottom:14px;font-size:13.5px;color:var(--mut)}
+.sn-proof b{font:600 14px var(--mono);color:var(--ink);margin-right:4px}
+.sn-toc{position:sticky;top:0;z-index:90;background:var(--bg);border-bottom:1px solid var(--line)}
+.sn-toc .wrap{display:flex;gap:2px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.sn-toc a{white-space:nowrap;padding:13px 12px;font-size:13.5px;font-weight:500;color:var(--mut);border-bottom:2px solid transparent}
+.sn-toc a.on,.sn-toc a:hover{color:var(--blue);border-color:var(--blue)}
+.sn-toc .pdf{margin-left:auto;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 12px;font:600 12.5px var(--bd);display:inline-flex;gap:6px;align-items:center;color:var(--ink);white-space:nowrap}
+.sh{max-width:none}.sh .lead{font-size:15.5px;max-width:none}
+/* summary */
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sc{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:.25s}
+.sc:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(11,19,43,.1)}
+.sc.rec{border-top:4px solid var(--orange)}
+.sc>small,.mc>small,.tam-h{font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);display:flex;gap:7px;align-items:center}
+.sc>b{display:block;font-family:var(--hd);font-weight:800;font-size:34px;letter-spacing:-.03em;margin:10px 0 8px}
+.sc>p{margin:0 0 14px;color:var(--mut);font-size:14px}
+.sc ul{list-style:none;margin:0;padding:0;display:grid;gap:11px;font-size:14px}
+.sc li{display:flex;gap:10px;align-items:flex-start}
+.sc li>.ic{flex:none;background:#EEF3FF;color:var(--blue);border-radius:6px;padding:3px;width:22px;height:22px}
+.sc li>svg+*{}
+.goals{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:14px;background:var(--navy);border-radius:var(--r);padding:20px;margin-top:20px;color:#fff;align-items:stretch}
+.gl-t b{font-family:var(--hd);font-size:17px}.gl-t p{margin:6px 0 0;font-size:12.5px;color:#C9D2E6}.gl-t a{color:var(--orange);text-decoration:underline}
+.gl{border:1px solid #26345C;border-radius:12px;padding:14px;background:#131F40}
+.gl small{font:600 10px var(--mono);letter-spacing:.1em;color:var(--orange)}
+.gl b{display:block;font-family:var(--hd);font-weight:800;font-size:28px;margin:6px 0 2px}.gl span{font-size:12.5px;color:#C9D2E6}
+/* market */
+.mk{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;transition:.25s}
+.mc:hover{border-color:var(--blue);transform:translateY(-4px)}
+.mc b{display:block;font-family:var(--hd);font-weight:800;font-size:30px;letter-spacing:-.03em;margin:8px 0 4px}
+.mc p{margin:0;font-size:13.5px;color:var(--mut)}
+.mc em{display:block;font:500 12px var(--mono);font-style:normal;color:var(--blue);margin:6px 0 10px}
+.mc>span{display:block;border-top:1px solid var(--line);padding-top:10px;font-size:12.5px;color:var(--mut)}
+.ch2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.chart h3{font-size:15.5px}.chart>p{margin:2px 0 14px;font-size:12.5px;color:var(--mut)}
+.chart small{display:block;margin-top:12px;font:500 11px var(--mono);color:var(--mut)}
+.hb{display:grid;grid-template-columns:150px 1fr 82px;gap:10px;align-items:center;margin-bottom:10px;font-size:13px}
+.hb label{font-weight:600;text-align:right}.hb b{font:500 12.5px var(--mono)}
+.hb div{height:16px;background:var(--soft);border-radius:4px;overflow:hidden}
+.hb div i{display:block;height:100%;width:0;background:var(--blue);border-radius:4px;transition:width 1.3s cubic-bezier(.2,.7,.2,1)}
+.hb.o div i{background:var(--orange)}.hb.n div i{background:var(--navy)}.hb.g div i{background:var(--mut)}
+.in .hb div i,.hb.in div i{width:var(--v)}
+.chart .chips,.vp .chips{display:flex;flex-wrap:wrap;gap:7px}
+.chart .chips span,.vp .chips span{border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:12.5px;font-weight:500;background:var(--card)}
+.lc{width:100%;height:auto}.lc .gr path{stroke:var(--line);stroke-width:1}.lc .ax text{font:500 10px var(--mono);fill:var(--mut);text-anchor:end}
+.lc .l1,.lc .l2{fill:none;stroke-width:2.5;stroke-dasharray:420;stroke-dashoffset:420;transition:stroke-dashoffset 1.8s ease}
+.lc .l1{stroke:var(--blue)}.lc .l2{stroke:var(--navy)}.in .lc .l1,.in .lc .l2{stroke-dashoffset:0}
+.lc .d1{fill:var(--blue)}.lc .d2{fill:var(--navy)}.lc .d3{fill:var(--orange)}
+.lc .t1,.lc .t2,.lc .t3{font:600 11px var(--mono)}.lc .t1{fill:var(--blue)}.lc .t2{fill:var(--navy)}.lc .t3{fill:#b86200}
+.tam{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin-top:16px}
+.tam h3{font-size:19px;margin:8px 0 6px}.tam>p{color:var(--mut);font-size:14px;margin:0 0 16px}.tam a{color:var(--blue);text-decoration:underline}
+.tr{display:grid;grid-template-columns:230px 150px 1fr 130px;gap:14px;align-items:center;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:12px 16px;margin-bottom:10px;font-size:13.5px}
+.tr.t2{border-left-color:var(--navy)}.tr.t3{border-left-color:var(--orange)}
+.tr small{font:600 10.5px var(--mono);letter-spacing:.08em;color:var(--mut)}.tr b{font-family:var(--hd);font-weight:800;font-size:22px}
+.tr span{color:var(--mut)}.tr em{font:500 12px var(--mono);font-style:normal;color:var(--blue);text-align:right}
+/* verticals */
+.vbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+.vb{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:11px 12px;font:600 13px var(--bd);display:flex;gap:8px;align-items:center;text-align:left;transition:.2s}
+.vb .ic{color:var(--blue);flex:none}.vb:hover{border-color:var(--blue);transform:translateY(-2px)}
+.vb.on{background:var(--blue);border-color:var(--blue);color:#fff}.vb.on .ic{color:#fff}
+.vp{display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.vp.on{display:block;animation:fadeUp .4s}
+.vp-h{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.vi{width:44px;height:44px;border-radius:12px;background:#EEF3FF;color:var(--blue);display:grid;place-items:center;font-size:20px;flex:none}
+.vp-h h3{font-size:19px}.vp-h p{margin:0;color:var(--mut);font-size:13.5px}
+.wave{margin-left:auto;background:var(--orange);color:#0B132B;border-radius:99px;padding:5px 12px;font:600 11px var(--mono);white-space:nowrap}
+.vp-g{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.vp h4{font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);display:flex;gap:7px;align-items:center;margin:16px 0 10px}
+.vp h4 .ic{color:var(--orange)}.vp-g>div>h4:first-child{margin-top:0}
+.why,.trg{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:14px}
+.why li,.trg li{padding-left:18px;position:relative}
+.why li::before,.trg li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:2px;background:var(--blue)}
+.trg li::before{background:var(--orange);border-radius:50%}
+.top10{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.top10 li{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:9px;padding:8px 12px;transition:.2s}
+.top10 li:hover{border-color:var(--blue);transform:translateX(4px)}
+.top10 i{font:600 12px var(--mono);color:var(--mut);font-style:normal}
+.top10 b{display:block;font-size:14px}.top10 span{font-size:12.5px;color:var(--mut)}
+.pt{font:600 10.5px var(--mono);font-style:normal;border-radius:6px;padding:4px 8px;white-space:nowrap;color:#fff}
+.pC{background:var(--blue)}.pS{background:var(--navy)}.pD{background:var(--orange);color:#0B132B}.pT{background:var(--red)}.pA{background:var(--green)}.pR{background:#fff;color:#b86200;box-shadow:inset 0 0 0 1.5px var(--orange)}
+.mix{display:flex;height:6px;border-radius:9px;overflow:hidden;margin-top:12px;gap:2px}.mix i{display:block}.mix i.pR{background:#FFD08A;box-shadow:none}
+.mixt{font:500 11.5px var(--mono);color:var(--mut);margin:8px 0 0}
+.note{display:flex;gap:8px;align-items:flex-start}.note .ic{color:var(--orange);margin-top:2px}
+/* filters + triggers */
+.fbs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.fb{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 14px;font:500 13px var(--bd);color:var(--ink);transition:.2s}
+.fb.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.tgs{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+.tg{display:grid;grid-template-columns:104px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:12px 14px;transition:.2s}
+.tg:hover{transform:translateX(4px);box-shadow:0 8px 20px rgba(11,19,43,.08)}
+.tg.tech{border-left-color:var(--orange)}.tg.mkt{border-left-color:var(--navy)}.tg.up{background:#FFF8EE}
+.tg>b{font:600 12.5px var(--mono)}.tg small{font:600 10px var(--mono);letter-spacing:.1em;color:var(--mut)}.tg p{margin:3px 0 0;font-size:13.5px}
+.tg.hide,.lawt tr.hide{display:none}
+.today{grid-column:1/-1;display:flex;align-items:center;gap:12px;color:var(--orange);font:600 11px var(--mono);letter-spacing:.14em}
+.today::before,.today::after{content:"";flex:1;border-top:2px dashed var(--orange)}
+/* tables */
+.lawt{min-width:860px;font-size:13.5px}.lawt th{font:600 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mut);background:var(--soft)}
+.lawt td{vertical-align:top}.lawt td small{display:block;font:500 11.5px var(--mono);color:var(--mut);margin-top:4px;font-weight:400}
+.lawt td:first-child{width:21%;font-weight:400}.lawt td:nth-child(2){width:17%}.lawt td.resp{width:27%;background:#EEF3FF;font-size:13px}
+.lawt td.resp b{color:var(--blue)}.lawt td.resp .ic{color:var(--green);vertical-align:-3px;margin-right:4px}
+.comp td:nth-child(2){width:16%;color:var(--mut)}.comp td.resp{width:22%;font-weight:600}
+.stt,.rt{display:inline-block;font:600 10.5px var(--mono);letter-spacing:.06em;border-radius:6px;padding:3px 8px}
+.stt.ok{background:#E3F6EA;color:#0c7a3b}.stt.prop{background:#FFF0D9;color:#b86200}.stt.nv{background:var(--soft);color:var(--mut);border:1px solid var(--line)}
+.rt.g{background:#E3F6EA;color:#0c7a3b}.rt.o{background:#FFF0D9;color:#b86200}.rt.r{background:#FBE6E3;color:var(--red)}
+.ctx{margin-top:16px;display:grid;gap:8px;font-size:13.5px}.ctx p{margin:0;background:var(--soft);border-radius:10px;padding:12px 16px}
+.ctx b{font:600 10.5px var(--mono);letter-spacing:.12em;color:var(--blue);margin-right:8px}
+.sub3{font-size:19px;margin:34px 0 14px}
+.phs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.phc{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:var(--r);padding:20px}
+.phc:nth-child(2){border-top-color:var(--orange)}.phc:nth-child(3){border-top-color:var(--navy)}
+.phc small{font:600 11px var(--mono);letter-spacing:.12em;color:var(--mut)}.phc h4{font-size:20px;margin:4px 0 10px}
+.phc ul,.bx ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:13.5px;color:var(--mut)}
+.g2x{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.bx{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.bx h4{font-size:15.5px;display:flex;gap:8px;align-items:center;margin-bottom:12px}.bx h4 .ic{color:var(--blue)}
+.bx b{color:var(--ink)}.bx .sm{font-size:12.5px;color:var(--mut);margin:12px 0 0}
+.mtab{min-width:0;font-size:13px}.mtab th{font:600 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}.mtab th,.mtab td{padding:8px 10px}
+.rks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rk{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;font-size:13px}
+.rk h4{font-size:15px;margin:8px 0 6px}.rk p{margin:0 0 8px;color:var(--mut)}.rk p b{color:var(--ink)}
+.lv{font:600 10.5px var(--mono);border-radius:6px;padding:3px 8px}.lv.h{background:var(--red);color:#fff}.lv.m{background:var(--orange);color:#0B132B}.lv.l{background:var(--soft);color:var(--mut);border:1px solid var(--line)}
+/* model */
+.mdl{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.mdl-c{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;margin-bottom:16px}
+.mdl-c small,.mdl-o small{display:block;font:600 10.5px var(--mono);letter-spacing:.1em;color:var(--mut);margin-bottom:6px;text-transform:uppercase}
+.scn{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.scn button{border:0;background:var(--card);padding:9px 16px;font:600 13px var(--bd);color:var(--ink);border-right:1px solid var(--line)}
+.scn button:last-child{border-right:0}.scn button i{display:block;font:500 11px var(--mono);font-style:normal;color:var(--mut)}
+.scn button.on{background:var(--blue);color:#fff}.scn button.on i{color:#E6EEFF}
+.mdl input{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:500 14px var(--mono);width:110px;background:var(--card);color:var(--ink)}
+.mt{min-width:720px;font-size:13.5px}.mt th{font:600 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);background:var(--soft)}
+.mt td,.mt th{padding:9px 12px}.mt input{width:96px}.mt td:nth-child(n+5),.mt th:nth-child(n+5){text-align:right;font-family:var(--mono)}
+.mt tfoot td{font-weight:700;background:var(--soft);border-top:2px solid var(--line)}
+.mdl-o{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:14px;align-items:end;margin-top:16px;background:var(--navy);border-radius:12px;padding:18px;color:#fff}
+.mdl-o small{color:var(--orange)}.mdl-o b{font-family:var(--hd);font-weight:800;font-size:24px}
+#mReset{background:none;border:1px solid #26345C;color:#fff;border-radius:9px;padding:9px 14px;font:600 12.5px var(--bd);display:inline-flex;gap:6px;align-items:center}
+.flashv{animation:flv .6s}@keyframes flv{0%{color:var(--orange);transform:scale(1.08)}}
+/* heatmap */
+.hm-c{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.lg{display:inline-flex;gap:4px;align-items:center;font:500 11.5px var(--mono);color:var(--mut)}.lg i{width:22px;height:14px;border-radius:3px}
+.h0{background:#F1F4FA}.h1{background:#CCE0FF}.h2{background:#80B3FF}.h3{background:#3385FF}.h4{background:#0066FF}
+.hm{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start}
+.hmt{min-width:640px;border-collapse:separate;border-spacing:4px;font-size:13px}
+.hmt th{font:600 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mut);padding:6px;border:0;text-align:center}
+.hmt td{border:0;padding:0}.hmt td:first-child{font-weight:600;padding:6px 8px;white-space:nowrap}
+.hmt button{width:100%;height:40px;border:2px solid transparent;border-radius:8px;font:600 14px var(--mono);color:var(--ink);transition:.2s}
+.hmt button.h3,.hmt button.h4{color:#fff}.hmt button:hover{transform:scale(1.08);border-color:var(--orange)}.hmt button.sel{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,138,0,.3)}
+.hm-d{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;font-size:13.5px;position:sticky;top:60px}
+.hm-d p{color:var(--mut);margin:6px 0 0}.hm-d ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px}.hm-d small{display:block;font:600 10.5px var(--mono);letter-spacing:.1em;color:var(--blue);margin-top:12px}
+/* why + sources */
+.sn-why{padding:44px 0}.whys{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+.whys div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.whys small{font:600 10.5px var(--mono);letter-spacing:.08em;color:var(--blue);display:block;margin-bottom:6px}.whys b{font-size:14px}
+.faq{max-width:none}
+.srcl{columns:2;column-gap:34px;padding-left:26px;font-size:13px;color:var(--mut);margin:0}
+.srcl li{margin-bottom:9px;break-inside:avoid;scroll-margin-top:70px}.srcl a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line)}
+.srcl a:hover{color:var(--blue)}.srcl li:target{background:#FFF0D9;border-radius:6px}
+html{scroll-padding-top:60px}
+@media(max-width:980px){.sum,.mk,.phs{grid-template-columns:1fr}.goals{grid-template-columns:1fr 1fr}.gl-t{grid-column:1/-1}.ch2,.g2x,.vp-g,.hm{grid-template-columns:1fr}.vbs{grid-template-columns:repeat(2,1fr)}.tgs{grid-template-columns:1fr}.rks,.whys{grid-template-columns:1fr 1fr}.tr{grid-template-columns:1fr 1fr}.tr em{text-align:left}.sn-proof .wrap{grid-template-columns:1fr 1fr}.mdl-o{grid-template-columns:1fr 1fr}.hm-d{position:static}.sn-hero .wrap{grid-template-columns:1fr}.srcl{columns:1}}
+@media(max-width:620px){.rks,.whys,.sn-proof .wrap{grid-template-columns:1fr}.hb{grid-template-columns:104px 1fr 66px;font-size:12px}.tg{grid-template-columns:1fr}.vp-h{flex-wrap:wrap}.wave{margin-left:0}.tr{grid-template-columns:1fr}.vp{padding:16px}.top10 li{grid-template-columns:24px 1fr}.top10 .pt{grid-column:2;justify-self:start}.bf-row b{min-width:92px;font-size:17px}}
+@media print{.sn-toc,#net{display:none}.rv{opacity:1!important;transform:none!important}.vp{display:block!important;margin-bottom:12px}.hb div i{width:var(--v)!important}.sec{padding:24px 0}.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media(prefers-reduced-motion:reduce){.hb div i{width:var(--v)}.lc .l1,.lc .l2{stroke-dashoffset:0}.bf-bars i{height:var(--h)}}
+
+/* responsive */
+@media(max-width:980px){.hero .wrap,.g2,.cfg,.demo,.uc,.setup,.cta{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}.est{position:static}footer .cols{grid-template-columns:1fr 1fr}.stage{min-height:0;padding-bottom:30px}.lh-chip.c1{left:0}.lh-chip.c2{right:0}}
+@media(max-width:620px){.wrap{padding:0 18px}.sec{padding:54px 0}.g3,.g4,.panes,.opt,.lh-points{grid-template-columns:1fr}.cta{padding:28px 22px}.util .r .hide{display:none}.lh-chip{font-size:11.5px;padding:7px 10px}.lh-chip.c2{top:130px}.cb{display:none}.hero{padding-top:30px}.pw{right:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.bdg{opacity:1;transform:none}.rpkt{opacity:1;left:90%}.seal path{stroke-dashoffset:0}html{scroll-behavior:auto}}
+</style><link rel="stylesheet" href="/assets/styles/consulting-faq.css"><link rel="stylesheet" href="/assets/styles/faq-layout.css"><link rel="stylesheet" href="/assets/styles/senegal-angola-go-to-market.css"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11A8 8 0 0 0 6 6L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+<symbol id="i-bld" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M10 21v-4h4v4"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-12 7l-5 1 1-4.5A8 8 0 1 1 21 12z"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/></symbol>
+<symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 6.2A9.8 9.8 0 0 1 12 6c6 0 9.5 6 9.5 6a16 16 0 0 1-3 3.6M6.5 7.6A16 16 0 0 0 2.5 12S6 18 12 18a9 9 0 0 0 3.4-.7"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></symbol>
+<symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 10 12 4l9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></symbol>
+<symbol id="i-law" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h10L20 8H7"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-dev" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-rupee" viewBox="0 0 24 24"><path d="M7 4h10M7 9h10M7 4c7 0 7 9 0 9l8 7"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></symbol>
+<symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.5-1.5 5.5-1.5 6 0M15 10h3M15 14h3"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9.5 4.3 4.3 0 0 1 17.5 18z"/></symbol>
+<symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-5.5 6.5-5.5s6.5 2 6.5 5.5M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c2 .7 3.5 2.4 3.5 5.2"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></symbol>
+<symbol id="i-cable" viewBox="0 0 24 24"><path d="M3 16c3 0 3-8 6-8s3 8 6 8 3-8 6-8"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/><path d="M8 7.5h.5M8 16.5h.5"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="m3 12 4-4 4 2 3-3 7 6-4 5-4-2-3 3z"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-8"/></symbol>
+<symbol id="i-lang" viewBox="0 0 24 24"><path d="M4 6h9M8.5 4v2M6 6c0 4 3 7 6 8M11 6c0 4-3 7-7 8M14 20l4-10 4 10M15.5 17h5"/></symbol>
+<symbol id="i-fuel" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.500 6-11 6-11z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M9 8h6"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><path d="M5 19c0-3 1-5 3-6l3 3c-1 2-3 3-6 3zM9 13c1-6 5-9 11-9 0 6-3 10-9 11zM15 9h.5"/></symbol>
+</defs></svg><main data-customer-testimonials="off" id="main">
+<section class="hero lh sn-hero" data-banner-actions="off" id="ctHero">
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="wrap">
+<div>
+
+<div class="docbadge"><svg class="ic"><use href="#i-file"/></svg> STRATEGY DOCUMENT · INTERNAL / PARTNER BRIEFING</div>
+<h1><span class="x">Xcell</span><span class="brd">Host</span><span class="dv">|</span><span class="nm">Sierra Leone Go-To-Market Strategy</span></h1>
+<p class="lh-tag">A small West African market with a cyber security law, a draft privacy law, one submarine cable and World Bank money for digital government. This is how XcellHost enters: partner-led, security-first, and backed 24×7 from Mumbai.</p>
+<p class="lh-tag2">Cloud · Cyber Security · Data Protection · Digital Trust · AI · Training. Every market number and legal status on this page is sourced and dated, as of 28 November 2026.</p>
+<ul class="lh-points">
+<li><svg class="ic"><use href="#i-cloud"/></svg><span>Cloud in a Freetown partner DC</span></li>
+<li><svg class="ic"><use href="#i-shield"/></svg><span>SOC with critical-infrastructure runbooks</span></li>
+<li><svg class="ic"><use href="#i-refresh"/></svg><span>Backup, DR &amp; NC3 privacy operations</span></li>
+<li><svg class="ic"><use href="#i-key"/></svg><span>PKI, HSM &amp; certificate lifecycle</span></li>
+<li><svg class="ic"><use href="#i-chip"/></svg><span>AI platforms, RAG &amp; GPU</span></li>
+<li><svg class="ic"><use href="#i-book"/></svg><span>AI &amp; cyber training cohorts</span></li>
+</ul>
+</div>
+<div class="stage">
+<div class="brief" id="brief">
+<div class="bf-top"><span id="bfNum">01</span><div><b id="bfTitle">Market · what the numbers say</b><small id="bfSub">Small, connected and State-driven</small></div><em>BRIEF</em></div>
+<div class="bf-body">
+<div class="bf-p on">
+<div class="bf-row"><b>8.92M</b><span>mobile connections, end of 2026</span></div>
+<div class="bf-row"><b>~25%</b><span>of people use the internet</span></div>
+<div class="bf-row"><b>US$45M</b><span>second submarine cable, announced Nov 2026</span></div>
+<div class="bf-bars"><i style="--h:55%"></i><i style="--h:35%"></i><i style="--h:10%"></i><small>Mobile: Africell 55% · Orange and Qcell hold most of the rest</small></div>
+</div>
+<div class="bf-p">
+<small class="bf-l">WAVE 1 · MONTHS 0–6</small>
+<div class="bf-chips"><span>BFSI &amp; mobile money</span><span>Telecom &amp; ISPs</span><span>Government</span><span>Mining &amp; industry</span></div>
+<small class="bf-l">WAVES 2–3</small>
+<div class="bf-chips g"><span>Healthcare</span><span>Education</span><span>Agriculture</span><span>Logistics</span><span>Energy</span><span>SMEs</span></div>
+</div>
+<div class="bf-p">
+<div class="bf-law"><em class="ok">IN FORCE</em><span>Cybersecurity and Crime Act 2021</span></div>
+<div class="bf-law"><em class="pr">DRAFT</em><span>Data protection bill, validated Nov 2025</span></div>
+<div class="bf-law"><em class="pr">DRAFT</em><span>Critical-infrastructure protection plans</span></div>
+<div class="bf-law"><em class="ok">IN FORCE</em><span>15% GST on foreign digital services</span></div>
+</div>
+<div class="bf-p">
+<div class="bf-ph"><b>0–6</b><span><strong>Prove</strong> · partners, legal memo, five pilots</span></div>
+<div class="bf-ph"><b>6–12</b><span><strong>Scale</strong> · SOC live, donor-funded bids</span></div>
+<div class="bf-ph"><b>12–18</b><span><strong>Commit</strong> · entity, JV or stay partner-led</span></div>
+</div>
+</div>
+<div class="bf-tabs"><button class="on"><svg class="ic"><use href="#i-chart"/></svg>Market</button><button><svg class="ic"><use href="#i-users"/></svg>Verticals</button><button><svg class="ic"><use href="#i-law"/></svg>Laws</button><button><svg class="ic"><use href="#i-rocket"/></svg>Roadmap</button></div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="lh-trust sn-proof"><div class="wrap">
+<span><b>8.92M</b> mobile connections<sup class="fn"><a href="#s1">1</a></sup></span>
+<span><b>54.51%</b> mobile share held by Africell<sup class="fn"><a href="#s21">21</a></sup></span>
+<span><b>1</b> submarine cable today; a second announced<sup class="fn"><a href="#s18">18</a></sup></span>
+<span><b>US$137M</b> World Bank regional programme<sup class="fn"><a href="#s16">16</a></sup></span>
+<span><b>4%</b> growth projected for 2026<sup class="fn"><a href="#s4">4</a></sup></span>
+<span><b>26 Aug 2026</b> draft protection plans for critical sectors<sup class="fn"><a href="#s12">12</a></sup></span>
+</div></div>
+
+<nav class="sn-toc" id="snToc"><div class="wrap">
+<a href="#summary">Summary</a><a href="#market">Market</a><a href="#verticals">Verticals</a><a href="#triggers">Triggers</a><a href="#laws">Laws</a><a href="#competition">Competition</a><a href="#gtm">GTM plan</a><a href="#model">Revenue model</a><a href="#heatmap">Heatmap</a><a href="#faq">FAQ</a><a href="#sources">Sources</a>
+<button class="pdf" onclick="window.print()"><svg class="ic"><use href="#i-file"/></svg>PDF</button>
+</div></nav>
+
+<section class="sec" id="summary"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Executive summary</div><h2>Enter Sierra Leone through <span class="acc">Freetown partners and donor-funded programmes</span></h2>
+<p class="lead">The case on one screen: what the market is worth, why the timing works, how to enter and what we aim to reach in 18 months.</p></div>
+<div class="sum">
+<div class="sc rv"><small><svg class="ic"><use href="#i-chart"/></svg> The opportunity</small><b>US$262.5M</b>
+<p>Telecom operator market in 2025, forecast to reach US$360.1M by 2030 (6.53% a year)<sup class="fn"><a href="#s23">23</a></sup>. That is about ₹2,498 crore.</p>
+<ul>
+<li><svg class="ic"><use href="#i-flag"/></svg><span>World Bank digital financing: a <strong>US$50M</strong> national project<sup class="fn"><a href="#s14">14</a></sup> and a share of a <strong>US$137M</strong> regional programme<sup class="fn"><a href="#s16">16</a></sup>.</span></li>
+<li><svg class="ic"><use href="#i-cable"/></svg><span>A <strong>US$45M</strong> second submarine cable, announced November 2026<sup class="fn"><a href="#s18">18</a></sup>.</span></li>
+<li><svg class="ic"><use href="#i-users"/></svg><span><strong>8.92M</strong> mobile connections<sup class="fn"><a href="#s1">1</a></sup>; about <strong>25%</strong> of people use the internet<sup class="fn"><a href="#s3">3</a></sup>.</span></li>
+<li><svg class="ic"><use href="#i-alert"/></svg><span>Cloud, cyber security and AI: no reliable country-level market estimate found.</span></li>
+</ul></div>
+<div class="sc rv"><small><svg class="ic"><use href="#i-clock"/></svg> Why now</small><b>5 changes</b>
+<p>Five tax, cyber and infrastructure changes landed between January and November 2026. Two are still drafts. The data protection law has not been enacted.</p>
+<ul>
+<li><svg class="ic"><use href="#i-shield"/></svg><span><strong>Critical-infrastructure protection plans</strong> drafted for four sectors, <strong>26 Aug 2026</strong><sup class="fn"><a href="#s12">12</a></sup>.</span></li>
+<li><svg class="ic"><use href="#i-law"/></svg><span><strong>Review of the 2021 cyber Act</strong> tendered <strong>14 Aug 2026</strong><sup class="fn"><a href="#s13">13</a></sup>.</span></li>
+<li><svg class="ic"><use href="#i-rupee"/></svg><span><strong>Finance Act 2026</strong>: GST representative for foreign digital suppliers from <strong>1 Jan 2026</strong><sup class="fn"><a href="#s25">25</a></sup>.</span></li>
+<li><svg class="ic"><use href="#i-cable"/></svg><span><strong>Second submarine cable</strong> consortium announced <strong>Nov 2026</strong><sup class="fn"><a href="#s18">18</a></sup>.</span></li>
+<li><svg class="ic"><use href="#i-flag"/></svg><span><strong>World Bank regional programme</strong> approved <strong>10 Mar 2026</strong><sup class="fn"><a href="#s16">16</a></sup>.</span></li>
+</ul></div>
+<div class="sc rec rv"><small><svg class="ic"><use href="#i-target"/></svg> Recommended entry model</small><b>Partner-led</b>
+<p>Freetown SI/MSP resellers and one operator partner first. Decide on a local entity or JV at month 12.</p>
+<ul>
+<li><svg class="ic"><use href="#i-hand"/></svg><span>Bid for donor-funded work <strong>with local prime contractors</strong><sup class="fn"><a href="#s15">15</a></sup>.</span></li>
+<li><svg class="ic"><use href="#i-server"/></svg><span>Host in-country <strong>where a suitable facility exists</strong>; we did not identify a carrier-neutral data centre.</span></li>
+<li><svg class="ic"><use href="#i-phone"/></svg><span>Run tooling, playbooks and the second line from the <strong>Mumbai 24×7 NOC &amp; SOC</strong>.</span></li>
+</ul></div>
+</div>
+<div class="goals rv">
+<div class="gl-t"><b>18-month goals</b><p>Targets for leadership to confirm. They are not forecasts. Accounts and revenue follow the <a href="#model">revenue model</a> (base case by default).</p></div>
+<div class="gl"><small>GOAL · ACTIVE PARTNERS</small><b>3</b><span>1 operator + 2 SI/MSP</span></div>
+<div class="gl"><small>GOAL · PAYING ACCOUNTS</small><b data-m="acc">14</b><span>across 10 verticals</span></div>
+<div class="gl"><small>GOAL · ANNUALISED REVENUE</small><b data-m="rev">US$0.19M</b><span data-m="inr">≈ ₹1.8 crore</span></div>
+<div class="gl"><small>GOAL · READINESS ASSESSMENTS</small><b>6</b><span>Cyber Act + sector plans</span></div>
+</div>
+</div></section>
+
+<section class="sec alt" id="market"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Market size</div><h2>Sized from <span class="acc">published sources</span>, with the gaps shown</h2>
+<p class="lead">Sierra Leone has very few published technology-market studies. Where no reliable figure exists we say so and do not estimate one. Leone equivalents use <strong>Le 22.6 per US$</strong><sup class="fn"><a href="#s7">7</a></sup> and INR equivalents <strong>₹95.17 per US$</strong><sup class="fn"><a href="#s32">32</a></sup>. They are shown for orientation only.</p></div>
+<div class="mk">
+<div class="mc rv"><small><svg class="ic"><use href="#i-chart"/></svg> Economy</small><b>4%</b><p>IMF growth projection for 2026, down from about 5% in 2025</p><em>Debt at high risk of distress · inflation heading to 11.6%</em><span>IMF<sup class="fn"><a href="#s4">4</a> <a href="#s5">5</a></sup> · Rio Times<sup class="fn"><a href="#s6">6</a></sup></span></div>
+<div class="mc rv"><small><svg class="ic"><use href="#i-cable"/></svg> Telecom operator market</small><b>US$262.5M</b><p>2025 · US$360.1M by 2030 · CAGR 6.53%</p><em>≈ ₹2,498 crore · enterprise is the fastest-growing segment</em><span>Mordor Intelligence<sup class="fn"><a href="#s23">23</a></sup>. A proxy, not our addressable market.</span></div>
+<div class="mc rv"><small><svg class="ic"><use href="#i-dev"/></svg> Connectivity</small><b>8.92M</b><p>Mobile connections, end of 2026</p><em>About 25% of people use the internet (2024)</em><span>DataReportal<sup class="fn"><a href="#s1">1</a></sup> · World Bank<sup class="fn"><a href="#s3">3</a></sup></span></div>
+<div class="mc rv"><small><svg class="ic"><use href="#i-flag"/></svg> Donor programmes</small><b>US$137M</b><p>World Bank regional digital programme, three countries, approved Mar 2026</p><em>Plus a US$50M national project</em><span>World Bank<sup class="fn"><a href="#s16">16</a></sup> · UN DESA<sup class="fn"><a href="#s14">14</a></sup></span></div>
+<div class="mc rv"><small><svg class="ic"><use href="#i-globe"/></svg> International links</small><b>1 cable</b><p>A single submarine cable since October 2011</p><em>US$45M second cable announced Nov 2026</em><span>Innovation Village<sup class="fn"><a href="#s19">19</a></sup> · TechAfrica News<sup class="fn"><a href="#s18">18</a></sup></span></div>
+<div class="mc rv"><small><svg class="ic"><use href="#i-alert"/></svg> Cloud · cyber · AI</small><b>No figure</b><p>No reliable country-level market estimate was found for cloud computing, cyber security or AI.</p><em>Not sized on this page</em><span>Our research, November 2026.</span></div>
+</div>
+<div class="ch2">
+<div class="chart rv"><h3>Mobile market</h3><p>Millions</p><div class="hb" style="--v:100%"><label>Mobile connections</label><div><i></i></div><b>8.92M</b></div><div class="hb" style="--v:50%"><label>Africell subscribers</label><div><i></i></div><b>4.46M</b></div><div class="hb o" style="--v:24.2%"><label>Orange data subs</label><div><i></i></div><b>2.16M</b></div>
+<small>Sources: DataReportal (1), Developing Telecoms (20). Operator figures are from late 2023 and end-2024.</small></div>
+<div class="chart rv"><h3>Operator shares</h3><p>Latest published figures, different dates</p><div class="hb" style="--v:90.8%"><label>Africell · mobile</label><div><i></i></div><b>54.5%</b></div><div class="hb o" style="--v:100%"><label>Orange · mobile data</label><div><i></i></div><b>60%</b></div><div class="hb n" style="--v:45%"><label>Africell · mobile data</label><div><i></i></div><b>27%</b></div><div class="hb g" style="--v:21.7%"><label>Qcell · mobile data</label><div><i></i></div><b>13%</b></div>
+<small>Sources: Ecofin (21) for end-2024 mobile share; Developing Telecoms (20) for late-2023 data shares. Up-to-date figures are hard to find.</small></div>
+<div class="chart rv"><h3>Growth outlook: the projections moved</h3><p>Real GDP growth, %</p><svg class="lc" viewBox="0 0 420 200" role="img" aria-label="Line chart of IMF growth figures for Sierra Leone"><g class="gr"><path d="M50 20H400M50 60H400M50 100H400M50 140H400M50 180H400"/></g><g class="ax"><text x="42" y="184">0</text><text x="42" y="144">1.5</text><text x="42" y="104">3</text><text x="42" y="64">4.5</text><text x="42" y="24">6</text><text x="80" y="197">2025</text><text x="225" y="197">2026</text><text x="370" y="197">2027</text></g><path class="l1" d="M80 46.7 L225 73.3"/><circle class="d1" cx="80" cy="46.7" r="4"/><circle class="d1" cx="225" cy="73.3" r="4"/><text class="t1" x="238" y="92">June 2026 view: 5.0 · 4.0</text><path class="l2" d="M80 62.7 L225 60.0"/><circle class="d2" cx="80" cy="62.7" r="4"/><circle class="d2" cx="225" cy="60.0" r="4"/><text class="t2" x="238" y="46">Dec 2025 view: 4.4 · 4.5</text></svg>
+<small>Sources: IMF (4), Rio Times (6). The December 2025 projections were 4.4% and 4.5%.</small></div>
+<div class="chart rv"><h3>Announced digital investment</h3><p>US$ million</p><div class="hb" style="--v:100%"><label>WB regional programme</label><div><i></i></div><b>US$137M</b></div><div class="hb o" style="--v:36.5%"><label>WB national project</label><div><i></i></div><b>US$50M</b></div><div class="hb n" style="--v:32.8%"><label>Second cable</label><div><i></i></div><b>US$45M</b></div>
+<h3 style="margin-top:18px">Infrastructure we could list</h3>
+<div class="chips"><span>ACE cable (SALCAB)</span><span>Second cable (planned)</span><span>National data centres (planned)</span><span>Operator facilities</span></div>
+<small>Sources: World Bank (16), UN DESA (14), TechAfrica News (18), BuddeComm (22). The regional figure covers three countries.</small></div>
+</div>
+<div class="tam rv">
+<small class="tam-h"><svg class="ic"><use href="#i-target"/></svg> TAM · SAM · SOM FOR XCELLHOST</small>
+<h3>From the demand signal to what we can realistically win</h3>
+<p>We could not build a sourced TAM: no reliable estimate exists for Sierra Leone's cloud, cyber security or AI markets. We show two published reference points instead, and a bottom-up SOM that is our assumption. You can change it in the <a href="#model">revenue model</a>.</p>
+<div class="tr t1"><small>DEMAND SIGNAL · NOT A TAM</small><b>US$137M</b><span>World Bank regional digital programme shared by three countries<sup class="fn"><a href="#s16">16</a></sup>. Mostly infrastructure, not addressable managed services.</span><em>≈ ₹1,304 crore</em></div>
+<div class="tr t2"><small>MARKET REFERENCE · ONE SOURCE</small><b>US$262.5M</b><span>Telecom operator market, 2025<sup class="fn"><a href="#s23">23</a></sup>. Consumers were 69.19% of revenue in 2024; the enterprise part is the closest proxy for our buyers.</span><em>≈ ₹2,498 crore</em></div>
+<div class="tr t3"><small>SOM · OBTAINABLE IN ~18 MONTHS · ASSUMPTION</small><b data-m="rev">US$0.19M</b><span>Bottom-up: target accounts × win rate × ACV across 10 verticals.</span><em data-m="inr">≈ ₹1.8 crore</em></div>
+</div>
+</div></section>
+
+<section class="sec" id="verticals"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Key verticals · top 10 services · buying triggers</div><h2>Ten verticals, each with <span class="acc">its own top 10</span></h2>
+<p class="lead">Pick a vertical. Each one shows why it matters, with sourced facts where we found them, then its regulatory drivers, who buys, the ten XcellHost services to lead with and the events that open a deal.</p></div>
+<div class="vbs rv"><button class="vb on" data-v="bfsi"><svg class="ic"><use href="#i-bank"/></svg>BFSI & mobile money</button><button class="vb" data-v="tel"><svg class="ic"><use href="#i-cable"/></svg>Telecom & ISPs</button><button class="vb" data-v="gov"><svg class="ic"><use href="#i-bld"/></svg>Government & agencies</button><button class="vb" data-v="hlt"><svg class="ic"><use href="#i-heart"/></svg>Healthcare</button><button class="vb" data-v="edu"><svg class="ic"><use href="#i-book"/></svg>Education & skills</button><button class="vb" data-v="ind"><svg class="ic"><use href="#i-chip"/></svg>Mining & industry</button><button class="vb" data-v="agr"><svg class="ic"><use href="#i-globe"/></svg>Agriculture & agribusiness</button><button class="vb" data-v="log"><svg class="ic"><use href="#i-pin"/></svg>Logistics & ports</button><button class="vb" data-v="ene"><svg class="ic"><use href="#i-fuel"/></svg>Energy & utilities</button><button class="vb" data-v="sme"><svg class="ic"><use href="#i-rocket"/></svg>SMEs & start-ups</button></div>
+<div class="vps rv"><div class="vp on" id="vp-bfsi"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-bank"/></svg></span><div><h3>BFSI & mobile money</h3><p>Banks, insurers, microfinance and mobile-money operators</p></div><span class="wave">Wave 1 · first 6 months</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Mobile-money products from Orange and Africell are adding fee income on top of connectivity.<sup class="fn"><a href="#s23">23</a></sup></li><li>Digital financial platforms are expanding as mobile and smartphone use rises.<sup class="fn"><a href="#s29">29</a></sup></li><li>The Cybersecurity and Crime Act 2021 already applies; a data protection law is still a draft.<sup class="fn"><a href="#s9">9</a> <a href="#s10">10</a></sup></li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Cybersecurity and Crime Act 2021</span><span>Bank of Sierra Leone requirements (not verified)</span><span>Draft data protection bill</span><span>ECOWAS data protection act</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>CIO / Head of IT</span><span>Head of risk</span><span>Compliance / Legal</span><span>Procurement</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>Critical-infrastructure protection plans by sector<sup class="fn"><a href="#s12">12</a></sup></li><li>Enactment of the data protection bill<sup class="fn"><a href="#s11">11</a></sup></li><li>A fraud or account-takeover incident</li><li>TLS certificates capped at 200 days from 15 Mar 2026 and 100 days from 15 Mar 2027<sup class="fn"><a href="#s30">30</a></sup></li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>BFSI Cloud</b><span>Regulated cloud with audit rights and exit plan</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Insurance Cloud</b><span>Policy, claims and core-system hosting</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Vortex SOC (SIEM · SOAR · UEBA)</b><span>24×7 detection with incident-reporting runbooks</span></div><em class="pt pS">Cyber Security</em></li><li><i>04</i><div><b>WAAP as a Service</b><span>WAF, API and DDoS protection</span></div><em class="pt pS">Cyber Security</em></li><li><i>05</i><div><b>Privileged Access Management</b><span>Vaulted admin access, session recording</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>Cloud HSM</b><span>Keys for payments, signing and encryption</span></div><em class="pt pT">Digital Trust</em></li><li><i>07</i><div><b>Managed PKI</b><span>Private certificate-authority operations</span></div><em class="pt pT">Digital Trust</em></li><li><i>08</i><div><b>Managed Resilience Operations</b><span>Backup, DR and measured drills</span></div><em class="pt pD">Data Protection</em></li><li><i>09</i><div><b>Red Team & VAPT</b><span>Resilience testing for boards and regulators</span></div><em class="pt pS">Cyber Security</em></li><li><i>10</i><div><b>AI Training Cohorts</b><span>Role-based AI skills for teams</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:2"></i><i class="pS" style="flex:4"></i><i class="pD" style="flex:1"></i><i class="pT" style="flex:2"></i><i class="pR" style="flex:1"></i></div><p class="mixt">Pillar mix: Cloud 2 · Cyber Security 4 · Data Protection 1 · Digital Trust 2 · Training 1</p></div></div></div><div class="vp" id="vp-tel"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-cable"/></svg></span><div><h3>Telecom & ISPs</h3><p>Operators, ISPs and their enterprise arms</p></div><span class="wave">Wave 1 · first 6 months</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Africell held 54.51% of the mobile market at the end of 2024.<sup class="fn"><a href="#s21">21</a></sup></li><li>Orange led mobile data with a 60% share in late 2023.<sup class="fn"><a href="#s20">20</a></sup></li><li>The country has relied on a single submarine cable since October 2011; a US$45 million second cable was announced in November 2026.<sup class="fn"><a href="#s18">18</a> <a href="#s19">19</a></sup></li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>National Communications Authority Act</span><span>Cybersecurity and Crime Act 2021</span><span>NatCA licence terms</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>CTO</span><span>Head of enterprise</span><span>Head of security</span><span>Product managers</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>Second submarine cable consortium<sup class="fn"><a href="#s18">18</a></sup></li><li>Sierratel relaunch on Africell's network<sup class="fn"><a href="#s21">21</a></sup></li><li>Starlink's licence adding competition<sup class="fn"><a href="#s22">22</a></sup></li><li>Critical-infrastructure protection plans<sup class="fn"><a href="#s12">12</a></sup></li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>Managed Private Cloud</b><span>Dedicated in-country cloud for regulated data</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Managed AWS</b><span>Run and secure AWS estates</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Vortex SOC (SIEM · SOAR · UEBA)</b><span>24×7 detection with incident-reporting runbooks</span></div><em class="pt pS">Cyber Security</em></li><li><i>04</i><div><b>WAAP as a Service</b><span>WAF, API and DDoS protection</span></div><em class="pt pS">Cyber Security</em></li><li><i>05</i><div><b>Attack Surface Management</b><span>Finds exposed assets before attackers do</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>Certificate Lifecycle Management</b><span>Discover, renew and replace certificates</span></div><em class="pt pT">Digital Trust</em></li><li><i>07</i><div><b>SSL/TLS Certificates</b><span>DigiCert, Sectigo and GeoTrust</span></div><em class="pt pT">Digital Trust</em></li><li><i>08</i><div><b>Cloud Backup & DR</b><span>Backup with in-country or regional storage</span></div><em class="pt pD">Data Protection</em></li><li><i>09</i><div><b>GPU Cloud</b><span>NVIDIA capacity for model workloads</span></div><em class="pt pA">AI</em></li><li><i>10</i><div><b>AI Platform & RAG</b><span>Private assistants on your own documents</span></div><em class="pt pA">AI</em></li></ol><div class="mix"><i class="pC" style="flex:2"></i><i class="pS" style="flex:3"></i><i class="pD" style="flex:1"></i><i class="pT" style="flex:2"></i><i class="pA" style="flex:2"></i></div><p class="mixt">Pillar mix: Cloud 2 · Cyber Security 3 · Data Protection 1 · Digital Trust 2 · AI 2</p></div></div></div><div class="vp" id="vp-gov"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-bld"/></svg></span><div><h3>Government & agencies</h3><p>Ministries, agencies and State-owned companies</p></div><span class="wave">Wave 1 · first 6 months</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>The World Bank-funded Digital Transformation Project aims to expand broadband, digital skills and digital public services.<sup class="fn"><a href="#s15">15</a></sup></li><li>A further US$137 million regional programme, approved in March 2026, includes data-centre capacity.<sup class="fn"><a href="#s16">16</a> <a href="#s17">17</a></sup></li><li>Draft protection plans for critical information infrastructure in energy, health, education and defence were presented in August 2026.<sup class="fn"><a href="#s12">12</a></sup></li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Cybersecurity and Crime Act 2021</span><span>National Digital Development Policy</span><span>Digital Transformation Roadmap</span><span>Draft data protection bill</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>Ministry of Communication, Technology and Innovation</span><span>NC3</span><span>Project coordination units</span><span>Procurement</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>World Bank-funded tenders<sup class="fn"><a href="#s15">15</a> <a href="#s16">16</a></sup></li><li>Review of the 2021 Act, tendered August 2026<sup class="fn"><a href="#s13">13</a></sup></li><li>National data centres under the SMART Sierra Leone project<sup class="fn"><a href="#s22">22</a></sup></li><li>Windows Server 2016 support ends 12 January 2027<sup class="fn"><a href="#s31">31</a></sup></li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>Managed Private Cloud</b><span>Dedicated in-country cloud for regulated data</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Managed Microsoft 365</b><span>Mail, Teams and device management</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Vortex SOC (SIEM · SOAR · UEBA)</b><span>24×7 detection with incident-reporting runbooks</span></div><em class="pt pS">Cyber Security</em></li><li><i>04</i><div><b>Privileged Access Management</b><span>Vaulted admin access, session recording</span></div><em class="pt pS">Cyber Security</em></li><li><i>05</i><div><b>Red Team & VAPT</b><span>Resilience testing for boards and regulators</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>Privacy Operations (NC3 readiness)</b><span>Formalities, registers and DPO support</span></div><em class="pt pD">Data Protection</em></li><li><i>07</i><div><b>Managed PKI</b><span>Private certificate-authority operations</span></div><em class="pt pT">Digital Trust</em></li><li><i>08</i><div><b>S/MIME Email Certificates</b><span>Signed and encrypted email</span></div><em class="pt pT">Digital Trust</em></li><li><i>09</i><div><b>GenAI Protection</b><span>Guardrails against data leaking into AI tools</span></div><em class="pt pA">AI</em></li><li><i>10</i><div><b>Cyber Security Training</b><span>Analyst and awareness tracks</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:2"></i><i class="pS" style="flex:3"></i><i class="pD" style="flex:1"></i><i class="pT" style="flex:2"></i><i class="pA" style="flex:1"></i><i class="pR" style="flex:1"></i></div><p class="mixt">Pillar mix: Cloud 2 · Cyber Security 3 · Data Protection 1 · Digital Trust 2 · AI 1 · Training 1</p></div></div></div><div class="vp" id="vp-hlt"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-heart"/></svg></span><div><h3>Healthcare</h3><p>Hospitals, clinics, labs and health programmes</p></div><span class="wave">Waves 2–3</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Health is one of the four sectors with a draft critical-infrastructure protection plan.<sup class="fn"><a href="#s12">12</a></sup></li><li>Our judgement: donor-funded health programmes set their own data-security conditions.</li><li>Our judgement: providers have little in-house IT and buy managed services.</li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Cybersecurity and Crime Act 2021</span><span>Draft data protection bill</span><span>Donor requirements</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>Medical director</span><span>Programme manager</span><span>IT officer</span><span>Finance</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>Sector protection plan adoption<sup class="fn"><a href="#s12">12</a></sup></li><li>Donor security audits</li><li>New health information system roll-out</li><li>A ransomware incident at a peer</li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>Healthcare Cloud</b><span>Patient-record hosting with long-term archive</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Managed Microsoft 365</b><span>Mail, Teams and device management</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Managed EDR</b><span>Endpoint detection and response</span></div><em class="pt pS">Cyber Security</em></li><li><i>04</i><div><b>DMARC+ Email Security</b><span>Stops spoofed mail and invoice fraud</span></div><em class="pt pS">Cyber Security</em></li><li><i>05</i><div><b>Cloud Backup & DR</b><span>Backup with in-country or regional storage</span></div><em class="pt pD">Data Protection</em></li><li><i>06</i><div><b>Managed Resilience Operations</b><span>Backup, DR and measured drills</span></div><em class="pt pD">Data Protection</em></li><li><i>07</i><div><b>Scrutiny DLP</b><span>Stops data leaving by endpoint, mail and web</span></div><em class="pt pD">Data Protection</em></li><li><i>08</i><div><b>Privacy Operations (NC3 readiness)</b><span>Formalities, registers and DPO support</span></div><em class="pt pD">Data Protection</em></li><li><i>09</i><div><b>S/MIME Email Certificates</b><span>Signed and encrypted email</span></div><em class="pt pT">Digital Trust</em></li><li><i>10</i><div><b>AI Training Cohorts</b><span>Role-based AI skills for teams</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:2"></i><i class="pS" style="flex:2"></i><i class="pD" style="flex:4"></i><i class="pT" style="flex:1"></i><i class="pR" style="flex:1"></i></div><p class="mixt">Pillar mix: Cloud 2 · Cyber Security 2 · Data Protection 4 · Digital Trust 1 · Training 1</p></div></div></div><div class="vp" id="vp-edu"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-book"/></svg></span><div><h3>Education & skills</h3><p>Universities, colleges and training providers</p></div><span class="wave">Waves 2–3</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Digital skills are one of the three aims of the Digital Transformation Project.<sup class="fn"><a href="#s15">15</a></sup></li><li>Education is one of the four sectors with a draft critical-infrastructure protection plan.<sup class="fn"><a href="#s12">12</a></sup></li><li>Our judgement: skills programmes open the door to platform and AI projects.</li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Digital Transformation Roadmap</span><span>Cybersecurity and Crime Act 2021</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>Vice-chancellor / Principal</span><span>IT director</span><span>Programme heads</span><span>Donor programme leads</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>World Bank-funded skills programmes<sup class="fn"><a href="#s15">15</a></sup></li><li>Campus network and e-learning upgrades</li><li>Hackathons and innovation programmes</li><li>Student-data incidents</li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>Performance Cloud</b><span>Managed virtual servers in a Freetown partner data centre</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Managed Microsoft 365</b><span>Mail, Teams and device management</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>GPU Cloud</b><span>NVIDIA capacity for model workloads</span></div><em class="pt pA">AI</em></li><li><i>04</i><div><b>AI Platform & RAG</b><span>Private assistants on your own documents</span></div><em class="pt pA">AI</em></li><li><i>05</i><div><b>Managed EDR</b><span>Endpoint detection and response</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>Human Risk Management</b><span>Phishing simulation and awareness</span></div><em class="pt pS">Cyber Security</em></li><li><i>07</i><div><b>Microsoft 365 Backup</b><span>Mail, OneDrive and Teams recovery</span></div><em class="pt pD">Data Protection</em></li><li><i>08</i><div><b>SSL/TLS Certificates</b><span>DigiCert, Sectigo and GeoTrust</span></div><em class="pt pT">Digital Trust</em></li><li><i>09</i><div><b>AI Training Cohorts</b><span>Role-based AI skills for teams</span></div><em class="pt pR">Training</em></li><li><i>10</i><div><b>Cyber Security Training</b><span>Analyst and awareness tracks</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:2"></i><i class="pS" style="flex:2"></i><i class="pD" style="flex:1"></i><i class="pT" style="flex:1"></i><i class="pA" style="flex:2"></i><i class="pR" style="flex:2"></i></div><p class="mixt">Pillar mix: Cloud 2 · Cyber Security 2 · Data Protection 1 · Digital Trust 1 · AI 2 · Training 2</p></div></div></div><div class="vp" id="vp-ind"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-chip"/></svg></span><div><h3>Mining & industry</h3><p>Miners, processors and their suppliers</p></div><span class="wave">Wave 1 · first 6 months</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Mining and agriculture supported growth in 2025.<sup class="fn"><a href="#s4">4</a></sup></li><li>Our judgement: mining groups already face international security and audit requirements.</li><li>Our judgement: remote sites need monitoring and backup that tolerate outages.</li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Investor and lender audits</span><span>Cybersecurity and Crime Act 2021</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>Country manager</span><span>IT manager</span><span>Finance director</span><span>Site manager</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>Lender and off-taker security questionnaires</li><li>Windows Server 2016 support ends 12 January 2027<sup class="fn"><a href="#s31">31</a></sup></li><li>Remote-site connectivity projects</li><li>A ransomware incident</li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>SAP B1 HANA on Cloud</b><span>Hosted SAP for manufacturers and distributors</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Performance Cloud</b><span>Managed virtual servers in a Freetown partner data centre</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Remote Monitoring & Management</b><span>Patch and monitor distributed sites</span></div><em class="pt pC">Cloud</em></li><li><i>04</i><div><b>Managed EDR</b><span>Endpoint detection and response</span></div><em class="pt pS">Cyber Security</em></li><li><i>05</i><div><b>Red Team & VAPT</b><span>Resilience testing for boards and regulators</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>Cloud Backup & DR</b><span>Backup with in-country or regional storage</span></div><em class="pt pD">Data Protection</em></li><li><i>07</i><div><b>Certificate Lifecycle Management</b><span>Discover, renew and replace certificates</span></div><em class="pt pT">Digital Trust</em></li><li><i>08</i><div><b>Third-Party Risk Monitoring</b><span>Security scoring of suppliers</span></div><em class="pt pS">Cyber Security</em></li><li><i>09</i><div><b>GenAI Protection</b><span>Guardrails against data leaking into AI tools</span></div><em class="pt pA">AI</em></li><li><i>10</i><div><b>AI Training Cohorts</b><span>Role-based AI skills for teams</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:3"></i><i class="pS" style="flex:3"></i><i class="pD" style="flex:1"></i><i class="pT" style="flex:1"></i><i class="pA" style="flex:1"></i><i class="pR" style="flex:1"></i></div><p class="mixt">Pillar mix: Cloud 3 · Cyber Security 3 · Data Protection 1 · Digital Trust 1 · AI 1 · Training 1</p></div></div></div><div class="vp" id="vp-agr"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-globe"/></svg></span><div><h3>Agriculture & agribusiness</h3><p>Producers, processors and exporters</p></div><span class="wave">Waves 2–3</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Agriculture, with mining, supported growth in 2025.<sup class="fn"><a href="#s4">4</a></sup></li><li>Our judgement: exporters need trusted email and documents for overseas buyers.</li><li>Our judgement: budgets are small, so bundles sold through resellers fit best.</li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Buyer and donor audits</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>Owner / Managing director</span><span>Finance</span><span>IT officer</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>Export-buyer compliance requests</li><li>Invoice-fraud attempts</li><li>Donor programme requirements</li><li>Cooperative digitisation projects</li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>Performance Cloud</b><span>Managed virtual servers in a Freetown partner data centre</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Managed Microsoft 365</b><span>Mail, Teams and device management</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Video Surveillance as a Service</b><span>Cloud-managed CCTV for sites and warehouses</span></div><em class="pt pC">Cloud</em></li><li><i>04</i><div><b>Managed EDR</b><span>Endpoint detection and response</span></div><em class="pt pS">Cyber Security</em></li><li><i>05</i><div><b>DMARC+ Email Security</b><span>Stops spoofed mail and invoice fraud</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>Cloud Backup & DR</b><span>Backup with in-country or regional storage</span></div><em class="pt pD">Data Protection</em></li><li><i>07</i><div><b>XcellDrive Enterprise File Cloud</b><span>Controlled file storage and sharing</span></div><em class="pt pD">Data Protection</em></li><li><i>08</i><div><b>SSL/TLS Certificates</b><span>DigiCert, Sectigo and GeoTrust</span></div><em class="pt pT">Digital Trust</em></li><li><i>09</i><div><b>AI Platform & RAG</b><span>Private assistants on your own documents</span></div><em class="pt pA">AI</em></li><li><i>10</i><div><b>AI Training Cohorts</b><span>Role-based AI skills for teams</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:3"></i><i class="pS" style="flex:2"></i><i class="pD" style="flex:2"></i><i class="pT" style="flex:1"></i><i class="pA" style="flex:1"></i><i class="pR" style="flex:1"></i></div><p class="mixt">Pillar mix: Cloud 3 · Cyber Security 2 · Data Protection 2 · Digital Trust 1 · AI 1 · Training 1</p></div></div></div><div class="vp" id="vp-log"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-pin"/></svg></span><div><h3>Logistics & ports</h3><p>Port operators, freight forwarders and transporters</p></div><span class="wave">Waves 2–3</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Our judgement: the Freetown port and customs systems are candidates for critical-infrastructure duties.</li><li>Route diversity to the global internet is rated poor, so resilience planning matters.<sup class="fn"><a href="#s24">24</a></sup></li><li>Our judgement: multi-site operators need monitoring more than raw compute.</li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Cybersecurity and Crime Act 2021</span><span>Customs system requirements</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>Operations director</span><span>IT manager</span><span>Finance</span><span>Procurement</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>Critical-infrastructure designation<sup class="fn"><a href="#s12">12</a></sup></li><li>Terminal or customs system integration</li><li>Fleet and warehouse digitisation</li><li>Supplier security audits</li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>Performance Cloud</b><span>Managed virtual servers in a Freetown partner data centre</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Managed AWS</b><span>Run and secure AWS estates</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Remote Monitoring & Management</b><span>Patch and monitor distributed sites</span></div><em class="pt pC">Cloud</em></li><li><i>04</i><div><b>Video Surveillance as a Service</b><span>Cloud-managed CCTV for sites and warehouses</span></div><em class="pt pC">Cloud</em></li><li><i>05</i><div><b>Vortex SOC (SIEM · SOAR · UEBA)</b><span>24×7 detection with incident-reporting runbooks</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>WAAP as a Service</b><span>WAF, API and DDoS protection</span></div><em class="pt pS">Cyber Security</em></li><li><i>07</i><div><b>Third-Party Risk Monitoring</b><span>Security scoring of suppliers</span></div><em class="pt pS">Cyber Security</em></li><li><i>08</i><div><b>Managed Resilience Operations</b><span>Backup, DR and measured drills</span></div><em class="pt pD">Data Protection</em></li><li><i>09</i><div><b>Certificate Lifecycle Management</b><span>Discover, renew and replace certificates</span></div><em class="pt pT">Digital Trust</em></li><li><i>10</i><div><b>Cyber Security Training</b><span>Analyst and awareness tracks</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:4"></i><i class="pS" style="flex:3"></i><i class="pD" style="flex:1"></i><i class="pT" style="flex:1"></i><i class="pR" style="flex:1"></i></div><p class="mixt">Pillar mix: Cloud 4 · Cyber Security 3 · Data Protection 1 · Digital Trust 1 · Training 1</p></div></div></div><div class="vp" id="vp-ene"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-fuel"/></svg></span><div><h3>Energy & utilities</h3><p>Power, water and fuel operators</p></div><span class="wave">Waves 2–3</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Energy is one of the four sectors with a draft critical-infrastructure protection plan.<sup class="fn"><a href="#s12">12</a></sup></li><li>Our judgement: utilities depend on donor-funded digitisation projects.</li><li>Our judgement: remote sites need monitoring and backup that tolerate outages.</li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Cybersecurity and Crime Act 2021</span><span>Sector protection plans</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>IT manager</span><span>Operations director</span><span>Project unit</span><span>Procurement</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>Sector protection plan adoption<sup class="fn"><a href="#s12">12</a></sup></li><li>Metering and billing digitisation</li><li>Donor or lender security conditions</li><li>A sector cyber incident</li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>Managed Private Cloud</b><span>Dedicated in-country cloud for regulated data</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Managed AWS</b><span>Run and secure AWS estates</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Vortex SOC (SIEM · SOAR · UEBA)</b><span>24×7 detection with incident-reporting runbooks</span></div><em class="pt pS">Cyber Security</em></li><li><i>04</i><div><b>Privileged Access Management</b><span>Vaulted admin access, session recording</span></div><em class="pt pS">Cyber Security</em></li><li><i>05</i><div><b>Red Team & VAPT</b><span>Resilience testing for boards and regulators</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>Attack Surface Management</b><span>Finds exposed assets before attackers do</span></div><em class="pt pS">Cyber Security</em></li><li><i>07</i><div><b>Managed Resilience Operations</b><span>Backup, DR and measured drills</span></div><em class="pt pD">Data Protection</em></li><li><i>08</i><div><b>Scrutiny DLP</b><span>Stops data leaving by endpoint, mail and web</span></div><em class="pt pD">Data Protection</em></li><li><i>09</i><div><b>Managed PKI</b><span>Private certificate-authority operations</span></div><em class="pt pT">Digital Trust</em></li><li><i>10</i><div><b>Cyber Security Training</b><span>Analyst and awareness tracks</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:2"></i><i class="pS" style="flex:4"></i><i class="pD" style="flex:2"></i><i class="pT" style="flex:1"></i><i class="pR" style="flex:1"></i></div><p class="mixt">Pillar mix: Cloud 2 · Cyber Security 4 · Data Protection 2 · Digital Trust 1 · Training 1</p></div></div></div><div class="vp" id="vp-sme"><div class="vp-h"><span class="vi"><svg class="ic"><use href="#i-rocket"/></svg></span><div><h3>SMEs & start-ups</h3><p>Small businesses, start-ups and professional firms</p></div><span class="wave">Waves 2–3</span></div><div class="vp-g"><div><h4><svg class="ic"><use href="#i-chart"/></svg> Why it matters</h4><ul class="why"><li>Internet use reached about 25% of the population in 2024, so the online SME base is still small.<sup class="fn"><a href="#s3">3</a></sup></li><li>GST at 15% applies to digital services from non-resident suppliers, with a local representative required from 2026.<sup class="fn"><a href="#s25">25</a> <a href="#s27">27</a></sup></li><li>Our judgement: SMEs buy through local IT resellers and prefer bundles.</li></ul><h4><svg class="ic"><use href="#i-law"/></svg> Regulatory drivers</h4><div class="chips"><span>Finance Act 2026 (GST)</span><span>Cybersecurity and Crime Act 2021</span></div><h4><svg class="ic"><use href="#i-users"/></svg> Buying centre</h4><div class="chips"><span>Founder / Owner</span><span>Office manager</span><span>External IT provider</span></div><h4><svg class="ic"><use href="#i-alert"/></svg> Key buying triggers</h4><ul class="trg"><li>A new website or online store</li><li>A phishing or account-takeover incident</li><li>First customer security questionnaire</li><li>Enactment of the data protection bill<sup class="fn"><a href="#s11">11</a></sup></li></ul></div><div><h4><svg class="ic"><use href="#i-target"/></svg> Recommended top 10 services</h4><ol class="top10"><li><i>01</i><div><b>Performance Cloud</b><span>Managed virtual servers in a Freetown partner data centre</span></div><em class="pt pC">Cloud</em></li><li><i>02</i><div><b>Managed Microsoft 365</b><span>Mail, Teams and device management</span></div><em class="pt pC">Cloud</em></li><li><i>03</i><div><b>Cybird SMB Security Appliance</b><span>Plug-and-play protection for small offices</span></div><em class="pt pS">Cyber Security</em></li><li><i>04</i><div><b>Managed EDR</b><span>Endpoint detection and response</span></div><em class="pt pS">Cyber Security</em></li><li><i>05</i><div><b>DMARC+ Email Security</b><span>Stops spoofed mail and invoice fraud</span></div><em class="pt pS">Cyber Security</em></li><li><i>06</i><div><b>Dark Web Monitoring</b><span>Alerts on leaked credentials and brand abuse</span></div><em class="pt pS">Cyber Security</em></li><li><i>07</i><div><b>Cloud Backup & DR</b><span>Backup with in-country or regional storage</span></div><em class="pt pD">Data Protection</em></li><li><i>08</i><div><b>Microsoft 365 Backup</b><span>Mail, OneDrive and Teams recovery</span></div><em class="pt pD">Data Protection</em></li><li><i>09</i><div><b>SSL/TLS Certificates</b><span>DigiCert, Sectigo and GeoTrust</span></div><em class="pt pT">Digital Trust</em></li><li><i>10</i><div><b>AI Training Cohorts</b><span>Role-based AI skills for teams</span></div><em class="pt pR">Training</em></li></ol><div class="mix"><i class="pC" style="flex:2"></i><i class="pS" style="flex:4"></i><i class="pD" style="flex:2"></i><i class="pT" style="flex:1"></i><i class="pR" style="flex:1"></i></div><p class="mixt">Pillar mix: Cloud 2 · Cyber Security 4 · Data Protection 2 · Digital Trust 1 · Training 1</p></div></div></div></div>
+<p class="note rv"><svg class="ic"><use href="#i-alert"/></svg> XcellHost service pages describe the Indian offer, with INR pricing and Indian compliance. For Sierra Leone, each service will be re-scoped with partners for local hosting, local delivery and leones billing. Priority waves, and statements marked "our judgement", are our assessment.</p>
+</div></section>
+
+<section class="sec alt" id="triggers"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Buying triggers · calendar</div><h2>Dated events that <span class="acc">open budgets</span></h2>
+<p class="lead">Legal deadlines, platform end-of-life dates and certificate-lifetime cuts give sales a calendar. Undated triggers, such as a ransomware incident or an NC3 complaint, are listed under each vertical above.</p></div>
+<div class="fbs rv" data-filter="tg"><button class="fb on" data-f="all">All</button><button class="fb" data-f="L">Law &amp; regulation</button><button class="fb" data-f="T">Technology</button><button class="fb" data-f="M">Market</button></div>
+<div class="tgs rv"><div class="tg mkt" data-c="M"><b>Oct 2011</b><div><small>MARKET · IN EFFECT</small><p>ACE submarine cable lands, the country's only international cable<sup class="fn"><a href="#s19">19</a></sup></p></div></div><div class="tg law" data-c="L"><b>23 Jun 2021</b><div><small>LAW & REGULATION · IN EFFECT</small><p>Parliament passes the Cybersecurity and Crime Act<sup class="fn"><a href="#s8">8</a></sup></p></div></div><div class="tg law" data-c="L"><b>25 Nov 2021</b><div><small>LAW & REGULATION · IN EFFECT</small><p>The Act is gazetted<sup class="fn"><a href="#s9">9</a></sup></p></div></div><div class="tg tech" data-c="T"><b>Sep 2023</b><div><small>TECHNOLOGY · IN EFFECT</small><p>Orange launches a 5G pilot in central Freetown<sup class="fn"><a href="#s22">22</a></sup></p></div></div><div class="tg law" data-c="L"><b>Jan 2025</b><div><small>LAW & REGULATION · IN EFFECT</small><p>National CSIRT and digital forensics lab announced by the NC3<sup class="fn"><a href="#s10">10</a></sup></p></div></div><div class="tg law" data-c="L"><b>7 Nov 2025</b><div><small>LAW & REGULATION · IN EFFECT</small><p>Data Protection and Right to Access Information Bill 2025 validated nationally (single source)<sup class="fn"><a href="#s11">11</a></sup></p></div></div><div class="tg law" data-c="L"><b>1 Jan 2026</b><div><small>LAW & REGULATION · IN EFFECT</small><p>Finance Act 2026: non-resident digital suppliers must appoint a GST representative<sup class="fn"><a href="#s25">25</a></sup></p></div></div><div class="tg mkt" data-c="M"><b>10 Mar 2026</b><div><small>MARKET · IN EFFECT</small><p>World Bank approves US$137 million regional digital programme<sup class="fn"><a href="#s16">16</a></sup></p></div></div><div class="tg tech" data-c="T"><b>15 Mar 2026</b><div><small>TECHNOLOGY · IN EFFECT</small><p>Maximum public TLS certificate validity falls to 200 days<sup class="fn"><a href="#s30">30</a></sup></p></div></div><div class="tg mkt" data-c="M"><b>Apr 2026</b><div><small>MARKET · IN EFFECT</small><p>Sierratel relaunched as a virtual operator on Africell's network<sup class="fn"><a href="#s21">21</a></sup></p></div></div><div class="tg mkt" data-c="M"><b>18 Jun 2026</b><div><small>MARKET · IN EFFECT</small><p>IMF approves a US$211.5 million resilience arrangement<sup class="fn"><a href="#s6">6</a></sup></p></div></div><div class="tg law" data-c="L"><b>14 Aug 2026</b><div><small>LAW & REGULATION · IN EFFECT</small><p>Tender issued to review the 2021 Act and its regulatory framework<sup class="fn"><a href="#s13">13</a></sup></p></div></div><div class="tg law" data-c="L"><b>26 Aug 2026</b><div><small>LAW & REGULATION · IN EFFECT</small><p>Draft critical-infrastructure protection plans presented for four sectors<sup class="fn"><a href="#s12">12</a></sup></p></div></div><div class="tg mkt" data-c="M"><b>Nov 2026</b><div><small>MARKET · IN EFFECT</small><p>National Cable Consortium announced for a US$45 million second cable<sup class="fn"><a href="#s18">18</a></sup></p></div></div><div class="today"><span>TODAY · 28 NOV 2026</span></div><div class="tg tech up" data-c="T"><b>12 Jan 2027</b><div><small>TECHNOLOGY · UPCOMING</small><p>Windows Server 2016 extended support ends<sup class="fn"><a href="#s31">31</a></sup></p></div></div><div class="tg tech up" data-c="T"><b>15 Mar 2027</b><div><small>TECHNOLOGY · UPCOMING</small><p>Maximum public TLS certificate validity falls to 100 days<sup class="fn"><a href="#s30">30</a></sup></p></div></div><div class="tg law up" data-c="L"><b>Date not set</b><div><small>LAW & REGULATION · UPCOMING</small><p>Data protection bill enacted<sup class="fn"><a href="#s11">11</a></sup></p></div></div><div class="tg law up" data-c="L"><b>Date not set</b><div><small>LAW & REGULATION · UPCOMING</small><p>Revised cyber security act and sector protection plans adopted<sup class="fn"><a href="#s12">12</a> <a href="#s13">13</a></sup></p></div></div><div class="tg tech up" data-c="T"><b>15 Mar 2029</b><div><small>TECHNOLOGY · UPCOMING</small><p>Maximum public TLS certificate validity falls to 47 days<sup class="fn"><a href="#s30">30</a></sup></p></div></div></div>
+</div></section>
+
+<section class="sec" id="laws"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Local IT &amp; data-protection laws · status at 28 Nov 2026</div><h2>Laws, <span class="acc">their status</span> and how we respond</h2>
+<p class="lead">A neutral summary of laws and regulator instruments we checked against law-firm, official and press sources. Not legal advice: confirm each point with Sierra Leonean counsel before contracting. Key bodies: the National Cybersecurity Coordination Centre (NC3), the Ministry of Communication, Technology and Innovation, the National Communications Authority (NatCA), the Bank of Sierra Leone and the National Revenue Authority.</p></div>
+<div class="fbs rv" data-filter="lw"><button class="fb on" data-f="all">All</button><button class="fb" data-f="data">Data & privacy</button><button class="fb" data-f="cyber">Cyber security</button><button class="fb" data-f="trust">Digital trust</button><button class="fb" data-f="cloud">Cloud & policy</button><button class="fb" data-f="ai">AI</button><button class="fb" data-f="sector">Sector rules</button><button class="fb" data-f="tax">Tax</button></div>
+<div class="tw rv"><table class="lawt"><thead><tr><th>Law / instrument</th><th>Status &amp; dates</th><th>Key obligations</th><th>Implication &amp; XcellHost response</th></tr></thead><tbody><tr data-c="cyber"><td><b>Cybersecurity and Crime Act, 2021</b><small>Act No. 7 of 2021 · NC3</small></td><td><span class="stt ok">IN FORCE · UNDER REVIEW</span><small>Passed 23 Jun 2021 · gazetted 25 Nov 2021<sup class="fn"><a href="#s8">8</a> <a href="#s9">9</a></sup></small></td><td>Creates the national coordination structures for cyber security and defines offences such as unauthorised access.<sup class="fn"><a href="#s8">8</a></sup> A national CSIRT and forensics lab were announced in January 2025.<sup class="fn"><a href="#s10">10</a></sup> A consultant was sought in August 2026 to review the Act and develop a governance and regulatory framework.<sup class="fn"><a href="#s13">13</a></sup></td><td class="resp"><b>Implication:</b> the main technology statute today; obligations are likely to grow.<br><b>Response:</b> incident-response runbooks and a readiness assessment mapped to the Act; track the review.</td></tr><tr data-c="cyber"><td><b>Critical information infrastructure protection plans</b><small>NC3 and the technology ministry</small></td><td><span class="stt prop">DRAFT</span><small>Presented 26 Aug 2026<sup class="fn"><a href="#s12">12</a></sup></small></td><td>Draft sector plans cover energy, health, education and defence, prepared with World Bank support.<sup class="fn"><a href="#s12">12</a></sup></td><td class="resp"><b>Implication:</b> operators in these sectors will be asked for evidence of protection.<br><b>Response:</b> sector-specific assessments and managed detection.</td></tr><tr data-c="data"><td><b>Data Protection and Right to Access Information Bill</b><small>Draft law</small></td><td><span class="stt prop">BILL · NOT ENACTED</span><small>Validated 7 Nov 2025<sup class="fn"><a href="#s11">11</a></sup></small></td><td>One aggregator source reports national validation and that the bill was to go to Cabinet and Parliament.<sup class="fn"><a href="#s11">11</a></sup> Authorities described it in 2025 as the first comprehensive framework for personal data.<sup class="fn"><a href="#s10">10</a></sup></td><td class="resp"><b>Implication:</b> there is no dedicated data protection regulator yet.<br><b>Response:</b> design to GDPR-grade controls now; be ready when the law passes.</td></tr><tr data-c="data"><td><b>ECOWAS Supplementary Act on personal data protection</b><small>A/SA.1/01/10 (2010)</small></td><td><span class="stt ok">REGIONAL INSTRUMENT</span><small>2010<sup class="fn"><a href="#s11">11</a></sup></small></td><td>Described as the de facto data protection framework until the national bill is enacted.<sup class="fn"><a href="#s11">11</a></sup></td><td class="resp"><b>Implication:</b> regional principles guide customer expectations.<br><b>Response:</b> contract terms aligned to ECOWAS principles.</td></tr><tr data-c="cloud"><td><b>National Digital Development Policy and Digital Transformation Roadmap</b><small>National policy</small></td><td><span class="stt ok">POLICY · IN EFFECT</span><small>—<sup class="fn"><a href="#s14">14</a> <a href="#s29">29</a></sup></small></td><td>The roadmap drives connectivity and digital financial platforms.<sup class="fn"><a href="#s29">29</a></sup> Related instruments include an electronic transactions act and a communications authority act.<sup class="fn"><a href="#s14">14</a></sup> We found no dedicated cloud policy or cloud law.</td><td class="resp"><b>Implication:</b> public demand follows donor-funded programmes.<br><b>Response:</b> sell through local partners and prime contractors. XcellHost holds ISO 27001, 27017 and 27018, which supports partner due diligence.</td></tr><tr data-c="trust"><td><b>Electronic transactions law</b><small>—</small></td><td><span class="stt nv">NOT VERIFIED</span><small>—</small></td><td>An electronic transactions act is listed among national instruments<sup class="fn"><a href="#s14">14</a></sup>; we did not verify its text or the rules on electronic signatures.</td><td class="resp"><b>Implication:</b> legally recognised e-signatures may have local conditions.<br><b>Response:</b> lead with SSL/TLS, S/MIME, PKI and certificate lifecycle services.</td></tr><tr data-c="sector"><td><b>Bank of Sierra Leone technology and outsourcing rules</b><small>Bank of Sierra Leone</small></td><td><span class="stt nv">NOT VERIFIED</span><small>—</small></td><td>We could not verify the central bank's current rules on cyber security, outsourcing or cloud for banks.</td><td class="resp"><b>Implication:</b> bank deals may need regulatory clearance.<br><b>Response:</b> commission a local legal memo before contracting with banks.</td></tr><tr data-c="ai"><td><b>Artificial intelligence</b><small>No dedicated law found</small></td><td><span class="stt prop">NO AI LAW FOUND</span><small>—</small></td><td>AI governance is described as still in a preparation phase.<sup class="fn"><a href="#s10">10</a></sup></td><td class="resp"><b>Implication:</b> AI governance is voluntary for now.<br><b>Response:</b> ISO/IEC 42001 alignment and GenAI guardrails ahead of any law.</td></tr><tr data-c="tax"><td><b>GST on non-resident digital services</b><small>Finance Act 2026 · GST Act 2009</small></td><td><span class="stt ok">IN FORCE</span><small>From 1 Jan 2026<sup class="fn"><a href="#s25">25</a></sup></small></td><td>Digital services supplied by non-residents for use in Sierra Leone are taxable at 15%, and suppliers without a local presence must appoint a resident GST representative.<sup class="fn"><a href="#s25">25</a> <a href="#s26">26</a> <a href="#s27">27</a></sup> For business customers, GST was not due on the supplier's invoice under earlier rules.<sup class="fn"><a href="#s27">27</a></sup></td><td class="resp"><b>Implication:</b> direct invoices from India may carry 15% GST and need a local representative.<br><b>Response:</b> partner-billed sales in leones; structure direct invoicing with a local tax adviser.</td></tr><tr data-c="tax"><td><b>Corporate and withholding taxes</b><small>Finance Act 2026</small></td><td><span class="stt nv">RATES NOT VERIFIED</span><small>Enacted 27 Nov 2025<sup class="fn"><a href="#s28">28</a></sup></small></td><td>The Finance Act 2026 raised corporate income tax and withholding taxes<sup class="fn"><a href="#s28">28</a></sup>; we did not verify the rates or whether an India–Sierra Leone tax treaty applies.</td><td class="resp"><b>Implication:</b> withholding can stack with GST on direct invoices.<br><b>Response:</b> get local tax advice per contract before the first invoice.</td></tr></tbody></table></div>
+<div class="ctx rv"><p><b>POLICY</b> The Digital Transformation Project, funded by the World Bank, aims to expand broadband access, increase digital skills and improve the government's capacity to deliver services digitally<sup class="fn"><a href="#s15">15</a></sup>.</p>
+<p><b>CONTEXT</b> The country still depends on one international cable; a fault disrupted connectivity days before a presidential run-off<sup class="fn"><a href="#s19">19</a></sup>. The IMF programme is on track but debt remains at high risk of distress and reserves cover about two months of imports<sup class="fn"><a href="#s4">4</a> <a href="#s6">6</a></sup>.</p></div>
+</div></section>
+
+<section class="sec alt" id="competition"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Competitive landscape</div><h2>Two strong operators and no neutral data centre, <span class="acc">so partner, don't fight</span></h2>
+<p class="lead">A small market led by two mobile operators, with State data centres planned and no hyperscaler presence. We list the facts neutrally. Most local providers are partner candidates as much as competitors.</p></div>
+<div class="tw rv"><table class="lawt comp"><thead><tr><th>Provider</th><th>Type</th><th>What we verified</th><th>Our stance</th></tr></thead><tbody><tr><td><b>Africell Sierra Leone</b></td><td>Largest mobile operator</td><td>54.51% market share at the end of 2024.<sup class="fn"><a href="#s21">21</a></sup> Hosts the relaunched Sierratel as a virtual operator.<sup class="fn"><a href="#s21">21</a></sup></td><td class="resp">Channel and hosting partner candidate</td></tr><tr><td><b>Orange Sierra Leone</b></td><td>Mobile operator</td><td>Led mobile data with 2.16 million subscriptions and a 60% share in late 2023.<sup class="fn"><a href="#s20">20</a></sup> Ran a 5G pilot in Freetown in 2023.<sup class="fn"><a href="#s22">22</a></sup></td><td class="resp">Channel and hosting partner candidate</td></tr><tr><td><b>Qcell</b></td><td>Mobile operator</td><td>Held about 13% of mobile data subscriptions in late 2023 (figure from the same report).<sup class="fn"><a href="#s20">20</a></sup> Member of the second-cable consortium.<sup class="fn"><a href="#s19">19</a></sup></td><td class="resp">Channel partner candidate</td></tr><tr><td><b>Sierratel</b></td><td>State-owned operator</td><td>Relaunched in April 2026 through a virtual-operator deal with Africell instead of privatisation.<sup class="fn"><a href="#s21">21</a></sup></td><td class="resp">Neutral</td></tr><tr><td><b>Zoodlabs · SALCAB</b></td><td>Cable and wholesale</td><td>The ACE cable is run domestically by the State-owned cable company.<sup class="fn"><a href="#s19">19</a></sup> Zoodlabs is in the second-cable consortium.<sup class="fn"><a href="#s19">19</a></sup></td><td class="resp">Connectivity partner candidates</td></tr><tr><td><b>National data centres (planned)</b></td><td>State infrastructure</td><td>A SMART Sierra Leone contract with a Chinese State firm includes national data centres<sup class="fn"><a href="#s22">22</a></sup>; the World Bank regional programme also funds data-centre capacity<sup class="fn"><a href="#s17">17</a></sup>. Status not verified.</td><td class="resp">Watch. Future home for public workloads.</td></tr><tr><td><b>Starlink</b></td><td>Satellite broadband</td><td>Licensed to operate in Sierra Leone.<sup class="fn"><a href="#s22">22</a></sup></td><td class="resp">Connectivity option for remote sites</td></tr><tr><td><b>AWS · Microsoft Azure · Google Cloud · Oracle</b></td><td>Hyperscalers</td><td>Our research found no in-country cloud region or commercial carrier-neutral data centre.</td><td class="resp">Co-sell through managed services. XcellHost is a Microsoft partner.</td></tr></tbody></table></div>
+</div></section>
+
+<section class="sec" id="gtm"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Go-to-market plan</div><h2>Four entry models, <span class="acc">one recommendation</span></h2>
+<p class="lead">We compare the options on speed, cost, compliance fit and control. Ratings are our judgement from the laws above.</p></div>
+<div class="tw rv"><table class="lawt em"><thead><tr><th>Entry model</th><th>Time to revenue</th><th>Upfront cost</th><th>Compliance fit</th><th>Control &amp; margin</th><th>Verdict</th></tr></thead><tbody>
+<tr><td><b>Partner-led via local SI / MSP</b></td><td><span class="rt g">FAST</span></td><td><span class="rt g">LOW</span></td><td><span class="rt g">STRONG</span><small>Partners hold local relationships and bill in leones</small></td><td><span class="rt o">LOWER</span></td><td class="resp"><svg class="ic"><use href="#i-check"/></svg> Start here</td></tr>
+<tr><td><b>Freetown DC partner + resale</b></td><td><span class="rt o">MEDIUM</span></td><td><span class="rt o">LOW–MEDIUM</span><small>Reserved racks or capacity</small></td><td><span class="rt g">STRONG</span><small>In-country hosting where a suitable facility exists</small></td><td><span class="rt o">MEDIUM</span></td><td class="resp"><svg class="ic"><use href="#i-check"/></svg> Start here, combined with the above</td></tr>
+<tr><td><b>Joint venture with a local player</b></td><td><span class="rt r">SLOW</span></td><td><span class="rt o">MEDIUM–HIGH</span></td><td><span class="rt g">STRONG</span><small>Local standing for public and regulated work</small></td><td><span class="rt o">SHARED</span></td><td class="resp">Phase 3 option for government work</td></tr>
+<tr><td><b>Direct entity (Sierra Leonean company)</b></td><td><span class="rt r">SLOW</span></td><td><span class="rt r">HIGH</span></td><td><span class="rt o">MIXED</span><small>Foreign-investment and licensing rules were not verified for this briefing</small></td><td><span class="rt g">HIGH</span></td><td class="resp">Decide at month 12 on traction</td></tr>
+</tbody></table></div>
+<h3 class="sub3 rv">Phased plan · 0–18 months</h3>
+<div class="phs">
+<div class="phc rv"><small>0–6 MONTHS</small><h4>Prove</h4><ul>
+<li>Sign one or two Freetown DC or cloud partners and two to three SI/MSP partners</li>
+<li>Get a local legal memo on the Cybersecurity and Crime Act, the data protection bill, Bank of Sierra Leone rules, licensing, GST and withholding tax</li>
+<li>Adapt 10 lead offers and the readiness assessment to Sierra Leonean law, with USD and leone pricing</li>
+<li>Run 5 paid pilots: Indian-linked firms in Sierra Leone, banks, mining companies and a donor-funded agency</li></ul></div>
+<div class="phc rv"><small>6–12 MONTHS</small><h4>Scale</h4><ul>
+<li>Partner enablement: technical certification, demo tenants, deal registration</li>
+<li>Managed SOC live, with L1 at the Sierra Leonean partner and L2/L3 in Mumbai. Logs for public and critical customers stay in Sierra Leone where a facility allows</li>
+<li>In-country backup and private-cloud node in the partner data centre</li>
+<li>AI and cyber training cohorts in Freetown, with university partners</li></ul></div>
+<div class="phc rv"><small>12–18 MONTHS</small><h4>Commit</h4><ul>
+<li>Board decision: Sierra Leonean entity, JV or stay partner-led, based on revenue and regulatory clearances</li>
+<li>Hire local presales and customer success. Review national data-centre options for in-country hosting</li>
+<li>Government work only through approved providers and prime contractors</li>
+<li>Goal: <span data-m="acc2">~23</span> accounts and <span data-m="rev2">~US$0.19M</span> annualised revenue (base case)</li></ul></div>
+</div>
+<div class="g2x">
+<div class="bx rv"><h4><svg class="ic"><use href="#i-hand"/></svg> Channel &amp; partner programme</h4><ul>
+<li><b>Referral partner:</b> introduces deals. XcellHost contracts and delivers with local partners.</li>
+<li><b>Resell partner:</b> buys the XcellHost catalogue in USD and bills customers in leones.</li>
+<li><b>Managed-service partner:</b> runs L1 and on-site work in Sierra Leone. XcellHost runs L2/L3 and the platform.</li>
+<li><b>DC/cloud partner:</b> provides Freetown racks, cloud capacity and a second site for DR.</li></ul>
+<p class="sm">XcellHost has no published partner-programme page yet. Margins and tiers are for leadership to set.</p></div>
+<div class="bx rv"><h4><svg class="ic"><use href="#i-rupee"/></svg> Pricing &amp; tax approach</h4><ul>
+<li>USD price book for partners. Local billing in leones by the partner, or by our entity later. Review FX monthly.</li>
+<li>GST at 15%<sup class="fn"><a href="#s27">27</a></sup>. Non-resident suppliers of digital services must charge GST and appoint a resident representative since 1 January 2026<sup class="fn"><a href="#s25">25</a> <a href="#s26">26</a></sup>.</li>
+<li>The Finance Act 2026 raised corporate and withholding taxes<sup class="fn"><a href="#s28">28</a></sup>; rates and any India–Sierra Leone treaty relief were not verified. Get local tax advice per contract.</li>
+<li>Donor-funded contracts follow the funder's procurement and payment rules.</li>
+</ul></div>
+<div class="bx rv"><h4><svg class="ic"><use href="#i-lang"/></svg> Marketing</h4><ul>
+<li>English offer sheets with Sierra Leonean law, leone pricing and local case framing.</li>
+<li>Partner-hosted events in Freetown timed to the trigger calendar: sector protection plans, the data protection bill and TLS-lifetime cuts.</li>
+<li>Content: a Cybersecurity and Crime Act readiness checklist, a single-cable resilience guide and a data protection bill explainer.</li>
+<li>LinkedIn and partner co-marketing, plus outreach through India–Sierra Leone business networks and donor programme units.</li>
+</ul></div>
+<div class="bx rv"><h4><svg class="ic"><use href="#i-target"/></svg> Sales motions</h4><ul>
+<li><b>Compliance-led:</b> a fixed-fee Cybersecurity and Crime Act and sector-plan readiness assessment that leads into managed services.</li>
+<li><b>Follow the customer:</b> Indian companies with Sierra Leonean operations, and their suppliers.</li>
+<li><b>Training-led:</b> AI cohorts that open AI platform and RAG projects.</li>
+<li><b>Co-sell:</b> with partners and Microsoft, where XcellHost runs the managed layer.</li></ul></div>
+<div class="bx rv"><h4><svg class="ic"><use href="#i-users"/></svg> Team (assumption)</h4>
+<table class="mtab"><thead><tr><th>Role</th><th>Base</th><th>From</th></tr></thead><tbody>
+<tr><td>Country lead (anglophone West Africa experience)</td><td>Freetown</td><td>Month 0</td></tr>
+<tr><td>Partner manager</td><td>Freetown</td><td>Month 1–6</td></tr>
+<tr><td>Solutions architect</td><td>Mumbai / remote</td><td>Month 0</td></tr>
+<tr><td>Privacy &amp; compliance lead</td><td>Mumbai + local counsel</td><td>Month 0</td></tr>
+<tr><td>Presales + customer success</td><td>Sierra Leone</td><td>Month 12</td></tr>
+<tr><td>Delivery: NOC/SOC L2/L3</td><td>Mumbai 24×7</td><td>Existing team</td></tr></tbody></table></div>
+<div class="bx rv"><h4><svg class="ic"><use href="#i-chart"/></svg> KPIs (goals, not forecasts)</h4>
+<table class="mtab"><thead><tr><th>KPI</th><th>M6</th><th>M12</th><th>M18</th></tr></thead><tbody>
+<tr><td>Active partners</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><td>Readiness assessments sold</td><td>2</td><td>4</td><td>6</td></tr>
+<tr><td>Paying accounts</td><td>3</td><td>8</td><td>14</td></tr>
+<tr><td>Qualified pipeline (US$)</td><td>0.15M</td><td>0.4M</td><td>0.8M</td></tr>
+<tr><td>Annualised revenue (US$)</td><td>0.03M</td><td>0.09M</td><td>0.19M</td></tr>
+<tr><td>Gross margin on managed services</td><td colspan="3">Track from month 1; set the target after pilots</td></tr></tbody></table></div>
+</div>
+<h3 class="sub3 rv">Risks &amp; mitigations</h3>
+<div class="rks">
+<div class="rk rv"><span class="lv h">HIGH</span><h4>Small market</h4><p>Only about a quarter of people use the internet<sup class="fn"><a href="#s3">3</a></sup>, and the telecom market is US$262.5M in total<sup class="fn"><a href="#s23">23</a></sup>.</p><p><b>Mitigation:</b> keep costs variable: partners first, no local hires before month 12.</p></div>
+<div class="rk rv"><span class="lv h">HIGH</span><h4>Public finances</h4><p>Debt is at high risk of distress and reserves cover about two months of imports<sup class="fn"><a href="#s4">4</a> <a href="#s6">6</a></sup>.</p><p><b>Mitigation:</b> donor-funded and private work first; prepaid or milestone terms.</p></div>
+<div class="rk rv"><span class="lv h">HIGH</span><h4>Single cable</h4><p>One submarine cable serves the country, and route diversity is rated poor<sup class="fn"><a href="#s19">19</a> <a href="#s24">24</a></sup>.</p><p><b>Mitigation:</b> offline-tolerant backup, satellite fallback and local caching in designs.</p></div>
+<div class="rk rv"><span class="lv m">MEDIUM</span><h4>Hosting capacity</h4><p>We did not identify a carrier-neutral data centre; national data centres are planned<sup class="fn"><a href="#s22">22</a></sup>.</p><p><b>Mitigation:</b> verify operator facilities on site; use regional hosting where the customer allows.</p></div>
+<div class="rk rv"><span class="lv m">MEDIUM</span><h4>Regulatory flux</h4><p>The data protection bill is not enacted and the cyber Act is under review<sup class="fn"><a href="#s11">11</a> <a href="#s13">13</a></sup>.</p><p><b>Mitigation:</b> a quarterly legal review with local counsel, and refreshes to this page.</p></div>
+<div class="rk rv"><span class="lv m">MEDIUM</span><h4>Currency and inflation</h4><p>The IMF expects inflation of 11.6% by year-end and wants the exchange rate to adjust to shocks<sup class="fn"><a href="#s5">5</a> <a href="#s4">4</a></sup>.</p><p><b>Mitigation:</b> USD price book, prepaid or quarterly billing, partner-held leone exposure.</p></div>
+<div class="rk rv"><span class="lv m">MEDIUM</span><h4>Unverified rules</h4><p>Banking, e-signature and withholding-tax rules were not verified for this briefing.</p><p><b>Mitigation:</b> a local legal memo before the first regulated contract.</p></div>
+<div class="rk rv"><span class="lv l">LOWER</span><h4>Tax leakage</h4><p>15% GST with a local representative<sup class="fn"><a href="#s25">25</a> <a href="#s27">27</a></sup> can stack with withholding on direct invoices.</p><p><b>Mitigation:</b> partner-billed sales; tax adviser review before the first invoice.</p></div>
+</div>
+</div></section>
+
+<section class="sec alt" id="model"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Tool · SOM / revenue model</div><h2>Model the <span class="acc">18-month revenue</span></h2>
+<p class="lead">Segments × target accounts × win rate × annual contract value (ACV). Every default is an assumption for discussion, not a forecast. Change any cell and the totals, the SOM block and the goals at the top update.</p></div>
+<div class="mdl rv">
+<div class="mdl-c">
+<div><small>Scenario</small><div class="scn"><button data-x="0.6">Conservative<i>×0.6</i></button><button class="on" data-x="1">Base<i>×1.0</i></button><button data-x="1.4">Stretch<i>×1.4</i></button></div></div>
+<label><small>Le per US$</small><input type="number" id="fxX" value="22.6" min="1" step="1"></label>
+<label><small>₹ per US$</small><input type="number" id="fxI" value="95.17" min="1" step="0.01"></label>
+</div>
+<div class="tw"><table class="mt"><thead><tr><th>Vertical</th><th>Target accounts</th><th>Win rate %</th><th>ACV (US$)</th><th>Won</th><th>Revenue (US$)</th></tr></thead><tbody id="mRows"></tbody>
+<tfoot><tr><td>Total</td><td id="mTa"></td><td></td><td></td><td id="mTw"></td><td id="mTr"></td></tr></tfoot></table></div>
+<div class="mdl-o"><div><small>ANNUALISED REVENUE</small><b id="oUsd"></b></div><div><small>IN LEONES</small><b id="oXof"></b></div><div><small>IN RUPEES</small><b id="oInr"></b></div><div><small>ACCOUNTS WON</small><b id="oAcc"></b></div><button id="mReset"><svg class="ic"><use href="#i-refresh"/></svg>Reset defaults</button></div>
+</div>
+</div></section>
+
+<section class="sec" id="heatmap"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Pillar × vertical heatmap</div><h2>Where each pillar <span class="acc">lands hardest</span></h2>
+<p class="lead">Service fit counts how many of a vertical's top 10 services sit in that pillar. Regulatory pull is our 0–4 rating of how strongly the laws above drive that pillar in that vertical. Both are our assessment, not market data. Click a cell to see its services.</p></div>
+<div class="hm-c rv"><div class="scn" id="hmMode"><button class="on" data-m="fit">Service fit</button><button data-m="pull">Regulatory pull</button></div><span class="lg">Low<i class="h0"></i><i class="h1"></i><i class="h2"></i><i class="h3"></i><i class="h4"></i>High</span></div>
+<div class="hm rv"><div class="tw"><table class="hmt" id="hmT"></table></div><div class="hm-d" id="hmD"><b>Select a cell</b><p>The mapped services and the laws driving that pillar appear here.</p></div></div>
+</div></section>
+
+<section class="sec alt" id="security-compliance"><div class="wrap"><div class="sh"><h2>SECURITY &amp; COMPLIANCE</h2><p>Agree delivery responsibilities, data locations and evidence requirements with each customer and local partner before deploying the Sierra Leone strategy.</p></div><div class="country-security-grid"><article><h3>Data Location</h3><p>Record the agreed hosting, backup and support-access locations for each workload.</p></article><article><h3>Access And Evidence</h3><p>Document access controls, monitoring and recovery procedures against the customer's requirements.</p></article><article><h3>Delivery Responsibilities</h3><p>Define partner responsibilities, escalation paths and recovery expectations in the customer agreement.</p></article></div></div></section><section class="sec alt sn-why" id="why-xcellhost"><div class="wrap">
+<div class="eyebrow rv">Why XcellHost for Sierra Leone go-to-market strategy</div>
+<div class="whys">
+<div class="rv"><small>SINCE 1999</small><b>27 years of managed cloud and security from Mumbai</b></div>
+<div class="rv"><small>TIER IV DATA CENTRE</small><b>Mumbai home for DR, tooling and non-restricted workloads</b></div>
+<div class="rv"><small>ISO 9001 · 27001 · 27017 · 27018 · 20000-1</small><b>SOC 2 Type I &amp; II · MeitY empanelled</b></div>
+<div class="rv"><small>24×7 NOC &amp; SOC</small><b>Second and third line behind local partners</b></div>
+</div></div></section>
+
+<section class="sec" id="faq"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Questions partners will ask</div><h2>Frequently asked <span class="acc">questions</span></h2></div>
+<div class="faq"><div class="hosting-faq-column"><div class="q rv"><button aria-expanded="false">Does XcellHost need a Sierra Leonean company to start?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>No. The plan starts through local partners who contract and bill in leones. A local entity or joint venture is a month-12 decision.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Can Sierra Leonean customer data be hosted in Mumbai?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>There is no enacted data protection law yet, so there is no national transfer regime we could verify. We still recommend contract terms aligned to ECOWAS principles and in-country hosting for public and critical data where a suitable facility exists.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Can XcellHost run a managed SOC for Sierra Leonean customers from India?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>Yes, as a second and third line behind a local partner. Designs must allow for the single-cable risk.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Can we sell digital certificates in Sierra Leone?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>Public SSL/TLS and S/MIME certificates can be sold through partners. We did not verify the rules on legally recognised electronic signatures.</p></div></div></div><div class="hosting-faq-column"><div class="q rv"><button aria-expanded="false">Is there an AI law in Sierra Leone?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>No. AI governance is described as being in a preparation phase.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Which taxes apply when we invoice from India?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>GST at 15% applies to digital services from non-resident suppliers, who must appoint a resident representative since 1 January 2026. Withholding rates were not verified. Partner-billed sales avoid most of this.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Why are there so few market-size figures?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>Sierra Leone is a small market and few researchers publish country-level technology numbers. We found a telecom-operator estimate and donor investment figures, but nothing we could rely on for cloud, cyber security or AI.</p></div></div>
+<div class="q rv"><button aria-expanded="false">Are the revenue numbers a forecast?<svg class="ic"><use href="#i-plus"/></svg></button><div class="a"><p>No. They are the output of the revenue model on this page, built from assumptions about target accounts, win rates and contract values. Change the inputs and the goals update.</p></div></div></div></div></div></section>
+
+<section class="sec alt sn-src" id="sources"><div class="wrap">
+<div class="sh rv"><div class="eyebrow">Sources</div><h2>Every number, <span class="acc">traceable</span></h2>
+<p class="lead">Accessed 28 November 2026. The dates shown are publication or review dates where the source gives one. 32 sources.</p></div>
+<ol class="srcl rv"><li id="s1"><a href="https://datareportal.com/reports/digital-2027-sierra-leone" target="_blank" rel="noopener">DataReportal — Digital 2027: Sierra Leone (mobile connections)</a> <span>· end-2026 data</span></li><li id="s2"><a href="https://datareportal.com/reports/digital-2026-sierra-leone" target="_blank" rel="noopener">DataReportal — Digital 2026: Sierra Leone (connections versus population)</a> <span>· late 2025 data</span></li><li id="s3"><a href="https://alfred.stlouisfed.org/series?seid=ITNETUSERP2SLE" target="_blank" rel="noopener">World Bank via FRED — Internet users for Sierra Leone, % of population</a> <span>· updated 14 Apr 2026</span></li><li id="s4"><a href="https://www.imf.org/en/news/articles/2026/06/18/pr-26213-sierra-leone-imf-approves-arrangement-under-the-rsf-and-completes-3rd-rev-under-ecf" target="_blank" rel="noopener">IMF — Board approves Resilience and Sustainability Facility and completes third ECF review</a> <span>· 18 Jun 2026</span></li><li id="s5"><a href="https://www.imf.org/en/publications/cr/issues/2026/07/07/sierra-leone-third-review-under-the-extended-credit-facility-arrangement-requests-for-577544" target="_blank" rel="noopener">IMF — Sierra Leone: Third Review under the ECF, staff report (inflation outlook)</a> <span>· 7 Jul 2026</span></li><li id="s6"><a href="https://www.riotimesonline.com/sierra-leone-imf-program-explained-2026/" target="_blank" rel="noopener">The Rio Times — Sierra Leone IMF program explained 2026</a> <span>· 31 Oct 2026</span></li><li id="s7"><a href="https://www.afdb.org/ar/node/13282" target="_blank" rel="noopener">African Development Bank — Sierra Leone economic outlook (exchange rate)</a> <span>· 2026</span></li><li id="s8"><a href="https://coe.int/en/web/octopus/-/sierra-leone" target="_blank" rel="noopener">Council of Europe Octopus — Sierra Leone cybercrime legislation profile</a> <span>· —</span></li><li id="s9"><a href="https://sierralii.gov.sl/akn/sl/act/2021/7/eng@2021-11-25/source" target="_blank" rel="noopener">SierraLII — The Cybersecurity and Crime Act, 2021 (gazetted text)</a> <span>· 25 Nov 2021</span></li><li id="s10"><a href="https://dig.watch/countries/Sierra-Leone" target="_blank" rel="noopener">Digital Watch Observatory — Sierra Leone digital profile</a> <span>· 2026</span></li><li id="s11"><a href="https://law.ungovr.org/ai/sl" target="_blank" rel="noopener">UN GovR law profile — Sierra Leone (data protection bill status; single aggregator source)</a> <span>· 2026</span></li><li id="s12"><a href="https://www.premiermedia-sl.com/?p=30274" target="_blank" rel="noopener">Premier Media — Sierra Leone steps up cyber defence (draft critical-infrastructure protection plans)</a> <span>· 26 Aug 2026</span></li><li id="s13"><a href="https://www.gtai.de/de/trade/sierra-leone/ausschreibungen-projekte/consulting-cybersicherheitsgesetz-und-nationaler-ordnungsrahmen-ikt--2022432" target="_blank" rel="noopener">GTAI — Tender: review of the Cybersecurity and Crime Act 2021 and regulatory framework</a> <span>· 14 Aug 2026</span></li><li id="s14"><a href="https://publicadministration.desa.un.org/sites/default/files/list-of-files/2024/presentation%204%29%20UN-DESA-ADGF-Pretoria-2024.pdf" target="_blank" rel="noopener">UN DESA — Sierra Leone presentation, Africa Regional Forum on Data Governance</a> <span>· Oct 2024</span></li><li id="s15"><a href="https://projects.worldbank.org/en/projects-operations/project-detail/P177077" target="_blank" rel="noopener">World Bank — Sierra Leone Digital Transformation Project (P177077)</a> <span>· Active</span></li><li id="s16"><a href="https://www.worldbank.org/en/news/press-release/2026/03/11/world-bank-group-provides-137-million-help-accelerate-digital-integration-job-creation-in-benin-liberia-and-sierra-leone" target="_blank" rel="noopener">World Bank — US$137 million for digital integration in Benin, Liberia and Sierra Leone</a> <span>· 10 Mar 2026</span></li><li id="s17"><a href="https://developingtelecoms.com/telecom-business/telecom-investment-mergers/19949-world-bank-initiative-aims-to-boost-digital-economy-in-three-african-countries.html.md" target="_blank" rel="noopener">Developing Telecoms — World Bank initiative to boost the digital economy in three African countries</a> <span>· 2026</span></li><li id="s18"><a href="https://techafricanews.com/?p=91434" target="_blank" rel="noopener">TechAfrica News — Sierra Leone announces US$45 million second submarine cable project</a> <span>· 18 Nov 2026</span></li><li id="s19"><a href="https://innovation-village.com/sierra-leone-backs-45m-submarine-cable-to-connect-four-countries/" target="_blank" rel="noopener">Innovation Village — Sierra Leone backs US$45m submarine cable</a> <span>· 18 Nov 2026</span></li><li id="s20"><a href="https://www.developingtelecoms.com/telecom-business/telecom-investment-mergers/20114-sierra-leone-announces-sierratel-relaunch.html.md" target="_blank" rel="noopener">Developing Telecoms — Sierra Leone announces Sierratel relaunch (operator shares)</a> <span>· 15 Apr 2026</span></li><li id="s21"><a href="https://www.ecofinagency.com/news-digital/2204-54891-sierra-leone-drops-privatization-plan-relaunches-state-owned-operator-sierratel-on-africell-network" target="_blank" rel="noopener">Ecofin Agency — Sierratel relaunched on Africell&#x27;s network</a> <span>· 22 Apr 2026</span></li><li id="s22"><a href="https://www.budde.com.au/Research/Sierra-Leone-Telecoms-Mobile-and-Broadband-Statistics-and-Analyses" target="_blank" rel="noopener">BuddeComm — Sierra Leone Telecoms Market Report</a> <span>· Jun 2026</span></li><li id="s23"><a href="https://www.mordorintelligence.com/industry-reports/sierra-leone-telecom-mno-market" target="_blank" rel="noopener">Mordor Intelligence — Sierra Leone Telecom MNO market size and share</a> <span>· 2026</span></li><li id="s24"><a href="https://pulse.internetsociety.org/reports/sl" target="_blank" rel="noopener">Internet Society Pulse — Sierra Leone country report (route diversity)</a> <span>· 2026</span></li><li id="s25"><a href="https://lookuptax.com/tax-changes/sierra-leone/digital-services-gst-representative-2026" target="_blank" rel="noopener">Lookuptax — Sierra Leone: non-resident digital-services suppliers must appoint a GST representative</a> <span>· 2026</span></li><li id="s26"><a href="https://thecalabashnewspaper.com/?p=57635" target="_blank" rel="noopener">The Calabash Newspaper — Finance Act 2026 takes effect</a> <span>· 2026</span></li><li id="s27"><a href="https://www.vatcalc.com/sierra-leone/sierra-leone-gst-on-non-resident-digital-services/" target="_blank" rel="noopener">VATCalc — Sierra Leone: 15% GST on digital services</a> <span>· —</span></li><li id="s28"><a href="https://orbitax.com/news/country/article/Sierra-Leone-Parliament-Enacts-60727" target="_blank" rel="noopener">Orbitax — Sierra Leone Parliament enacts Finance Act 2026 (corporate and withholding tax changes)</a> <span>· 2025</span></li><li id="s29"><a href="https://www.trade.gov/country-commercial-guides/sierra-leone-digital-economy" target="_blank" rel="noopener">US Commercial Service — Sierra Leone Country Commercial Guide: Digital Economy</a> <span>· 2026</span></li><li id="s30"><a href="https://cabforum.org/" target="_blank" rel="noopener">CA/Browser Forum — Ballot SC-081: TLS certificate validity schedule</a> <span>· 2025</span></li><li id="s31"><a href="https://learn.microsoft.com/lifecycle/products/windows-server-2016" target="_blank" rel="noopener">Microsoft — Windows Server 2016 lifecycle (extended support end date)</a> <span>· —</span></li><li id="s32"><a href="https://xcellhost.cloud/kenya-go-to-market-strategy" target="_blank" rel="noopener">XcellHost — Kenya go-to-market briefing (FX convention: ₹95.17 per US$, close of 26 Oct 2026)</a> <span>· 4 Nov 2026</span></li></ol>
+</div></section>
+</main><script src="/assets/scripts/hosting-tools-viewport.js"></script><script>
+(function(){
+var D={"cat": {"bfsi": {"n": "BFSI Cloud", "d": "Regulated cloud with audit rights and exit plan", "p": "C"}, "ins": {"n": "Insurance Cloud", "d": "Policy, claims and core-system hosting", "p": "C"}, "perf": {"n": "Performance Cloud", "d": "Managed virtual servers in a Freetown partner data centre", "p": "C"}, "priv": {"n": "Managed Private Cloud", "d": "Dedicated in-country cloud for regulated data", "p": "C"}, "hc": {"n": "Healthcare Cloud", "d": "Patient-record hosting with long-term archive", "p": "C"}, "maws": {"n": "Managed AWS", "d": "Run and secure AWS estates", "p": "C"}, "m365": {"n": "Managed Microsoft 365", "d": "Mail, Teams and device management", "p": "C"}, "sap": {"n": "SAP B1 HANA on Cloud", "d": "Hosted SAP for manufacturers and distributors", "p": "C"}, "rmm": {"n": "Remote Monitoring & Management", "d": "Patch and monitor distributed sites", "p": "C"}, "vsaas": {"n": "Video Surveillance as a Service", "d": "Cloud-managed CCTV for sites and warehouses", "p": "C"}, "soc": {"n": "Vortex SOC (SIEM · SOAR · UEBA)", "d": "24×7 detection with incident-reporting runbooks", "p": "S"}, "edr": {"n": "Managed EDR", "d": "Endpoint detection and response", "p": "S"}, "waap": {"n": "WAAP as a Service", "d": "WAF, API and DDoS protection", "p": "S"}, "pam": {"n": "Privileged Access Management", "d": "Vaulted admin access, session recording", "p": "S"}, "vapt": {"n": "Red Team & VAPT", "d": "Resilience testing for boards and regulators", "p": "S"}, "dmarc": {"n": "DMARC+ Email Security", "d": "Stops spoofed mail and invoice fraud", "p": "S"}, "asm": {"n": "Attack Surface Management", "d": "Finds exposed assets before attackers do", "p": "S"}, "dark": {"n": "Dark Web Monitoring", "d": "Alerts on leaked credentials and brand abuse", "p": "S"}, "tprm": {"n": "Third-Party Risk Monitoring", "d": "Security scoring of suppliers", "p": "S"}, "hrm": {"n": "Human Risk Management", "d": "Phishing simulation and awareness", "p": "S"}, "cybird": {"n": "Cybird SMB Security Appliance", "d": "Plug-and-play protection for small offices", "p": "S"}, "bkp": {"n": "Cloud Backup & DR", "d": "Backup with in-country or regional storage", "p": "D"}, "mro": {"n": "Managed Resilience Operations", "d": "Backup, DR and measured drills", "p": "D"}, "m365b": {"n": "Microsoft 365 Backup", "d": "Mail, OneDrive and Teams recovery", "p": "D"}, "privops": {"n": "Privacy Operations (NC3 readiness)", "d": "Formalities, registers and DPO support", "p": "D"}, "dlp": {"n": "Scrutiny DLP", "d": "Stops data leaving by endpoint, mail and web", "p": "D"}, "drive": {"n": "XcellDrive Enterprise File Cloud", "d": "Controlled file storage and sharing", "p": "D"}, "hsm": {"n": "Cloud HSM", "d": "Keys for payments, signing and encryption", "p": "T"}, "pki": {"n": "Managed PKI", "d": "Private certificate-authority operations", "p": "T"}, "clm": {"n": "Certificate Lifecycle Management", "d": "Discover, renew and replace certificates", "p": "T"}, "ssl": {"n": "SSL/TLS Certificates", "d": "DigiCert, Sectigo and GeoTrust", "p": "T"}, "smime": {"n": "S/MIME Email Certificates", "d": "Signed and encrypted email", "p": "T"}, "gpu": {"n": "GPU Cloud", "d": "NVIDIA capacity for model workloads", "p": "A"}, "genai": {"n": "GenAI Protection", "d": "Guardrails against data leaking into AI tools", "p": "A"}, "rag": {"n": "AI Platform & RAG", "d": "Private assistants on your own documents", "p": "A"}, "trai": {"n": "AI Training Cohorts", "d": "Role-based AI skills for teams", "p": "R"}, "trcy": {"n": "Cyber Security Training", "d": "Analyst and awareness tracks", "p": "R"}}, "pill": {"C": "Cloud", "S": "Cyber Security", "D": "Data Protection", "T": "Digital Trust", "A": "AI", "R": "Training"}, "vert": [{"id": "bfsi", "name": "BFSI & mobile money", "top": ["bfsi", "ins", "soc", "waap", "pam", "hsm", "pki", "mro", "vapt", "trai"], "acc": 12, "win": 15, "acv": 20000, "pull": [1, 3, 2, 1, 0, 1], "drv": ["Cybersecurity and Crime Act 2021", "Bank of Sierra Leone requirements (not verified)", "Draft data protection bill", "ECOWAS data protection act"]}, {"id": "tel", "name": "Telecom & ISPs", "top": ["priv", "maws", "soc", "waap", "asm", "clm", "ssl", "bkp", "gpu", "rag"], "acc": 4, "win": 25, "acv": 40000, "pull": [1, 3, 1, 1, 0, 0], "drv": ["National Communications Authority Act", "Cybersecurity and Crime Act 2021", "NatCA licence terms"]}, {"id": "gov", "name": "Government & agencies", "top": ["priv", "m365", "soc", "pam", "vapt", "privops", "pki", "smime", "genai", "trcy"], "acc": 8, "win": 8, "acv": 40000, "pull": [3, 4, 2, 1, 0, 2], "drv": ["Cybersecurity and Crime Act 2021", "National Digital Development Policy", "Digital Transformation Roadmap", "Draft data protection bill"]}, {"id": "hlt", "name": "Healthcare", "top": ["hc", "m365", "edr", "dmarc", "bkp", "mro", "dlp", "privops", "smime", "trai"], "acc": 12, "win": 10, "acv": 8000, "pull": [1, 3, 2, 0, 0, 0], "drv": ["Cybersecurity and Crime Act 2021", "Draft data protection bill", "Donor requirements"]}, {"id": "edu", "name": "Education & skills", "top": ["perf", "m365", "gpu", "rag", "edr", "hrm", "m365b", "ssl", "trai", "trcy"], "acc": 10, "win": 10, "acv": 6000, "pull": [1, 2, 1, 0, 0, 2], "drv": ["Digital Transformation Roadmap", "Cybersecurity and Crime Act 2021"]}, {"id": "ind", "name": "Mining & industry", "top": ["sap", "perf", "rmm", "edr", "vapt", "bkp", "clm", "tprm", "genai", "trai"], "acc": 12, "win": 12, "acv": 20000, "pull": [0, 2, 1, 0, 0, 0], "drv": ["Investor and lender audits", "Cybersecurity and Crime Act 2021"]}, {"id": "agr", "name": "Agriculture & agribusiness", "top": ["perf", "m365", "vsaas", "edr", "dmarc", "bkp", "drive", "ssl", "rag", "trai"], "acc": 8, "win": 10, "acv": 6000, "pull": [0, 1, 1, 0, 0, 0], "drv": ["Buyer and donor audits"]}, {"id": "log", "name": "Logistics & ports", "top": ["perf", "maws", "rmm", "vsaas", "soc", "waap", "tprm", "mro", "clm", "trcy"], "acc": 8, "win": 10, "acv": 12000, "pull": [0, 2, 1, 0, 0, 0], "drv": ["Cybersecurity and Crime Act 2021", "Customs system requirements"]}, {"id": "ene", "name": "Energy & utilities", "top": ["priv", "maws", "soc", "pam", "vapt", "asm", "mro", "dlp", "pki", "trcy"], "acc": 6, "win": 10, "acv": 20000, "pull": [1, 4, 1, 0, 0, 0], "drv": ["Cybersecurity and Crime Act 2021", "Sector protection plans"]}, {"id": "sme", "name": "SMEs & start-ups", "top": ["perf", "m365", "cybird", "edr", "dmarc", "dark", "bkp", "m365b", "ssl", "trai"], "acc": 60, "win": 8, "acv": 3000, "pull": [0, 1, 1, 0, 0, 0], "drv": ["Finance Act 2026 (GST)", "Cybersecurity and Crime Act 2021"]}]};
+var $=function(s,c){return (c||document).querySelector(s)},$$=function(s,c){return [].slice.call((c||document).querySelectorAll(s))};
+var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+$$('.rv').forEach(function(el,i){el.style.transitionDelay=(i%4*60)+'ms';io.observe(el)});
+/* toc spy */
+var tl=$$('#snToc a'),ts=tl.map(function(a){return $(a.getAttribute('href'))});
+function spy(){var y=scrollY+120,c=-1;ts.forEach(function(s,i){if(s&&s.offsetTop<=y)c=i});tl.forEach(function(a,i){a.classList.toggle('on',i===c)})}
+addEventListener('scroll',spy,{passive:true});spy();
+/* hero canvas */
+(function(){var c=$('#net');if(!c)return;var x=c.getContext('2d'),P=[],W,H,run=true;
+function size(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;P=[];var n=Math.min(50,Math.round(W*H/26000));for(var i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35})}
+function draw(){x.clearRect(0,0,W,H);for(var i=0;i<P.length;i++){var p=P[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;x.fillStyle='#0066FF';x.beginPath();x.arc(p.x,p.y,2,0,6.3);x.fill();
+for(var j=i+1;j<P.length;j++){var q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle='rgba(0,102,255,'+(1-d/130)*.4+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}}
+if(run&&!RM)requestAnimationFrame(draw)}
+size();draw();addEventListener('resize',size);
+new IntersectionObserver(function(e){var v=e[0].isIntersecting;if(v&&!run){run=true;draw()}else run=v}).observe(c)})();
+/* hero brief */
+(function(){var B=[['01','Market · what the numbers say','Small, donor-funded and one cable away from trouble'],['02','Verticals · who buys first','Wave 1 in the first 6 months, then waves 2 and 3'],['03','Laws · what shapes every deal','Hosting, privacy and tax rules'],['04','Roadmap · 18 months','Prove, scale, then commit']];
+var tb=$$('.bf-tabs button'),ps=$$('.bf-p'),i=0,t;
+function go(n){i=n;tb.forEach(function(b,k){b.classList.toggle('on',k===n)});ps.forEach(function(p,k){p.classList.toggle('on',k===n)});$('#bfNum').textContent=B[n][0];$('#bfTitle').textContent=B[n][1];$('#bfSub').textContent=B[n][2]}
+function auto(){clearInterval(t);if(!RM)t=setInterval(function(){go((i+1)%4)},4200)}
+tb.forEach(function(b,k){b.onclick=function(){go(k);auto()}});auto()})();
+/* verticals */
+$$('.vb').forEach(function(b){b.onclick=function(){$$('.vb').forEach(function(o){o.classList.toggle('on',o===b)});$$('.vp').forEach(function(p){p.classList.toggle('on',p.id==='vp-'+b.dataset.v)})}});
+/* filters */
+$$('[data-filter]').forEach(function(g){var sel=g.dataset.filter==='tg'?'.tg':'.lawt:not(.comp):not(.em) tbody tr';
+$$('.fb',g).forEach(function(b){b.onclick=function(){$$('.fb',g).forEach(function(o){o.classList.toggle('on',o===b)});var f=b.dataset.f;$$(sel).forEach(function(r){r.classList.toggle('hide',f!=='all'&&r.dataset.c!==f)})}})});
+/* faq */
+$$('.q button').forEach(function(b){b.onclick=function(){var q=b.parentNode,a=$('.a',q),o=q.classList.toggle('open');b.setAttribute('aria-expanded',o);a.style.maxHeight=o?a.scrollHeight+'px':0}});
+(function(){var d={"@context":"https://schema.org","@type":"FAQPage",mainEntity:$$('.q').map(function(q){return{"@type":"Question",name:$('button',q).textContent.trim(),acceptedAnswer:{"@type":"Answer",text:$('.a p',q).textContent}}})},s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(d);document.head.appendChild(s)})();
+/* model */
+var mult=1,fmt=function(n){return Math.round(n).toLocaleString('en-US')};
+function usd(n){return n>=1e6?'US$'+(n/1e6).toFixed(2)+'M':'US$'+(n/1e6).toFixed(2)+'M'}
+function rows(){$('#mRows').innerHTML=D.vert.map(function(v,i){return '<tr><td>'+v.name+'</td><td><input type="number" min="0" data-i="'+i+'" data-k="acc" value="'+v.acc+'" aria-label="Target accounts, '+v.name+'"></td><td><input type="number" min="0" max="100" data-i="'+i+'" data-k="win" value="'+v.win+'" aria-label="Win rate, '+v.name+'"></td><td><input type="number" min="0" step="500" data-i="'+i+'" data-k="acv" value="'+v.acv+'" aria-label="ACV, '+v.name+'"></td><td class="w"></td><td class="r"></td></tr>'}).join('');
+$$('#mRows input').forEach(function(x){x.oninput=calc})}
+var DEF=JSON.parse(JSON.stringify(D.vert));
+function calc(){var ta=0,tw=0,tr=0;$$('#mRows tr').forEach(function(tr_,i){var g=function(k){return Math.max(0,parseFloat($('[data-k='+k+']',tr_).value)||0)},a=g('acc'),w=Math.min(100,g('win')*mult),c=g('acv'),won=a*w/100,rev=won*c;ta+=a;tw+=won;tr+=rev;$('.w',tr_).textContent=won.toFixed(1);$('.r',tr_).textContent='US$'+fmt(rev)});
+var X=parseFloat($('#fxX').value)||22.6,I=parseFloat($('#fxI').value)||95.17,cr=tr*I/1e7;
+$('#mTa').textContent=fmt(ta);$('#mTw').textContent=tw.toFixed(1);$('#mTr').textContent='US$'+fmt(tr);
+$('#oUsd').textContent=usd(tr);$('#oXof').textContent='Le '+fmt(tr*X/1e6)+'M';$('#oInr').textContent='₹'+cr.toFixed(1)+' crore';$('#oAcc').textContent=Math.round(tw);
+var set=function(k,v){$$('[data-m='+k+']').forEach(function(e){if(e.textContent!==v){e.textContent=v;e.classList.remove('flashv');void e.offsetWidth;e.classList.add('flashv')}})};
+set('rev',usd(tr));set('inr','≈ ₹'+cr.toFixed(1)+' crore');set('acc',String(Math.round(tw)));set('acc2','~'+Math.round(tw));set('rev2','~'+usd(tr))}
+$$('.mdl .scn button').forEach(function(b){b.onclick=function(){$$('.mdl .scn button').forEach(function(o){o.classList.toggle('on',o===b)});mult=+b.dataset.x;calc()}});
+$('#fxX').oninput=calc;$('#fxI').oninput=calc;
+$('#mReset').onclick=function(){D.vert=JSON.parse(JSON.stringify(DEF));mult=1;$$('.mdl .scn button').forEach(function(o){o.classList.toggle('on',o.dataset.x==='1')});$('#fxX').value=22.6;$('#fxI').value=95.17;rows();calc()};
+rows();calc();
+/* heatmap */
+var PK=['C','S','D','T','A','R'],mode='fit';
+function fit(v,p){return v.top.filter(function(t){return D.cat[t].p===p}).length}
+function heat(){var h='<thead><tr><th></th>'+PK.map(function(p){return '<th>'+D.pill[p]+'</th>'}).join('')+'</tr></thead><tbody>';
+D.vert.forEach(function(v,i){h+='<tr><td>'+v.name+'</td>'+PK.map(function(p,j){var n=mode==='fit'?fit(v,p):v.pull[j];return '<td><button class="h'+Math.min(4,n)+'" data-i="'+i+'" data-p="'+p+'" aria-label="'+v.name+', '+D.pill[p]+': '+n+'">'+n+'</button></td>'}).join('')+'</tr>'});
+$('#hmT').innerHTML=h+'</tbody>';
+$$('#hmT button').forEach(function(b){b.onclick=function(){$$('#hmT button').forEach(function(o){o.classList.toggle('sel',o===b)});var v=D.vert[+b.dataset.i],p=b.dataset.p,sv=v.top.filter(function(t){return D.cat[t].p===p});
+$('#hmD').innerHTML='<b>'+v.name+' · '+D.pill[p]+'</b><small>SERVICES IN THE TOP 10</small>'+(sv.length?'<ul>'+sv.map(function(t){return '<li><b>'+D.cat[t].n+'</b> — '+D.cat[t].d+'</li>'}).join('')+'</ul>':'<p>None of this vertical\'s top 10 sit in this pillar.</p>')+'<small>REGULATORY PULL · '+v.pull[PK.indexOf(p)]+' of 4</small><p>Drivers for this vertical: '+v.drv.join(', ')+'.</p>'}})}
+$$('#hmMode button').forEach(function(b){b.onclick=function(){$$('#hmMode button').forEach(function(o){o.classList.toggle('on',o===b)});mode=b.dataset.m;heat()}});heat();
+})();
+
+</script><script>(function(){document.addEventListener('click',function(e){const a=e.target.closest('a[href]');if(!a||a.getAttribute('href').startsWith('#'))return;const u=new URL(a.href,location.href);if(u.origin!==location.origin&&!/^(?:www\.)?xcellhost\.(?:cloud|top)$/.test(u.hostname))return;a.href=u.pathname.replace(/\.html$/,'')+u.search+u.hash;a.target='_top';},true);})();</script></body></html>
