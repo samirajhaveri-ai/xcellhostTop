@@ -78,7 +78,13 @@ for (const menu of all(headerDoc, n => has(n, 'xh-menu-item'))) {
   }
 }
 header = html(headerDoc).replace(/<header class="xh-header"/, '<xh-header><header class="xh-header"') + '</xh-header>';
-const footer = '<xh-footer>' + prepare(snapshot.footer) + '</xh-footer>';
+const footerDoc = parse5.parseFragment(prepare(snapshot.footer));
+// Rendered snapshots may already contain the Angular widget loader. Export it once.
+for (const script of all(footerDoc, n => n.tagName === 'script' && (get(n, 'id') === 'wowagent-widget-script' || get(n, 'src').startsWith('https://cdn.wowagent.ai/widget.js')))) {
+  script.parentNode.childNodes = script.parentNode.childNodes.filter(n => n !== script);
+}
+const wowAgentScript = '<script id="wowagent-widget-script" async src="https://cdn.wowagent.ai/widget.js?v=20260819-widget-v20-avatar-v14-minimize3d-v3-movement-v2" data-key="wa_live_ccaf7dcbc88098f074ee0dce12b3e193b8d0a6059f96eca9" data-api-base="https://api.wowagent.ai"></script>';
+const footer = '<xh-footer>' + html(footerDoc) + wowAgentScript + '</xh-footer>';
 const featureMarkup = Object.fromEntries(Object.entries(snapshot.featureMarkup).map(([id, tabs]) => [id, Object.fromEntries(Object.entries(tabs).map(([tab, markup]) => [tab, prepare(markup)]))]));
 
 // Retain component scoping in plain CSS, without Angular-generated attributes.
