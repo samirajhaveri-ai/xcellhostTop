@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
@@ -40,7 +40,6 @@ export class FooterComponent {
   private readonly overlay = inject(OverlayService);
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly footer = viewChild.required<ElementRef<HTMLElement>>('footer');
 
   readonly site = SITE;
   readonly year = new Date().getFullYear();
@@ -51,8 +50,6 @@ export class FooterComponent {
   readonly catalogLinks = CATALOG_LINKS;
 
   constructor() {
-    afterNextRender(() => this.loadWowAgent());
-
     afterNextRender(() => {
       const window = this.document.defaultView as (Window & {
         __dcid?: Array<{ cid: string; tag: string }>;
@@ -90,19 +87,6 @@ export class FooterComponent {
         this.document.body.appendChild(script);
       }
     });
-  }
-
-  private loadWowAgent(): void {
-    const scriptId = 'wowagent-widget-script';
-    if (this.document.getElementById(scriptId)) return;
-
-    const script = this.document.createElement('script');
-    script.id = scriptId;
-    script.async = true;
-    script.src = 'https://cdn.wowagent.ai/widget.js?v=20260819-widget-v20-avatar-v14-minimize3d-v3-movement-v2';
-    script.dataset['key'] = 'wa_live_ccaf7dcbc88098f074ee0dce12b3e193b8d0a6059f96eca9';
-    script.dataset['apiBase'] = 'https://api.wowagent.ai';
-    this.footer().nativeElement.appendChild(script);
   }
 
   openSiteLock(event: MouseEvent): void {
